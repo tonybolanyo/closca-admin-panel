@@ -1,0 +1,50 @@
+app-dialog-reward-codes {
+
+    .title {
+        position: relative;
+    }
+
+    .remove-btn {
+        font-family: 'customFont-bold';
+        position: absolute;
+    }
+
+    h3 {
+        margin-bottom: 30px;
+    }
+
+    .mat-dialog-actions {
+        float: right;
+
+        button {
+            padding: 10px 30px;
+        }
+    }
+
+    .flex-container {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        display: flex;
+      }
+
+      li {
+        padding: 0px 20px 15px 0px;
+      }
+      
+      .longhand { 
+        flex-flow: wrap row;
+        
+      }
+
+      .code {
+          display: inline;
+          padding-right: 10px;
+          padding-bottom: 20px;
+      }
+
+      img {
+          cursor: pointer;
+          margin-bottom: 5px;
+      }
+}

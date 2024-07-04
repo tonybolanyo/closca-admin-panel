@@ -1,0 +1,24 @@
+app-challenges-order {
+    .status-container {
+      justify-content: flex-end;
+      display: flex;
+    }
+  
+    .image-table {
+      margin: 10px 0px !important;
+    }
+  
+    .save-button {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-top: 75px;
+      padding-right: 0px;
+    
+      button {
+        padding: 10px 30px;
+        font-family: "customFont-light";
+        font-size: 1.1em;
+      }
+    }
+  }

@@ -1,0 +1,34 @@
+@import "./../../../../../../../../../sass/variables.scss";
+
+app-report-detail {
+    .edit-button {
+        position: relative;
+        top: 10px;
+        left: 10px;
+        float: left;
+        height: 30px;
+        width: 30px;
+        padding: 0px;
+        padding-bottom: 3px;
+    }
+
+    .image-detail {
+        border: 1px solid var(--corporate-primary, $brand-primary);
+        width: 300px;
+        height: 451px;
+        margin-right: 15px;
+        margin-top: 10px;
+        float: left;
+        object-fit: cover;
+    }
+
+    .custom-map {
+        margin-top: 10px;
+    }
+
+    .status-container {
+        justify-content: flex-start;
+        display: flex;
+        padding-left: 0;
+    }
+}

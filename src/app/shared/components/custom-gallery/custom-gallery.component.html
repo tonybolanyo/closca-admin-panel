@@ -1,0 +1,11 @@
+<div #gallery class="gallery-container">
+    <div id="gallery" *ngIf="images && images?.length > 0" class="gallery">
+        <img *ngFor="let image of images" [attr.id]="image?.key" [ngClass]="{selectedImage: image?.key === fileKeySelected}"
+            (click)="selectImage($event.target.src)" [src]="getImage(image?.key)">
+    </div>
+    <button *ngIf="images && images?.length > 0" class="prev-button" (click)="moveToPrev()"><img src="../../../../assets/icons/to-left-arrow.png"></button>
+    <button *ngIf="images && images?.length > 0" class="next-button" (click)="moveToNext()"><img src="../../../../assets/icons/to-right-arrow.png"></button>
+    <div *ngIf="images?.length === 0">
+        <p class="not-found-images">No hay imagenes disponibles</p>
+    </div>
+</div>

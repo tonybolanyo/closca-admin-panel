@@ -1,0 +1,578 @@
+<div class="row">
+    <div class="col-12 pt-1 pb-1">
+    <h3 class="float-left title">
+      <a class="button-back" (click)="navigateBack()">
+        <mat-icon class="float-left back-icon">keyboard_backspace</mat-icon>
+      </a>
+      {{ action === "view" ? "Ver" : action === "edit" ? "Editar" : "Nuevo" }}
+      Producto
+    </h3>
+  </div>
+  <div class="col-12 pt-3">
+    <div class="row">
+      <div class="language-container col-12 pb-3">
+        <mat-button-toggle-group #language="matButtonToggleGroup" value="es">
+          <mat-button-toggle value="es">
+            <img
+              width="25px"
+              [src]="'../../../../../../../../../assets/images/spain_flag.jpg'"
+            />
+            Español {{ productESForm.valid ? "" : "*" }}
+          </mat-button-toggle>
+          <mat-button-toggle value="en">
+            <img
+              width="25px"
+              [src]="'../../../../../../../../../assets/images/usa_flag.jpg'"
+            />
+            Inglés {{ productENForm.valid ? "" : "*" }}
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 pt-3 mb-4">
+  <form [formGroup]="productForm">
+    <div class="row" *ngIf="role != 'MANAGER'">
+      <div class="col-6">
+        <h5 class="section-title">Estado del producto</h5>
+      </div>
+      <div class="status-container col-12 pb-3">
+        <mat-button-toggle-group
+          #group="matButtonToggleGroup"
+          formControlName="status"
+        >
+          <mat-button-toggle value="VISIBLE">
+            Visible
+          </mat-button-toggle>
+          <mat-button-toggle value="INVISIBLE">
+            Invisible
+          </mat-button-toggle>
+          <mat-button-toggle value="OUT_OF_STOCK">
+            Sin stock
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+    </div>
+  </form>
+
+  <ng-container *ngIf="language.value === 'es'">
+    <form [formGroup]="productESForm">
+      <div class="row">
+        <div class="col-12">
+          <h5 class="section-title">Información del producto</h5>
+        </div>
+        <mat-form-field class="col-12">
+          <input
+            matInput
+            formControlName="name"
+            placeholder="Nombre *"
+            maxlength="45"
+          />
+        </mat-form-field>
+        <div class="col-12 pt-2 ">
+          <h5 class="section-title pb-0">Descripción *</h5>
+        </div>
+        <div
+          class="col-12 col-sm-12 col-md-12 pb-4"
+          [ngClass]="{ 'disable-editor': action === 'view' }"
+        >
+          <angular-editor
+            formControlName="description"
+            id="myEditor"
+            [config]="editorConfig"
+          ></angular-editor>
+        </div>
+      </div>
+    </form>
+  </ng-container>
+
+  <ng-container *ngIf="language.value === 'en'">
+    <form [formGroup]="productENForm">
+      <div class="row">
+        <div class="col-12">
+          <h5 class="section-title">Información del producto</h5>
+        </div>
+        <mat-form-field class="col-12">
+          <input
+            matInput
+            formControlName="name"
+            placeholder="Nombre *"
+            maxlength="45"
+          />
+        </mat-form-field>
+        <div class="col-12 pt-2 ">
+          <h5 class="section-title pb-0">Descripción *</h5>
+        </div>
+        <div
+          class="col-12 col-sm-12 col-md-12 pb-4"
+          [ngClass]="{ 'disable-editor': action === 'view' }"
+        >
+          <angular-editor
+            formControlName="description"
+            id="myEditor"
+            [config]="editorConfig"
+          ></angular-editor>
+        </div>
+      </div>
+    </form>
+  </ng-container>
+
+  <form [formGroup]="productForm">
+    <div class="row">
+      <mat-form-field class="col-12 col-md-5">
+        <mat-select placeholder="Tipo de producto *" formControlName="typeId">
+          <mat-option
+            *ngFor="let type of productTypesOptions"
+            [value]="type._id"
+          >
+            {{ type.name.es }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="row" *ngIf="(product && role != 'MANAGER' && corporateId == product.corporateId) || (action == 'new' && role != 'MANAGER' && corporateCodeSelected == 'CLOSCA')">
+      <mat-form-field class="col-12 col-md-5">
+        <input
+          matInput
+          type="number"
+          placeholder="Precio *"
+          formControlName="price"
+        />
+        <span matSuffix>€</span>
+      </mat-form-field>
+      <mat-form-field class="col-12 col-md-5">
+        <input
+          matInput
+          type="number"
+          placeholder="Descuento"
+          formControlName="discount"
+        />
+        <span matSuffix>%</span>
+      </mat-form-field>
+      <mat-form-field
+        *ngIf="
+          productForm.get('price').value && productForm.get('discount').value
+        "
+        class="col-12 col-md-2"
+      >
+        <input
+          matInput
+          type="number"
+          placeholder="Precio total"
+          [value]="totalPrice"
+        />
+        <span matSuffix>€</span>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <div class="row">
+          <div class="col-12">
+            <h5 class="section-title">Imagen del producto (2:3) *</h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 mb-5">
+            <img
+              class="image-detail"
+              *ngIf="!isProductLocalImageChanged"
+              [src]="
+                product?.imageId
+                  ? getImage(product?.imageInfo?.fileRoute)
+                  : '../../../../../../../../../assets/images/default-image.jpg'
+              "
+            />
+            <img
+              class="image-detail"
+              *ngIf="isProductLocalImageChanged"
+              [src]="
+                productLocalImage !== ''
+                  ? productLocalImage
+                  : '../../../../../assets/images/default-image.jpg'
+              "
+              class="image-detail"
+            />
+            <div *ngIf="action !== 'view'">
+              <div
+                class="image-upload"
+                *ngIf="!productImageId && !productLocalImage"
+              >
+                <label for="product-file-input">
+                  <img
+                    class="add-image"
+                    src="./../../../../../../../../../assets/icons/add-icon.png"
+                  />
+                </label>
+                <input
+                  #imageProductUploaderInput
+                  id="product-file-input"
+                  type="file"
+                  name="product-image"
+                  (change)="changeLocalImage($event)"
+                  ng2FileSelect
+                  [uploader]="imageProductUploader"
+                />
+              </div>
+              <button
+                type="button"
+                *ngIf="productImageId || productLocalImage"
+                class="btn btn-danger delete-button"
+                (click)="showDialogDeleteImage()"
+              >
+                <img
+                  src="./../../../../../../../../../assets/icons/garbage.png"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div class="row">
+          <div class="col-12">
+            <h5 class="section-title">
+              Imagenes de la descripción (2:1) *
+            </h5>
+          </div>
+        </div>
+        <div class="row">
+          <ng-container
+            *ngFor="let image of descriptionLocalImages; index as i"
+          >
+            <div class="col-12 mb-5">
+              <img
+                class="image-detail-description"
+                *ngIf="image?._id"
+                [src]="getImage(image?.fileRoute)"
+              />
+              <img class="image-detail-description" *ngIf="!image?._id" [src]="image" />
+              <button
+                type="button"
+                *ngIf="action !== 'view'"
+                class="btn btn-danger delete-button"
+                (click)="showDialogDeleteImage('description', i, image)"
+              >
+                <img
+                  src="./../../../../../../../../../assets/icons/garbage.png"
+                />
+              </button>
+            </div>
+          </ng-container>
+          <div *ngIf="action !== 'view'">
+            <div
+              class="col-12 image-upload"
+              *ngIf="
+                !descriptionLocalImages || descriptionLocalImages.length < 5
+              "
+            >
+              <label for="description-file-input">
+                <img
+                  class="add-image"
+                  src="./../../../../../../../../../assets/icons/add-icon.png"
+                />
+                Añadir imágenes
+              </label>
+              <input
+                #imageDescriptionUploaderInput
+                id="description-file-input"
+                type="file"
+                name="description-image"
+                (change)="changeLocalImage($event)"
+                ng2FileSelect
+                [uploader]="imageDescriptionUploader"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="role != 'MANAGER'">
+      <div class="col-12">
+        <h5 class="section-title">Corporación del producto</h5>
+      </div>
+      <mat-form-field class="col-12 col-md-6" formGroupName="corporateInfo">
+        <mat-select placeholder="Nombre de la corporación" formControlName="_id" (selectionChange)="corporateChange($event)">
+          <mat-option *ngFor="let corporate of corporates" [value]="corporate._id">
+            {{corporate.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="col-12 col-md-6" formGroupName="corporateInfo">
+        <input matInput placeholder="Código de la corporación" formControlName="code">
+      </mat-form-field>
+    </div>
+  </form>
+
+  <ng-container *ngIf="language.value === 'es'">
+    <form [formGroup]="productESForm">
+      <div class="row">
+        <div class="col-12 col-lg-6" *ngIf="role != 'MANAGER'">
+          <h5 class="w-100 text-left section-title">
+            Tallas del producto
+            <button
+              *ngIf="action !== 'view'"
+              (click)="addSize()"
+              class="p-0 btn btn-primary"
+            >
+              <img
+                style="width: 30px;"
+                src="./../../../../../../../../../assets/icons/add-icon.png"
+              />
+            </button>
+          </h5>
+          <div
+            class="p-0 w-100 text-left"
+            formArrayName="size"
+            *ngFor="let item of getSizeESControls(); let i = index"
+          >
+            <div class="p-1 mb-2" [formGroupName]="i">
+              <input
+                formControlName="name"
+                class="size-inputs"
+                placeholder="Talla"
+              />
+              <button
+                *ngIf="action !== 'view' && getSizeESControlsLength() > 1"
+                (click)="removeSize(i)"
+                class="delete-size-btn btn btn-danger"
+              >
+                <img
+                  src="./../../../../../../../../../assets/icons/garbage.png"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-6">
+          <h5 class="w-100 text-left section-title">
+            Pasos para obtener recompensa (Multi-idioma) *
+            <button
+              *ngIf="action !== 'view'"
+              (click)="addCode()"
+              class="p-0 btn btn-primary"
+            >
+              <img
+                style="width: 30px;"
+                src="./../../../../../../../../../assets/icons/add-icon.png"
+              />
+            </button>
+          </h5>
+          <div
+            class="p-0 w-100 text-left"
+            formArrayName="rewardStepper"
+            *ngFor="let item of getRewardESControls(); let i = index"
+          >
+            <div class="p-1 mb-2" [formGroupName]="i">
+              <input
+                formControlName="text"
+                class="mb-1 size-inputs"
+                placeholder="Texto"
+              />
+              <button
+                *ngIf="action !== 'view' && getRewardESControlsLength() > 1"
+                (click)="removeCode(i)"
+                class="delete-size-btn btn btn-danger"
+              >
+                <img
+                  src="./../../../../../../../../../assets/icons/garbage.png"
+                />
+              </button>
+              <br />
+              <input
+                formControlName="link"
+                class="mt-1 size-inputs"
+                placeholder="Link"
+              />
+              <button
+                *ngIf="action === 'view' && item?.value.link"
+                (click)="goToLink(item.value.link)"
+                class="view-reward-link btn btn-primary"
+              >
+                <img src="./../../../../../../../../../assets/icons/eye.png" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </ng-container>
+
+  <ng-container *ngIf="language.value === 'en'">
+    <form [formGroup]="productENForm">
+      <div class="row">
+        <div class="col-12 col-lg-6" *ngIf="role != 'MANAGER'">
+          <h5 class="w-100 text-left section-title">
+            Tallas del producto
+            <button
+              *ngIf="action !== 'view'"
+              (click)="addSize()"
+              class="p-0 btn btn-primary"
+            >
+              <img
+                style="width: 30px;"
+                src="./../../../../../../../../../assets/icons/add-icon.png"
+              />
+            </button>
+          </h5>
+          <div
+            class="p-0 w-100 text-left"
+            formArrayName="size"
+            *ngFor="let item of getSizeESControls(); let i = index"
+          >
+            <div class="p-1 mb-2" [formGroupName]="i">
+              <input
+                formControlName="name"
+                class="size-inputs"
+                placeholder="Talla"
+              />
+              <button
+                *ngIf="action !== 'view' && getSizeESControlsLength() > 1"
+                (click)="removeSize(i)"
+                class="delete-size-btn btn btn-danger"
+              >
+                <img
+                  src="./../../../../../../../../../assets/icons/garbage.png"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-6">
+          <h5 class="w-100 text-left section-title">
+            Pasos para obtener recompensa (Multi-idioma) *
+            <button
+              *ngIf="action !== 'view'"
+              (click)="addCode()"
+              class="p-0 btn btn-primary"
+            >
+              <img
+                style="width: 30px;"
+                src="./../../../../../../../../../assets/icons/add-icon.png"
+              />
+            </button>
+          </h5>
+          <div
+            class="p-0 w-100 text-left"
+            formArrayName="rewardStepper"
+            *ngFor="let item of getRewardESControls(); let i = index"
+          >
+            <div class="p-1 mb-2" [formGroupName]="i">
+              <input
+                formControlName="text"
+                class="mb-1 size-inputs"
+                placeholder="Texto"
+              />
+              <button
+                *ngIf="action !== 'view' && getRewardESControlsLength() > 1"
+                (click)="removeCode(i)"
+                class="delete-size-btn btn btn-danger"
+              >
+                <img
+                  src="./../../../../../../../../../assets/icons/garbage.png"
+                />
+              </button>
+              <br />
+              <input
+                formControlName="link"
+                class="mt-1 size-inputs"
+                placeholder="Link"
+              />
+              <button
+                *ngIf="action === 'view' && item?.value.link"
+                (click)="goToLink(item.value.link)"
+                class="view-reward-link btn btn-primary"
+              >
+                <img src="./../../../../../../../../../assets/icons/eye.png" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </ng-container>
+
+  <div class="row">
+    <div class="col-12 col-lg-6">
+      <h5 class="w-100 m-0 text-left section-title">
+        Códigos
+      </h5>
+      <div class="w-100 text-left">
+        {{ product?.rewardCodes?.length ? product?.rewardCodes?.length : 0 }}
+        códigos totales
+      </div>
+      <div class="w-100 text-left">
+        {{ product?.rewards?.length ? product?.rewards?.length : 0 }}
+        códigos canjeados
+      </div>
+      <br />
+      <ng-container *ngIf="action !== 'view'">
+        <input
+          #codeUploaderInput
+          id="code-file-input"
+          class="w-100 mb-3 float-left"
+          type="file"
+          name="code"
+          ng2FileSelect
+          (change)="changeCodeFile($event)"
+          [uploader]="codeUploader"
+        />
+      </ng-container>
+      <button
+        *ngIf="action !== 'new'"
+        mat-raised-button
+        class="float-left"
+        (click)="showCodes()"
+      >
+        Ver códigos
+      </button>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="action === 'view'">
+    <div class="col-12">
+      <h5 class="mt-4 section-title">
+        Códigos canjeados
+      </h5>
+      <app-product-redeem-codes-list
+        [productId]="productId"
+      ></app-product-redeem-codes-list>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="action !== 'view'">
+    <div class="buttons-container col-12 pt-4 pb-5 pl-3">
+      <ng-content select="button"></ng-content>
+      <button
+        class="btn btn-primary send-sms-button mr-2"
+        (click)="isFormCanceled = true"
+        [routerLink]="routerDefinitions.products + '/list'"
+      >
+        Cancelar
+      </button>
+      <button
+        class="btn btn-primary ml-2"
+        [disabled]="
+          ((productForm.invalid || !productForm.dirty) &&
+            (productESForm.invalid || !productESForm.dirty) &&
+            (productENForm.invalid || !productENForm.dirty)) ||
+          !productLocalImage || descriptionLocalImages.length == 0
+        "
+        (click)="
+          saveForm(
+            productForm.value,
+            productESForm.value,
+            productENForm.value,
+            productForm.valid,
+            productESForm.valid,
+            productENForm.valid
+          )
+        "
+      >
+        Guardar
+      </button>
+    </div>
+  </div>
+</div>
+</div>

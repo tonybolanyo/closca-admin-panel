@@ -1,0 +1,150 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-body">
+    Es un modal de ejemplo
+  </div>
+</ng-template>
+
+<div class="row">
+  <div class="col-12 pt-1 pb-1">
+    <h3 class="float-left title">
+      <a [routerLink]="routerDefinitions.crud +'/list'">
+        <mat-icon class="float-left back-icon">keyboard_backspace</mat-icon>
+      </a>
+      {{action === 'view'? 'Ver' : (action === 'edit' ? 'Editar' : 'Nueva')}} Solicitud
+    </h3>
+  </div>
+  <div class="col-12 pt-3">
+    <form class="w-100" [formGroup]="crudForm">
+      <div class="row">
+        <mat-form-field class="col-12 col-md-12">
+          <input matInput placeholder="Titulo" formControlName="title">
+        </mat-form-field>
+      </div>
+      <div class="row align-items-end">
+        <mat-form-field class="col-12 col-md-4">
+          <input matInput [matDatepicker]="picker" placeholder="Fecha" formControlName="date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <a *ngIf="crudForm.get('date').value && action !== 'view'" (click)="crudForm.get('date').reset()"
+            class="datepicker-clear-button">
+            <mat-icon>clear</mat-icon>
+          </a>
+          <mat-datepicker #picker startView="year" disabled="false"></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-8">
+          <textarea matInput placeholder="Descripción" formControlName="description"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-12 col-md-6">
+          <mat-select placeholder="Lista" formControlName="itemId">
+            <mat-option *ngFor="let item of listItems" [value]="item.id">
+              {{ item?.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="row">
+          <mat-form-field class="col-6 col-md-5">
+              <input matInput formControlName="startDate" [matDatepicker]="pickerInit" placeholder="Fecha/Hora de inicio">
+              <mat-datepicker-toggle matSuffix [for]="pickerInit"></mat-datepicker-toggle>
+              <a *ngIf="crudForm.get('startDate').value" (click)="crudForm.get('startDate').reset()" class="datepicker-clear-button">
+                  <mat-icon>clear</mat-icon>
+              </a>
+              <mat-datepicker #pickerInit startView="year" disabled="false"></mat-datepicker>
+          </mat-form-field>
+          <div class="col-6 col-md-4">
+              <ngb-timepicker class="timepicker" formControlName="startHour"></ngb-timepicker>
+          </div>
+      </div>
+      <div class="row">
+          <mat-form-field class="col-6 col-md-5">
+              <input matInput formControlName="finishDate" [matDatepicker]="pickerEnd" placeholder="Fecha/Hora de fin">
+              <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+              <a *ngIf="crudForm.get('finishDate').value" (click)="crudForm.get('finishDate').reset()" class="datepicker-clear-button">
+                  <mat-icon>clear</mat-icon>
+              </a>
+              <mat-datepicker #pickerEnd startView="year" disabled="false"></mat-datepicker>
+          </mat-form-field>
+          <div class="col-6 col-md-4">
+              <ngb-timepicker class="timepicker" formControlName="finishHour"></ngb-timepicker>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-12" [ngClass]="{'ng-select-invalid': crudForm.get('optionId').errors && crudForm.get('optionId').dirty}">
+          <ng-select [multiple]="true" class="custom-select-material" [items]="options" formControlName="optionId" bindLabel="label"
+            bindValue="value" placeholder="Opciones con busqueda">
+          </ng-select>
+        </div>
+      </div>
+      <div class="row">
+        <button class="btn btn-primary" (click)="openModal(content)">Abrir modal</button>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-12">
+          <input matInput placeholder="Dirección" formControlName="address">
+        </mat-form-field>
+      </div>
+      <div class="row  pb-4">
+        <div class="col-12 pt-4">
+          <h5 class="section-title">Imagenes de la Solicitud
+          </h5>
+          <input style="display: none;" accept="image/png, image/jpeg" (change)="changeLocalImage($event)" [uploader]="uploader"
+            name="file" ng2FileSelect id="upload-file-selector" type="file">
+          <ng-container *ngIf="action !== 'view'">
+            <label class="add-custom-button btn btn-primary" type="file" for="upload-file-selector">
+                  <img src="./../../../../../../../../../assets/icons/add-icon.png" />
+            </label>
+          </ng-container>
+
+        </div>
+        <ng-container *ngIf="galleryImg.length > 0">
+          <div class="col-10 pr-0 modal-gallery-container">
+            <div class="delete-image" *ngIf="openImageModalWindow && action !== 'view'">
+              <a (click)="showDialogDeleteImage()">
+                <img src="./../../../../../../../assets/icons/garbage.png" />
+              </a>
+            </div>
+            <ks-modal-gallery [slideConfig]="{infinite: false, sidePreviews: {show: false}}" [id]="0" [modalImages]="galleryImg"
+              [plainGalleryConfig]="plainGalleryRow" [currentImageConfig]="{description: customDescription}"
+              [dotsConfig]="{visible: false}" [previewConfig]="{visible: false}" (show)="onGetCurrentImageIndex($event)"
+              (close)="onCloseImageModal($event)"></ks-modal-gallery>
+          </div>
+          <div class="col-2 pl-0" *ngIf="galleryImg.length > 3">
+            <a (click)="openGallery()">
+              <div class="show-more-img-button-container">
+                <span>+{{galleryImg.length - 3}}</span>
+              </div>
+            </a>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="galleryImg.length === 0 && action !== 'new'">
+          <div class="col-12">
+            <p class="float-left">No hay imagenes disponibles para esta solicitud</p>
+          </div>
+        </ng-container>
+      </div>
+      <div class="row" *ngIf="action !== 'new'">
+        <div class="col-12">
+          <h5 class="section-title">Estado de la Solicitud</h5>
+        </div>
+        <div class="status-container col-12 pb-3">
+          <mat-button-toggle-group #group="matButtonToggleGroup" formControlName="status">
+            <mat-button-toggle value="PENDING" [checked]="true">
+              Pendiente
+            </mat-button-toggle>
+            <mat-button-toggle value="FINISHED">
+              Finalizado
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+      </div>
+    </form>
+    <div class="row" *ngIf="action !== 'view'">
+      <div class="buttons-container col-12 pt-4 pb-5 pl-3">
+        <ng-content select="button"></ng-content>
+        <button class="btn btn-primary send-sms-button mr-3" [routerLink]="routerDefinitions.crud + '/list'">Cancelar</button>
+        <button class="btn btn-primary ml-3" [disabled]="crudForm.invalid || !crudForm.dirty" (click)="saveForm(crudForm.value, crudForm.valid)">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

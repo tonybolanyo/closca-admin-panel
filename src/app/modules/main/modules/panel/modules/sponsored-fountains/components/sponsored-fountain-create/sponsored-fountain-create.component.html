@@ -1,0 +1,198 @@
+<div class="row">
+  <div class="col-12 pt-1 pb-1">
+    <h3 class="float-left title">
+      <a [routerLink]="routerDefinitions.sponsoredFountains +'/list'">
+        <mat-icon class="float-left back-icon">keyboard_backspace</mat-icon>
+      </a>
+      Nueva Fuente patrocinada
+    </h3>
+  </div>
+  <div class="col-12 pt-3">
+    <form class="w-100" [formGroup]="fountainForm">
+      <div class="row">
+        <div class="col-12 col-xl-6">
+          <div class="row">
+            <div class="col-12">
+              <h5 class="section-title">Imagen de la fuente (969x1458px)</h5>
+            </div>
+          </div>
+          <img class="fountain-image" *ngIf="!isFountainLocalImageChanged"
+            [src]="fountain?.imageId? getImage(fountain?.imageInfo?.fileRoute) : '../../../../../../../../../assets/images/default-image.jpg'">
+          <img class="fountain-image" *ngIf="isFountainLocalImageChanged"
+            [src]="fountainLocalImage !== '' ? fountainLocalImage : '../../../../../assets/images/default-image.jpg'"
+            class="fountain-image">
+          <div class="image-upload">
+            <label for="fountain-image-input" *ngIf="!fountainImageId && !fountainLocalImage">
+              <img class="add-image" src="./../../../../../../../../../assets/icons/add-icon.png" />
+            </label>
+            <input #fountainImageUploaderInput id="fountain-image-input" type="file" (change)="changeLocalImage($event)"
+              ng2FileSelect [uploader]="fountainImageUploader" />
+          </div>
+          <button *ngIf="(fountainImageId && !isFountainImageDeleted) || fountainLocalImage"
+            class="btn btn-danger delete-button" (click)="showDialogDeleteImage(fountainImageUploader)"><img
+              src="./../../../../../../../../../assets/icons/garbage.png" /></button>
+        </div>
+        <div class="col-12 col-xl-6">
+          <div class="row">
+            <div class="col-12">
+              <h5 class="section-title">Imagen pin mapa (60x99px)</h5>
+            </div>
+          </div>
+          <img class="map-pin-image" *ngIf="!isMapPinLocalImageChanged"
+            [src]="fountain?.mapPinImageId? getImage(fountain?.mapPinImageInfo?.fileRoute) : '../../../../../../../../../assets/images/default-image.jpg'">
+          <img class="map-pin-image" *ngIf="isMapPinLocalImageChanged"
+            [src]="mapPinLocalImage !== '' ? mapPinLocalImage : '../../../../../assets/images/default-image.jpg'"
+            class="map-pin-image">
+          <div class="image-upload" *ngIf="!mapPinImageId && !mapPinLocalImage">
+            <label for="mapPin-input">
+              <img class="add-image" src="./../../../../../../../../../assets/icons/add-icon.png" />
+            </label>
+            <input #mapPinImageUploaderInput id="mapPin-input" type="file" (change)="changeLocalImage($event)"
+              ng2FileSelect [uploader]="mapPinImageUploader" />
+          </div>
+          <button *ngIf="(mapPinImageId && !isMapPinImageDeleted) || mapPinLocalImage"
+            class="btn btn-danger delete-button" (click)="showDialogDeleteImage(mapPinImageUploader)"><img
+              src="./../../../../../../../../../assets/icons/garbage.png" /></button>
+        </div>
+        <div class="col-12 mt-1">
+          <div class="row">
+            <div class="col-12 col-lg-6">
+              <ng-select class="custom-select-material" [items]="brandsList" formControlName="brandInfo"
+                bindLabel="label" bindValue="value" placeholder="Selecciona marca *">
+              </ng-select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="w-100">
+      <div class="mt-4 mb-3">
+        <div class="row">
+          <div class="col-12">
+            <h5 class="section-title">Selecciona fuente para convertirla en patrocinada *
+            </h5>
+          </div>
+          <div class="col-12 mb-4">
+            <form [formGroup]="filterForm">
+              <div class="mat-elevation-z8 pt-2 table-container table-responsive">
+                <div class="table-container custom-table">
+                  <table mat-table [dataSource]="privateFountains" class="w-100">
+                    <ng-container matColumnDef="title">
+                      <th class="header-sticky" mat-header-cell *matHeaderCellDef>
+                        <div class="header-container">
+                          <mat-form-field>
+                            <input matInput placeholder="Nombre" formControlName="name">
+                          </mat-form-field>
+                        </div>
+
+                      </th>
+                      <td mat-cell *matCellDef="let element">
+                        <div class="cell-container">
+                          {{element?.name}}
+                        </div>
+                      </td>
+                    </ng-container>
+                    <ng-container matColumnDef="type">
+                      <th class="header-sticky" mat-header-cell *matHeaderCellDef>
+                        <div class="header-container">
+                          <mat-form-field>
+                            <mat-select [placeholder]="'Tipo'" formControlName="fountainType">
+                              <mat-option *ngFor="let dropdownItem of fountainTypes" [value]="dropdownItem?.value">
+                                {{ dropdownItem?.name }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </th>
+                      <td mat-cell *matCellDef="let element">
+                        <div class="cell-container">
+                          {{element?.fountainType}}
+                        </div>
+                      </td>
+                    </ng-container>
+                    <ng-container matColumnDef="address">
+                      <th class="header-sticky" mat-header-cell *matHeaderCellDef>
+                        <div class="header-container">
+                          <mat-form-field>
+                            <input matInput placeholder="Dirección" formControlName="address">
+                          </mat-form-field>
+                        </div>
+                      </th>
+                      <td mat-cell *matCellDef="let element">
+                        <div class="cell-container cell-address">
+                          {{element?.address?.address}}
+                        </div>
+                      </td>
+                    </ng-container>
+                    <ng-container matColumnDef="status">
+                      <th class="header-sticky" mat-header-cell *matHeaderCellDef>
+                        <div class="header-container">
+                          <mat-form-field>
+                            <mat-select [placeholder]="'Estado'" formControlName="fountainStatus">
+                              <mat-option *ngFor="let dropdownItem of fountainStatus" [value]="dropdownItem?.value">
+                                {{ dropdownItem?.name }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+
+                      </th>
+                      <td mat-cell *matCellDef="let element">
+                        <div class="cell-container">
+                          {{element?.fountainStatus}}
+                        </div>
+                      </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="corporate">
+                      <th class="header-sticky" mat-header-cell *matHeaderCellDef>
+                        <div class="header-container">
+                          <mat-form-field>
+                            <mat-select [placeholder]="'Corporación'" formControlName="corporateId">
+                              <mat-option *ngFor="let dropdownItem of corporates" [value]="dropdownItem?._id">
+                                {{ dropdownItem?.name }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+
+                      </th>
+                      <td mat-cell *matCellDef="let element">
+                        <div class="cell-container">
+                          {{element?.corporateInfo.name}}
+                        </div>
+                      </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr [ngClass]="{'private-fountain-selected': row._id === fountainId}" mat-row
+                      *matRowDef="let row; columns: displayedColumns;" (click)="selectFountain(row)"></tr>
+                  </table>
+                </div>
+                <div *ngIf="privateFountains?.length <= 0" class="pt-4">
+                  <p>No hay fuentes disponibles</p>
+                </div>
+                <mat-paginator [length]="paginator.length" [pageSize]="paginator.limit"
+                  [pageSizeOptions]="paginator.pageSizeOptions" [pageIndex]="paginator.pageIndex"
+                  (page)="paginate($event)"></mat-paginator>
+              </div>
+
+            </form>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="buttons-container col-12 pt-4 pb-5 pl-3">
+        <ng-content select="button"></ng-content>
+        <button class="btn btn-primary send-sms-button mr-2" (click)="isFormCanceled = true"
+          [routerLink]="routerDefinitions.sponsoredFountains + '/list'">Cancelar</button>
+        <button class="btn btn-primary ml-2"
+          [disabled]="fountainForm.invalid || !fountainForm.dirty || (fountainId === null)"
+          (click)="saveForm(fountainForm.value, fountainForm.valid)">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

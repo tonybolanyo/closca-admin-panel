@@ -1,0 +1,120 @@
+<div class="row pb-4">
+  <div class="col-12 pt-1 pb-1">
+    <h3 class="float-left title">
+      <a [routerLink]="routerDefinitions.brands +'/list'">
+        <mat-icon class="float-left back-icon">keyboard_backspace</mat-icon>
+      </a>
+      {{action === 'view'? 'Ver' : (action === 'edit' ? 'Editar' : 'Nueva')}} Marca
+    </h3>
+  </div>
+  <div class="col-12 pt-3">
+    <form class="w-100" [formGroup]="brandForm">
+      <div class="row">
+        <mat-form-field class="col-12">
+          <input matInput placeholder="Nombre *" formControlName="name">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <h5 class="section-title" *ngIf="action !== 'view'">Imagen de la marca (93x93px) *</h5>
+          <h5 class="section-title" *ngIf="action === 'view'">Imagen de la marca</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 mb-3">
+          <img class="brand-image" *ngIf="!isBrandLocalImageChanged"
+            [src]="brand?.imageId? getImage(brand?.brandImageInfo?.fileRoute) : '../../../../../../../../../assets/images/default-image.jpg'">
+
+          <img class="brand-image" *ngIf="isBrandLocalImageChanged"
+            [src]="brandLocalImage !== '' ? brandLocalImage : '../../../../../assets/images/default-image.jpg'"
+            class="brand-image">
+
+          <ng-container *ngIf="action !== 'view'">
+            <div class="image-upload" *ngIf="!brandImageId  && !brandLocalImage">
+              <label for="brand-image-input">
+                <img class="add-image" src="./../../../../../../../../../assets/icons/add-icon.png" />
+              </label>
+              <input #brandImageUploaderInput id="brand-image-input" type="file" (change)="changeLocalImage($event, 'brand')"
+                ng2FileSelect [uploader]="brandImageUploader" />
+            </div>
+            <button type="button" *ngIf="brandImageId  || brandLocalImage" class="btn btn-danger delete-button"
+              (click)="showDialogDeleteImage('brand')"><img
+                src="./../../../../../../../../../assets/icons/garbage.png" /></button>
+          </ng-container>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <h5 class="section-title" *ngIf="action !== 'view'">Imagen de fondo de la marca (969x1458px) *</h5>
+          <h5 class="section-title" *ngIf="action === 'view'">Imagen de fondo de la marca</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 mb-3">
+          <img class="brand-background-image" *ngIf="!isBrandLocalBackgroundImageChanged"
+            [src]="brand?.backgroundId? getImage(brand?.backgroundInfo?.fileRoute) : '../../../../../../../../../assets/images/default-image.jpg'">
+
+          <img class="brand-background-image" *ngIf="isBrandLocalBackgroundImageChanged"
+            [src]="brandLocalBackgroundImage !== '' ? brandLocalBackgroundImage : '../../../../../assets/images/default-image.jpg'">
+
+          <ng-container *ngIf="action !== 'view'">
+            <div class="image-upload" *ngIf="!brandBackgroundImageId  && !brandLocalBackgroundImage">
+              <label for="brand-background-image-input">
+                <img class="add-image" src="./../../../../../../../../../assets/icons/add-icon.png" />
+              </label>
+              <input #brandBackgroundImageUploaderInput id="brand-background-image-input" type="file" (change)="changeLocalImage($event, 'background')"
+                ng2FileSelect [uploader]="brandBackgroundImageUploader" />
+            </div>
+            <button type="button" *ngIf="brandBackgroundImageId  || brandLocalBackgroundImage" class="btn btn-danger delete-button"
+              (click)="showDialogDeleteImage('background')"><img
+                src="./../../../../../../../../../assets/icons/garbage.png" /></button>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <h5 class="section-title">Redes sociales</h5>
+        </div>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-12 col-md-6">
+          <input matInput placeholder="Facebook" formControlName="facebook">
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6">
+          <input matInput placeholder="Twitter" formControlName="twitter">
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6">
+          <input matInput placeholder="Instagram" formControlName="instagram">
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6">
+          <input matInput placeholder="Linkedin" formControlName="linkedin">
+        </mat-form-field>
+      </div>
+
+      <ng-container *ngIf="action === 'view' && fountains">
+        <div class="row">
+          <div class="col-12">
+            <h5 class="section-title">Fuentes marca</h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 mb-5">
+            <app-custom-table [dataSource]="fountains" [tableConfig]="tableConfig">
+            </app-custom-table>
+          </div>
+        </div>
+      </ng-container>
+    </form>
+    <div class="row" *ngIf="action !== 'view'">
+      <div class="buttons-container col-12 pt-4 pb-5 pl-3">
+        <ng-content select="button"></ng-content>
+        <button class="btn btn-primary send-sms-button mr-2" (click)="isFormCanceled = true"
+          [routerLink]="routerDefinitions.brands + '/list'">Cancelar</button>
+        <button class="btn btn-primary ml-2"
+          [disabled]="brandForm.invalid || !brandForm.dirty || (!brandImageId  && !brandLocalImage) || (!brandBackgroundImageId  && !brandLocalBackgroundImage)"
+          (click)="saveForm(brandForm.value, brandForm.valid)">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

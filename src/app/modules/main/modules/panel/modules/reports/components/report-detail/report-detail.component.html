@@ -1,0 +1,168 @@
+<div class="row">
+  <div class="col-12 pt-1 pb-1">
+    <h3 class="float-left title">
+      <a [routerLink]="routerDefinitions.reports +'/list'">
+        <mat-icon class="float-left back-icon">keyboard_backspace</mat-icon>
+      </a>
+      Ver Reporte
+    </h3>
+  </div>
+  <div class="col-12 pt-3">
+    <form class="w-100" [formGroup]="reportForm">
+
+      <div class="row">
+        <div class="col-12">
+          <div>
+            <h5 class="section-title">Estado del reporte</h5>
+          </div>
+          <div class="status-container col-12 pb-3">
+            <mat-button-toggle-group #group="matButtonToggleGroup" formControlName="reportStatus">
+              <mat-button-toggle value="ACCEPTED" (change)="onReportStatusChange($event.value)">
+                Aceptado
+              </mat-button-toggle>
+              <mat-button-toggle value="REJECTED" (change)="onReportStatusChange($event.value)">
+                Rechazado
+              </mat-button-toggle>
+              <mat-button-toggle value="PENDING" (change)="onReportStatusChange($event.value)">
+                Pendiente
+              </mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <h5 class="section-title">Información del usuario</h5>
+        </div>
+        <mat-form-field class="col-12 col-md-6" formGroupName="userInfo">
+          <input matInput placeholder="Nombre de usuario" formControlName="userName">
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6" formGroupName="userInfo">
+          <input matInput placeholder="Email" formControlName="email">
+        </mat-form-field>
+      </div>
+      <div class="row" *ngIf="report != undefined && !(report.emailSent)">
+        <button class="btn btn-primary ml-2" (click)="sendFeedbackEmail()">Enviar feedback al usuario</button>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h5 class="section-title">Información de la fuente</h5>
+          <button [routerLink]="routerDefinitions.publicOrPrivateFountains + '/edit/' + fountainId"
+            class="btn btn-primary edit-button">
+            <img src="./../../../../../../../../../assets/icons/edit.png" />
+          </button>
+        </div>
+        <mat-form-field class="col-12 col-md-6" formGroupName="fountainInfo">
+          <input matInput placeholder="Nombre de la fuente" formControlName="name">
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6" formGroupName="fountainInfo">
+          <ng-container formGroupName="address">
+            <input matInput placeholder="Dirección de la fuente" formControlName="address">
+          </ng-container>
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6" formGroupName="fountainInfo">
+          <mat-select placeholder="Tipo de fuente" formControlName="fountainType">
+            <mat-option *ngFor="let fountainType of fountainTypeOptions" [value]="fountainType.value">
+              {{fountainType.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h5 class="section-title">Información del reporte</h5>
+        </div>
+        <mat-form-field class="col-12 col-md-6">
+          <mat-select placeholder="Tipo de reporte" formControlName="reportType">
+            <mat-option *ngFor="let reportType of reportTypeOptions" [value]="reportType.value">
+              {{reportType.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6">
+          <input matInput disabled placeholder="Fecha del reporte" value="{{reportDate | date:'dd/MM/yyyy HH:mm'}}">
+        </mat-form-field>
+
+        <mat-form-field class="col-12">
+          <textarea matInput placeholder="Contenido del reporte" formControlName="text"></textarea>
+        </mat-form-field>
+      </div>
+
+      <!-- <div class="row" *ngIf="role != 'MANAGER'" style="margin-bottom: 15px;">
+        <div class="col-12">
+          <h5 class="section-title">Corporación del reporte</h5>
+        </div>
+        <mat-form-field class="col-12 col-md-6" formGroupName="corporateInfo">
+          <mat-select placeholder="Nombre de la corporación" formControlName="_id">
+            <mat-option *ngFor="let corporate of corporates" [value]="corporate._id">
+              {{corporate.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6" formGroupName="corporateInfo">
+          <input matInput placeholder="Código de la corporación" formControlName="code">
+        </mat-form-field>
+      </div> -->
+
+      <ng-container *ngIf="report != undefined && report.loc != undefined && report.loc.coordinates != undefined">
+        <div class="row">
+          <mat-form-field class="col-12 col-md-6">
+            <input matInput placeholder="Dirección actual de la fuente" formControlName="currentAddress" />
+          </mat-form-field>
+          <mat-form-field class="col-12 col-md-6">
+            <input matInput placeholder="Nueva Dirección" formControlName="newAddress" />
+          </mat-form-field>
+        </div>
+        <div class="row"
+          *ngIf="report.loc.coordinates[0] != report.fountainInfo.loc.coordinates[0] && report.loc.coordinates[1] != report.fountainInfo.loc.coordinates[1]">
+          <button class="btn btn-primary ml-2" (click)="updateFountainAddress()">Actualizar dirección de la fuente
+            original</button>
+        </div>
+        <div class="row custom-map">
+          <div class="col-12 mb-5">
+            <agm-map [latitude]="report.fountainInfo.loc.coordinates[1]"
+              [longitude]="report.fountainInfo.loc.coordinates[0]" [zoom]="18">
+              <agm-marker [latitude]="report.loc.coordinates[1]" [longitude]="report.loc.coordinates[0]"
+                [iconUrl]="'../../../../../../../../../assets/icons/ico_map_fountain.png'" [markerDraggable]="false">
+              </agm-marker>
+
+              <agm-marker [latitude]="report.fountainInfo.loc.coordinates[1]"
+                [longitude]="report.fountainInfo.loc.coordinates[0]"
+                [iconUrl]="'../../../../../../../../../assets/icons/ico_map_fountain@2x.png'" [markerDraggable]="false">
+              </agm-marker>
+
+            </agm-map>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="report != undefined && report.imageId != undefined">
+        <div class="row">
+          <div class="col-12">
+            <h5 class="section-title">Nueva imagen de la fuente</h5>
+          </div>
+        </div>
+        <div class="row" *ngIf="report.imageId != report.fountainInfo.imageId">
+          <button class="btn btn-primary ml-2" (click)="updateFountainImage()">Actualizar imagen de la fuente
+            original</button>
+        </div>
+        <div class="row">
+          <div class="col-12 mb-5">
+            <img class="image-detail"
+              [src]="report?.imageId? getImage(report?.imageInfo?.fileRoute) : '../../../../../../../../../assets/images/default-image.jpg'">
+          </div>
+        </div>
+      </ng-container>
+    </form>
+    <div class="row" *ngIf="action !== 'view'">
+      <div class="buttons-container col-12 pt-4 pb-5 pl-3">
+        <ng-content select="button"></ng-content>
+        <button class="btn btn-primary send-sms-button mr-2" (click)="isFormCanceled = true"
+          [routerLink]="routerDefinitions.reports + '/list'">Cancelar</button>
+        <button class="btn btn-primary ml-2" [disabled]="reportForm.invalid || !reportForm.dirty"
+          (click)="saveForm(reportForm.value, reportForm.valid)">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

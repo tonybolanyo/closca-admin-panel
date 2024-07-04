@@ -1,0 +1,201 @@
+$custom-typography: mat-typography-config(
+    $font-family: 'customFont-regular, customFont-light',
+    $headline: mat-typography-level(32px, 48px, 700),
+    $body-1: mat-typography-level(16px, 24px, 500)
+  );
+  @include mat-base-typography($custom-typography);
+  @include angular-material-typography($custom-typography);
+  
+   .mat-form-field{
+    font-family: 'customFont-light' !important;
+    }
+
+   .mat-form-field-label{
+      font-family: 'customFont-light' !important;
+      font-size: 1.2em !important;
+      padding-bottom: 4px !important;
+   }
+   input{
+      font-family: 'customFont-regular'  !important;
+   }
+
+   textarea {
+        font-family: 'customFont-regular'  !important;
+   }
+   .mat-form-field-infix{
+      padding-top: 20px !important;
+      font-size: 1em !important;
+      padding-bottom:4px !important;
+      input{
+        height: 27px !important;
+      }
+   }
+   .mat-card{
+      box-shadow: 0 2px 9px 0 rgba(0,0,0,0.2) !important;
+   }
+
+   .mat-select, .mat-option {
+    font-family: 'customFont-regular'  !important;
+   }
+  
+  
+  // Start Custom theme angular material
+  // https://material.io/design/color
+  @include mat-core();
+  $custom-app-primary: mat-palette($mat-indigo, 600);
+  $custom-app-accent:  mat-palette($mat-indigo, 700, 500, A400);
+  $custom-app-warn:    mat-palette($mat-red);
+  $custom-app-theme: mat-light-theme($custom-app-primary, $custom-app-accent, $custom-app-warn);
+  @include angular-material-theme($custom-app-theme);
+  // End Custom theme angular material
+  
+  
+  .mat-elevation-z1{
+    box-shadow: 0 2px 9px 0 rgba(0,0,0,0.2);
+  }
+  // Tables 
+  .mat-table {
+      font-family: 'customFont-regular';
+  }
+
+  tr.mat-row{
+      height: 60px !important;
+  }
+
+  .mat-header-cell{
+      text-align: center !important;
+      color: $main-color;
+      font-size: 1em;
+      font-weight: 600;
+      line-height: 20px;
+  }
+  
+      td.mat-cell{
+          color: $brand-dark;
+          font-size: 1em;
+          padding: 0 20px!important;
+        }
+
+    // paginator
+    .mat-paginator-container{
+    height: 50px;
+    padding: 2px 8px !important;
+    }
+    .mat-paginator-page-size{
+    padding-bottom: 0px;
+    }
+    .mat-paginator-range-label{
+    margin: 0px !important;
+    }
+    
+    .mat-paginator-range-actions{
+    padding-top: 26px !important;
+    }
+    
+    @media (max-width: 387px){
+    .mat-paginator-page-size-label{
+    display: none
+        }
+    }
+  
+      // Toggle button
+      .mat-button-toggle-group{
+          border-radius: 60px !important;
+          background: white;
+          
+      }
+      .mat-button-toggle-label-content{
+        font-family: 'customFont-regular';
+      }
+
+      .mat-button-toggle-button{
+          outline: none !important;
+        }
+    
+      .mat-button-toggle-checked{
+        // background: $button-primary-color;
+        background: var(--corporate-primary, $brand-primary);
+        color: white !important;
+        border-radius: 60px;
+    }
+    .mat-button-toggle-ripple{
+        border-radius: 60px !important;
+    }
+      
+      // Dialog 
+      .mat-dialog-actions{
+          padding: 2px 0px 20px 0px !important;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+  
+          button{
+              background-color: #FFFFFF;
+              font-family: 'customFont-regular';
+              border-radius: 100px;
+              color: var(--corporate-primary, $brand-primary);
+              padding: 10px 62px;
+              margin: 0px 10px;
+          }
+      }
+
+      .mat-dialog-title{
+        color: white;
+    }
+  
+      .mat-dialog-content{
+          padding-top:5px !important;
+          padding-bottom: 10px !important;
+          color: white;
+      }
+      .mat-dialog-container{
+          position: relative;
+        //   background: $button-primary-color;
+          background: var(--corporate-primary, $brand-primary);
+          border-radius: 10px !important;
+      }
+  
+      // Modal datapicker
+      .cdk-overlay-container{
+          z-index: 10000000 !important;
+      }
+
+      // Forms 
+      .mat-select{
+        margin-top: 8px !important;
+        
+        }
+    .mat-form-field-underline{
+        border-bottom: 1px solid $main-color;
+    }
+    .mat-input-element:disabled{
+        color: $main-color;
+    }
+    .mat-select-disabled .mat-select-value{
+        color: $main-color;
+    }
+    
+    .mat-button-toggle-disabled.mat-button-toggle-checked{
+        // background: $button-primary-color;
+        background: var(--corporate-primary, $brand-primary);
+        color: white !important;
+        border-radius: 60px;
+    }
+    .mat-button-toggle-disabled{
+        background: white;
+    }
+
+
+    // Datepicker 
+    .mat-datepicker-toggle {
+        button{
+        outline: none !important;
+    }
+}
+    // Bottom sheet
+    .mat-bottom-sheet-container-large{
+        padding: 20px 100px !important;
+        max-width: none !important;
+        min-width: 100% !important;
+    }
+  

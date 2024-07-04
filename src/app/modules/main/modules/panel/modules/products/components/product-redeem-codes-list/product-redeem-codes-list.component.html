@@ -1,0 +1,9 @@
+<app-custom-table 
+[dataSource]="codesRedeemed"
+[customViewButton]="true"
+[paginator]="paginator"
+[tableConfig]="tableConfig" 
+(formChanges)="filterFormChanges($event)"
+(sendPaginate)="paginate($event)"
+(sendCustomViewButton)="customViewNavigate($event)"
+></app-custom-table>

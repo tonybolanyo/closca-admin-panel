@@ -1,0 +1,10 @@
+<app-custom-table 
+[dataSource]="usersSubscribed"
+[customEditButton]="true"
+[paginator]="paginator"
+[tableConfig]="tableConfig" 
+(formChanges)="filterFormChanges($event)"
+(sendPaginate)="paginate($event)"
+(sendCustomEditButton)="customEditNavigate($event)"
+(deleteItem)="deleteItem($event)"
+></app-custom-table>

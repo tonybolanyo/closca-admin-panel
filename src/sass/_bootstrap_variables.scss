@@ -1,0 +1,39 @@
+// --> BOOTSTRAP OVERRIDE VARIABLES <-- //
+$primary:       $brand-primary !default;
+$secondary:     $brand-secondary !default;
+$success:       $brand-success !default;
+$info:          $brand-info !default;
+$warning:      $brand-warning !default;
+$danger:        $brand-danger !default;
+$light:        $brand-light !default;
+$dark:          $brand-dark !default;
+
+$theme-colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "info": $info,
+    "warning": $warning,
+    "danger": $danger,
+    "light": $light,
+    "dark": $dark
+  );
+  @font-face {
+    font-family: 'customFont-regular';
+    src: url('./assets/fonts/MarkPro/MarkPro.otf');
+  }
+  @font-face {
+    font-family: 'customFont-light';
+    src: url('./assets/fonts/MarkPro/MarkPro-ExtraLight.otf');
+  }
+  @font-face {
+    font-family: 'customFont-bold';
+    src: url('./assets/fonts/MarkPro/MarkPro-Bold.otf');
+  }
+
+$font-family-sans-serif: 'customFont-regular';
+
+
+
+
+  

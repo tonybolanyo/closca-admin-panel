@@ -1,0 +1,88 @@
+<div class="row">
+  <div class="col-12 pt-1 pb-1">
+    <h3 class="float-left title">
+        <a class="button-back" (click)="navigateBack()">
+            <mat-icon class="float-left back-icon">keyboard_backspace</mat-icon>
+          </a>
+      {{action === 'view'? 'Ver' : (action === 'edit' ? 'Editar' : 'Nuevo')}} Tipo Botella
+    </h3>
+  </div>
+  <div class="col-12 pt-3">
+    <form class="w-100" [formGroup]="bottleTypeForm">
+      <div class="row">
+        <div class="col-12">
+          <h5 class="section-title">Imagen del tipo de botella</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 mb-5">
+          <img
+            class="image-detail"
+            *ngIf="!isLocalImageChanged"
+            [src]="
+              bottleType?.image
+                ? getImage(bottleType?.imageInfo?.fileRoute)
+                : '../../../../../../../../../assets/images/default-image.jpg'
+            "
+          />
+          <img
+            class="image-detail"
+            *ngIf="isLocalImageChanged"
+            [src]="
+              localImage !== ''
+                ? localImage
+                : '../../../../../assets/images/default-image.jpg'
+            "
+            class="image-detail"
+          />
+          <div *ngIf="action !== 'view'">
+            <div class="image-upload">
+              <label for="image-input">
+                <img
+                  class="add-image"
+                  src="./../../../../../../../../../assets/icons/add-icon.png"
+                />
+              </label>
+              <input
+                #imageUploaderInput
+                id="image-input"
+                type="file"
+                (change)="changeLocalImage($event)"
+                ng2FileSelect
+                [uploader]="imageBottleTypeUploader"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h5 class="section-title">Información del tipo de botella</h5>
+        </div>
+        <mat-form-field class="col-12 col-md-6" formGroupName="name">
+          <input matInput placeholder="Nombre del tipo de botella (Español) *" formControlName="es">
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6" formGroupName="color">
+          <input matInput placeholder="Color del tipo de botella (Español) *" formControlName="es">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-12 col-md-6" formGroupName="name">
+          <input matInput placeholder="Nombre del tipo de botella (Inglés) *" formControlName="en">
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6" formGroupName="color">
+          <input matInput placeholder="Color del tipo de botella (Inglés) *" formControlName="en">
+        </mat-form-field>
+      </div>
+    </form>
+    <div class="row" *ngIf="action !== 'view'">
+      <div class="buttons-container col-12 pt-4 pb-5 pl-3">
+        <ng-content select="button"></ng-content>
+        <button class="btn btn-primary send-sms-button mr-2" (click)="isFormCanceled = true"
+          [routerLink]="routerDefinitions.bottleTypes + '/list'">Cancelar</button>
+        <button class="btn btn-primary ml-2" [disabled]="bottleTypeForm.invalid || !bottleTypeForm.dirty"
+          (click)="saveForm(bottleTypeForm.value, bottleTypeForm.valid)">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

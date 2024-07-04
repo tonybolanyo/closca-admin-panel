@@ -1,0 +1,119 @@
+@import 'src/sass/_variables.scss';
+
+app-landing-page {
+    display: block;
+    float: left;
+    width: 100%;
+    img {
+        width: 100%;
+        padding: 15px 58px;
+        max-width: 500px;
+        object-fit: cover !important;
+    }
+
+
+    
+    .form-signin {
+        width: 100%;
+        max-width: 530px;
+        padding: 15px;
+        margin: 4% auto;
+
+        h3{
+            font-family: 'customFont-bold';
+            font-size: 2em;
+            padding-bottom:10px;
+        }
+
+        .signin-container{
+            height: 410px;
+            max-width: 530px;
+            padding-top: 56px;
+            padding-right: 46px;
+            padding-left: 46px;
+            border-radius: 8px !important;
+        }
+        
+
+
+        .full-width{
+            width: 100%;
+        }
+        .recover-password-container{
+            padding-top: 30px;
+            text-align: left;
+            color: $brand-secondary;
+            font-family: 'customFont-light';
+            position: absolute;
+            left: 25px;
+            a{
+                text-decoration: none;
+                color: $brand-secondary;
+                cursor: pointer;
+            }
+        }
+
+        .button-submit-container{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            button{
+                width: 100%;
+                font-size: 25px;
+            }
+        }
+    }
+
+    .login-selector{
+        width: 100%;
+        max-width: 530px;
+        height: 700px;
+        padding: 15px;
+        margin: 5% auto;
+
+        h3{
+            font-family: 'customFont-bold';
+            font-size: 1.8em;
+            padding-bottom:10px;
+        }
+
+        .login-selector-container{
+           // height: 410px;
+            padding: 20px 20px;
+            box-shadow: none !important;
+            border: none;
+            background: transparent !important;
+        }
+
+        .text-login-selector-container{
+            font-family: 'customFont-regular';
+            font-size: 1em;
+            color: $brand-secondary;
+        }
+
+
+        .button-login-selector-container{
+            display: flex;
+
+            button{
+                width: 45%;
+                margin: 0 auto;
+                font-size: 1.5em;
+                margin: auto;
+                margin-top: 20px;
+                padding: 12px 20px;
+            }
+        }
+    }
+
+
+    @media (max-width: 768px){
+        .form-signin .signin-container{
+            border: none !important;
+            box-shadow: none !important;
+        }
+      }
+}
+

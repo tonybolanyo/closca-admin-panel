@@ -1,0 +1,163 @@
+<div class="row">
+  <div class="col-12 pt-1 pb-1">
+    <h3 class="float-left title">
+      <a class="button-back" (click)="navigateBack()">
+        <mat-icon class="float-left back-icon">keyboard_backspace</mat-icon>
+      </a>
+      {{ action === "view" ? "Ver" : action === "edit" ? "Editar" : "Nueva" }}
+      Pantalla Wizard
+    </h3>
+  </div>
+  <div class="col-12 pt-3">
+    <div class="row">
+      <div class="language-container col-12 pb-3">
+        <mat-button-toggle-group #language="matButtonToggleGroup" value="es">
+          <mat-button-toggle value="es">
+            <img width="25px" [src]="'../../../../../../../../../assets/images/spain_flag.jpg'" />
+            Español {{ checkSpanish() }}
+          </mat-button-toggle>
+          <mat-button-toggle value="en">
+            <img width="25px" [src]="'../../../../../../../../../assets/images/usa_flag.jpg'" />
+            Inglés {{ checkEnglish() }}
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 pt-3">
+    <form class="w-100" [formGroup]="wizardForm">
+      <div class="row" *ngIf="role != 'MANAGER'" style="margin-bottom: 15px;">
+        <div class="col-12">
+          <h5 class="section-title">Corporación del wizard</h5>
+        </div>
+        <mat-form-field class="col-12 col-md-6" formGroupName="corporateInfo">
+          <mat-select placeholder="Nombre de la corporación" formControlName="_id" (selectionChange)="corporateChange($event)">
+            <mat-option *ngFor="let corporate of corporates" [value]="corporate._id">
+              {{corporate.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6" formGroupName="corporateInfo">
+          <input matInput placeholder="Código de la corporación" formControlName="code">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <ng-container *ngIf="language.value === 'es'">
+          <mat-form-field class="col-12" formGroupName="title">
+            <input matInput placeholder="Título *" formControlName="es" />
+          </mat-form-field>
+          <!-- <mat-form-field class="col-12" formGroupName="description"> -->
+          <!-- <textarea
+              matInput
+              placeholder="Descripción"
+              formControlName="es"
+            ></textarea> -->
+          <div class="col-12" formGroupName="description">
+            <angular-editor formControlName="es" id="myEditor" [config]="editorConfig"></angular-editor>
+          </div>
+          <!-- </mat-form-field> -->
+        </ng-container>
+        <ng-container *ngIf="language.value === 'en'">
+          <mat-form-field class="col-12" formGroupName="title">
+            <input matInput placeholder="Título *" formControlName="en" />
+          </mat-form-field>
+          <!-- <mat-form-field class="col-12" formGroupName="description"> -->
+          <!-- <textarea
+              matInput
+              placeholder="Descripción"
+              formControlName="en"
+            ></textarea> -->
+          <div class="col-12" formGroupName="description">
+            <angular-editor formControlName="en" id="myEditor" [config]="editorConfig"></angular-editor>
+          </div>
+          <!-- </mat-form-field> -->
+        </ng-container>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          <div class="row">
+            <div class="col-12">
+              <h5 class="section-title">Icono (PNG) *</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 mb-5">
+              <img class="icon-detail" *ngIf="!isIconLocalChanged" [src]="
+                  onboarding?.icon
+                    ? getImage(onboarding?.iconInfo?.fileRoute)
+                    : '../../../../../../../../../assets/images/default-image.jpg'
+                " />
+              <img class="icon-detail" *ngIf="isIconLocalChanged" [src]="
+                  iconLocal !== ''
+                    ? iconLocal
+                    : '../../../../../assets/images/default-image.jpg'
+                " class="icon-detail" />
+              <div *ngIf="action !== 'view'">
+                <div class="image-upload" *ngIf="!iconId && !iconLocal">
+                  <label for="icon-file-input">
+                    <img class="add-image" src="./../../../../../../../../../assets/icons/add-icon.png" />
+                  </label>
+                  <input #iconUploaderInput id="icon-file-input" type="file" name="icon-image"
+                    (change)="changeLocalIcon($event)" ng2FileSelect [uploader]="iconUploader" />
+                </div>
+                <button type="button" *ngIf="iconId || iconLocal" class="btn btn-danger delete-button"
+                  (click)="showDialogDeleteIcon()">
+                  <img src="./../../../../../../../../../assets/icons/garbage.png" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6">
+          <div class="row">
+            <div class="col-12">
+              <h5 class="section-title">Imagen *</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 mb-5">
+              <img class="image-detail" *ngIf="!isImageLocalChanged" [src]="
+                  onboarding?.image
+                    ? getImage(onboarding?.imageInfo?.fileRoute)
+                    : '../../../../../../../../../assets/images/default-image.jpg'
+                " />
+              <img class="image-detail" *ngIf="isImageLocalChanged" [src]="
+                  imageLocal !== ''
+                    ? imageLocal
+                    : '../../../../../assets/images/default-image.jpg'
+                " class="image-detail" />
+              <div *ngIf="action !== 'view'">
+                <div class="image-upload" *ngIf="!imageId && !imageLocal">
+                  <label for="image-file-input">
+                    <img class="add-image" src="./../../../../../../../../../assets/icons/add-icon.png" />
+                  </label>
+                  <input #imageUploaderInput id="image-file-input" type="file" name="image-image"
+                    (change)="changeLocalImage($event)" ng2FileSelect [uploader]="imageUploader" />
+                </div>
+                <button type="button" *ngIf="imageId || imageLocal" class="btn btn-danger delete-button"
+                  (click)="showDialogDeleteImage()">
+                  <img src="./../../../../../../../../../assets/icons/garbage.png" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="row" *ngIf="action !== 'view'">
+      <div class="buttons-container col-12 pt-4 pb-5 pl-3">
+        <ng-content select="button"></ng-content>
+        <button class="btn btn-primary send-sms-button mr-2" (click)="isFormCanceled = true"
+          [routerLink]="routerDefinitions.wizard + '/list'">
+          Cancelar
+        </button>
+        <button class="btn btn-primary ml-2" [disabled]="wizardForm.invalid || !wizardForm.dirty"
+          (click)="saveForm(wizardForm.value, wizardForm.valid)">
+          Guardar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

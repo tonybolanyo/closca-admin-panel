@@ -1,0 +1,47 @@
+<div class="col-12 pt-3">
+  <div class="row">
+    <div class="col-12">
+      <h3 class="float-left title">
+        Fuentes publicas/privadas
+      </h3>
+      <button [routerLink]="tableConfig.buttonsConfig.baseRouterLink + '/new'" class="btn btn-primary add-button">
+        <img src="./../../../../../../../../../assets/icons/add-icon.png" />
+      </button>
+      <button *ngIf='role != "MANAGER"' [disabled]="exportButtonDisabled" class="btn btn-primary export-button" (click)="downloadCSV()">Exportar CSV</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <ng-container *ngIf="itemsSelected.length > 0">
+        <button class="btn btn-primary list-button unselect-items-button mr-2 float-left"
+          (click)="clearSelectedFountains()">
+          <img src="./../../../../../../../../../assets/icons/close-icon.png" />
+        </button>
+        <h5 class="float-left selected-items mr-2">{{itemsSelected.length}} items seleccionados</h5>
+        <button class="btn btn-primary list-button float-left mr-2" (click)="deleteSelectedItems()">
+          <img src="./../../../../../../../../../assets/icons/garbage.png" />
+        </button>
+        <button class="btn btn-primary list-button float-left mr-2" (click)="showDialogEditStatus()">
+          <img src="./../../../../../../../../../assets/icons/edit.png" />
+        </button>
+      </ng-container>
+    </div>
+  </div>
+  <div class="row">
+    <div class="pt-3 col-12 pb-4 pr-0 pl-0" *ngIf="corporates != undefined">
+      <app-custom-table 
+      [dataSource]="items" 
+      [paginator]="paginator" 
+      [tableConfig]="tableConfig"
+      [validateStatusButton]="true"
+      [isSelectAllItems]="isSelectAllItems"
+      (formChanges)="filterFormChanges($event)" 
+      (sendPaginate)="paginate($event)"
+      (deleteItem)="deleteItem($event)" 
+      (validateFountain)="validateFountain($event)"
+      (selectedItems)="getSelectedFountains()"
+      (toggleAllItems)="toggleAllItems($event)"
+      ></app-custom-table>
+    </div>
+  </div>
+</div>

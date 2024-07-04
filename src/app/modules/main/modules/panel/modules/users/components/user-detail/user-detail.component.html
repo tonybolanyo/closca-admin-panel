@@ -1,0 +1,169 @@
+<div class="row">
+  <div class="col-12 pt-1 pb-1">
+    <h3 class="float-left title">
+        <a class="button-back" (click)="navigateBack()">
+            <mat-icon class="float-left back-icon">keyboard_backspace</mat-icon>
+          </a>
+      {{action === 'view'? 'Ver' : (action === 'edit' ? 'Editar' : 'Nuevo')}} Usuario
+    </h3>
+  </div>
+  <div class="col-12 pt-3">
+    <form class="w-100" [formGroup]="userForm">
+      <div class="row" *ngIf="role != 'MANAGER'">
+        <div class="col-12">
+          <h5 class="section-title">Estado del usuario</h5>
+        </div>
+        <div class="status-container col-12 pb-3">
+          <mat-button-toggle-group #group="matButtonToggleGroup" formControlName="emailVerified">
+            <mat-button-toggle [value]="true">
+              Verificado
+            </mat-button-toggle>
+            <mat-button-toggle [value]="false">
+              Sin verificar
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h5 class="section-title">Avatar del usuario</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 m-3">
+          <img class="avatar-detail" *ngIf="!isLocalImageChanged"
+            [src]="user?.avatarId? getImage(user?.avatarInfo?.fileRoute) : '../../../../../assets/images/default-image.jpg'">
+          <img class="avatar-detail" *ngIf="isLocalImageChanged"
+            [src]="localImage !== '' ? localImage : '../../../../../assets/images/default-image.jpg'"
+            class="avatar-detail">
+          <ng-container *ngIf="action !== 'view'">
+            <div class="image-upload">
+              <label for="file-input">
+                <img class="add-image" src="./../../../../../../../../../assets/icons/add-icon.png" />
+              </label>
+              <input #imageUserUploaderInput id="file-input" type="file" (change)="changeLocalImage($event)"
+                ng2FileSelect [uploader]="imageUserUploader" />
+            </div>
+            <!-- <button *ngIf="(avatarId && !isAvatarImageDeleted) || localImage" class="btn btn-danger delete-button"
+              (click)="showDialogDeleteImage()"><img
+                src="./../../../../../../../../../assets/icons/garbage.png" /></button> -->
+          </ng-container>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h5 class="section-title">Información del usuario</h5>
+        </div>
+        <mat-form-field class="col-12 col-md-6">
+          <input matInput placeholder="Nombre de usuario *" formControlName="userName">
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6" formGroupName="levelInfo"  *ngIf="role != 'MANAGER'">
+          <input matInput placeholder="Nivel" formControlName="code">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-12 col-md-6">
+          <input matInput placeholder="Email *" formControlName="email">
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6" *ngIf="role != 'MANAGER'">
+          <input matInput placeholder="Telefono" formControlName="phoneNumber">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-12 col-md-6" *ngIf="role != 'MANAGER'">
+          <input type="number" matInput placeholder="Refill Coins" formControlName="closcaPoints">
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6">
+          <input matInput placeholder="Total refills" formControlName="totalRefills">
+        </mat-form-field>
+      </div>
+      <div class="row" *ngIf="role != 'MANAGER'">
+        <div class="col-12">
+          <h5 class="section-title">Corporación del usuario</h5>
+        </div>
+        <mat-form-field class="col-12 col-md-6" formGroupName="corporateInfo">
+          <mat-select placeholder="Nombre de la corporación" formControlName="_id" (selectionChange)="corporateChange($event)">
+            <mat-option *ngFor="let corporate of corporates" [value]="corporate._id">
+              {{corporate.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6" formGroupName="corporateInfo">
+          <input matInput placeholder="Código de la corporación" formControlName="code">
+        </mat-form-field>
+      </div>
+      <ng-container *ngIf="role != 'MANAGER' && bottles">
+        <div class="row">
+          <div class="col-12">
+            <h5 class="section-title">Botellas del usuario</h5>
+          </div>
+          <div class="col-12 mb-5">
+            <app-custom-table
+            [dataSource]="bottles"
+            [tableConfig]="tableBottlesConfig"
+            [paginator]="bottlesPaginator"
+            (sendPaginate)="paginateBottles($event)">
+            </app-custom-table>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="role != 'MANAGER' && fountains">
+        <div class="row">
+          <div class="col-12">
+            <h5 class="section-title">Fuentes creadas</h5>
+          </div>
+          <div class="col-12 mb-5">
+            <app-custom-table
+            [dataSource]="fountains"
+            [tableConfig]="tableConfig"
+            [paginator]="fountainsPaginator"
+            (sendPaginate)="paginateFountains($event)">
+            </app-custom-table>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="refills">
+        <div class="row">
+          <div class="col-12">
+            <h5 class="section-title">Refills usuario</h5>
+          </div>
+          <div class="col-12 mb-5">
+            <app-custom-table 
+            [dataSource]="refills"
+            [tableConfig]="tableRefillConfig"
+            [paginator]="refillPaginator"
+            (sendPaginate)="paginateRefill($event)"
+            [customViewButton]="true"
+            (sendCustomViewButton)="customViewNavigate($event)">
+            </app-custom-table>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="role != 'MANAGER' &&hydrationRefills">
+        <div class="row">
+          <div class="col-12">
+            <h5 class="section-title">Rellenos de hidratación usuario</h5>
+          </div>
+          <div class="col-12 mb-5">
+            <app-custom-table 
+            [dataSource]="hydrationRefills"
+            [tableConfig]="tableHydrationRefillConfig"
+            [paginator]="hydrationRefillPaginator"
+            (sendPaginate)="paginateHydrationRefill($event)"
+            [customViewButton]="false">
+            </app-custom-table>
+          </div>
+        </div>
+      </ng-container>
+    </form>
+    <div class="row" *ngIf="action !== 'view'">
+      <div class="buttons-container col-12 pt-4 pb-5 pl-3">
+        <ng-content select="button"></ng-content>
+        <button class="btn btn-primary send-sms-button mr-2" (click)="isFormCanceled = true"
+          [routerLink]="routerDefinitions.users + '/list'">Cancelar</button>
+        <button class="btn btn-primary ml-2" [disabled]="userForm.invalid || !userForm.dirty"
+          (click)="saveForm(userForm.value, userForm.valid)">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

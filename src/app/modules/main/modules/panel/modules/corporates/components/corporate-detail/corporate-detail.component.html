@@ -1,0 +1,229 @@
+<div class="row">
+  <div class="col-12 pt-1 pb-1">
+    <h3 class="float-left title">
+      <a class="button-back" (click)="navigateBack()">
+        <mat-icon class="float-left back-icon">keyboard_backspace</mat-icon>
+      </a>
+      {{action === 'view'? 'Ver' : (action === 'edit' ? 'Editar' : 'Nueva')}} Corporación
+    </h3>
+  </div>
+  <div class="col-12 pt-3">
+    <form class="w-100" [formGroup]="corporateForm">
+      <div class="row">
+        <div class="col-12">
+          <h5 class="section-title">Logo de la corporación *</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 m-3">
+          <img class="avatar-detail" *ngIf="!isLocalLogotypeChanged"
+            [src]="corporate?.logotype? getImage(corporate?.logotypeInfo?.fileRoute) : '../../../../../assets/images/default-image.jpg'">
+          <img class="avatar-detail" *ngIf="isLocalLogotypeChanged"
+            [src]="localLogotype !== '' ? localLogotype : '../../../../../assets/images/default-image.jpg'"
+            class="avatar-detail">
+          <ng-container *ngIf="action !== 'view'">
+            <div class="image-upload">
+              <label for="logo-input">
+                <img class="add-image" src="./../../../../../../../../../assets/icons/add-icon.png" />
+              </label>
+              <input #logoUploaderInput id="logo-input" type="file" (change)="changeLocalLogotype($event)" ng2FileSelect
+                [uploader]="logoCorporateUploader" />
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="action == 'view'">
+        <div *ngIf='corporate.code != "CLOSCA"'>
+          <label for="invitation-csv-input">
+            <div class="btn btn-primary invite-csv-button">Invitar a corporación (CSV)</div>
+          </label>
+          <input #invitationCSVUploaderInput class="invitation-csv-input" id="invitation-csv-input" type="file"
+            (change)="changeInvitationCSV($event.target.files)" ng2FileSelect [uploader]="invitationCSVUploader" />
+        </div>
+
+        <div>
+          <label for="create-fountains-csv-input">
+            <div class="btn btn-primary create-fountains-csv-button">Crear fuentes (CSV)</div>
+          </label>
+          <input #createFountainsCSVUploaderInput class="create-fountains-csv-input" id="create-fountains-csv-input" type="file"
+            (change)="changeCreateFountainsCSV($event.target.files)" ng2FileSelect [uploader]="createFountainsCSVUploader" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <h5 class="section-title">Información de la corporación</h5>
+        </div>
+        <mat-form-field class="col-12 col-md-6">
+          <input matInput placeholder="Nombre de la corporación *" formControlName="name">
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6">
+          <input matInput placeholder="Código *" formControlName="code">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-12 col-md-6">
+          <input matInput placeholder="Descripción" formControlName="description">
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6">
+          <input matInput placeholder="Palabra clave domino *" formControlName="domainWord">
+        </mat-form-field>
+      </div>
+      <!-- <div class="row">
+        <mat-form-field class="col-12 col-md-6">
+          <input type="number" matInput placeholder="ID Beacons *" formControlName="beaconMajor">
+        </mat-form-field> 
+      </div>-->
+      <div class="row">
+        <div class="col-12">
+          <h5 class="section-title">Color de la corporación *</h5>
+        </div>
+      </div>
+      <div class="row">
+        <input matInput type="color" class="color-picker" formControlName="color" />
+      </div>
+      <!-- <div class="row">
+        <div class="col-12">
+          <h5 class="section-title">Imagen de la corporación *</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 mb-5">
+          <img
+            class="image-detail"
+            *ngIf="!isLocalImageChanged"
+            [src]="
+              corporate?.image
+                ? getImage(corporate?.imageInfo?.fileRoute)
+                : '../../../../../../../../../assets/images/default-image.jpg'
+            "
+          />
+          <img
+            class="image-detail"
+            *ngIf="isLocalImageChanged"
+            [src]="
+              localImage !== ''
+                ? localImage
+                : '../../../../../assets/images/default-image.jpg'
+            "
+            class="image-detail"
+          />
+          <div *ngIf="action !== 'view'">
+            <div class="image-upload">
+              <label for="image-input">
+                <img
+                  class="add-image"
+                  src="./../../../../../../../../../assets/icons/add-icon.png"
+                />
+              </label>
+              <input
+                #imageUploaderInput
+                id="image-input"
+                type="file"
+                (change)="changeLocalImage($event)"
+                ng2FileSelect
+                [uploader]="imageCorporateUploader"
+              />
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- <div class="row">
+        <div class="col-12">
+          <h5 class="section-title">Imagen de impacto de la corporación *</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 mb-5">
+          <img
+            class="image-detail"
+            *ngIf="!isLocalImpactChanged"
+            [src]="
+              corporate?.impactImage
+                ? getImage(corporate?.impactImageInfo?.fileRoute)
+                : '../../../../../../../../../assets/images/default-image.jpg'
+            "
+          />
+          <img
+            class="image-detail"
+            *ngIf="isLocalImpactChanged"
+            [src]="
+              localImpact !== ''
+                ? localImpact
+                : '../../../../../assets/images/default-image.jpg'
+            "
+            class="image-detail"
+          />
+          <div *ngIf="action !== 'view'">
+            <div class="image-upload">
+              <label for="impact-input">
+                <img
+                  class="add-image"
+                  src="./../../../../../../../../../assets/icons/add-icon.png"
+                />
+              </label>
+              <input
+                #impactUploaderInput
+                id="impact-input"
+                type="file"
+                (change)="changeLocalImpact($event)"
+                ng2FileSelect
+                [uploader]="impactCorporateUploader"
+              />
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </form>
+    <form class="w-100" [formGroup]="managerForm">
+      <div class="row">
+        <div class="col-12">
+          <h5 class="section-title">Administrador de la corporación</h5>
+        </div>
+        <mat-form-field class="col-12 col-md-6">
+          <input matInput placeholder="Nombre del Administrador *" formControlName="realName">
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6">
+          <input matInput placeholder="Correo del Administrador *" formControlName="email">
+        </mat-form-field>
+      </div>
+    </form>
+    <ng-container *ngIf="fountains">
+      <div class="row">
+        <div class="col-12">
+          <h5 class="section-title">Fuentes de la corporación</h5>
+        </div>
+        <div class="col-12 mb-5">
+          <app-custom-table [dataSource]="fountains" [tableConfig]="tableConfig" [paginator]="fountainsPaginator"
+            (sendPaginate)="paginateFountains($event)">
+          </app-custom-table>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="refills">
+      <div class="row">
+        <div class="col-12">
+          <h5 class="section-title">Refills de la corporación</h5>
+        </div>
+        <div class="col-12 mb-5">
+          <app-custom-table [dataSource]="refills" [tableConfig]="tableRefillConfig" [paginator]="refillPaginator"
+            (sendPaginate)="paginateRefill($event)" [customViewButton]="true"
+            (sendCustomViewButton)="customViewNavigate($event)">
+          </app-custom-table>
+        </div>
+      </div>
+    </ng-container>
+    <div class="row" *ngIf="action !== 'view'">
+      <div class="buttons-container col-12 pt-4 pb-5 pl-3">
+        <ng-content select="button"></ng-content>
+        <button class="btn btn-primary send-sms-button mr-2" (click)="isFormCanceled = true"
+          [routerLink]="routerDefinitions.corporates + '/list'">Cancelar</button>
+        <button class="btn btn-primary ml-2"
+          [disabled]="!(corporateForm.valid && managerForm.valid) || !(corporateForm.dirty || managerForm.dirty)"
+          (click)="saveForm(corporateForm.value, managerForm.value, corporateForm.valid, managerForm.valid)">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

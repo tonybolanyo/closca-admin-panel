@@ -1,0 +1,36 @@
+@import "./../../../../../sass/_variables.scss";
+
+app-footer{
+    nav{
+        min-height: 80px;
+        box-shadow: 0 -2px 3px 0 rgba(0,0,0,0.2);
+        background: white;
+    }
+    .footer-text {
+        padding: 5px;
+        font-size: 1em;
+        // margin: 0px auto;
+        color: $brand-dark;
+        line-height: 27px;
+    }
+    .footer-text-terms {
+        padding: 5px;
+        font-size: 1em;
+        // margin: 0px auto;
+        color: $brand-dark;
+        line-height: 27px;
+    }
+
+    .onper-footer-secundary-logo{
+        width: 100px !important;
+        padding: 0px !important;
+        margin: 0px 10px !important;
+    }
+
+    @media (max-width: 576px){
+        .footer-text-terms{
+            text-align: center !important;
+        }
+    }
+
+}

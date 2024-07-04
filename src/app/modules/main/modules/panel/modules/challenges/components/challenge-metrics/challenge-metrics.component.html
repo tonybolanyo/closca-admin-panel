@@ -1,0 +1,228 @@
+<div class="row pb-4">
+  <div class="col-12 pt-1 pb-1">
+    <h3 class="float-left title">
+      <a class="button-back" (click)="navigateBack()">
+        <mat-icon class="float-left back-icon">keyboard_backspace</mat-icon>
+      </a>
+      Métricas {{challenge? challenge.name.es : ''}}
+    </h3>
+  </div>
+
+  <div class="col-12 pt-3">
+    <div *ngIf="metrics">
+      <form class="w-100" [formGroup]="filterForm">
+        <div class="row">
+          <div class="col-filter-date">
+            <mat-form-field class="col-12">
+              <input matInput [matDatepicker]="startDatePicker" placeholder="Fecha inicio" formControlName="startDate">
+              <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+              <a *ngIf="filterForm.get('startDate').value" (click)="filterForm.get('startDate').reset()"
+                class="datepicker-clear-button">
+                <mat-icon>clear</mat-icon>
+              </a>
+              <mat-datepicker #startDatePicker startView="year"></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="col-filter-date">
+            <mat-form-field class="col-12">
+              <input matInput [matDatepicker]="finishDatePicker" placeholder="Fecha fin" formControlName="finishDate">
+              <mat-datepicker-toggle matSuffix [for]="finishDatePicker"></mat-datepicker-toggle>
+              <a *ngIf="filterForm.get('finishDate').value" (click)="filterForm.get('finishDate').reset()"
+                class="datepicker-clear-button">
+                <mat-icon>clear</mat-icon>
+              </a>
+              <mat-datepicker #finishDatePicker startView="year"></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="col-filter-button">
+            <button class="btn btn-primary col-12" [disabled]="filterForm.invalid || !filterForm.dirty"
+              (click)="saveForm(filterForm.value)">Filtrar</button>
+          </div>
+          <div class="col-filter-button" style="margin-left: 10px;" *ngIf="role == 'MANAGER'">
+            <button class="btn btn-primary col-12" (click)="downloadCSV()">Exportar CSV</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card-div">
+            <h4>Usuarios en el reto</h4>
+            <h3 class="title">{{ metrics.totalSubscriptions || 0 }}</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <div class="card-div">
+            <h4>Usuarios reto activo</h4>
+            <h3 class="title">{{ metrics.totalActiveSubscriptions || 0 }}</h3>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card-div">
+            <h4>Usuarios reto completado</h4>
+            <h3 class="title">{{ metrics.totalDoneSubscriptions || 0 }}</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="role != 'MANAGER'">
+        <div class="col-6">
+          <div class="card-div">
+            <h4>Total Contador de refills de hidratación</h4>
+            <h3 class="title"
+              *ngIf="challenge && challenge.hydrationFillsNeeded != undefined && challenge.hydrationFillsNeeded > 0; else neededEmpty">
+              {{ metrics.totalHydrationRefills || 0 }}</h3>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="card-div">
+            <h4>Total Contador de fuentes creadas</h4>
+            <h3 class="title"
+              *ngIf="challenge && challenge.fountainsCreatedNeeded != undefined && challenge.fountainsCreatedNeeded > 0; else neededEmpty">
+              {{ metrics.totalFountains || 0 }}</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="role != 'MANAGER';else totalRefillsCorpo">
+        <div class="col-6">
+          <div class="card-div">
+            <h4>Total Contador de fuentes valoradas</h4>
+            <h3 class="title"
+              *ngIf="challenge && challenge.fountainsRatedNeeded != undefined && challenge.fountainsRatedNeeded > 0; else neededEmpty">
+              {{ metrics.totalRateFountains || 0 }}</h3>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="card-div">
+            <h4>Total Contador de refills</h4>
+            <h3 class="title"
+              *ngIf="challenge && challenge.fillsNeeded != undefined && challenge.fillsNeeded > 0; else neededEmpty">{{
+              metrics.totalRefills || 0 }}</h3>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #totalRefillsCorpo>
+        <div class="row">
+          <div class="col-12">
+            <div class="card-div">
+              <h4>Total Contador de refills</h4>
+              <h3 class="title"
+                *ngIf="challenge && challenge.fillsNeeded != undefined && challenge.fillsNeeded > 0; else neededEmpty">
+                {{
+                metrics.totalRefills || 0 }}</h3>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+
+      <div *ngIf="challenge && challenge.fillsNeeded != undefined && challenge.fillsNeeded > 0">
+        <div class="row">
+          <div class="col-6">
+            <div class="card-div">
+              <h4>Tortugas salvadas</h4>
+              <h3 class="title">{{ metrics.totalTurtle || 0 }}</h3>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card-div">
+              <h4>CO2 ahorrados</h4>
+              <h3 class="title">{{ metrics.totalCO2Grams || 0 }} gr</h3>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <div class="card-div">
+              <h4>Energía ahorrada</h4>
+              <h3 class="title">{{ metrics.totalWatts || 0 }} w</h3>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card-div">
+              <h4>Plástico ahorrado</h4>
+              <h3 class="title">{{ metrics.totalGrams || 0 }} gr</h3>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card-div">
+              <h4>Dinero ahorrado</h4>
+              <h3 class="title">{{ metrics.totalEuros || 0 }} €</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="showChart && metrics && metrics.newUsersData">
+      <div class="col-12">
+        <div class="card-div">
+          <h4>Nuevos usuarios por fecha</h4>
+          <div class="row" style="height: 500px;">
+            <apx-chart style="width: 100%;" [series]="chartOptions1.series" [chart]="chartOptions1.chart"
+              [xaxis]="chartOptions1.xaxis" [dataLabels]="chartOptions1.dataLabels" [colors]="chartOptions1.colors"
+              [fill]="chartOptions1.fill" [markers]="chartOptions1.markers" [stroke]="chartOptions1.stroke"
+              [yaxis]="chartOptions2.yaxis"></apx-chart>
+          </div>
+          <div class="row" style="height: 130px;">
+            <apx-chart style="width: 100%;" [series]="chartOptions2.series" [chart]="chartOptions2.chart"
+              [xaxis]="chartOptions2.xaxis" [colors]="chartOptions2.colors" [fill]="chartOptions2.fill"
+              [yaxis]="chartOptions2.yaxis"></apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card-div">
+          <h4>Ranking</h4>
+          <div>
+            <table mat-table [dataSource]="ranking">
+
+              <!-- Position Column -->
+              <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef> Nº </th>
+                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+              </ng-container>
+
+
+              <!-- UserName Column -->
+              <ng-container matColumnDef="userName">
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+              </ng-container>
+
+
+              <!-- Points Column -->
+              <ng-container matColumnDef="points">
+                <th mat-header-cell *matHeaderCellDef> Puntos </th>
+                <td mat-cell *matCellDef="let element"> {{element.points}} </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="rankingDisplayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: rankingDisplayedColumns;"></tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+              aria-label="Select page of periodic elements">
+            </mat-paginator>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #neededEmpty>
+    <h3 class="title">-</h3>
+  </ng-template>
+
+</div>

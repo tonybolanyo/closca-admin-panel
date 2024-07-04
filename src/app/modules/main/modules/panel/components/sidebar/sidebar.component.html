@@ -1,0 +1,14 @@
+<div class="sidebar">
+    <a *ngFor="let item of sidebarItems; let i = index">
+        <div 
+         class="sidebar-item" 
+         [routerLink]="item?.routerLink" 
+         [routerLinkActive]="item?.routerLink ? 'active' : ''" 
+         [ngClass]="{'sidebar-last-item': item === sidebarItems[sidebarItems.length - 1]}">
+         {{item?.label}}
+        </div>
+    </a>
+</div>
+
+<!--          *ngIf="checkVisibilityOfMenuItem(item)"
+ -->

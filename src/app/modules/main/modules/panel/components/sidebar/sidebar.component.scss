@@ -1,0 +1,63 @@
+@import "./../../../../../../../sass/_variables.scss";
+app-sidebar {
+    .sidebar{
+        margin-top: 35px;	
+        max-width: 265px;
+        border-radius: 10px;
+        background-color: #FFFFFF;
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+        a{
+            text-decoration: none;
+        }
+    }
+
+    .sidebar-item{
+         width: 100%;	
+         color: $main-color;	
+         font-size: 1.1em;
+         font-weight: 500;	
+         line-height: 27px;
+         padding-top: 27px;
+         padding-left: 0px;
+         padding-right: 0px;
+         outline: none;
+         cursor: pointer;
+         &:after {
+            content: ""; 
+            display: block; 
+            margin: 0 auto;
+            width: 75%; 
+            margin-top: 30px; 
+            border-bottom: 1px solid #00000033;
+            }
+    }
+
+    .sidebar-item:hover{
+            border-radius: 5px;
+            // background: $sidebar-item-hover;
+            background: var(--corporate-primary, $brand-primary);
+            filter: brightness(145%);
+            color: white;
+            &:after {
+                border-bottom: 1px solid transparent;
+            }
+    }
+
+    .active{
+        border-radius: 5px;
+        background: var(--corporate-primary, $brand-primary);
+        color: white;
+        &:after {
+            border-bottom: 1px solid transparent;
+        }
+    }
+
+
+
+    .sidebar-last-item{
+        padding-bottom: 31px;
+        &:after{
+            content: none;
+            }
+   }
+}

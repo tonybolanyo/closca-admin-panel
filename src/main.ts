@@ -1,0 +1,18 @@
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
+import { AppModule } from './app/app.module';
+import { environment } from './environments/environment';
+
+import 'hammerjs';
+// import { LoopBackConfig } from './app/shared/sdk';
+
+
+// LoopBackConfig.setBaseURL(environment.apiUrl);
+
+if (environment.production) {
+  enableProdMode();
+}
+
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch();

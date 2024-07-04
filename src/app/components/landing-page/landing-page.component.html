@@ -1,0 +1,23 @@
+<!-- LOGIN SELECTOR -->
+<div  class="text-center">
+    <div class="login-selector">
+        <img  [src]="logo" />
+        <mat-card class="login-selector-container">
+                <h3>Bienvenido a Onper</h3>
+
+            <div class="text-login-selector-container">
+                <h5 class="text-muted">Pulsa el botón para entrar en el panel.</h5>
+            </div>
+            <div class="button-login-selector-container">
+                <button (click)="enterOnper()" class="btn btn-primary">Entrar</button>
+            </div>
+
+        </mat-card>
+        <p class="mt-5 mb-3 text-muted">&copy; Copyright 2018 </p>
+        <ng-container *ngIf="logo !== '/assets/images/logo.png'">
+            <div>
+                <img class="onper-secundary-logo" [src]="'/assets/images/logo.png'">
+            </div>
+        </ng-container>
+    </div>
+</div>

@@ -1,0 +1,706 @@
+<div class="row pb-4">
+  <div class="col-12 pt-1 pb-1">
+    <h3 class="float-left title">
+      <a class="button-back" (click)="navigateBack()">
+        <mat-icon class="float-left back-icon">keyboard_backspace</mat-icon>
+      </a>
+      {{action === 'view'? 'Ver' : (action === 'edit' ? 'Editar' : 'Nuevo')}} Reto
+    </h3>
+  </div>
+  <div class="col-12 pt-3">
+    <form class="w-100" [formGroup]="challengeForm">
+      <div class="row">
+        <div class="col-10">
+          <h5 class="section-title">Estado del reto *</h5>
+        </div>
+        <div class="col-2">
+          <h5 class="section-title">Idioma</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-10">
+          <div class="status-container col-12 pl-0 pb-3">
+            <mat-button-toggle-group #group="matButtonToggleGroup" formControlName="status">
+              <mat-button-toggle value="ACTIVE">
+                Activo
+              </mat-button-toggle>
+              <mat-button-toggle value="INACTIVE">
+                Inactivo
+              </mat-button-toggle>
+              <mat-button-toggle value="FINISHED">
+                Finalizado
+              </mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="language-container col-12 pl-0 pb-3">
+            <mat-button-toggle-group #language="matButtonToggleGroup" value="es">
+              <mat-button-toggle value="es">
+                <img width="25px" [src]="'../../../../../../../../../assets/images/spain_flag.jpg'" />
+                Español {{ checkSpanish() }}
+              </mat-button-toggle>
+              <mat-button-toggle value="en">
+                <img width="25px" [src]="'../../../../../../../../../assets/images/usa_flag.jpg'" />
+                Inglés {{ checkEnglish() }}
+              </mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <ng-container *ngIf="language.value === 'es'">
+          <mat-form-field class="col-12" formGroupName="name">
+            <input matInput placeholder="Nombre *" formControlName="es">
+          </mat-form-field>
+          <div class="col-12 pt-2 ">
+            <h5 class="section-title pb-0">Descripción
+            </h5>
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 pb-4" [ngClass]="{'disable-editor': action === 'view'}"
+            formGroupName="description">
+            <angular-editor formControlName="es" id="myEditor" [config]="editorConfig"></angular-editor>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="language.value === 'en'">
+          <mat-form-field class="col-12" formGroupName="name">
+            <input matInput placeholder="Nombre *" formControlName="en">
+          </mat-form-field>
+          <div class="col-12 pt-2 ">
+            <h5 class="section-title pb-0">Descripción
+            </h5>
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 pb-4" [ngClass]="{'disable-editor': action === 'view'}"
+            formGroupName="description">
+            <angular-editor formControlName="en" id="myEditor" [config]="editorConfig"></angular-editor>
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="row" *ngIf="role != 'MANAGER'" style="margin-bottom: 15px;">
+        <div class="col-12">
+          <h5 class="section-title">Corporación del reto</h5>
+        </div>
+        <mat-form-field class="col-12 col-md-6" formGroupName="corporateInfo">
+          <mat-select placeholder="Nombre de la corporación" formControlName="_id"
+            (selectionChange)="corporateChange($event)">
+            <mat-option *ngFor="let corporate of corporates" [value]="corporate._id">
+              {{corporate.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6" formGroupName="corporateInfo">
+          <input matInput placeholder="Código de la corporación" formControlName="code">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="col-6" *ngIf="type.value !== 'LIMITED_WINNERS' && role != 'MANAGER'">
+          <input matInput type="number" placeholder="Refill Coins (recompensa) *" formControlName="closcaPoints">
+        </mat-form-field>
+        <mat-form-field class="col-6">
+          <input matInput type="number" placeholder="Refills requeridos" formControlName="fillsNeeded">
+        </mat-form-field>
+      </div>
+
+      <div class="row" *ngIf="type.value !== 'LIMITED_WINNERS' && role != 'MANAGER'">
+        <mat-form-field class="col-6">
+          <input matInput type="number" placeholder="Fuentes Creadas requeridas"
+            formControlName="fountainsCreatedNeeded">
+        </mat-form-field>
+        <mat-form-field class="col-6">
+          <input matInput type="number" placeholder="Fuentes Valoradas requeridas"
+            formControlName="fountainsRatedNeeded">
+        </mat-form-field>
+      </div>
+
+      <div class="row" *ngIf="type.value !== 'LIMITED_WINNERS' && role != 'MANAGER'">
+        <mat-form-field class="col-6">
+          <input matInput type="number" placeholder="Rellenos de hidratación requeridos"
+            formControlName="hydrationFillsNeeded">
+        </mat-form-field>
+      </div>
+
+      <div class="row" style="margin-bottom: 25px;">
+        <div class="col-12 col-xl-4">
+          <div class="row">
+            <div class="col-12">
+              <h5 class="section-title" *ngIf="action !== 'view'">Imagen del reto (100x145px) *</h5>
+              <h5 class="section-title" *ngIf="action === 'view'">Imagen del reto</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <img class="challenge-image" *ngIf="!isChallengeLocalImageChanged"
+                [src]="challenge?.imageId? getImage(challenge?.imageInfo?.fileRoute) : '../../../../../../../../../assets/images/default-image.jpg'">
+
+              <img class="challenge-image" *ngIf="isChallengeLocalImageChanged"
+                [src]="challengeLocalImage !== '' ? challengeLocalImage : '../../../../../assets/images/default-image.jpg'"
+                class="challenge-image">
+
+              <ng-container *ngIf="action !== 'view'">
+                <div class="image-upload" *ngIf="!challengeImageId  && !challengeLocalImage">
+                  <label for="challenge-image-input">
+                    <img class="add-image" src="./../../../../../../../../../assets/icons/add-icon.png" />
+                  </label>
+                  <input #challengeImageUploaderInput id="challenge-image-input" type="file"
+                    (change)="changeLocalImage($event, 'challenge')" ng2FileSelect
+                    [uploader]="challengeImageUploader" />
+                </div>
+                <button type="button" *ngIf="challengeImageId  || challengeLocalImage"
+                  class="btn btn-danger delete-button" (click)="showDialogDeleteImage('challenge')"><img
+                    src="./../../../../../../../../../assets/icons/garbage.png" /></button>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-xl-8">
+          <div class="row">
+            <div class="col-12">
+              <h5 class="section-title" *ngIf="action !== 'view'">Imagen de fondo del reto *</h5>
+              <h5 class="section-title" *ngIf="action === 'view'">Imagen de fondo del reto</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <img class="challenge-background-image" *ngIf="!isChallengeLocalBackgroundImageChanged"
+                [src]="challenge?.backgroundId ? getImage(challenge?.backgroundInfo?.fileRoute) : '../../../../../../../../../assets/images/default-image.jpg'">
+
+              <img class="challenge-background-image" *ngIf="isChallengeLocalBackgroundImageChanged"
+                [src]="challengeLocalBackgroundImage !== '' ? challengeLocalBackgroundImage : '../../../../../assets/images/default-image.jpg'">
+
+              <ng-container *ngIf="action !== 'view'">
+                <div class="image-upload" *ngIf="!challengeBackgroundImageId  && !challengeLocalBackgroundImage">
+                  <label for="challenge-background-image-input">
+                    <img class="add-image" src="./../../../../../../../../../assets/icons/add-icon.png" />
+                  </label>
+                  <input #challengeBackgroundImageUploaderInput id="challenge-background-image-input" type="file"
+                    (change)="changeLocalImage($event, 'background')" ng2FileSelect
+                    [uploader]="challengeBackgroundImageUploader" />
+                </div>
+                <button type="button" *ngIf="challengeBackgroundImageId  || challengeLocalBackgroundImage"
+                  class="btn btn-danger delete-button" (click)="showDialogDeleteImage('background')"><img
+                    src="./../../../../../../../../../assets/icons/garbage.png" /></button>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ng-container *ngIf="role != 'MANAGER'">
+        <div class="row">
+          <div class="col-12">
+            <h5 class="section-title">Programa Gamificación</h5>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="status-container col-12 pl-0 pb-3">
+              <mat-button-toggle-group #type="matButtonToggleGroup">
+                <mat-button-toggle [checked]="gamificationEnabled"
+                  (change)="gamificationEnabled = $event.source.checked; challengeForm.markAsDirty()">
+                  Sí
+                </mat-button-toggle>
+                <mat-button-toggle [checked]="!gamificationEnabled"
+                  (change)="gamificationEnabled = !($event.source.checked); challengeForm.markAsDirty()">
+                  No
+                </mat-button-toggle>
+              </mat-button-toggle-group>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="gamificationEnabled">
+          <div class="row">
+            <mat-form-field class="col-12 col-md-6">
+              <mat-select placeholder="Reto superado - Visibilidad sobre el siguiente reto"
+                formControlName="nextChallengeTargetWhenDone">
+                <mat-option *ngFor="let challenge of challenges" [value]="challenge._id">
+                  {{challenge.name.es}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-12 col-md-6">
+              <mat-select placeholder="Reto superado - Asignado siguiente reto"
+                formControlName="nextChallengeSubscribeWhenDone">
+                <mat-option *ngFor="let challenge of challenges" [value]="challenge._id">
+                  {{challenge.name.es}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field class="col-12 col-md-6">
+              <mat-select placeholder="Reto no superado - Visibilidad sobre el siguiente reto"
+                formControlName="nextChallengeTargetWhenFail">
+                <mat-option *ngFor="let challenge of challenges" [value]="challenge._id">
+                  {{challenge.name.es}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-12 col-md-6">
+              <mat-select placeholder="Reto no superado - Asignado siguiente reto"
+                formControlName="nextChallengeSubscribeWhenFail">
+                <mat-option *ngFor="let challenge of challenges" [value]="challenge._id">
+                  {{challenge.name.es}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="role != 'MANAGER'">
+        <div class="row">
+          <div class="col-12">
+            <h5 class="section-title">Visibilidad de reto *</h5>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="status-container col-12 pl-0 pb-3">
+              <mat-button-toggle-group #type="matButtonToggleGroup" formControlName="privateKey">
+                <mat-button-toggle value="PUBLIC" (change)="privateChange($event.value)">
+                  Público
+                </mat-button-toggle>
+                <mat-button-toggle value="PRIVATE" (change)="privateChange($event.value)">
+                  Privado
+                </mat-button-toggle>
+              </mat-button-toggle-group>
+            </div>
+          </div>
+        </div>
+
+        <ng-container *ngIf="private === 'PRIVATE'">
+          <ng-container *ngIf="(action === 'edit' || action === 'view') && staticPrivate">
+            <div class="row">
+              <mat-form-field class="col-6">
+                <input matInput type="number" placeholder="Usuarios con acceso:" formControlName="usersAccessCount">
+              </mat-form-field>
+            </div>
+          </ng-container>
+
+          <div class="row">
+            <mat-form-field class="col-12 col-md-6">
+              <mat-select placeholder="Visibilidad basada en" formControlName="privateType"
+                (selectionChange)="privateTypeChange($event)">
+                <!-- formControlName="key" -->
+                <mat-option *ngFor="let privateType of privateTypes" [value]="privateType.key">
+                  {{privateType.value}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <ng-container *ngIf="privateTypeSelected === 'DATE'">
+            <div class="row">
+              <mat-form-field class="col-6">
+                <input matInput type="number" placeholder="Desde:" formControlName="daysFromUserCreate">
+              </mat-form-field>
+              <mat-form-field class="col-6">
+                <input matInput type="number" placeholder="Hasta:" formControlName="daysActive">
+              </mat-form-field>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="privateTypeSelected === 'USERS' && action !== 'view'">
+            <div class="row">
+              <div class="col-12">
+                <h6 class="section-title">Subir fichero *</h6>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+                <div class="status-container col-12 pl-0 pb-3">
+                  <mat-button-toggle-group #type="matButtonToggleGroup" value="ADD">
+                    <mat-button-toggle value="ADD" (change)="userTargetCSVModeChange($event.value)">
+                      Crear
+                    </mat-button-toggle>
+                    <mat-button-toggle *ngIf="action === 'edit'" value="DELETE"
+                      (change)="userTargetCSVModeChange($event.value)">
+                      Eliminar
+                    </mat-button-toggle>
+                  </mat-button-toggle-group>
+                </div>
+              </div>
+            </div>
+
+            <div class="row col-6">
+              <input #usersTargetCSVUploaderInput class="w-100 mb-3 float-left" type="file" name="usersCSV"
+                ng2FileSelect (change)="changeUserTargetCSVListener($event.target.files)"
+                [uploader]="usersTargetCSVUploader">
+            </div>
+
+            <div class="row col-6">
+              <mat-checkbox style="position: relative; top: 5px;" formControlName="notifyUsersTarget">Deseo enviar una
+                notificación a los usuarios añadidos al reto</mat-checkbox>
+            </div>
+          </ng-container>
+
+          <ng-container
+            *ngIf="privateTypeSelected === 'USERS' && action !== 'new' && (challenge.privateType !== undefined && challenge.privateType === 'USERS')">
+            <div class="row col-6">
+              <button class="btn btn-primary send-sms-button mr-2" (click)="downloadUsersTargetCSV(event)">Descargar
+                listado de
+                usuarios</button>
+            </div>
+          </ng-container>
+
+        </ng-container>
+      </ng-container>
+
+      <ng-container *ngIf="role != 'MANAGER'">
+        <div class="row">
+          <div class="col-12">
+            <h5 class="section-title">Tipo de reto *</h5>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="status-container col-12 pl-0 pb-3">
+              <mat-button-toggle-group #type="matButtonToggleGroup" formControlName="type">
+                <mat-button-toggle value="HABIT" *ngIf="role != 'MANAGER' && (corporateSelected == undefined || corporateSelected.code == 'CLOSCA')" (change)="typeChange($event.value)">
+                  Hábito
+                </mat-button-toggle>
+                <mat-button-toggle value="LOCATION" *ngIf="role != 'MANAGER' && (corporateSelected == undefined || corporateSelected.code == 'CLOSCA')" (change)="typeChange($event.value)">
+                  Localización
+                </mat-button-toggle>
+                <mat-button-toggle value="LIMITED_WINNERS" (change)="typeChange($event.value)">
+                  Ganadores Limitados
+                </mat-button-toggle>
+              </mat-button-toggle-group>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="type.value === 'HABIT'">
+        <div class="row">
+          <mat-form-field class="col-12">
+            <input matInput placeholder="Duración *" type="number" formControlName="duration">
+          </mat-form-field>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="type.value === 'LOCATION' || type.value === 'LIMITED_WINNERS'">
+        <div class="row">
+          <mat-form-field class="col-12 col-md-6">
+            <input matInput [matDatepicker]="startDatePicker" (dateChange)="dateChange()" placeholder="Fecha inicio"
+              formControlName="startDate">
+            <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+            <a *ngIf="challengeForm.get('startDate').value && action !== 'view'"
+              (click)="challengeForm.get('startDate').reset()" class="datepicker-clear-button">
+              <mat-icon>clear</mat-icon>
+            </a>
+            <mat-datepicker #startDatePicker startView="year" [disabled]="action === 'view'"></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="col-12 col-md-6">
+            <input matInput [matDatepicker]="endDatePicker" (dateChange)="dateChange()" placeholder="Fecha final"
+              formControlName="endDate">
+            <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+            <a *ngIf="challengeForm.get('endDate').value && action !== 'view'"
+              (click)="challengeForm.get('endDate').reset()" class="datepicker-clear-button">
+              <mat-icon>clear</mat-icon>
+            </a>
+            <mat-datepicker #endDatePicker startView="year" [disabled]="action === 'view'"></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </ng-container>
+
+
+      <ng-container *ngIf="type.value === 'LIMITED_WINNERS'">
+        <div class="row">
+          <mat-form-field class="col-6" formGroupName="productRewardInfo">
+            <mat-select placeholder="Producto de recompensa" formControlName="_id"
+              (selectionChange)="productChange($event)">
+              <mat-option *ngFor="let product of products" [value]="product._id">
+                {{product.name.es}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="type.value === 'LOCATION'">
+        <div class="w-100">
+          <div class="mt-4 mb-3">
+            <div class="row">
+              <div class="col-12">
+                <h5 class="section-title">Fuentes seleccionadas *
+                </h5>
+              </div>
+              <div class="col-12 mb-4">
+                <div class="mat-elevation-z8 pt-2 table-container table-responsive">
+                  <div class="table-container custom-table">
+                    <table mat-table [dataSource]="selectedFountains" class="w-100">
+                      <ng-container matColumnDef="title">
+                        <th class="header-sticky" mat-header-cell *matHeaderCellDef>
+                          <div class="header-container">
+                            Nombre
+                          </div>
+
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                          <div class="cell-container">
+                            {{element?.name}}
+                          </div>
+                        </td>
+                      </ng-container>
+                      <ng-container matColumnDef="type">
+                        <th class="header-sticky" mat-header-cell *matHeaderCellDef>
+                          <div class="header-container">
+                            Tipo de fuente
+                          </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                          <div class="cell-container">
+                            {{changeFountainTypeName(element?.fountainType)}}
+                          </div>
+                        </td>
+                      </ng-container>
+                      <ng-container matColumnDef="address">
+                        <th class="header-sticky" mat-header-cell *matHeaderCellDef>
+                          <div class="header-container">
+                            Dirección
+                          </div>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                          <div class="cell-container cell-address">
+                            {{element?.address?.address}}
+                          </div>
+                        </td>
+                      </ng-container>
+                      <ng-container matColumnDef="manageFountains">
+                        <th class="header-sticky" mat-header-cell *matHeaderCellDef>
+                          <div class="header-container">
+                            <div>Eliminar Fuente</div>
+                          </div>
+
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                          <div class="cell-container">
+                            <button *ngIf="action !== 'view'" (click)="openRemoveFountainDialog(element)"
+                              class="btn btn-primary list-button">
+                              <img src="./../../../../../../../../../assets/icons/garbage.png" />
+                            </button>
+                          </div>
+                        </td>
+                      </ng-container>
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                  </div>
+                  <div *ngIf="selectedFountains?.length <= 0" class="pt-4 no-fountains">
+                    <p>No hay fuentes seleccionadas</p>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w-100" *ngIf="action !== 'view'">
+          <div class="mt-4 mb-3">
+            <div class="row">
+              <div class="col-12">
+                <h5 class="section-title">Selecciona fuentes para añadirlas al reto *
+                </h5>
+              </div>
+              <div class="col-12 mb-4">
+                <form [formGroup]="filterForm">
+                  <div class="mat-elevation-z8 pt-2 table-container table-responsive">
+                    <div class="table-container custom-table">
+                      <table mat-table [dataSource]="fountains" class="w-100">
+                        <ng-container matColumnDef="title">
+                          <th class="header-sticky" mat-header-cell *matHeaderCellDef>
+                            <div class="header-container">
+                              <mat-form-field>
+                                <input matInput placeholder="Nombre" formControlName="name">
+                              </mat-form-field>
+                            </div>
+
+                          </th>
+                          <td mat-cell *matCellDef="let element">
+                            <div class="cell-container">
+                              {{element?.name}}
+                            </div>
+                          </td>
+                        </ng-container>
+                        <ng-container matColumnDef="type">
+                          <th class="header-sticky" mat-header-cell *matHeaderCellDef>
+                            <div class="header-container">
+                              <mat-form-field>
+                                <mat-select [placeholder]="'Tipo'" formControlName="fountainType">
+                                  <mat-option *ngFor="let dropdownItem of fountainTypes" [value]="dropdownItem?.value">
+                                    {{ dropdownItem?.name }}
+                                  </mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                            </div>
+                          </th>
+                          <td mat-cell *matCellDef="let element">
+                            <div class="cell-container">
+                              {{changeFountainTypeName(element?.fountainType)}}
+                            </div>
+                          </td>
+                        </ng-container>
+                        <ng-container matColumnDef="address">
+                          <th class="header-sticky" mat-header-cell *matHeaderCellDef style="width: 533px !important;">
+                            <div class="header-container" style="width: 100% !important; max-width: none !important">
+                              <mat-form-field class="w-100">
+                                <input matInput placeholder="Dirección" formControlName="address">
+                              </mat-form-field>
+                            </div>
+                          </th>
+                          <td mat-cell *matCellDef="let element">
+                            <div class="cell-container cell-address">
+                              {{element?.address?.address}}
+                            </div>
+                          </td>
+                        </ng-container>
+                        <ng-container matColumnDef="manageFountains">
+                          <th class="header-sticky" mat-header-cell *matHeaderCellDef>
+                            <div class="header-container">
+                              <div>Añadir Fuente</div>
+                            </div>
+
+                          </th>
+                          <td mat-cell *matCellDef="let element">
+                            <div class="cell-container">
+                              <button (click)="addFountainToChallenge(element)" class="btn btn-primary list-button">
+                                <img class="plus-icon" src="./../../../../../../../../../assets/icons/add-icon.png" />
+                              </button>
+                            </div>
+                          </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                        <tr [ngClass]="{'private-fountain-selected': row._id === fountainId}" mat-row
+                          *matRowDef="let row; columns: displayedColumns;"></tr>
+                      </table>
+                    </div>
+                    <div *ngIf="fountains?.length <= 0" class="pt-4 no-fountains">
+                      <p>No hay fuentes disponibles</p>
+                    </div>
+                    <mat-paginator [length]="paginator.length" [pageSize]="paginator.limit"
+                      [pageSizeOptions]="paginator.pageSizeOptions" [pageIndex]="paginator.pageIndex"
+                      (page)="paginate($event)"></mat-paginator>
+                  </div>
+
+                </form>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+
+
+      <!-- <ng-container *ngIf="action === 'view' && fountains">
+          <div class="row">
+            <div class="col-12">
+              <h5 class="section-title">Fuentes Reto</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 mb-5">
+              <app-custom-table [dataSource]="fountains" [tableConfig]="tableConfig">
+              </app-custom-table>
+            </div>
+          </div>
+        </ng-container> -->
+    </form>
+
+    <div class="w-100" *ngIf="action === 'edit' && role != 'MANAGER'">
+      <div class="mt-4 mb-3">
+        <div class="row">
+          <div class="col-12">
+            <h5 class="section-title">Añadir usuarios al reto</h5>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <h6 class="section-title">Subir fichero *</h6>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="status-container col-12 pl-0 pb-3">
+              <mat-button-toggle-group #type="matButtonToggleGroup" value="ADD">
+                <mat-button-toggle value="ADD" (change)="subscribeCSVModeChange($event.value)">
+                  Crear
+                </mat-button-toggle>
+                <mat-button-toggle *ngIf="action === 'edit'" value="DELETE"
+                  (change)="subscribeCSVModeChange($event.value)">
+                  Eliminar
+                </mat-button-toggle>
+              </mat-button-toggle-group>
+            </div>
+          </div>
+        </div>
+
+        <div class="row col-6">
+          <input #subscribeUsersCSVUploaderInput class="w-100 mb-3 float-left" type="file" name="subscribeUsersCSV"
+            ng2FileSelect (change)="changeSubscribeCSVListener($event.target.files)"
+            [uploader]="subscribeUsersCSVUploader">
+        </div>
+
+        <div class="row col-6">
+          <form [formGroup]="challengeCSVForm">
+            <mat-checkbox style="position: relative; top: 5px;" formControlName="notifyUsersSuscribed">Deseo enviar una
+              notificación a los usuarios añadidos al reto</mat-checkbox>
+          </form>
+        </div>
+
+        <div class="row col-6">
+          <button class="btn btn-primary send-sms-button mr-2" (click)="uploadSubscribeCSV(event)">Procesar fichero
+            CSV</button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="w-100" *ngIf="action !== 'new'">
+      <div class="mt-4 mb-3">
+        <div class="row">
+          <div class="col-12">
+            <h5 class="section-title">Usuarios del reto *
+            </h5>
+          </div>
+
+          <div class="col-12 export-data-div">
+            <button class="btn btn-primary send-sms-button mr-2" (click)="downloadUsersSubscribedCSV(event)">Exportar
+              datos</button>
+          </div>
+
+
+          <div class="col-12 mb-4" *ngIf="challenge !== undefined && role !== undefined">
+            <app-challenge-subscriptions-users-list [challengeId]="challengeId" [challenge]="challenge" [role]="role">
+            </app-challenge-subscriptions-users-list>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="action !== 'view'">
+      <div class="buttons-container col-12 pt-4 pb-5 pl-3">
+        <ng-content select="button"></ng-content>
+        <button class="btn btn-primary send-sms-button mr-2" (click)="isFormCanceled = true"
+          [routerLink]="routerDefinitions.challenges + '/list'">Cancelar</button>
+        <button class="btn btn-primary ml-2" [disabled]="challengeForm.invalid || 
+          !challengeForm.dirty || (!challengeImageId  && !challengeLocalImage) || 
+          (!challengeBackgroundImageId  && !challengeLocalBackgroundImage)"
+          (click)="saveForm(challengeForm.value, challengeForm.valid)">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

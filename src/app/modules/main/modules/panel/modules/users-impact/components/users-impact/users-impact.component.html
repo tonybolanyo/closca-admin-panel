@@ -1,0 +1,90 @@
+<div class="col-12 pt-3">
+  <div class="row">
+    <div class="col-12">
+      <h3 class="float-left title">
+        Impacto Usuarios
+      </h3>
+
+      <button class="btn btn-primary export-button" (click)="downloadCSV()">Exportar CSV</button>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="metricsTotal">
+    <div class="col-12 pt-3">
+      <!-- <div class="row">
+        <div class="col-12">
+          <h3 class="float-left title">Impacto total</h3>
+        </div>
+      </div> -->
+
+      <div class="row">
+        <div class="pt-3 col-12 pb-4 pr-0 pl-0">
+          <div class="card-div-external">
+            <div class="row">
+              <div class="col-2">
+                <div class="card-div">
+                  <h4>Total refills</h4>
+                  <h3 class="title">{{ metricsTotal.totalRefills || 0 }}</h3>
+                </div>
+              </div>
+              <div class="col-2">
+                <div class="card-div">
+                  <h4>Fuentes creadas</h4>
+                  <h3 class="title">{{ metricsTotal.totalFountains || 0 }}</h3>
+                </div>
+              </div>
+              <div class="col-2">
+                <div class="card-div">
+                  <h4>Amigos referidos</h4>
+                  <h3 class="title">{{ metricsTotal.referalFriends || 0 }}</h3>
+                </div>
+              </div>
+              <div class="col-2">
+                <div class="card-div">
+                  <h4>Tortugas salvadas</h4>
+                  <h3 class="title">{{ metricsTotal.totalTurtle || 0 }}</h3>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-2">
+                <div class="card-div">
+                  <h4>CO2 ahorrados</h4>
+                  <h3 class="title">{{ metricsTotal.totalCO2Grams || 0 }} gr</h3>
+                </div>
+              </div>
+              <div class="col-2">
+                <div class="card-div">
+                  <h4>Plástico ahorrado</h4>
+                  <h3 class="title">{{ metricsTotal.totalGrams || 0 }} gr</h3>
+                </div>
+              </div>
+              <div class="col-2">
+                <div class="card-div">
+                  <h4>Energía ahorrada</h4>
+                  <h3 class="title">{{ metricsTotal.totalWatts || 0 }} w</h3>
+                </div>
+              </div>
+              <div class="col-2">
+                <div class="card-div">
+                  <h4>Dinero ahorrado</h4>
+                  <h3 class="title">{{ metricsTotal.totalEuros || 0 }} €</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf='role != "MANAGER"'>
+    <div class="pt-3 col-12 pb-4 pr-0 pl-0" *ngIf="tableReady">
+      <app-custom-table [dataSource]="items" [paginator]="paginator" [tableConfig]="tableConfig"
+        (formChanges)="filterFormChanges($event)" (sendPaginate)="paginate($event)" (deleteItem)="deleteItem($event)">
+      </app-custom-table>
+    </div>
+  </div>
+
+</div>

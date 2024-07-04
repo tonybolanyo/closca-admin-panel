@@ -1,0 +1,95 @@
+<div class="col-12 pt-3">
+  <div class="row">
+    <div class="col-9">
+      <h3 class="float-left title">
+        Retos
+      </h3>
+      <button
+        [routerLink]="routerDefinitions.challenges + '/new'"
+        class="btn btn-primary add-button"
+      >
+        <img src="./../../../../../../../../../assets/icons/add-icon.png" />
+      </button>
+    </div>
+    <div class="col-3 p-0">
+      <div class="status-container col-12 p-0">
+        <mat-button-toggle-group #section="matButtonToggleGroup">
+          <mat-button-toggle [routerLink]="routerDefinitions.challenges">
+            Lista
+          </mat-button-toggle>
+          <mat-button-toggle checked>
+            Orden
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+    </div>
+  </div>
+    <div class="pt-3 col-12 pb-4 pr-0 pl-0">
+      <mat-table
+        [dataSource]="dataSource"
+        class="mat-elevation-z8"
+        cdkDropList
+        #table1
+        #list1="cdkDropList"
+        [cdkDropListData]="dataSource?.data"
+        (cdkDropListDropped)="drop($event)"
+        id="table1"
+      >
+
+        <ng-container matColumnDef="drag">
+          <mat-header-cell
+            *matHeaderCellDef
+            style="max-width: 100px;"
+          ></mat-header-cell>
+          <mat-cell *matCellDef="let element" style="max-width: 100px;">
+            <img draggable="false"
+              style="width: 15px;"
+              [src]="'../../../../../../../../../assets/icons/ic_drag-drop.png'"
+            />
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.name.es }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="image">
+          <mat-header-cell *matHeaderCellDef> Imagen </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <img
+              *ngIf="element.imageInfo != undefined"
+              style="width: 75px; height: 75px; object-fit: cover; margin: 10px 0px;"
+              [src]="getImage(element.imageInfo.fileRoute)"
+            />
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="closcaPoints">
+          <mat-header-cell *matHeaderCellDef> Refill Coins </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{ element.closcaPoints }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+          <mat-header-cell *matHeaderCellDef> Tipo </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ changeChallengeTypeName(element.type) }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ changeChallengeStatusName(element.status) }} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row
+          *matRowDef="let row; columns: displayedColumns"
+          cdkDrag
+        ></mat-row>
+      </mat-table>
+      <div class="save-button col-12">
+          <button [disabled]="!orderChanges" class="btn btn-primary ml-2" (click)="updateOrder()">Guardar orden</button>
+        </div>
+    </div>
+</div>

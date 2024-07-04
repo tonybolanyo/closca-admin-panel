@@ -1,0 +1,48 @@
+<h1 *ngIf="role == 'MANAGER'; else closcaTitle">
+    Closca x {{user?.corporateInfo.name}} Admin Panel</h1>
+
+<ng-template #closcaTitle>
+    <h1> Closca Admin Panel</h1>
+</ng-template>
+
+<div>
+    <h4 class="text-center pt-3" *ngIf="role == 'MANAGER'; else closcaSubtitle">
+        Bienvenido a la página de inicio del panel de administración de Closca x {{user?.corporateInfo.name}}
+    </h4>
+
+    <ng-template #closcaSubtitle>
+        <h4 class="text-center pt-3">
+            Bienvenido a la página de inicio del panel de administración de Closca
+        </h4>
+    </ng-template>
+
+    <br />
+    <h5>
+        Usted esta conectado como <strong>{{user?.role === 'USER' ? 'cliente' : (user?.role === 'ADMIN' ?
+            'administrador' : (user?.role === 'MANAGER' ? 'administrador de croporación' : ''))}}</strong>
+    </h5>
+    <!-- <p class="text-left">
+        Cambiar logo -> En assets/images el archivo logo.png
+    </p>
+    <p class="text-left">
+        Cambiar fuentes -> En sass/_bootstrap_variables.scss cambiar las fuentes donde pone @font-face
+    </p>
+    <p class="text-left">
+        Cambiar colores -> En _custom_angular_material.scss los colores de angular material en las variables como esta
+        "$custom-app-primary: mat-palette($mat-light-blue);"
+        <br>
+        Cambiar colores -> En _variables.scss se cambian el resto de variables de colores
+    </p>
+    <p class="text-left">
+        Crud -> example-crud -> Esto es un crud de ejemplo con un modulo y componentes vista/detalle
+    </p>
+    <p class="text-left">
+        Cambiar Toastr(mensajes) - Colores -> _toast_custom.scss
+     </p> -->
+    <p class="text-left">
+
+    </p>
+    <p class="lead">
+        <br>Copyright 2019 Closca
+    </p>
+</div>

@@ -1,0 +1,85 @@
+@import "../../../../../../../../../sass/variables";
+
+app-random-fountain-images {
+  .add-image {
+    background-color: var(--corporate-primary, $brand-primary);
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    padding: 0px;
+    padding-bottom: 1px;
+    float: left;
+    margin-right: 3px;
+  }
+
+  .add-image:hover {
+    // background-color: darken($color: $brand-primary, $amount: 5%);
+    filter: brightness(85%)
+  }
+
+  .add-image:active {
+    box-shadow: 0 0 0 3.5px lighten($color: $brand-primary, $amount: 40%);
+  }
+
+  .image-upload > input {
+    display: none;
+  }
+
+  label {
+    display: block;
+  }
+
+  .image-upload {
+    float: left;
+  }
+
+  .image-upload img {
+    height: 30px;
+    width: 30px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+  .images {
+    position: relative;
+    display: inline-flex;
+    width: 200px;
+    height: 300px;
+    margin: 10px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .delete-button {
+    position: absolute;
+    right: 3px;
+    top: 4px;
+    height: 30px;
+    width: 30px;
+    padding: 0px 1px 3px 2px;
+    float: left;
+    img {
+      height: 18px;
+      width: 15px;
+    }
+  }
+
+  .modal-image {
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  .no-images {
+    width: 100%;
+    text-align: center;
+    margin-top: 5%;
+    font-size: 20px;
+  }
+}

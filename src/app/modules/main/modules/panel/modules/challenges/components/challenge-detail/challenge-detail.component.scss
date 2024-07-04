@@ -1,0 +1,182 @@
+@import "./../../../../../../../../../sass/variables.scss";
+
+app-challenge-detail {
+  .back-icon {
+    cursor: pointer;
+
+    &:hover {
+    color: var(--corporate-primary, $brand-primary);
+    }
+  }
+
+  .challenge-image {
+    border: 1px solid var(--corporate-primary, $brand-primary);
+    max-width: 100px;
+    width: 100px;
+    height: 145px;
+    margin-right: 15px;
+    float: left;
+    object-fit: cover;
+  }
+
+  .challenge-background-image {
+    border: 1px solid var(--corporate-primary, $brand-primary);
+    width: 230px;
+    height: 200px;
+    margin-right: 15px;
+    float: left;
+    object-fit: cover;
+  }
+
+  .add-button-container {
+    cursor: pointer;
+    padding-top: 20px;
+    a {
+      img {
+        width: 30px;
+        height: auto;
+      }
+    }
+  }
+
+  .add-image {
+    background-color: var(--corporate-primary, $brand-primary);
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    padding: 0px;
+    padding-bottom: 1px;
+    float: left;
+    margin-right: 3px;
+  }
+
+  .add-image:hover {
+    // background-color: darken($color: $brand-primary, $amount: 5%);
+    filter: brightness(85%)
+  }
+
+  .add-image:active {
+    box-shadow: 0 0 0 3.5px lighten($color: $brand-primary, $amount: 40%);
+  }
+
+  .delete-button {
+    height: 30px;
+    width: 30px;
+    padding: 0px;
+    padding-bottom: 1px;
+    float: left;
+    margin-right: 3px;
+    img {
+      height: 15px;
+      width: 15px;
+    }
+  }
+
+  .export-data-div {
+    text-align: start;
+    padding-bottom: 15px;
+  }
+
+  .image-upload > input {
+    display: none;
+  }
+
+  .image-upload {
+    float: left;
+  }
+
+  .image-upload img {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+  }
+
+  .angular-editor-button[title="Insert Image"] {
+    display: none !important;
+  }
+
+  .angular-editor-button[title="Strikethrough"] {
+    display: none !important;
+  }
+  .angular-editor-button[title="Subscript"] {
+    display: none !important;
+  }
+  .angular-editor-button[title="Superscript"] {
+    display: none !important;
+  }
+  .angular-editor-button[title="Justify Left"] {
+    display: none !important;
+  }
+  .angular-editor-button[title="Justify Right"] {
+    display: none !important;
+  }
+  .angular-editor-button[title="Justify Center"] {
+    display: none !important;
+  }
+  .angular-editor-button[title="Justify Full"] {
+    display: none !important;
+  }
+  .angular-editor-button[title="Indent"] {
+    display: none !important;
+  }
+  .angular-editor-button[title="Outdent"] {
+    display: none !important;
+  }
+  #fontSelector-myEditor {
+    display: none !important;
+  }
+  .angular-editor-button[title="Font Name"] {
+    display: none !important;
+  }
+  #heading-myEditor {
+    display: none !important;
+  }
+  .angular-editor-button[title="Formatting"] {
+    display: none !important;
+  }
+
+  #fontSizeSelector-myEditor {
+    display: none !important;
+  }
+  .angular-editor-button[title="Text Color"] {
+    display: none !important;
+  }
+  .angular-editor-button[title="Background Color"] {
+    display: none !important;
+  }
+  .angular-editor-button[title="Horizontal Line"] {
+    display: none !important;
+  }
+  .angular-editor-button[title="Clear Formatting"] {
+    display: none !important;
+  }
+
+
+  .disable-editor{
+    .angular-editor-toolbar{
+        display: none !important;
+    }
+    .angular-editor-textarea{
+        border-top: 1px solid #ddd !important;
+    }
+  }
+
+  .no-fountains{
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 18px;
+  }
+
+  .plus-icon{
+    height: 23px !important;
+    width: 23px !important;
+    padding-top: 1px;
+    padding-left: 1px;
+    padding-right: 1px;
+  }
+
+  .status-container{
+    justify-content: flex-start;
+    display: flex;
+}
+
+}

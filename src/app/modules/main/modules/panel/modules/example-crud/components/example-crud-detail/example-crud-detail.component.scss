@@ -1,0 +1,28 @@
+@import './../../../../../../../../../sass/variables.scss';
+
+app-example-crud-detail{
+    .add-button-container{
+        cursor: pointer;
+        padding-top:20px;
+        a {
+            img {
+                width: 30px;
+                height: auto;
+            }
+        } 
+    }
+
+    .new-client-button{
+        padding: 0px 15px;
+        font-size: 13px;
+        float: right;
+        font-family: 'customFont-light';
+    }
+
+    .status-container{
+        justify-content: flex-start;
+        display: flex;
+    }
+
+
+}

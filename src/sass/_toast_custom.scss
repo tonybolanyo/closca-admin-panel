@@ -1,0 +1,41 @@
+.toast-custom{
+    top: 110px;
+    right: 12px;
+}
+
+.toast-container .toast{
+    color: #fff;
+    height: auto;
+    width: 223px;
+    padding: 8px 20px 20px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: 'customFont-light';
+    opacity: 1 !important;
+}
+
+.toast-title{
+    font-size: 17px;
+    font-family: 'customFont-bold'
+}
+
+.toast-progress{
+    position: relative;
+    left: 0px;
+    //bottom: 81px !important;
+    height: 5px !important;
+    opacity: 1 !important;
+}
+
+.toast-success{
+    background: $brand-success !important;
+    .toast-progress{
+        background-color: #AAFFAF !important;
+    }
+}
+.toast-error{
+    background: $brand-danger !important;
+    .toast-progress{
+        background-color: #FFAAAA !important;
+    }
+}

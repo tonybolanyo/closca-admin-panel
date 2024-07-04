@@ -1,0 +1,86 @@
+<div class="row">
+  <div class="col-12 pt-1 pb-1">
+    <h3 class="float-left title">
+      <a class="button-back" (click)="navigateBack()">
+        <mat-icon class="float-left back-icon">keyboard_backspace</mat-icon>
+      </a>
+      Ver Valoración
+    </h3>
+  </div>
+  <div class="col-12 pt-3 mb-4">
+    <form class="w-100" [formGroup]="userRateForm">
+      <div class="row">
+        <div class="col-12">
+          <h5 class="section-title">Información del usuario</h5>
+          <button
+            [routerLink]="routerDefinitions.users + '/view/' + userId"
+            class="btn btn-primary view-button"
+          >
+            <img src="./../../../../../../../../../assets/icons/eye.png" />
+          </button>
+        </div>
+        <mat-form-field class="col-12 col-md-6" formGroupName="userInfo">
+          <input matInput placeholder="Nombre" formControlName="userName" />
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6" formGroupName="userInfo">
+          <input matInput placeholder="Email" formControlName="email" />
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6" formGroupName="userInfo">
+          <input
+            matInput
+            placeholder="Teléfono"
+            formControlName="phoneNumber"
+          />
+        </mat-form-field>
+        <div class="col-12 col-md-6">
+          <h5 class="valoration w-100">Valoración</h5>
+          <ng-template #t let-fill="fill">
+            <span class="star" [class.full]="fill === 100">
+              <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+            </span>
+          </ng-template>
+
+          <ngb-rating
+            rate="4"
+            [starTemplate]="t"
+            [readonly]="true"
+            max="5"
+          ></ngb-rating>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h5 class="section-title">Información de la fuente</h5>
+          <button
+            [routerLink]="
+              routerDefinitions.publicOrPrivateFountains + '/edit/' + fountainId"
+            class="btn btn-primary edit-button"
+          >
+            <img src="./../../../../../../../../../assets/icons/edit.png" />
+          </button>
+        </div>
+        <ng-container formGroupName="fountainInfo">
+          <mat-form-field class="col-12 col-md-6">
+            <input matInput placeholder="Nombre" formControlName="name" />
+          </mat-form-field>
+          <mat-form-field class="col-12 col-md-6" formGroupName="address">
+            <input matInput placeholder="Dirección" formControlName="address" />
+          </mat-form-field>
+          <mat-form-field class="col-12 col-md-6">
+            <mat-select
+              placeholder="Tipo de fuente"
+              formControlName="fountainType"
+            >
+              <mat-option
+                *ngFor="let fountainType of fountainTypeOptions"
+                [value]="fountainType.value"
+              >
+                {{ fountainType.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </ng-container>
+      </div>
+    </form>
+  </div>
+</div>

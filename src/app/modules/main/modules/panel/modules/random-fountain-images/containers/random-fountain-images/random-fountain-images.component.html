@@ -1,0 +1,45 @@
+<ng-template #modal let-modal>
+    <img style="max-width: 100%; max-height: 500px; object-fit: contain;" [src]="getImage(imageToShow?.imageInfo?.fileRoute)">
+    <!-- <img style="max-width: 100%; object-fit: contain;" [src]="getImage(imageToShow)"> -->
+</ng-template>
+
+<div class="col-12 pt-3">
+  <div class="row">
+    <div class="col-12 image-upload">
+      <label for="file-input">
+        <h3 class="float-left title">
+          Imágenes aleatorias para fuentes
+        </h3>
+        <img
+          class="add-image"
+          src="./../../../../../../../../../assets/icons/add-icon.png"
+        />
+      </label>
+      <input
+        #uploaderInput
+        id="file-input"
+        type="file"
+        ng2FileSelect
+        [uploader]="uploader"
+        accept="image/png, image/jpg, image/jpeg"
+      />
+    </div>
+  </div>
+  <div class="row pt-3 pb-4">
+    <ng-container *ngIf="images">
+    <div *ngFor="let image of images" class="images">
+      <!-- <img (click)="showImage(modal, image)" src="{{ image }}" /> -->
+      <img (click)="showImage(modal, image)" [src]="getImage(image?.imageInfo?.fileRoute)" />
+      <button type="button" (click)="deleteImage(image?.imageId)" class="btn btn-danger delete-button">
+        <img src="../../../../../../../../../assets/icons/garbage.png" />
+      </button>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!images">
+    <div class="no-images">No hay imágenes</div>
+    </ng-container>
+  </div>
+    <div class="buttons-container col-12 pt-4 pb-5 pl-3">
+      <button class="btn btn-primary ml-2" [disabled]="images.length === 0" (click)="assignImages()">Asignar a fuentes</button>
+  </div>
+</div>

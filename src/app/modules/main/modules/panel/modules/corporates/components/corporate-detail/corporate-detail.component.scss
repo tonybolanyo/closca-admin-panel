@@ -1,0 +1,137 @@
+@import './../../../../../../../../../sass/variables.scss';
+
+app-corporate-detail{
+    .add-button-container{
+        cursor: pointer;
+        padding-top:20px;
+        a {
+            img {
+                width: 30px;
+                height: auto;
+            }
+        } 
+    }
+
+    .invitation-csv-input {
+        display: none;
+    }
+
+    .invite-csv-button {
+        margin-left: 15px;
+        cursor: pointer;
+    }
+
+    .create-fountains-csv-input {
+        display: none;
+    }
+
+    .create-fountains-csv-button {
+        margin-left: 15px;
+        cursor: pointer;
+    }
+
+    .image-detail {
+        border: 1px solid var(--corporate-primary, $brand-primary);
+        width: 250px;
+        height: 166px;
+        margin-right: 15px;
+        float: left;
+        object-fit: cover;
+      }
+
+    .add-custom-button{
+        float: left;
+        margin-left: 15px;
+    }
+
+    .status-container{
+        justify-content: left;
+        display: flex;
+    }
+
+    .avatar-detail {
+        border: 1px solid var(--corporate-primary, $brand-primary);
+        width: 100px;
+        height: 100px;
+        margin-right: 30px;
+        float: left;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .add-button-container{
+        cursor: pointer;
+        padding-top: 20px;
+        a {
+            img {
+                width: 30px;
+                height: auto;
+            }
+        } 
+    }
+
+    .add-image{
+        background-color: var(--corporate-primary, $brand-primary);
+        border-radius: 50%;
+        width: 15px;
+        height: 15px;
+        padding: 0px;
+        padding-bottom: 1px;
+        float: left;
+        margin-right: 3px;
+    }
+
+    .add-image:hover{
+        // background-color: darken($color: $brand-primary, $amount: 5%);
+        filter: brightness(85%)
+    }
+
+    .add-image:active{
+        box-shadow: 0 0 0 3.5px lighten($color: $brand-primary, $amount: 40%);
+    }
+
+    .delete-button{
+        height: 30px;
+        width: 30px;
+        padding: 0px;
+        padding-bottom: 1px;
+        float: left;
+        margin-right: 3px;
+            img{
+                height: 15px;
+                width: 15px;
+            }
+        }
+
+    .image-upload > input
+    {
+        display: none;
+    }
+
+    .image-upload {
+        float: left;
+    }
+    
+    .image-upload img
+    {
+        height: 30px;
+        width: 30px;
+        cursor: pointer;
+    }
+
+    .button-back {
+        cursor: pointer;
+    }
+
+    .back-icon:hover {
+        color: var(--corporate-primary, $brand-primary);
+    }
+
+    .color-picker {
+        width: 100px;
+        height: 100px;
+        margin-left: 12px;
+        float: left;
+      }
+
+}

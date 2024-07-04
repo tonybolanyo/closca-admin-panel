@@ -1,0 +1,93 @@
+<div class="row">
+  <div class="col-12 pt-1 pb-1">
+    <h3 class="float-left title">
+        <a class="button-back" (click)="navigateBack()">
+            <mat-icon class="float-left back-icon">keyboard_backspace</mat-icon>
+          </a>
+      {{action === 'view'? 'Ver' : (action === 'edit' ? 'Editar' : 'Nueva')}} Botella
+    </h3>
+  </div>
+  <div class="col-12 pt-3">
+    <form class="w-100" [formGroup]="bottleForm">
+      <div class="row">
+        <div class="col-12">
+          <h5 class="section-title">Imagen de la botella</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 mb-5">
+          <img
+            class="image-detail"
+            [src]="
+              bottleTypeSelected?.image
+                ? getImage(bottleTypeSelected?.imageInfo?.fileRoute)
+                : '../../../../../../../../../assets/images/default-image.jpg'
+            "
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h5 class="section-title">Usuario de la botella</h5>
+        </div>
+        <mat-form-field class="col-12 col-md-4" formGroupName="userInfo">
+          <input matInput placeholder="Nombre" formControlName="userName">
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-4" formGroupName="userInfo">
+          <input matInput placeholder="Correo" formControlName="email">
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-4" formGroupName="userInfo">
+          <input matInput placeholder="Teléfono" formControlName="phoneNumber">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <h5 class="section-title">Información de la botella</h5>
+        </div>
+        <mat-form-field class="col-12 col-md-6">
+          <input matInput placeholder="Nombre *" formControlName="name">
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6">
+          <input matInput placeholder="Id de la botella (NFC)" formControlName="serialNumber">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="col-12 col-md-6" formGroupName="bottleTypeInfo">
+          <mat-select placeholder="Nombre del tipo de botella" formControlName="_id" (selectionChange)="bottleTypeChange($event)">
+            <mat-option *ngFor="let bottleType of bottleTypes" [value]="bottleType._id">
+              {{bottleType.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6" formGroupName="bottleTypeInfo">
+          <input matInput placeholder="Color del tipo de botella" formControlName="color">
+        </mat-form-field>
+      </div>
+
+      <div class="row" *ngIf="bottleTypeSelected._id == ''">
+        <mat-form-field class="col-12 col-md-6">
+          <mat-select placeholder="Tamaño *" formControlName="size">
+            <mat-option *ngFor="let size of sizes" [value]="size.value">{{size.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6">
+          <mat-select placeholder="Material *" formControlName="material">
+            <mat-option *ngFor="let material of materials" [value]="material.value">{{material.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+    </form>
+    <!-- <div class="row" *ngIf="action !== 'view'">
+      <div class="buttons-container col-12 pt-4 pb-5 pl-3">
+        <ng-content select="button"></ng-content>
+        <button class="btn btn-primary send-sms-button mr-2" (click)="isFormCanceled = true"
+          [routerLink]="routerDefinitions.bottles + '/list'">Cancelar</button>
+        <button class="btn btn-primary ml-2" [disabled]="bottleForm.invalid || !bottleForm.dirty"
+          (click)="saveForm(bottleForm.value, bottleForm.valid)">Guardar</button>
+      </div>
+    </div> -->
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<!-- header -->
+<app-header>
+    <!-- web header -->
+    <ng-container class="headerWebVersion">
+        <h5 class="navbar-title">
+            Bienvenido{{user?.realName ? ', ' :''}}<span>{{user?.realName ? user?.realName : ''}}</span>
+            <span class="role-user">{{user?.role === 'USER' ? 'Cliente' : (user?.role === 'ADMIN' ? 'Administrador' :
+                (user?.role === 'MANAGER' ? 'Administrador Corporación' : ''))}}</span>
+        </h5>
+    </ng-container>
+    <ng-container class="changeCorporateForm">
+        <form *ngIf="user?.isAdmin" [formGroup]="corporateSelectForm">
+            <mat-form-field formGroupName="corporateInfo" class="corporateSelector">
+                <mat-select placeholder="Nombre de la corporación" formControlName="_id"
+                    (selectionChange)="corporateChange($event)">
+                    <mat-option *ngFor="let corporate of corporates" [value]="corporate._id">
+                        {{corporate.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
+    </ng-container>
+    <!-- responsive header -->
+    <h5 class="navbar-title headerResponsiveVersion">
+        Bienvenido{{user?.realName ? ', ' :''}}<span>{{user?.realName ? user?.realName : ''}}</span>
+        <span class="role-user">{{user?.role === 'USER' ? 'Cliente' : (user?.role === 'ADMIN' ? 'Administrador' :
+            (user?.role === 'MANAGER' ? 'Administrador Corporación' : ''))}}</span>
+    </h5>
+</app-header>
+<!-- Router outlet -->
+<div class="main-container">
+    <router-outlet></router-outlet>
+</div>
+<!-- footer -->
+<app-footer></app-footer>

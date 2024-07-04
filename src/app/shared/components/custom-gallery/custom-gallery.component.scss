@@ -1,0 +1,62 @@
+@import "./../../../../sass/_variables.scss";
+app-custom-gallery{
+    .gallery-container{      
+        overflow: hidden !important;
+        height: 144px;
+        box-shadow: 0 2px 4px 2px rgba(0,0,0,0.2);
+        padding-left: 0px;
+        padding-right: 0px;
+
+        button{
+            position: relative;
+            bottom: 100px;
+            position: relative;
+            bottom: 130px;
+            width: 60px;
+            height: 100%;
+            border: none;
+            outline: none;
+            color: white;
+        }
+
+        .prev-button{
+            background: linear-gradient(270deg, transparent, rgba(156, 162, 153, 0.5));
+            float: left;
+            &:hover, &:active{
+                background: linear-gradient(270deg, transparent, rgba(156, 162, 153, 0.8));
+            }
+        }
+        .next-button{
+            background: linear-gradient(90deg, transparent, rgba(156, 162, 153, 0.5));
+            float: right;
+            &:hover, &:active{
+                background: linear-gradient(90deg, transparent, rgba(156, 162, 153, 0.8));
+            }
+        }
+    }
+
+    .gallery{
+        overflow-x: scroll !important;
+        display: flex !important;
+        width: 100%;
+        height: 116px;
+        margin-top: 14px;
+        img{
+            height: auto;
+            width: 220px !important;
+            margin: 0px 4px;
+            display: inherit !important;
+            object-fit: cover;
+        }
+
+        .selectedImage{
+            border: 1px solid var(--corporate-primary, $brand-primary);
+        }
+    }
+
+    .not-found-images{
+        text-align: center;
+        margin-top: 59px;
+        color: $main-color;
+    }
+}

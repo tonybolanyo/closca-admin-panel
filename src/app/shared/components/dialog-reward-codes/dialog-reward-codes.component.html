@@ -1,0 +1,30 @@
+<mat-dialog-content>
+  <div class="title">
+    <button *ngIf="data.action === 'edit' && data?.product?.rewardCodes" class="remove-btn btn btn-outline-danger" (click)="deleteAll()">
+      Borrar todos
+    </button>
+    <h3 class="text-center">Códigos subidos</h3>
+  </div>
+  <div class="row">
+    <ng-container *ngFor="let code of data?.product?.rewardCodes; let i = index">
+      <div class="code text-center col-4">
+          <div class="text-center d-inline">
+            {{ code }}
+          </div>
+          <div class="float-right" *ngIf="!checkCodeIsRedeemed(code) && data.action === 'edit'">
+            <img (click)="deleteCode(code)" [src]="'../../../../assets/icons/garbage.png'" />
+          </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!data?.product?.rewardCodes">
+        <div class="w-100 text-center">
+            No hay códigos para este producto
+        </div>
+    </ng-container>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button class="btn cancel-btn" mat-button mat-dialog-close (click)="onCloseReject()">
+    Cerrar
+  </button>
+</mat-dialog-actions>

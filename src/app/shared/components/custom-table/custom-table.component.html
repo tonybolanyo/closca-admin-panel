@@ -1,0 +1,340 @@
+<form [formGroup]="filterForm">
+  <div class="mat-elevation-z1 table-container table-responsive">
+    <div class="table-container custom-table">
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        class="w-100"
+        matSort
+        matSortDisableClear
+        matSortDirection="desc"
+        (matSortChange)="sortData($event)"
+      >
+        <ng-container *ngFor="let column of tableConfig.columns">
+          <ng-container [matColumnDef]="column.columnDef">
+            <th
+              [ngClass]="{ checkboxes: column.columnType == 'CHECKBOX' }"
+              [disabled]="!column.filter.sortFilterExists"
+              mat-sort-header
+              class="header-sticky"
+              mat-header-cell
+              *matHeaderCellDef
+            >
+              <ng-container *ngIf="column.columnType == 'CHECKBOX'">
+                <div class="header-container">
+                  <!-- <input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="element" (change)="selectAllElements()"> -->
+                  <mat-checkbox
+                    style="position: relative; top: 5px;"
+                    [ngModelOptions]="{ standalone: true }"
+                    [(ngModel)]="isSelectAllItems"
+                    (change)="onToggleAllItems()"
+                  ></mat-checkbox>
+                </div>
+              </ng-container>
+
+              <ng-container *ngIf="!filterMode">
+                <div class="header-container">
+                  {{ column?.headerLabel }}
+                </div>
+              </ng-container>
+              <ng-container *ngIf="filterMode">
+                <ng-container *ngIf="!column.filter.exists">
+                  <div class="header-container">
+                    {{ column?.headerLabel }}
+                  </div>
+                </ng-container>
+                <ng-container *ngIf="column.filter.exists">
+                  <div
+                    *ngIf="column?.filter?.type === 'INPUT'"
+                    class="header-container"
+                  >
+                    <mat-form-field>
+                      <input
+                        matInput
+                        [placeholder]="column?.filter?.placeholder"
+                        [formControlName]="column?.filter?.formControl?.name"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div
+                    *ngIf="column?.filter?.type === 'DATE'"
+                    class="header-container"
+                  >
+                    <mat-form-field>
+                      <input
+                        matInput
+                        [matDatepicker]="picker"
+                        [placeholder]="column?.filter?.placeholder"
+                        [formControlName]="column?.filter?.formControl?.name"
+                      />
+                      <mat-datepicker-toggle
+                        matSuffix
+                        [for]="picker"
+                      ></mat-datepicker-toggle>
+                      <a
+                        *ngIf="
+                          filterForm.get(column?.filter?.formControl?.name)
+                            .value
+                        "
+                        (click)="
+                          filterForm
+                            .get(column?.filter?.formControl?.name)
+                            .reset()
+                        "
+                        class="datepicker-clear-button"
+                      >
+                        <mat-icon>clear</mat-icon>
+                      </a>
+                      <mat-datepicker
+                        #picker
+                        startView="year"
+                        disabled="false"
+                      ></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                  <div
+                    *ngIf="column?.filter?.type === 'DROPDOWN'"
+                    class="header-container"
+                  >
+                    <mat-form-field>
+                      <mat-select
+                        [placeholder]="column?.filter?.placeholder"
+                        [formControlName]="column?.filter?.formControl?.name"
+                      >
+                        <mat-option
+                          *ngFor="
+                            let dropdownItem of column?.filter?.dropdownConfig
+                              ?.items
+                          "
+                          [value]="
+                            getDropdownVal(
+                              dropdownItem,
+                              column?.filter?.dropdownConfig?.value
+                            )
+                          "
+                        >
+                          {{
+                            getDropdownVal(
+                              dropdownItem,
+                              column?.filter?.dropdownConfig?.label
+                            )
+                          }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </ng-container>
+              </ng-container>
+            </th>
+
+            <td
+              [ngClass]="{ checkboxes: column.columnType == 'CHECKBOX' }"
+              mat-cell
+              *matCellDef="let element"
+              [ngSwitch]="column?.columnType"
+            >
+              <ng-container *ngSwitchCase="'STRING'">
+                <div class="ellipsis-text" ngxEllipsis [lines]="2">
+                  {{ getCellValue(element, column) }}
+                </div>
+              </ng-container>
+              <ng-container *ngSwitchCase="'DATE'">
+                {{ getCellValue(element, column) }}
+              </ng-container>
+              <ng-container *ngSwitchCase="'IMG'">
+                <img
+                  class="image-table"
+                  [src]="getCellValue(element, column)"
+                />
+              </ng-container>
+              <ng-container *ngSwitchCase="'LINK'">
+                <!-- <a [routerLink]="routerDefinitions.crud +'/list'"> -->
+                <a
+                  [routerLink]="
+                    column.columnBaseLink + '/' + getId(element, column)
+                  "
+                  >{{ getCellValue(element, column) }}</a
+                >
+              </ng-container>
+              <ng-container *ngSwitchCase="'CHECKBOX'">
+                <!-- <a [routerLink]="routerDefinitions.crud +'/list'"> -->
+                <mat-checkbox
+                  [ngModelOptions]="{ standalone: true }"
+                  [(ngModel)]="element.isSelected"
+                  (change)="selectElement()"
+                >
+                </mat-checkbox>
+              </ng-container>
+              <ng-container *ngSwitchCase="'RATING'">
+                <ng-template #t let-fill="fill">
+                  <span class="star" [class.full]="fill === 100">
+                    <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                  </span>
+                </ng-template>
+
+                <ngb-rating
+                  rate="{{ getCellValue(element, column) }}"
+                  [starTemplate]="t"
+                  [readonly]="true"
+                  max="5"
+                ></ngb-rating>
+              </ng-container>
+            </td>
+          </ng-container>
+        </ng-container>
+
+        <!-- Actions -->
+        <ng-container
+          matColumnDef="actions"
+          *ngIf="tableConfig?.buttonsConfig"
+          stickyEnd
+        >
+          <th class="header-actions-sticky" mat-header-cell *matHeaderCellDef>
+            <ng-container>
+              <div class="header-container">
+                Herramientas
+              </div>
+            </ng-container>
+          </th>
+          <td class="action-mat-cell" mat-cell *matCellDef="let element">
+            <button
+              *ngIf="tableConfig.buttonsConfig.viewButton"
+              [routerLink]="
+                tableConfig.buttonsConfig.baseRouterLink +
+                '/view/' +
+                element._id
+              "
+              class="btn btn-primary list-view-button mr-2"
+            >
+              <img src="./../../../../../../../../../assets/icons/eye.png" />
+            </button>
+            <button
+              *ngIf="
+              tableConfig.buttonsConfig.editButton &&
+              element.code !== 'CLOSCA'
+              "
+              [routerLink]="
+                tableConfig.buttonsConfig.baseRouterLink +
+                '/edit/' +
+                element._id
+              "
+              class="btn btn-primary list-button mr-2"
+            >
+              <img src="./../../../../../../../../../assets/icons/edit.png" />
+            </button>
+            <button
+              *ngIf="tableConfig.buttonsConfig.metricsButton"
+              [routerLink]="
+                tableConfig.buttonsConfig.baseRouterLink +
+                '/metrics/' +
+                element._id
+              "
+              class="btn btn-primary list-button mr-2"
+            >
+              <img style="opacity: 0.7;" src="./../../../../../../../../../assets/icons/metrics.png" />
+            </button>
+            <button
+              *ngIf="tableConfig.buttonsConfig.deleteUserButton"
+              (click)="openDeleteUserDialog(element)"
+              class="btn btn-primary list-button mr-3"
+            >
+              <img
+                src="./../../../../../../../../../assets/icons/garbage.png"
+              />
+            </button>
+            <button
+              *ngIf="
+              tableConfig.buttonsConfig.deleteButton &&
+              element.code !== 'CLOSCA'
+              "
+              (click)="openDeleteDialog(element)"
+              class="btn btn-primary list-button mr-3"
+            >
+              <img
+                src="./../../../../../../../../../assets/icons/garbage.png"
+              />
+            </button>
+            <button
+              *ngIf="customEditButton"
+              (click)="onCustomEdit(element)"
+              class="btn btn-primary list-button mr-2"
+            >
+              <img src="./../../../../../../../../../assets/icons/edit.png" />
+            </button>
+            <button
+              *ngIf="customViewButton"
+              (click)="onCustomView(element)"
+              class="btn btn-primary list-view-button mr-2"
+            >
+              <img src="./../../../../../../../../../assets/icons/eye.png" />
+            </button>
+            <button
+              *ngIf="
+                validateStatusButton === true &&
+                element.fountainStatus === 'PENDING'
+              "
+              (click)="openValidationDialog(element)"
+              class="btn btn-success validate-button"
+            >
+              <img
+                src="./../../../../../../../../../assets/icons/baseline_done_white_18dp.png"
+              />
+            </button>
+            <button
+              *ngIf="tableConfig.buttonsConfig.deleteChallengeSuscriptionButton"
+              (click)="openDeleteChallengeSuscriptionDialog(element)"
+              class="btn btn-primary list-button mr-3"
+            >
+              <img
+                src="./../../../../../../../../../assets/icons/garbage.png"
+              />
+            </button>
+          </td>
+        </ng-container>
+
+        <!-- Filter -->
+        <ng-container matColumnDef="filter">
+          <th class="header-sticky" mat-header-cell *matHeaderCellDef>
+            <div class="header-filter-container">
+              <a (click)="onFilterMode()">
+                <img [src]="'../../../../assets/icons/ic_search.png'" />
+              </a>
+            </div>
+          </th>
+          <td mat-cell *matCellDef="let element"></td>
+        </ng-container>
+
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns; sticky: true"
+        ></tr>
+        <tr
+          mat-row
+          class="table-row"
+          *matRowDef="let row; columns: displayedColumns"
+        ></tr>
+      </table>
+    </div>
+
+    <div *ngIf="dataSource?.length == 0" class="no-table-items">
+      <span>No se han encontrado resultados</span>
+    </div>
+    <mat-paginator
+      *ngIf="tableConfig.paginatorExists"
+      [length]="paginator.length"
+      [pageSize]="paginator.limit"
+      [pageSizeOptions]="paginator.pageSizeOptions"
+      [pageIndex]="paginator.pageIndex"
+      (page)="paginate($event)"
+    >
+    </mat-paginator>
+  </div>
+  <div *ngIf="tableConfig.buttonsConfig && tableConfig.buttonsConfig.newButton" class="add-button-container">
+    <button
+      [routerLink]="tableConfig.buttonsConfig.baseRouterLink + '/new'"
+      class="btn btn-primary add-button"
+    >
+      <img src="./../../../../../../../../../assets/icons/add-icon.png" />
+    </button>
+  </div>
+</form>

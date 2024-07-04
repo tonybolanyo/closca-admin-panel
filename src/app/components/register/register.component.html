@@ -1,0 +1,37 @@
+<div class="text-center">
+    <div class="form-register">
+
+
+        <img [src]="'/assets/images/logo.png'" />
+        <mat-card class="register-container row">
+                <div class="col-12 title-container">
+                    <h4>Datos de usuario</h4>
+                </div>
+                <form [formGroup]="userDataForm">
+                    <mat-form-field class="col-12 col-md-6">
+                        <input matInput placeholder="Nombre" formControlName="realName">
+                    </mat-form-field>
+                    <mat-form-field class="col-12 col-md-6">
+                        <input type="number" matInput placeholder="Teléfono" formControlName="phoneNumber">
+                    </mat-form-field>
+                    <div class="col-md-6"></div>
+                    <mat-form-field class="col-12 col-md-6">
+                        <input matInput placeholder="Email" formControlName="email">
+                    </mat-form-field>
+                    <mat-form-field class="col-12 col-md-6 pt-1">
+                        <input type="password" matInput placeholder="Password" formControlName="password">
+                    </mat-form-field>
+                </form>
+
+            <div class="buttons-container pt-3 col-12">
+                <!-- WITHOUT PAYMENT -->
+                <button [disabled]="!userDataForm.valid" class="btn btn-primary pt-2 ml-1" (click)="register(userDataForm.value)">Registrarse</button>
+
+            </div>
+            <div class="recover-password-container">
+                <a [routerLink]="routerDefinitions.login">Volver al inicio de sesión</a>
+            </div>
+        </mat-card>
+        <p class="mt-4 mb-3 text-muted">&copy; Copyright 2019 Closca</p>
+    </div>
+</div>

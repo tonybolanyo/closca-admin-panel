@@ -1,0 +1,19 @@
+<!-- LOGIN  -->
+<div class="text-center">
+    <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="sendLogin(loginForm.value)">
+        <img [src]="'/assets/images/logo.png'" />
+        <mat-card class="signin-container">
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Email" formControlName="email">
+            </mat-form-field>
+            <mat-form-field class="full-width pt-1">
+                <input type="password" matInput placeholder="Password" formControlName="password">
+            </mat-form-field>
+            <div class="button-submit-container">
+                <button [disabled]="!loginForm.valid" class="btn btn-lg btn-primary btn-block mt-4 pt-3 pb-3" type="submit">Entrar</button>
+            </div>
+
+        </mat-card>
+        <p class="mt-4 mb-3 text-muted">&copy; Copyright 2019 Closca</p>
+    </form>
+</div>

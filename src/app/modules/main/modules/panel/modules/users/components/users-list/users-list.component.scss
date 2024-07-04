@@ -1,0 +1,12 @@
+@import "./../../../../../../../../../sass/variables.scss";
+app-users-list {
+    display: block;
+    float: left;
+    width: 100%;
+    min-height: 700px !important;
+
+    .header-container {
+        max-width: 200px !important;
+        width: 200px !important;
+    }
+}

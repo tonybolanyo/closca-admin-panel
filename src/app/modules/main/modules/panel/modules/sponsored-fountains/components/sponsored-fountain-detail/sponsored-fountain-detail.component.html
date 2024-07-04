@@ -1,0 +1,226 @@
+<div class="row">
+  <div class="col-12 pt-1 pb-1">
+    <h3 class="float-left title">
+      <a class="button-back" (click)="navigateBack()">
+        <mat-icon class="float-left back-icon">keyboard_backspace</mat-icon>
+      </a>
+      <ng-container *ngIf="role != 'MANAGER'">
+        {{action === 'view'? 'Ver' : (action === 'edit' ? 'Editar' : 'Nueva')}} {{backToBrand}} Fuente Patrocinada
+      </ng-container>
+      <ng-container *ngIf="role == 'MANAGER'">
+        {{action === 'view'? 'Ver' : (action === 'edit' ? 'Editar' : 'Nueva')}} {{backToBrand}} Fuente Corporación
+      </ng-container>
+    </h3>
+  </div>
+  <div class="col-12 pt-3">
+    <form class="w-100" [formGroup]="fountainForm">
+      <div class="row">
+        <div class="col-12">
+          <h5 class="section-title">Estado de la fuente</h5>
+        </div>
+        <div class="status-container col-12 pb-3">
+          <mat-button-toggle-group #group="matButtonToggleGroup" formControlName="fountainStatus">
+            <mat-button-toggle value="ACTIVE">
+              Activa
+            </mat-button-toggle>
+            <mat-button-toggle value="INACTIVE">
+              Inactiva
+            </mat-button-toggle>
+            <mat-button-toggle value="PENDING">
+              Pendiente
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+      </div>
+
+      <div class="row" *ngIf=" role != 'MANAGER'" style="margin-bottom: 30px;">
+        <div class="col-12">
+          <h5 class="section-title">Corporación de la fuente</h5>
+        </div>
+        <mat-form-field class="col-12 col-md-6" formGroupName="corporateInfo">
+          <mat-select placeholder="Nombre de la corporación" formControlName="_id"
+            (selectionChange)="corporateChange($event)">
+            <mat-option *ngFor="let corporate of corporates" [value]="corporate._id">
+              {{corporate.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6" formGroupName="corporateInfo">
+          <input matInput placeholder="Código de la corporación" formControlName="code">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="col-12">
+          <input matInput placeholder="Nombre *" formControlName="name">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-12 col-md-6">
+          <mat-select placeholder="Refill type" formControlName="refillType">
+            <mat-option *ngFor="let refillType of fountainRefillOptions" [value]="refillType.value">
+              {{refillType.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field *ngIf="action !== 'edit'" class="col-12 col-md-6">
+          <input matInput placeholder="Total refills" formControlName="totalRefills">
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6">
+          <mat-select placeholder="Caracteristicas" formControlName="features" multiple>
+            <mat-option *ngFor="let feature of features" [value]="feature.value">{{feature.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="col-12 col-md-6">
+          <mat-select placeholder="Hora apertura" formControlName="openTime">
+            <mat-option *ngFor="let openTime of times" [value]="openTime.value">
+              {{openTime.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6">
+          <mat-select placeholder="Hora cierre" formControlName="closeTime">
+            <mat-option *ngFor="let closeTime of times" [value]="closeTime.value">
+              {{closeTime.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6">
+          <mat-select placeholder="Dia apertura" formControlName="weekDayStart">
+            <mat-option *ngFor="let weekDayStart of fountainWeekDays" [value]="weekDayStart.value">
+              {{weekDayStart.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-6">
+          <mat-select placeholder="Dia cierre" formControlName="weekDayEnd">
+            <mat-option *ngFor="let weekDayEnd of fountainWeekDays" [value]="weekDayEnd.value">
+              {{weekDayEnd.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+
+      <div class="row">
+        <mat-form-field class="col-12">
+          <input matInput placeholder="Direccion *" [ngModelOptions]="{standalone: true}" [(ngModel)]="address"
+            ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <agm-map [latitude]="lat" [longitude]="lng" [zoom]="18">
+            <agm-marker [latitude]="lat" [longitude]="lng"
+              [iconUrl]="'../../../../../../../../../assets/icons/ico_map_fountain@2x.png'"
+              [markerDraggable]="action !== 'view' ? true : false" (dragEnd)="markerDragEnd($event)"></agm-marker>
+
+            <agm-marker *ngFor="let fountainAround of fountainsAround" [latitude]="fountainAround.loc.coordinates[1]"
+              [longitude]="fountainAround.loc.coordinates[0]"
+              [iconUrl]="'../../../../../../../../../assets/icons/ico_map_fountain.png'" [markerDraggable]="false"
+              [markerClickable]="true" [openInfoWindow]="true">
+              <agm-info-window>
+                <h6 class="marker-title">{{ fountainAround.name }}</h6>
+                <strong>{{ fountainAround.fountainType == "PUBLIC" ? "Fuente Pública" : "Fuente Privada"}}</strong><br />
+                {{ fountainAround.address.address }}
+              </agm-info-window>
+            </agm-marker>
+
+          </agm-map>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-xl-6">
+          <div class="row">
+            <div class="col-12 col-xl-6">
+              <h5 class="section-title" *ngIf="action !== 'view'">Imagen de la fuente (969x1458px)</h5>
+              <h5 class="section-title" *ngIf="action === 'view'">Imagen de la fuente</h5>
+            </div>
+          </div>
+          <img class="fountain-image" *ngIf="!isFountainLocalImageChanged"
+            [src]="fountain?.imageId? getImage(fountain?.imageInfo?.fileRoute) : '../../../../../../../../../assets/images/default-image.jpg'">
+          <img class="fountain-image" *ngIf="isFountainLocalImageChanged"
+            [src]="fountainLocalImage !== '' ? fountainLocalImage : '../../../../../assets/images/default-image.jpg'"
+            class="fountain-image">
+          <div *ngIf="action !== 'view'">
+            <div class="image-upload" *ngIf="!imageId && !fountainLocalImage">
+              <label for="fountain-image-input">
+                <img class="add-image" src="./../../../../../../../../../assets/icons/add-icon.png" />
+              </label>
+              <input #fountainImageUploaderInput id="fountain-image-input" type="file"
+                (change)="changeLocalImage($event)" ng2FileSelect [uploader]="fountainImageUploader" />
+            </div>
+            <button *ngIf="(imageId && !isFountainImageDeleted) || fountainLocalImage"
+              class="btn btn-danger delete-button" (click)="showDialogDeleteImage(fountainImageUploader)"><img
+                src="./../../../../../../../../../assets/icons/garbage.png" /></button>
+          </div>
+        </div>
+        <div class="col-12 col-xl-6">
+          <div class="row">
+            <div class="col-12 col-xl-6">
+              <h5 class="section-title" *ngIf="action !== 'view'">Imagen pin mapa (60x99px)</h5>
+              <h5 class="section-title" *ngIf="action === 'view'">Imagen pin mapa</h5>
+            </div>
+          </div>
+          <img class="map-pin-image" *ngIf="!isMapPinLocalImageChanged"
+            [src]="fountain?.mapPinImageId? getImage(fountain?.mapPinImageInfo?.fileRoute) : '../../../../../../../../../assets/images/default-image.jpg'">
+          <img class="map-pin-image" *ngIf="isMapPinLocalImageChanged"
+            [src]="mapPinLocalImage !== '' ? mapPinLocalImage : '../../../../../assets/images/default-image.jpg'"
+            class="map-pin-image">
+          <div *ngIf="action !== 'view'">
+            <div class="image-upload" *ngIf="!mapPinImageId && !mapPinLocalImage">
+              <label for="mapPin-input">
+                <img class="add-image" src="./../../../../../../../../../assets/icons/add-icon.png" />
+              </label>
+              <input #mapPinImageUploaderInput id="mapPin-input" type="file" (change)="changeLocalImage($event)"
+                ng2FileSelect [uploader]="mapPinImageUploader" />
+            </div>
+            <button *ngIf="(mapPinImageId && !isMapPinImageDeleted) || mapPinLocalImage"
+              class="btn btn-danger delete-button" (click)="showDialogDeleteImage(mapPinImageUploader)"><img
+                src="./../../../../../../../../../assets/icons/garbage.png" /></button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-12">
+              <h5 class="section-title pb-1">Marca patrocinadora</h5>
+            </div>
+          </div>
+          <div class="row ml-1 pb-2 brand-details">
+            {{fountain?.brandInfo?.name}}
+          </div>
+          <img class="brand-image mb-5"
+            [src]="fountain?.brandId? getImage(fountain?.brandInfo?.brandImageInfo?.fileRoute) : '../../../../../assets/images/default-image.jpg'">
+        </div>
+      </div>
+    </form>
+    <ng-container *ngIf="refills">
+      <div class="row">
+        <div class="col-12">
+          <h5 class="section-title">Refills fuente</h5>
+        </div>
+        <div class="col-12 mb-5">
+          <app-custom-table [dataSource]="refills" [tableConfig]="tableRefillConfig" [paginator]="refillPaginator"
+            (sendPaginate)="paginateRefill($event)">
+          </app-custom-table>
+        </div>
+      </div>
+    </ng-container>
+    <div class="row" *ngIf="action !== 'view'">
+      <div class="buttons-container col-12 pt-4 pb-5 pl-3">
+        <ng-content select="button"></ng-content>
+        <button class="btn btn-primary send-sms-button mr-2"
+          (click)="showDialogRemoveSponsor(fountainForm.value)">Quitar patrocinio</button>
+        <button class="btn btn-primary send-sms-button mr-2" (click)="isFormCanceled = true"
+          [routerLink]="routerDefinitions.sponsoredFountains + '/list'">Cancelar</button>
+        <button class="btn btn-primary ml-2" [disabled]="fountainForm.invalid || !fountainForm.dirty"
+          (click)="saveForm(fountainForm.value, fountainForm.valid)">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

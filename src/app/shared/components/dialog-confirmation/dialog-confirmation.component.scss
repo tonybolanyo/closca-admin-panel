@@ -1,0 +1,21 @@
+@import './../../../../sass/variables';
+
+app-dialog-confirmation{
+    .content{
+        height: 100%;	
+        width: 341px;	
+        color: #FFFFFF;
+        font-family: "customFont-light";	
+        font-size: 20px;	
+        line-height: 24px;
+        text-align: center;
+    }
+
+    .cancel-btn{
+        color: $brand-danger;
+    }
+
+    .confirm-btn{
+        color: var(--corporate-primary, $brand-primary);
+    }
+}

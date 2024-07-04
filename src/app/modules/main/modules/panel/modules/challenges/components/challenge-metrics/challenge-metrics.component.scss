@@ -1,0 +1,42 @@
+@import "./../../../../../../../../../sass/variables.scss";
+
+app-challenge-metrics {
+  .back-icon {
+    cursor: pointer;
+
+    &:hover {
+    color: var(--corporate-primary, $brand-primary);
+    }
+  }
+
+  .card-div {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    margin: 10px 0px;
+    padding: 15px;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  th, td {
+    width: calc(100% / 3);
+  }
+
+  .col-filter-date {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+
+  .col-filter-button {
+    flex: 0 0 15%;
+    max-width: 15%;
+
+    button {
+      margin-top: 25px;
+    }
+  }
+
+}

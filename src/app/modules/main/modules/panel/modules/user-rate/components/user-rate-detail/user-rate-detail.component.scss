@@ -1,0 +1,51 @@
+@import './../../../../../../../../../sass/variables.scss';
+
+app-user-rate {
+
+    .button-back {
+        cursor: pointer;
+    }
+    
+    .back-icon:hover {
+        color: var(--corporate-primary, $brand-primary);      
+    }
+    .valoration {
+        float: left;
+        font-family: 'customFont-light';
+        color: rgba(0, 0, 0, 0.54);
+    }
+
+    .view-button, .edit-button {
+        position: relative;
+        top: 10px;
+        left: 10px;
+        float: left;
+        height: 30px;
+        width: 30px;
+        padding: 0px;
+        padding-bottom: 3px;
+    }
+
+    .star {
+        position: relative;
+        display: inline-block;
+        margin: 1px;
+        font-size: 25px;
+        color: #d3d3d3;
+      }
+    
+      .full {
+        color: orange;
+      }
+    
+      .half {
+        position: absolute;
+        display: inline-block;
+        overflow: hidden;
+        color: orange;
+      }
+      
+      .rating:focus {
+        outline: none;
+      }
+}

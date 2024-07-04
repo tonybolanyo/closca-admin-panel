@@ -1,0 +1,68 @@
+@import './../../../../sass/variables';
+
+app-change-product-status{
+    .content{
+        height: 100%;	
+        width: 100%;	
+        color: #FFFFFF;
+        font-family: "customFont-light";	
+        font-size: 20px;	
+        line-height: 24px;
+        text-align: center;
+    }
+    .confirmation{
+        height: 100%;	
+        width: 100%;	
+        color: #FFFFFF;
+        font-family: "customFont-light";	
+        font-size: 15px;
+        line-height: 24px;
+        text-align: center;
+    }
+
+    .select{
+        height: 100%;	
+        width: 400px;
+        margin-left: 25px;
+        color: #FFFFFF;
+        font-family: "customFont-light";	
+        font-size: 20px;	
+        line-height: 24px;
+        text-align: center;
+    }
+
+    .mat-select-value {
+        color: #FFFFFF;
+    }
+
+    .mat-form-field-infix {
+        width: 100%;
+    }
+
+    .confirm-btn{
+        color: var(--corporate-primary, $brand-primary);
+    }
+
+    .cancel-btn{
+        color: $brand-danger;
+    }
+
+    .mat-select-arrow {
+        color: #FFFFFF !important;
+    }
+
+    .mat-form-field-underline {
+        border-bottom: 1px solid #ffffff !important;
+    }
+
+    .mat-focused .mat-form-field-underline .mat-form-field-ripple {
+        background: white; 
+    }
+
+    .mat-form-field-appearance-legacy .mat-form-field-label {
+        color: white !important;
+    }
+    
+    
+
+}

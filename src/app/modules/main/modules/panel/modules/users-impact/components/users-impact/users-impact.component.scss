@@ -1,0 +1,39 @@
+@import "./../../../../../../../../../sass/variables.scss";
+app-users-impact {
+    display: block;
+    float: left;
+    width: 100%;
+    min-height: 700px !important;
+
+    .header-container {
+        max-width: 200px !important;
+        width: 200px !important;
+    }
+
+    .card-div {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        border-radius: 5px;
+        margin: 10px 0px;
+        padding: 15px;
+    }
+
+    .card-div-external {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        border-radius: 5px;
+        margin: 0px;
+        padding: 15px;
+    }
+
+    .col-2 {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+
+    .export-button {
+        position: relative;
+        float: left;
+        left: 10px;
+    }
+}

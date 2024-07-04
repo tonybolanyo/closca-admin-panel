@@ -1,0 +1,152 @@
+<div class="row pb-4">
+  <div class="col-12 pt-1 pb-1">
+    <h3 class="float-left title">
+      <a class="button-back" (click)="navigateBack()">
+        <mat-icon class="float-left back-icon">keyboard_backspace</mat-icon>
+      </a>
+      {{action === 'view'? 'Ver' : (action === 'edit' ? 'Editar' : 'Nuevo')}} Nivel
+    </h3>
+  </div>
+  <div class="col-12 pt-3">
+    <form class="w-100" [formGroup]="levelForm">
+      <div class="row">
+        <div class="col-10">
+          <h5 class="section-title">Estado del nivel *</h5>
+        </div>
+        <div class="col-2">
+          <h5 class="section-title">Idioma</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-10">
+          <div class="status-container col-12 pl-0 pb-3">
+            <mat-button-toggle-group #group="matButtonToggleGroup" formControlName="status">
+              <mat-button-toggle value="ACTIVE">
+                Activo
+              </mat-button-toggle>
+              <mat-button-toggle value="INACTIVE">
+                Inactivo
+              </mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="language-container col-12 pl-0 pb-3">
+            <mat-button-toggle-group #language="matButtonToggleGroup" value="es">
+              <mat-button-toggle value="es">
+                <img width="25px" [src]="'../../../../../../../../../assets/images/spain_flag.jpg'" />
+                Español {{ checkSpanish() }}
+              </mat-button-toggle>
+              <mat-button-toggle value="en">
+                <img width="25px" [src]="'../../../../../../../../../assets/images/usa_flag.jpg'" />
+                Inglés {{ checkEnglish() }}
+              </mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h5 class="section-title">Insignia del nivel</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 mb-5">
+          <img class="image-detail" *ngIf="!isLevelLocalImageChanged"
+            [src]="level?.badger? getImage(level?.badgerInfo?.fileRoute) : '../../../../../../../../../assets/images/default-image.jpg'">
+          <img class="image-detail" *ngIf="isLevelLocalImageChanged"
+            [src]="levelLocalImage !== '' ? levelLocalImage : '../../../../../assets/images/default-image.jpg'"
+            class="image-detail">
+          <div *ngIf="action !== 'view'">
+            <div class="image-upload" *ngIf="!levelImageId && !levelLocalImage">
+              <label for="file-input">
+                <img class="add-image" src="./../../../../../../../../../assets/icons/add-icon.png" />
+              </label>
+              <input #imageLevelUploaderInput id="file-input" type="file" (change)="changeLocalImage($event)"
+                ng2FileSelect [uploader]="imageLevelUploader" />
+            </div>
+            <button type="button" *ngIf="levelImageId  || levelLocalImage" class="btn btn-danger delete-button"
+              (click)="showDialogDeleteImage()"><img
+                src="./../../../../../../../../../assets/icons/garbage.png" /></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <mat-checkbox style="margin: 0rem 0rem 1rem 1rem" formControlName="isDefault">Reto por defecto</mat-checkbox>
+      </div>
+
+      <div class="row">
+        <ng-container *ngIf="language.value === 'es'">
+          <mat-form-field class="col-12" formGroupName="name">
+            <input matInput placeholder="Nombre *" formControlName="es">
+          </mat-form-field>
+          <div class="col-12 pt-2 ">
+            <h5 class="section-title pb-0">Descripción
+            </h5>
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 pb-4" [ngClass]="{'disable-editor': action === 'view'}"
+            formGroupName="description">
+            <angular-editor formControlName="es" id="myEditor" [config]="editorConfig"></angular-editor>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="language.value === 'en'">
+          <mat-form-field class="col-12" formGroupName="name">
+            <input matInput placeholder="Nombre *" formControlName="en">
+          </mat-form-field>
+          <div class="col-12 pt-2 ">
+            <h5 class="section-title pb-0">Descripción
+            </h5>
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 pb-4" [ngClass]="{'disable-editor': action === 'view'}"
+            formGroupName="description">
+            <angular-editor formControlName="en" id="myEditor" [config]="editorConfig"></angular-editor>
+          </div>
+        </ng-container>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-12">
+          <input matInput placeholder="Nombre Interno *" formControlName="code">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="col-6">
+          <input matInput type="number" pattern="^\d{1,4}?$" placeholder="Valor Inferior *"
+            formControlName="minRefills">
+        </mat-form-field>
+        <mat-form-field class="col-6">
+          <input matInput type="number" pattern="^\d{1,4}?$" placeholder="Valor Superior *"
+            formControlName="maxRefills">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="col-6">
+          <input matInput type="number" pattern="^\d*(?:[.,]\d{1,2})?$" placeholder="Recompensas - Refill *"
+            formControlName="refillReward">
+        </mat-form-field>
+        <mat-form-field class="col-6">
+          <input matInput type="number" pattern="^\d*(?:[.,]\d{1,2})?$"
+            placeholder="Recompensas - Creación de fuentes *" formControlName="fountainCreationReward">
+        </mat-form-field>
+      </div>
+
+      <div class="row" *ngIf="action !== 'new'">
+        <mat-form-field class="col-6">
+          <input matInput type="number" placeholder="Número de usuarios" formControlName="totalUsers">
+        </mat-form-field>
+      </div>
+    </form>
+
+    <div class="row" *ngIf="action !== 'view'">
+      <div class="buttons-container col-12 pt-4 pb-5 pl-3">
+        <ng-content select="button"></ng-content>
+        <button class="btn btn-primary send-sms-button mr-2" (click)="isFormCanceled = true"
+          [routerLink]="routerDefinitions.levels + '/list'">Cancelar</button>
+        <button class="btn btn-primary ml-2" [disabled]="levelForm.invalid || 
+          !levelForm.dirty" (click)="saveForm(levelForm.value, levelForm.valid)">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

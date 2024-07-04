@@ -1,0 +1,46 @@
+app-user-profile{
+    display: block;
+    float: left;
+    width: 100%;
+    min-height: 750px !important;
+
+    .user-profile-card{
+        margin:0px auto;
+        max-width: 625px;
+        margin-bottom: 150px;
+    }
+
+    .title-user-profile{
+        max-width: 625px;
+        margin: 0 auto;
+        display: block;
+    }
+    
+
+    .user-profile-card{
+        border-radius: 8px;
+    }
+
+
+
+
+    .section-image{
+        img{
+            object-fit: cover;
+            max-width: 200px;
+            height: 134px !important;
+            float: left;
+        }
+
+    }
+
+
+    .section-title{
+        float: left;
+        padding:5px 0px;
+        width: 100%;
+        text-align: left;
+        font-family: 'customFont-light';
+        color: rgba(0, 0, 0, 0.54);
+    }
+}
