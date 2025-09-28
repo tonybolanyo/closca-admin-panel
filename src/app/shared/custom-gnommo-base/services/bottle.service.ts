@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { BaseService } from '@gnommostudios/ng-gnommo-base';
+import { BaseService } from '@tyris/angular-foundation-libs';
 import { Bottle } from '../models/bottle.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';

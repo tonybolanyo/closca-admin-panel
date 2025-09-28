@@ -1,4 +1,4 @@
-import { BaseModel } from '@gnommostudios/ng-gnommo-base';
+import { BaseModel } from '@tyris/angular-foundation-libs';
 import { Loc, Fountain, Address } from './fountain.model';
 
 export enum ReportType {

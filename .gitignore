@@ -9,6 +9,9 @@
 # dependencies
 /node_modules
 
+# test coverage
+/coverage
+
 # Loopback SDK
 /src/app/shared/sdk
 

@@ -13,7 +13,7 @@ import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactiva
 import { Location } from '@angular/common';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { environment } from 'src/environments/environment';
-import { AuthService } from '@gnommostudios/ng-gnommo-base';
+import { AuthService } from '@tyris/angular-foundation-libs';
 import { S3_URL, BOTTLE_SIZES, BOTTLE_MATERIALS } from 'src/app/shared/constants/constants';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
 import { Level } from 'src/app/shared/custom-gnommo-base/models/level.model';

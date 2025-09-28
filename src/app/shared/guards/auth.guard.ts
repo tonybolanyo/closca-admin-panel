@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, Router, CanAc
 import { LoggedUserService } from '../services/logged-user.service';
 import { ROUTE_ACLS } from '../constants/route-acls';
 import { ROUTER_DEFINITIONS } from '../constants/router-definitions';
-import { CookieStorage } from '@gnommostudios/ng-gnommo-base';
+import { CookieStorage } from '@tyris/angular-foundation-libs';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {
