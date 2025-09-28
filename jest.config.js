@@ -15,6 +15,13 @@ module.exports = {
     '!src/polyfills.ts',
     '!src/test.ts'
   ],
+  coverageReporters: [
+    'text',
+    'lcov',
+    'json-summary',
+    'html'
+  ],
+  coverageDirectory: 'coverage',
   transformIgnorePatterns: [
     'node_modules/(?!@angular|@ngrx|ngx-bootstrap|ng-dynamic)'
   ],
