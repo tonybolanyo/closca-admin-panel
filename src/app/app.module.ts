@@ -39,8 +39,8 @@ import { FileUploadModule } from 'ng2-file-upload';
 
 import { NgApexchartsModule } from 'ng-apexcharts';
 
-// ng-gnommo-base - commented out until Angular upgrade
-// import { GnommoBaseModule } from '@tyris/angular-foundation-libs';
+// ng-gnommo-base - Angular 6 compatibility still being worked on
+// import { AngularFoundationModule } from '@tyris/angular-foundation-libs';
 import { CustomGnommoBaseModule } from './shared/custom-gnommo-base/custom-gnommo-base.module';
 
 import { NgxMultiLineEllipsisModule } from 'ngx-multi-line-ellipsis';
@@ -54,7 +54,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     NgApexchartsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    // GnommoBaseModule.forRoot({}), // commented out until Angular upgrade
+    // AngularFoundationModule.forRoot({}), // Angular 6 compatibility still being worked on
     CustomGnommoBaseModule,
     NgbModule.forRoot(),
     MatButtonModule,
