@@ -23,7 +23,7 @@ import {
   CorporateService
 } from 'src/app/shared/custom-gnommo-base/services';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
-import { AuthService } from '@gnommostudios/ng-gnommo-base';
+import { AuthService } from '@tyris/angular-foundation-libs';
 import { MatDialog } from '@angular/material';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Location } from '@angular/common';

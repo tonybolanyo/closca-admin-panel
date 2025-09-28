@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { FileUploader, FileItem } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';
 import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
-import { AuthService } from '@gnommostudios/ng-gnommo-base';
+import { AuthService } from '@tyris/angular-foundation-libs';
 import { UserService } from 'src/app/shared/custom-gnommo-base/services';
 import { User } from 'src/app/shared/custom-gnommo-base/models';
 

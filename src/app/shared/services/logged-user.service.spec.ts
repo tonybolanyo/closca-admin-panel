@@ -10,7 +10,7 @@ jest.mock('../custom-gnommo-base/services', () => ({
   }
 }));
 
-jest.mock('@gnommostudios/ng-gnommo-base', () => ({
+jest.mock('@tyris/angular-foundation-libs', () => ({
   AuthService: class MockAuthService {
     getToken = jest.fn().mockReturnValue({ id: 'mock-token' });
     removeToken = jest.fn();
@@ -31,7 +31,7 @@ describe('LoggedUserService', () => {
 
   beforeEach(() => {
     // Import mocked classes here after they've been mocked
-    const { AuthService, CookieStorage } = require('@gnommostudios/ng-gnommo-base');
+    const { AuthService, CookieStorage } = require('@tyris/angular-foundation-libs');
     const { UserService } = require('../custom-gnommo-base/services');
 
     mockAuthService = new AuthService();

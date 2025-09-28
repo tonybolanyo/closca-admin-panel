@@ -1,4 +1,4 @@
-// import { BaseModel } from '@gnommostudios/ng-gnommo-base';
+// import { BaseModel } from '@tyris/angular-foundation-libs';
 import { Fountain } from './fountain.model';
 
 export class User {

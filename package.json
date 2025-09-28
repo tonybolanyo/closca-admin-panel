@@ -30,7 +30,6 @@
     "@angular/platform-browser-dynamic": "^6.0.0",
     "@angular/router": "^6.0.0",
     "@auth0/angular-jwt": "^2.0.0",
-
     "@kolkov/angular-editor": "^0.14.5",
     "@ks89/angular-modal-gallery": "^6.0.2",
     "@ng-bootstrap/ng-bootstrap": "^2.0.0",

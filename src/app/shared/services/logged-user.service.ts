@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UserService } from '../custom-gnommo-base/services';
-import { AuthService, CookieStorage } from '@gnommostudios/ng-gnommo-base';
+import { AuthService, CookieStorage } from '@tyris/angular-foundation-libs';
 import { User } from '../custom-gnommo-base/models';
 
 

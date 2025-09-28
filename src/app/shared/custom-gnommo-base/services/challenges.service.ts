@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BaseService, AuthService } from '@gnommostudios/ng-gnommo-base';
+import { BaseService, AuthService } from '@tyris/angular-foundation-libs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';

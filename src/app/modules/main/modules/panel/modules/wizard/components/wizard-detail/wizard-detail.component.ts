@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { FileUploader, FileItem } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';
-import { AuthService } from '@gnommostudios/ng-gnommo-base';
+import { AuthService } from '@tyris/angular-foundation-libs';
 import { S3_URL } from 'src/app/shared/constants/constants';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';

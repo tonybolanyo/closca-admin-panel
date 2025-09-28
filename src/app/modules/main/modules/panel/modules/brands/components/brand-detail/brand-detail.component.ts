@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { BrandService } from 'src/app/shared/custom-gnommo-base/services/brands.service';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
-import { AuthService } from '@gnommostudios/ng-gnommo-base';
+import { AuthService } from '@tyris/angular-foundation-libs';
 import { MatDialog } from '@angular/material';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
