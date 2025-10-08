@@ -14,7 +14,7 @@ import { FileUploader } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '@tyris/angular-foundation-libs';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { Location, DatePipe } from '@angular/common';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
 import { DialogConfirmationComponent } from '../dialog-confirmation/dialog-confirmation.component';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
     selector: 'app-dialog-info',

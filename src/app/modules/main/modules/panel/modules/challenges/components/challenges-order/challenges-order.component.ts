@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { MatTable, MatTableDataSource } from '@angular/material';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { CdkDropList, CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { ChallengeService } from 'src/app/shared/custom-gnommo-base/services';

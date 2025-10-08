@@ -8,7 +8,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { FileUploadModule } from 'ng2-file-upload';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonToggleModule } from '@angular/material';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   imports: [

@@ -7,7 +7,7 @@ import { FountainService } from 'src/app/shared/custom-gnommo-base/services/foun
 import { CorporateService } from 'src/app/shared/custom-gnommo-base/services/corporate.service';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 import { AuthService } from '@tyris/angular-foundation-libs';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { Fountain } from 'src/app/shared/custom-gnommo-base/models/fountain.model';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';

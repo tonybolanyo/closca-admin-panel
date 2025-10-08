@@ -10,7 +10,7 @@ import { ImagesRandomService } from 'src/app/shared/custom-gnommo-base/services'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { S3_URL } from 'src/app/shared/constants/constants';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
 import { ToastrService } from 'ngx-toastr';
 

@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { BrandService } from 'src/app/shared/custom-gnommo-base/services/brands.service';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 import { AuthService } from '@tyris/angular-foundation-libs';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';

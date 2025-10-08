@@ -12,7 +12,8 @@ import {
 } from 'src/app/shared/constants/constants';
 import * as moment from 'moment';
 import clonedeep from 'lodash.clonedeep';
-import { MatTable, MatTableDataSource, MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import {
   CdkDragDrop,
   moveItemInArray,

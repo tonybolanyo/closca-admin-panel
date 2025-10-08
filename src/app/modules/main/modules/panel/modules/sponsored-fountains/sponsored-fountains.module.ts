@@ -6,7 +6,18 @@ import { SponsoredFountainDetailComponent } from './components/sponsored-fountai
 import { SponsoredFountainsRoutingModule } from './sponsored-fountains-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 // tslint:disable-next-line: max-line-length
-import { MatFormFieldModule, MatInputModule, MatTableModule, MatCardModule, MatIconModule, MatPaginatorModule, MatDialogModule, MatSelectModule, MatButtonModule, MatOptionModule, MatCheckboxModule, MatButtonToggleModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatOptionModule } from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';

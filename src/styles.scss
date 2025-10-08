@@ -1,5 +1,5 @@
-@import "/sass/_variables.scss";
-@import "/sass/_bootstrap_variables.scss";
+@import "sass/_variables.scss";
+@import "sass/_bootstrap_variables.scss";
 @media (min-width: 768px) {
   .navbar-expand-md .navbar-collapse {
     display: none !important;
@@ -41,7 +41,7 @@ button {
 // --> End Button Colors
 
 // --> Start Angular Material
-@import "/sass/_custom_angular_material.scss";
+@import "sass/_custom_angular_material.scss";
 // --> End Angular Material
 
 // --> Start modal dialog
@@ -66,7 +66,7 @@ button {
 // --> End modal dialog
 
 // --> Start toast
-@import "/sass/_toast_custom.scss";
+@import "sass/_toast_custom.scss";
 // --> End toast
 
 // Start List and tables

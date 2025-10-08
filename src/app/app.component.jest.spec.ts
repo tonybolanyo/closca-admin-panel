@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { MatBottomSheet } from '@angular/material';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { AppComponent } from './app.component';
 import { LoggedUserService } from './shared/services/logged-user.service';
 
