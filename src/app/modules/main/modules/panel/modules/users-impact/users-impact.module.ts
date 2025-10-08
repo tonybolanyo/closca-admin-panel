@@ -31,7 +31,7 @@ import { APP_DATE_FORMATS } from 'src/app/shared/constants/date-formats';
 
 
 import { SharedModule } from 'src/app/shared/shared.module';
-import { ModalGalleryModule } from '@ks89/angular-modal-gallery';
+import { GalleryModule } from '@ks89/angular-modal-gallery';
 import { FileUploadModule } from 'ng2-file-upload';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -52,7 +52,7 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
         MatButtonToggleModule,
         MatOptionModule,
         SharedModule,
-        ModalGalleryModule,
+        GalleryModule,
         FileUploadModule,
         ReactiveFormsModule,
         NgSelectModule,

@@ -14,7 +14,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { ModalGalleryModule } from '@ks89/angular-modal-gallery';
+import { GalleryModule } from '@ks89/angular-modal-gallery';
 import { FileUploadModule } from 'ng2-file-upload';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -51,7 +51,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
         MatButtonToggleModule,
         MatOptionModule,
         SharedModule,
-        ModalGalleryModule,
+        GalleryModule,
         FileUploadModule,
         ReactiveFormsModule,
         NgSelectModule,

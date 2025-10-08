@@ -17,8 +17,8 @@ import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactiva
   encapsulation: ViewEncapsulation.None
 })
 export class ChallengesOrderComponent implements OnInit {
-  @ViewChild('table1') table1: MatTable<any>;
-  @ViewChild('list1') list1: CdkDropList;
+  @ViewChild('table1', { static: false }) table1: MatTable<any>;
+  @ViewChild('list1', { static: false }) list1: CdkDropList;
   displayedColumns: string[] = ['drag', 'name', 'image', 'closcaPoints', 'type', 'status'];
   dataSource;
   ELEMENT_DATA;

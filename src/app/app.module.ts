@@ -26,7 +26,7 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
 // --> Angular modal gallery
 import 'hammerjs';
 import 'mousetrap';
-import { ModalGalleryModule } from '@ks89/angular-modal-gallery';
+import { GalleryModule } from '@ks89/angular-modal-gallery';
 // --> Angular Material
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
@@ -84,7 +84,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
         preventDuplicates: true,
       }
     ),
-    ModalGalleryModule.forRoot(),
+    GalleryModule.forRoot(),
     SharedModule,
     AppRoutingModule,
     AngularEditorModule,

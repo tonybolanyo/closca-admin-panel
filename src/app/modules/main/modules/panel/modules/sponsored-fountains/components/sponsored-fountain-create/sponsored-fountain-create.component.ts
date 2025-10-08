@@ -52,8 +52,8 @@ export class SponsoredFountainCreateComponent implements OnInit {
   fountainImageId: string;
   isFountainImageDeleted = false;
 
-  @ViewChild('mapPinImageUploaderInput') mapPinImageUploaderInput: ElementRef;
-  @ViewChild('fountainImageUploaderInput') fountainImageUploaderInput: ElementRef;
+  @ViewChild('mapPinImageUploaderInput', { static: false }) mapPinImageUploaderInput: ElementRef;
+  @ViewChild('fountainImageUploaderInput', { static: false }) fountainImageUploaderInput: ElementRef;
 
   // LOCAL IMAGES
   mapPinLocalImage = '';

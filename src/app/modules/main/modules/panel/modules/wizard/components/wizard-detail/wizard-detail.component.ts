@@ -48,8 +48,8 @@ export class WizardDetailComponent implements OnInit {
   public iconUploader: FileUploader = new FileUploader({ url: '' });
   public imageUploader: FileUploader = new FileUploader({ url: '' });
 
-  @ViewChild('iconUploaderInput') iconUploaderInput: ElementRef;
-  @ViewChild('imageUploaderInput') imageUploaderInput: ElementRef;
+  @ViewChild('iconUploaderInput', { static: false }) iconUploaderInput: ElementRef;
+  @ViewChild('imageUploaderInput', { static: false }) imageUploaderInput: ElementRef;
 
 
   // IMAGES

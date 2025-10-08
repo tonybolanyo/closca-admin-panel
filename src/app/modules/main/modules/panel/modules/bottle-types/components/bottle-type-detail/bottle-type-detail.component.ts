@@ -36,7 +36,7 @@ export class BottleTypeDetailComponent implements OnInit {
   isFormSaved = false;
   isFormCanceled = false;
 
-  @ViewChild('imageUploaderInput') imageUploaderInput: ElementRef;
+  @ViewChild('imageUploaderInput', { static: false }) imageUploaderInput: ElementRef;
 
   // IMAGE
   image: string;

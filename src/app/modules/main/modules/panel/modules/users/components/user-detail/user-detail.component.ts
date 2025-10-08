@@ -331,7 +331,7 @@ export class UserDetailComponent implements OnInit {
   isFormSaved = false;
   isFormCanceled = false;
 
-  @ViewChild('imageUserUploaderInput') imageUserUploaderInput: ElementRef;
+  @ViewChild('imageUserUploaderInput', { static: false }) imageUserUploaderInput: ElementRef;
 
   // IMAGE
   avatarId: string;

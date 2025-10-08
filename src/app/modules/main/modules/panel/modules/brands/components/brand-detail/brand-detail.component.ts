@@ -37,7 +37,7 @@ export class BrandDetailComponent implements OnInit {
   // IMAGE
   brandImageId: string;
   isBrandImageDeleted = false;
-  @ViewChild('brandImageUploaderInput') brandImageUploaderInput: ElementRef;
+  @ViewChild('brandImageUploaderInput', { static: false }) brandImageUploaderInput: ElementRef;
 
   // LOCAL IMAGE
   isBrandLocalImageChanged = false;
@@ -46,7 +46,7 @@ export class BrandDetailComponent implements OnInit {
   // BACKGROUND IMAGE
   brandBackgroundImageId: string;
   isBrandBackgroundImageDeleted = false;
-  @ViewChild('brandBackgroundImageUploaderInput') brandBackgroundImageUploaderInput: ElementRef;
+  @ViewChild('brandBackgroundImageUploaderInput', { static: false }) brandBackgroundImageUploaderInput: ElementRef;
 
   // LOCAL BACKGROUND IMAGE
   isBrandLocalBackgroundImageChanged = false;

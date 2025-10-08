@@ -60,8 +60,8 @@ export class SponsoredFountainDetailComponent implements OnInit {
   isFountainImageDeleted = false;
   isFountainLocalImageChanged = false;
 
-  @ViewChild('mapPinImageUploaderInput') mapPinImageUploaderInput: ElementRef;
-  @ViewChild('fountainImageUploaderInput') fountainImageUploaderInput: ElementRef;
+  @ViewChild('mapPinImageUploaderInput', { static: false }) mapPinImageUploaderInput: ElementRef;
+  @ViewChild('fountainImageUploaderInput', { static: false }) fountainImageUploaderInput: ElementRef;
   // END IMAGES
 
   // ROUTER DEFINITION

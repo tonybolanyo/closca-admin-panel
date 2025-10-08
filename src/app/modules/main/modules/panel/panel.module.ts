@@ -29,7 +29,7 @@ import { MyDateAdapter } from '../../../../shared/services/datepicker-angular-ma
 // --> External material
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from '../../../../shared/shared.module';
-import { ModalGalleryModule } from '@ks89/angular-modal-gallery';
+import { GalleryModule } from '@ks89/angular-modal-gallery';
 import { APP_DATE_FORMATS } from '../../../../shared/constants/date-formats';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FileUploadModule } from 'ng2-file-upload';
@@ -56,7 +56,7 @@ import { FileUploadModule } from 'ng2-file-upload';
         SharedModule,
         FileUploadModule,
         ReactiveFormsModule,
-        ModalGalleryModule,
+        GalleryModule,
         PanelRoutingModule,
     ],
     exports: [],
