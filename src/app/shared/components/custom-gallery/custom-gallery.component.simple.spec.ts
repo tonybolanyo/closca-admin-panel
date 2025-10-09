@@ -1,20 +1,11 @@
-import { CustomGalleryComponent } from './custom-gallery.component';
-
-// Mock jQuery for testing
+// Mock jQuery before importing component
 const mockJQuery = {
   animate: jest.fn()
 };
 
-// Type declaration for global $
-declare global {
-  namespace NodeJS {
-    interface Global {
-      $: jest.Mock;
-    }
-  }
-}
+jest.mock('jquery', () => jest.fn(() => mockJQuery));
 
-(global as any).$ = jest.fn(() => mockJQuery);
+import { CustomGalleryComponent } from './custom-gallery.component';
 
 describe('CustomGalleryComponent (Unit Tests)', () => {
   let component: CustomGalleryComponent;
@@ -64,9 +55,10 @@ describe('CustomGalleryComponent (Unit Tests)', () => {
   });
 
   it('should call jQuery animate with correct parameters for moveToNext', () => {
+    const $ = require('jquery');
     component.moveToNext();
     
-    expect(global.$).toHaveBeenCalledWith('#gallery');
+    expect($).toHaveBeenCalledWith('#gallery');
     expect(mockJQuery.animate).toHaveBeenCalledWith(
       { scrollLeft: '+=100' },
       300,
@@ -75,9 +67,10 @@ describe('CustomGalleryComponent (Unit Tests)', () => {
   });
 
   it('should call jQuery animate with correct parameters for moveToPrev', () => {
+    const $ = require('jquery');
     component.moveToPrev();
     
-    expect(global.$).toHaveBeenCalledWith('#gallery');
+    expect($).toHaveBeenCalledWith('#gallery');
     expect(mockJQuery.animate).toHaveBeenCalledWith(
       { scrollLeft: '-=100' },
       300,

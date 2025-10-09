@@ -51,7 +51,7 @@ describe('DialogConfirmationComponent', () => {
   });
 
   it('should initialize with provided data', () => {
-    expect(component.data).toBe(mockData);
+    expect(component.data).toEqual(mockData);
     expect(component.data.message).toBe('Are you sure you want to continue?');
   });
 

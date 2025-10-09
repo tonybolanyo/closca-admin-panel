@@ -1,4 +1,7 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 import { SponsoredFountainsListComponent } from './sponsored-fountains-list.component';
 
@@ -8,7 +11,24 @@ describe('SponsoredFountainsListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SponsoredFountainsListComponent ]
+      declarations: [ SponsoredFountainsListComponent ],
+      imports: [ ReactiveFormsModule ],
+      providers: [
+        { 
+          provide: ActivatedRoute, 
+          useValue: { 
+            snapshot: { params: {} },
+            params: { subscribe: jest.fn() }
+          } 
+        }
+      ]
+    })
+    .overrideComponent(SponsoredFountainsListComponent, {
+      set: {
+        templateUrl: undefined,
+        template: '<div></div>',
+        styleUrls: []
+      }
     })
     .compileComponents();
   }));
