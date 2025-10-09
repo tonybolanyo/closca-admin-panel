@@ -6,7 +6,7 @@ import { BottleTypesService } from 'src/app/shared/custom-gnommo-base/services';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
-import { DateAdapter } from '@angular/material';
+import { DateAdapter } from '@angular/material/core';
 import { debounceTime } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
@@ -36,7 +36,7 @@ export class BottleTypeDetailComponent implements OnInit {
   isFormSaved = false;
   isFormCanceled = false;
 
-  @ViewChild('imageUploaderInput') imageUploaderInput: ElementRef;
+  @ViewChild('imageUploaderInput', { static: false }) imageUploaderInput: ElementRef;
 
   // IMAGE
   image: string;

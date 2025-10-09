@@ -7,7 +7,7 @@ import { CorporateService } from 'src/app/shared/custom-gnommo-base/services';
 import { Corporate } from 'src/app/shared/custom-gnommo-base/models/corporate.model';
 import { ToastrService } from 'ngx-toastr';
 import { filter } from 'rxjs/operators';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { ChangeFountainStatusComponent } from 'src/app/shared/components/change-fountain-status/change-fountain-status.component';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
 import * as _ from 'lodash';

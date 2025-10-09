@@ -1,37 +1,35 @@
+import { Location } from '@angular/common';
 import {
   Component,
+  ElementRef,
   OnInit,
-  ViewEncapsulation,
   ViewChild,
-  ElementRef
+  ViewEncapsulation
 } from '@angular/core';
 import {
-  FormGroup,
+  FormArray,
   FormBuilder,
-  Validators,
-  FormControl,
-  FormArray
+  FormGroup,
+  Validators
 } from '@angular/forms';
-import { FileUploader, FileItem } from 'ng2-file-upload';
-import { PRODUCT_STATUSES, S3_URL } from 'src/app/shared/constants/constants';
-import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import {
-  ProductService,
-  ProductTypesService,
-  CorporateService
-} from 'src/app/shared/custom-gnommo-base/services';
-import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { AuthService } from '@tyris/angular-foundation-libs';
-import { MatDialog } from '@angular/material';
+import { FileItem, FileUploader } from 'ng2-file-upload';
+import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { Location } from '@angular/common';
+import { Observable } from 'rxjs';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
 import { DialogRewardCodesComponent } from 'src/app/shared/components/dialog-reward-codes/dialog-reward-codes.component';
-import { Observable, Subject } from 'rxjs';
-import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { text } from '@angular/core/src/render3/instructions';
+import { PRODUCT_STATUSES, S3_URL } from 'src/app/shared/constants/constants';
+import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
+import {
+  CorporateService,
+  ProductService,
+  ProductTypesService
+} from 'src/app/shared/custom-gnommo-base/services';
+import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 @Component({
@@ -86,10 +84,10 @@ export class ProductDetailComponent implements OnInit {
   isProductImageDeleted = false;
   isDescriptionImageDeleted = false;
 
-  @ViewChild('productImageUploaderInput') imageProductUploaderInput: ElementRef;
-  @ViewChild('descriptionImageUploaderInput')
+  @ViewChild('productImageUploaderInput', { static: false }) imageProductUploaderInput: ElementRef;
+  @ViewChild('descriptionImageUploaderInput', { static: false })
   descriptionImageUploaderInput: ElementRef;
-  @ViewChild('codeUploaderInput') codeUploaderInput: ElementRef;
+  @ViewChild('codeUploaderInput', { static: false }) codeUploaderInput: ElementRef;
 
   // LOCAL IMAGES
   isProductLocalImageChanged = false;
@@ -207,19 +205,19 @@ export class ProductDetailComponent implements OnInit {
 
   buildForm(disabled) {
     // if (this.role == "MANAGER") {
-      this.productForm = this.formBuilder.group({
-        status: [{ value: 'INVISIBLE', disabled: disabled }],
-        typeId: [{ value: null, disabled: disabled }, Validators.required],
-        price: [{ value: null, disabled: disabled }],
-        discount: [
-          { value: null, disabled: disabled },
-          [Validators.min(0), Validators.max(100)]
-        ],
-        corporateInfo: this.formBuilder.group({
-          _id: [{ value: null, disabled: disabled }],
-          code: [{ value: null, disabled: true }]
-        })
-      });
+    this.productForm = this.formBuilder.group({
+      status: [{ value: 'INVISIBLE', disabled: disabled }],
+      typeId: [{ value: null, disabled: disabled }, Validators.required],
+      price: [{ value: null, disabled: disabled }],
+      discount: [
+        { value: null, disabled: disabled },
+        [Validators.min(0), Validators.max(100)]
+      ],
+      corporateInfo: this.formBuilder.group({
+        _id: [{ value: null, disabled: disabled }],
+        code: [{ value: null, disabled: true }]
+      })
+    });
     // } else {
     //   this.productForm = this.formBuilder.group({
     //     status: [{ value: 'INVISIBLE', disabled: disabled }],
@@ -235,7 +233,7 @@ export class ProductDetailComponent implements OnInit {
     //     })
     //   });
     // }
-    
+
   }
 
   buildSpanishForm(disabled) {
@@ -340,7 +338,7 @@ export class ProductDetailComponent implements OnInit {
           // tslint:disable-next-line: max-line-length
           this.imageDescriptionUploader.removeFromQueue(
             this.imageDescriptionUploader.queue[
-              this.imageDescriptionUploader.queue.length - 1
+            this.imageDescriptionUploader.queue.length - 1
             ]
           );
         }
@@ -455,11 +453,11 @@ export class ProductDetailComponent implements OnInit {
 
     return new Promise((resolve, reject) => {
       reader.readAsDataURL(file);
-      reader.onload = function() {
+      reader.onload = function () {
         resolve(reader.result);
       };
 
-      reader.onerror = function(error) {
+      reader.onerror = function (error) {
         reject(error);
       };
     });
@@ -528,26 +526,26 @@ export class ProductDetailComponent implements OnInit {
     dialogRef.componentInstance.codeChanges.subscribe(() => {
       const sizesArrayES = [];
       const sizesArrayEN = [];
-  
+
       const rewardStepperES = [];
       const rewardStepperEN = [];
-  
+
       const rewardStepper = [];
-  
+
       const headers = {
         includes: 'imageId,descriptionImageId,typeId'
       };
-  
+
       this.ngxLoader.start();
-  
+
       this.productService
         .getById(this.productId, headers)
         .subscribe((product: any) => {
           this.ngxLoader.stop();
-  
+
           for (let index = 0; index < product.size.es.length; index++) {
-            sizesArrayES.push({ name: product.size.es[index]});
-            sizesArrayEN.push({ name: product.size.en[index]});
+            sizesArrayES.push({ name: product.size.es[index] });
+            sizesArrayEN.push({ name: product.size.en[index] });
             if (index !== product.size.es.length - 1) {
               if (this.action === 'view') {
                 this.addSize(true);
@@ -556,19 +554,19 @@ export class ProductDetailComponent implements OnInit {
               }
             }
           }
-  
+
           for (let index = 0; index < product.rewardStepper.length; index++) {
-  
+
             rewardStepperES.push({
               text: product.rewardStepper[index].text.es,
               link: product.rewardStepper[index].link.es
             });
-  
+
             rewardStepperEN.push({
               text: product.rewardStepper[index].text.en,
               link: product.rewardStepper[index].link.en
             });
-  
+
             if (index !== product.rewardStepper.length - 1) {
               if (this.action === 'view') {
                 this.addCode(true);
@@ -577,35 +575,35 @@ export class ProductDetailComponent implements OnInit {
               }
             }
           }
-  
+
           const productES = {
             name: product.name.es,
             description: product.description.es,
             size: sizesArrayES,
             rewardStepper: rewardStepperES
           };
-  
+
           const productEN = {
             name: product.name.en,
             description: product.description.en,
             size: sizesArrayEN,
             rewardStepper: rewardStepperEN
           };
-  
+
           this.product = product;
           this.productImageId = product.imageId;
           this.productLocalImage = product.imageId;
           if (product.descriptionImageInfo) {
             this.descriptionLocalImages = product.descriptionImageInfo;
           }
-  
+
           this.productStatus = product.status;
 
           dialogRef.componentInstance.data = {
             product: product,
             action: this.action
           };
-  
+
           this.productForm.patchValue(product);
           this.productESForm.patchValue(productES);
           this.productENForm.patchValue(productEN);
@@ -693,8 +691,8 @@ export class ProductDetailComponent implements OnInit {
         this.ngxLoader.stop();
 
         for (let index = 0; index < product.size.es.length; index++) {
-          sizesArrayES.push({ name: product.size.es[index]});
-          sizesArrayEN.push({ name: product.size.en[index]});
+          sizesArrayES.push({ name: product.size.es[index] });
+          sizesArrayEN.push({ name: product.size.en[index] });
           if (index !== product.size.es.length - 1) {
             if (this.action === 'view') {
               this.addSize(true);
@@ -764,7 +762,7 @@ export class ProductDetailComponent implements OnInit {
         this.corporates = [];
         if (response !== null) {
           this.corporates = response;
-          
+
         }
       },
         (error: Error) => {
@@ -861,7 +859,7 @@ export class ProductDetailComponent implements OnInit {
 
       if (this.role == "MANAGER") {
         newProduct.corporateId = this.corporateId
-        newProduct.status= "INVISIBLE"
+        newProduct.status = "INVISIBLE"
       } else {
         if (values.corporateInfo._id == null) {
           this.toastr.error(
@@ -880,7 +878,7 @@ export class ProductDetailComponent implements OnInit {
         }
 
         newProduct.corporateId = values.corporateInfo._id
-        newProduct.status= values.status
+        newProduct.status = values.status
       }
 
       if (this.action === 'new') {
@@ -892,7 +890,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   corporateChange(event) {
-    let corporateSelected = this.corporates.filter( corporate => corporate._id === event.value )[0]
+    let corporateSelected = this.corporates.filter(corporate => corporate._id === event.value)[0]
     this.corporateCodeSelected = corporateSelected.code
     this.productForm.controls['corporateInfo'].get('code').setValue(corporateSelected.code);
   }

@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FountainService } from 'src/app/shared/custom-gnommo-base/services/fountain.service';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 import { AuthService } from '@tyris/angular-foundation-libs';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Observable } from 'rxjs';
@@ -60,8 +60,8 @@ export class SponsoredFountainDetailComponent implements OnInit {
   isFountainImageDeleted = false;
   isFountainLocalImageChanged = false;
 
-  @ViewChild('mapPinImageUploaderInput') mapPinImageUploaderInput: ElementRef;
-  @ViewChild('fountainImageUploaderInput') fountainImageUploaderInput: ElementRef;
+  @ViewChild('mapPinImageUploaderInput', { static: false }) mapPinImageUploaderInput: ElementRef;
+  @ViewChild('fountainImageUploaderInput', { static: false }) fountainImageUploaderInput: ElementRef;
   // END IMAGES
 
   // ROUTER DEFINITION
@@ -353,17 +353,17 @@ export class SponsoredFountainDetailComponent implements OnInit {
     };
 
     this.fountainService
-    .getByLocation(headers)
-    .subscribe((response) => {
-      this.ngxLoader.stop();
-
-      this.fountainsAround = response.filter(function(value) { return value._id != fountainId});
-
-    },
-      (error: Error) => {
-        this.toastr.error('Ha ocurrido un error al cargar las fuentes cercanas', 'Error');
+      .getByLocation(headers)
+      .subscribe((response) => {
         this.ngxLoader.stop();
-      });
+
+        this.fountainsAround = response.filter(function (value) { return value._id != fountainId });
+
+      },
+        (error: Error) => {
+          this.toastr.error('Ha ocurrido un error al cargar las fuentes cercanas', 'Error');
+          this.ngxLoader.stop();
+        });
   }
 
   getFountainRefills() {
@@ -375,39 +375,39 @@ export class SponsoredFountainDetailComponent implements OnInit {
     };
 
     this.refillService
-    .fountainRefills(this.fountainId, headers)
-    .subscribe((response: any) => {
-      if (response) {
-        response.map((refill) => {
-          refill.createdDateHour = moment(new Date(refill.instance.createdAt)).format('DD/MM/YYYY - HH:mm');
+      .fountainRefills(this.fountainId, headers)
+      .subscribe((response: any) => {
+        if (response) {
+          response.map((refill) => {
+            refill.createdDateHour = moment(new Date(refill.instance.createdAt)).format('DD/MM/YYYY - HH:mm');
 
-          if (!refill.fountainInfo.name) {
-            if (refill.fountainInfo.fountainType) {
-              if (refill.fountainInfo.fountainType === 'PUBLIC') {
-                refill.fountainInfo.name = 'Fuente publica';
+            if (!refill.fountainInfo.name) {
+              if (refill.fountainInfo.fountainType) {
+                if (refill.fountainInfo.fountainType === 'PUBLIC') {
+                  refill.fountainInfo.name = 'Fuente publica';
+                } else {
+                  refill.fountainInfo.name = 'Fuente privada';
+                }
               } else {
-                refill.fountainInfo.name = 'Fuente privada';
+                refill.fountainInfo.name = 'Nombre no disponible';
               }
-            } else {
-              refill.fountainInfo.name = 'Nombre no disponible';
             }
-          }
 
-          if (!refill.fountainInfo.address.address) {
-            refill.fountainInfo.address.address = 'Dirección no disponible';
-          }
+            if (!refill.fountainInfo.address.address) {
+              refill.fountainInfo.address.address = 'Dirección no disponible';
+            }
 
-          // TODO: Remove when rating is implemented
-          if (!refill.fountainInfo.rating) {
-            refill.fountainInfo.rating = Math.random() * (5 - 0) + 0;
-          }
+            // TODO: Remove when rating is implemented
+            if (!refill.fountainInfo.rating) {
+              refill.fountainInfo.rating = Math.random() * (5 - 0) + 0;
+            }
 
-        });
+          });
 
-        this.refills = [];
-        this.refills = response;
-      }
-    });
+          this.refills = [];
+          this.refills = response;
+        }
+      });
   }
 
   countRefills() {
@@ -829,7 +829,7 @@ export class SponsoredFountainDetailComponent implements OnInit {
         error => {
           this.toastr.error('Ha ocurrido un problema al actualizar la fuente', 'Error');
         }
-        );
+      );
   }
 
   //

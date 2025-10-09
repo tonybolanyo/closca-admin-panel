@@ -15,7 +15,7 @@ import { AuthService } from '@tyris/angular-foundation-libs';
 import { S3_URL } from 'src/app/shared/constants/constants';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-wizard-detail',
@@ -48,8 +48,8 @@ export class WizardDetailComponent implements OnInit {
   public iconUploader: FileUploader = new FileUploader({ url: '' });
   public imageUploader: FileUploader = new FileUploader({ url: '' });
 
-  @ViewChild('iconUploaderInput') iconUploaderInput: ElementRef;
-  @ViewChild('imageUploaderInput') imageUploaderInput: ElementRef;
+  @ViewChild('iconUploaderInput', { static: false }) iconUploaderInput: ElementRef;
+  @ViewChild('imageUploaderInput', { static: false }) imageUploaderInput: ElementRef;
 
 
   // IMAGES

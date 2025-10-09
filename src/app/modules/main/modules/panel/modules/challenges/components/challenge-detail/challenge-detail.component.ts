@@ -20,7 +20,8 @@ import {
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 import { AuthService } from '@tyris/angular-foundation-libs';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { MatDialog, MatDatepickerInputEvent } from '@angular/material';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
 import {
@@ -106,13 +107,13 @@ export class ChallengeDetailComponent implements OnInit {
     queueLimit: 1
   });
 
-  @ViewChild('usersTargetCSVUploaderInput') usersTargetCSVUploaderInput: ElementRef;
-  @ViewChild('subscribeUsersCSVUploaderInput') subscribeUsersCSVUploaderInput: ElementRef;
+  @ViewChild('usersTargetCSVUploaderInput', { static: false }) usersTargetCSVUploaderInput: ElementRef;
+  @ViewChild('subscribeUsersCSVUploaderInput', { static: false }) subscribeUsersCSVUploaderInput: ElementRef;
 
   // IMAGE
   challengeImageId: string;
   isChallengeImageDeleted = false;
-  @ViewChild('challengeImageUploaderInput')
+  @ViewChild('challengeImageUploaderInput', { static: false })
   challengeImageUploaderInput: ElementRef;
 
   // LOCAL IMAGE
@@ -122,7 +123,7 @@ export class ChallengeDetailComponent implements OnInit {
   // BACKGROUND IMAGE
   challengeBackgroundImageId: string;
   isChallengeBackgroundImageDeleted = false;
-  @ViewChild('challengeBackgroundImageUploaderInput')
+  @ViewChild('challengeBackgroundImageUploaderInput', { static: false })
   challengeBackgroundImageUploaderInput: ElementRef;
 
   // LOCAL BACKGROUND IMAGE

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { MatTable, MatTableDataSource } from '@angular/material';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { CdkDropList, CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { ChallengeService } from 'src/app/shared/custom-gnommo-base/services';
@@ -17,8 +17,8 @@ import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactiva
   encapsulation: ViewEncapsulation.None
 })
 export class ChallengesOrderComponent implements OnInit {
-  @ViewChild('table1') table1: MatTable<any>;
-  @ViewChild('list1') list1: CdkDropList;
+  @ViewChild('table1', { static: false }) table1: MatTable<any>;
+  @ViewChild('list1', { static: false }) list1: CdkDropList;
   displayedColumns: string[] = ['drag', 'name', 'image', 'closcaPoints', 'type', 'status'];
   dataSource;
   ELEMENT_DATA;

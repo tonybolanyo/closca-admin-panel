@@ -1,13 +1,20 @@
 import { NgModule } from '@angular/core';
 import { DialogConfirmationComponent } from './components/dialog-confirmation/dialog-confirmation.component';
-import {
-    MatDialogModule,
-    MatButtonToggleModule,
-    MatNativeDateModule,
-    MatInputModule, MatDatepickerModule,
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
+import { 
 // tslint:disable-next-line: max-line-length
-    MatFormFieldModule, MatSelectModule, MatOptionModule, MatIconModule, MatBottomSheetModule, MatPaginatorModule, MatTableModule, MatSortModule, MatCheckboxModule
-} from '@angular/material';
+MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 import { DialogInfoComponent } from './components/dialog-info/dialog-info.component';
 import { SafePipe } from './pipes/safe.pipe';
 import { ReactiveFormsModule, FormsModule } from '../../../node_modules/@angular/forms';

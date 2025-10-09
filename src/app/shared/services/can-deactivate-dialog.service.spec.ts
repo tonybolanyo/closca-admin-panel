@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { MatDialog } from '@angular/material';
-import { CanDeactivateDialogService } from './can-deactivate-dialog.service';
+import { MatDialog } from '@angular/material/dialog';
 import { of } from 'rxjs';
+import { CanDeactivateDialogService } from './can-deactivate-dialog.service';
 
 describe('CanDeactivateDialogService', () => {
   let service: CanDeactivateDialogService;
@@ -30,11 +30,11 @@ describe('CanDeactivateDialogService', () => {
     const mockDialogRef = {
       afterClosed: jest.fn().mockReturnValue(of(true))
     };
-    
+
     mockDialog.open.mockReturnValue(mockDialogRef);
-    
+
     const result$ = service.openDialog();
-    
+
     result$.subscribe(result => {
       expect(mockDialog.open).toHaveBeenCalledWith(
         expect.any(Function), // DialogConfirmationComponent
@@ -57,11 +57,11 @@ describe('CanDeactivateDialogService', () => {
         })
       })
     };
-    
+
     mockDialog.open.mockReturnValue(mockDialogRef);
-    
+
     const result$ = service.openDialog();
-    
+
     result$.subscribe(result => {
       expect(result).toBe(false);
       done();

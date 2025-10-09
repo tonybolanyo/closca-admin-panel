@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
     urlRoute: string;
     urlChildRoute: string;
     innerWidth = window.innerWidth;
-    @ViewChild('overlay') public overlay: ElementRef;
+    @ViewChild('overlay', { static: false }) public overlay: ElementRef;
     isNavigateToOtherComponent = false;
     isRouteStart = false;
     routerDefinitions = ROUTER_DEFINITIONS;

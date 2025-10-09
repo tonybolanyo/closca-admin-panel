@@ -5,13 +5,13 @@ import { UserRateListComponent } from './components/user-rate-list/user-rate-lis
 import { UserRateDetailComponent } from './components/user-rate-detail/user-rate-detail.component';
 import { UserRateRoutingModule } from './user-rate-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { MatTableModule,
-  MatPaginatorModule,
-  MatIconModule,
-  MatInputModule,
-  MatFormFieldModule,
-  MatSelectModule,
-  MatOptionModule } from '@angular/material';
+import { MatOptionModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 

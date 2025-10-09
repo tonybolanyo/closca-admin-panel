@@ -4,7 +4,8 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { FileUploader } from 'ng2-file-upload';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { ToastrService } from 'ngx-toastr';
-import { MatDialog, DateAdapter } from '@angular/material';
+import { DateAdapter } from '@angular/material/core';
+import { MatDialog } from '@angular/material/dialog';
 import { NgOption } from '@ng-select/ng-select';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
 import { debounceTime } from 'rxjs/operators';
@@ -229,18 +230,18 @@ export class CorporateDetailComponent implements OnInit {
     url: '',
     queueLimit: 1
   });
-  @ViewChild('invitationCSVUploaderInput') invitationCSVUploaderInput: ElementRef;
+  @ViewChild('invitationCSVUploaderInput', { static: false }) invitationCSVUploaderInput: ElementRef;
 
   public createFountainsCSVUploader: FileUploader = new FileUploader({
     url: '',
     queueLimit: 1
   });
-  @ViewChild('createFountainsCSVUploaderInput') createFountainsCSVUploaderInput: ElementRef;
+  @ViewChild('createFountainsCSVUploaderInput', { static: false }) createFountainsCSVUploaderInput: ElementRef;
 
 
-  @ViewChild('logoUploaderInput') logoUploaderInput: ElementRef;
-  // @ViewChild('imageUploaderInput') imageUploaderInput: ElementRef;
-  // @ViewChild('impactUploaderInput') impactUploaderInput: ElementRef;
+  @ViewChild('logoUploaderInput', { static: false }) logoUploaderInput: ElementRef;
+  // @ViewChild('imageUploaderInput', { static: false }) imageUploaderInput: ElementRef;
+  // @ViewChild('impactUploaderInput', { static: false }) impactUploaderInput: ElementRef;
 
   // IMAGE
   logotype: string;

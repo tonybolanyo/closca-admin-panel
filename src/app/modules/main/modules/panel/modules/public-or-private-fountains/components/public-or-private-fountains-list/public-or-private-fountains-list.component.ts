@@ -4,7 +4,7 @@ import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { FountainService } from 'src/app/shared/custom-gnommo-base/services/fountain.service';
 import { ToastrService } from 'ngx-toastr';
 import { PUBLIC_OR_PRIVATE_FOUNTAIN_TYPES, FOUNTAIN_STATUSES, STATION_TYPES } from 'src/app/shared/constants/constants';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { ChangeFountainStatusComponent } from 'src/app/shared/components/change-fountain-status/change-fountain-status.component';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
 import { NgxUiLoaderService } from 'ngx-ui-loader';

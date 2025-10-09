@@ -6,7 +6,8 @@ import { LevelService } from 'src/app/shared/custom-gnommo-base/services';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
-import { DateAdapter, MatDialog } from '@angular/material';
+import { DateAdapter } from '@angular/material/core';
+import { MatDialog } from '@angular/material/dialog';
 import { debounceTime } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
@@ -47,7 +48,7 @@ export class LevelDetailComponent implements OnInit {
   // IMAGE
   levelImageId: string;
   isLevelImageDeleted = false;
-  @ViewChild('levelImageUploaderInput') imageLevelUploaderInput: ElementRef;
+  @ViewChild('levelImageUploaderInput', { static: false }) imageLevelUploaderInput: ElementRef;
 
   // Local image
   isLevelLocalImageChanged = false;

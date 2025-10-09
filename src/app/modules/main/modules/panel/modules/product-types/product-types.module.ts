@@ -6,7 +6,10 @@ import { ProductTypesComponent } from './containers/product-types/product-types.
 import { ProductTypesRoutingModule } from './product-types-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatIconModule, MatFormFieldModule, MatInputModule, MatButtonToggleModule } from '@angular/material';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   imports: [

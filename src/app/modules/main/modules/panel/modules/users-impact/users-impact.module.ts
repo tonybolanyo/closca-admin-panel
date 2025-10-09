@@ -11,21 +11,17 @@ import { UsersImpactRoutingModule } from './users-impact-routing.module';
 
 
 // --> External libs
-import {
-    MatFormFieldModule,
-    MatInputModule,
-    MatTableModule,
-    MatCardModule,
-    MatDatepickerModule,
-    MatIconModule,
-    MatPaginatorModule,
-    MatDialogModule,
-    MatSelectModule,
-    MatButtonToggleModule,
-    MatOptionModule,
-    DateAdapter,
-    MAT_DATE_FORMATS
-} from '@angular/material';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatOptionModule, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 
 // --> Services
 import { MyDateAdapter } from 'src/app/shared/services/datepicker-angular-material.service';
@@ -35,7 +31,7 @@ import { APP_DATE_FORMATS } from 'src/app/shared/constants/date-formats';
 
 
 import { SharedModule } from 'src/app/shared/shared.module';
-import { ModalGalleryModule } from '@ks89/angular-modal-gallery';
+import { GalleryModule } from '@ks89/angular-modal-gallery';
 import { FileUploadModule } from 'ng2-file-upload';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -56,7 +52,7 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
         MatButtonToggleModule,
         MatOptionModule,
         SharedModule,
-        ModalGalleryModule,
+        GalleryModule,
         FileUploadModule,
         ReactiveFormsModule,
         NgSelectModule,

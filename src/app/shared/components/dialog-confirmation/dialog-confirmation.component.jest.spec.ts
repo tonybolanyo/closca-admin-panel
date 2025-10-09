@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Component } from '@angular/core';
 import { DialogConfirmationComponent } from './dialog-confirmation.component';
 
@@ -16,7 +16,7 @@ import { DialogConfirmationComponent } from './dialog-confirmation.component';
     </mat-dialog-actions>
   `
 })
-class TestDialogConfirmationComponent extends DialogConfirmationComponent {}
+class TestDialogConfirmationComponent extends DialogConfirmationComponent { }
 
 describe('DialogConfirmationComponent', () => {
   let component: TestDialogConfirmationComponent;
@@ -74,7 +74,7 @@ describe('DialogConfirmationComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
     const buttons = compiled.querySelectorAll('button');
-    
+
     expect(buttons.length).toBe(2);
     expect(buttons[0].textContent.trim()).toBe('No');
     expect(buttons[1].textContent.trim()).toBe('Si');
@@ -84,10 +84,10 @@ describe('DialogConfirmationComponent', () => {
     // Mock the method to verify it's called
     component.onCloseReject = jest.fn();
     fixture.detectChanges();
-    
+
     const noButton = fixture.nativeElement.querySelector('.cancel-btn');
     noButton.click();
-    
+
     expect(component.onCloseReject).toHaveBeenCalled();
   });
 
@@ -95,10 +95,10 @@ describe('DialogConfirmationComponent', () => {
     // Mock the method to verify it's called
     component.onCloseAccept = jest.fn();
     fixture.detectChanges();
-    
+
     const siButton = fixture.nativeElement.querySelector('.confirm-btn');
     siButton.click();
-    
+
     expect(component.onCloseAccept).toHaveBeenCalled();
   });
 });
