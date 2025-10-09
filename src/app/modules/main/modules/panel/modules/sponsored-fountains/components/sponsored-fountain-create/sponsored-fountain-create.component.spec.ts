@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { FountainService } from '../../../../../../shared/custom-gnommo-base/services/fountain.service';
 import { SponsoredFountainCreateComponent } from './sponsored-fountain-create.component';
 
 describe('SponsoredFountainCreateComponent', () => {
@@ -29,7 +30,16 @@ describe('SponsoredFountainCreateComponent', () => {
         },
         {
           provide: ToastrService,
-          useValue: { success: jest.fn(), error: jest.fn() }
+          useValue: { success: jest.fn(), error: jest.fn(), info: jest.fn(), warning: jest.fn() }
+        },
+        {
+          provide: FountainService,
+          useValue: { 
+            create: jest.fn().mockReturnValue({ subscribe: jest.fn() }),
+            update: jest.fn().mockReturnValue({ subscribe: jest.fn() }),
+            getById: jest.fn().mockReturnValue({ subscribe: jest.fn() }),
+            getAll: jest.fn().mockReturnValue({ subscribe: jest.fn() })
+          }
         }
       ]
     })
