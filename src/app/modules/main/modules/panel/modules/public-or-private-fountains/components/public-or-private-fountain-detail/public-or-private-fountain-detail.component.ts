@@ -12,7 +12,7 @@ import { PUBLIC_OR_PRIVATE_FOUNTAIN_TYPES, FOUNTAIN_STATUSES, FOUNTAIN_REFILL_TY
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';
-import { AuthService } from '@gnommostudios/ng-gnommo-base';
+import { AuthService } from '@tyris/angular-foundation-libs';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
 import { MatDialog } from '@angular/material';
 import { Location, DatePipe } from '@angular/common';

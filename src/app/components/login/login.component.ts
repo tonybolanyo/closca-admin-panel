@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ROUTER_DEFINITIONS } from '../../shared/constants/router-definitions';
 import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
 import { UserService } from 'src/app/shared/custom-gnommo-base/services';
-import { AuthService, CookieStorage } from '@gnommostudios/ng-gnommo-base';
+import { AuthService, CookieStorage } from '@tyris/angular-foundation-libs';
 
 @Component({
     selector: 'app-login',

@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 import { Location } from '@angular/common';
 import { environment } from 'src/environments/environment';
-import { AuthService } from '@gnommostudios/ng-gnommo-base';
+import { AuthService } from '@tyris/angular-foundation-libs';
 import { S3_URL, BOTTLE_SIZES, BOTTLE_MATERIALS } from 'src/app/shared/constants/constants';
 import { BottleType } from 'src/app/shared/custom-gnommo-base/models/bottle-type.model';
 

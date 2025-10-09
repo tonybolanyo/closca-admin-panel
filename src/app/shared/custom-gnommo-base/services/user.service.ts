@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { User } from '../models';
-import { LoginBaseService, AuthService } from '@gnommostudios/ng-gnommo-base';
+import { LoginBaseService, AuthService } from '@tyris/angular-foundation-libs';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 

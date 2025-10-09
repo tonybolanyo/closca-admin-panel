@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 import { Location } from '@angular/common';
 import { environment } from 'src/environments/environment';
-import { AuthService } from '@gnommostudios/ng-gnommo-base';
+import { AuthService } from '@tyris/angular-foundation-libs';
 import { S3_URL } from 'src/app/shared/constants/constants';
 
 @Component({
