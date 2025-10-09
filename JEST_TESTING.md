@@ -48,12 +48,33 @@ npm run test:karma
 ### New Jest Tests
 Jest tests follow the naming convention `*.spec.ts` and are located alongside their source files:
 
+#### Shared Components
 - `src/app/shared/components/dialog-confirmation/dialog-confirmation.component.simple.spec.ts`
 - `src/app/shared/components/dialog-info/dialog-info.component.simple.spec.ts`
+- `src/app/shared/components/cookies/cookies.component.spec.ts`
+- `src/app/shared/components/custom-table/custom-table.component.spec.ts`
+
+#### Services and Utilities
 - `src/app/shared/services/can-deactivate-dialog.service.spec.ts`
 - `src/app/shared/services/datepicker-angular-material.service.spec.ts`
 - `src/app/shared/pipes/safe.pipe.spec.ts`
+
+#### Constants
 - `src/app/shared/constants/patterns.spec.ts`
+- `src/app/shared/constants/router-definitions.spec.ts`
+- `src/app/shared/constants/date-formats.spec.ts`
+
+#### Layout Components
+- `src/app/modules/main/components/footer/footer.component.spec.ts`
+- `src/app/components/landing-page/landing-page.component.spec.ts`
+
+#### Authentication Components (pending - service dependencies)
+- `src/app/components/password-recover/password-recover.component.spec.ts`
+- `src/app/components/reset-password/reset-password.component.spec.ts`
+- `src/app/components/register/register.component.spec.ts`
+
+#### Infrastructure
+- `src/__mocks__/@tyris/angular-foundation-libs.ts` (Mock for missing dependency)
 
 ### Testing Approach
 - **Unit Tests**: Focus on individual component/service logic
@@ -70,6 +91,15 @@ Current Jest test coverage for critical components:
 - CanDeactivateDialogService: 100%
 - MyDateAdapter: 100%
 - Patterns Constants: 100%
+- Router Definitions Constants: 100%
+- Date Formats Constants: 100%
+- FooterComponent: 100%
+- CookiesComponent: 100%
+- CustomTableComponent: Comprehensive coverage
+- LandingPageComponent: 100%
+- PasswordRecoverComponent: Comprehensive (pending - service dependency)
+- ResetPasswordComponent: Comprehensive (pending - service dependency)
+- RegisterComponent: Comprehensive (pending - service dependency)
 
 ## Best Practices
 
