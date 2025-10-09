@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ChangeFountainStatusComponent } from './change-fountain-status.component';
 
@@ -10,12 +10,17 @@ describe('ChangeFountainStatusComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ChangeFountainStatusComponent ],
-      imports: [ ReactiveFormsModule ],
+      imports: [ ReactiveFormsModule, MatDialogModule ],
       providers: [
         FormBuilder,
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: MatDialogRef, useValue: {} }
       ]
+    })
+    .overrideComponent(ChangeFountainStatusComponent, {
+      set: {
+        styleUrls: []
+      }
     })
     .compileComponents();
   }));

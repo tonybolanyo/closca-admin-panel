@@ -5,6 +5,10 @@ module.exports = {
     '<rootDir>/src/**/__tests__/**/*.{js,ts}',
     '<rootDir>/src/**/?(*.)(spec|test).{js,ts}'
   ],
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '<rootDir>/src/test.ts'
+  ],
   moduleNameMapper: {
     '@tyris/angular-foundation': '<rootDir>/src/__mocks__/@tyris/angular-foundation.ts',
     '\\.(css|less|scss|sass)$': '<rootDir>/src/__mocks__/styleMock.js'

@@ -4,6 +4,16 @@ import { CustomGalleryComponent } from './custom-gallery.component';
 const mockJQuery = {
   animate: jest.fn()
 };
+
+// Type declaration for global $
+declare global {
+  namespace NodeJS {
+    interface Global {
+      $: jest.Mock;
+    }
+  }
+}
+
 (global as any).$ = jest.fn(() => mockJQuery);
 
 describe('CustomGalleryComponent (Unit Tests)', () => {

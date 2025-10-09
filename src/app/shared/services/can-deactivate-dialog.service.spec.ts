@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
 import { CanDeactivateDialogService } from './can-deactivate-dialog.service';
+import { DialogConfirmationComponent } from '../components/dialog-confirmation/dialog-confirmation.component';
 import { of } from 'rxjs';
 
 describe('CanDeactivateDialogService', () => {
