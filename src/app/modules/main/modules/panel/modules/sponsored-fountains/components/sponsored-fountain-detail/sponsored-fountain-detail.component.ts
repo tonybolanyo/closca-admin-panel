@@ -1,26 +1,25 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Location } from '@angular/common';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '@tyris/angular-foundation';
+import { FileUploader } from 'ng2-file-upload';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
+import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
+import { FEATURES, FOUNTAIN_REFILL_TYPES, S3_URL, TIMES, WEEKDAYS } from 'src/app/shared/constants/constants';
+import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
+import { Fountain } from 'src/app/shared/custom-gnommo-base/models/fountain.model';
 import { FountainService } from 'src/app/shared/custom-gnommo-base/services/fountain.service';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
-import { AuthService } from '@tyris/angular-foundation-libs';
-import { MatDialog } from '@angular/material/dialog';
-import { Address } from 'ngx-google-places-autocomplete/objects/address';
-import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
-import { Observable } from 'rxjs';
-import { Fountain } from 'src/app/shared/custom-gnommo-base/models/fountain.model';
-import { FOUNTAIN_REFILL_TYPES, WEEKDAYS, FEATURES, TIMES, S3_URL } from 'src/app/shared/constants/constants';
-import { FileUploader } from 'ng2-file-upload';
-import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
 import { environment } from 'src/environments/environment';
 // tslint:disable-next-line: max-line-length
-import { TransformSponsoredFountainToPrivateComponent } from 'src/app/shared/components/transform-sponsored-fountain-to-private/transform-sponsored-fountain-to-private.component';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { RefillService, CorporateService } from 'src/app/shared/custom-gnommo-base/services';
 import * as moment from 'moment';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { TransformSponsoredFountainToPrivateComponent } from 'src/app/shared/components/transform-sponsored-fountain-to-private/transform-sponsored-fountain-to-private.component';
+import { CorporateService, RefillService } from 'src/app/shared/custom-gnommo-base/services';
 import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
@@ -353,17 +352,17 @@ export class SponsoredFountainDetailComponent implements OnInit {
     };
 
     this.fountainService
-    .getByLocation(headers)
-    .subscribe((response) => {
-      this.ngxLoader.stop();
-
-      this.fountainsAround = response.filter(function(value) { return value._id != fountainId});
-
-    },
-      (error: Error) => {
-        this.toastr.error('Ha ocurrido un error al cargar las fuentes cercanas', 'Error');
+      .getByLocation(headers)
+      .subscribe((response) => {
         this.ngxLoader.stop();
-      });
+
+        this.fountainsAround = response.filter(function (value) { return value._id != fountainId });
+
+      },
+        (error: Error) => {
+          this.toastr.error('Ha ocurrido un error al cargar las fuentes cercanas', 'Error');
+          this.ngxLoader.stop();
+        });
   }
 
   getFountainRefills() {
@@ -375,39 +374,39 @@ export class SponsoredFountainDetailComponent implements OnInit {
     };
 
     this.refillService
-    .fountainRefills(this.fountainId, headers)
-    .subscribe((response: any) => {
-      if (response) {
-        response.map((refill) => {
-          refill.createdDateHour = moment(new Date(refill.instance.createdAt)).format('DD/MM/YYYY - HH:mm');
+      .fountainRefills(this.fountainId, headers)
+      .subscribe((response: any) => {
+        if (response) {
+          response.map((refill) => {
+            refill.createdDateHour = moment(new Date(refill.instance.createdAt)).format('DD/MM/YYYY - HH:mm');
 
-          if (!refill.fountainInfo.name) {
-            if (refill.fountainInfo.fountainType) {
-              if (refill.fountainInfo.fountainType === 'PUBLIC') {
-                refill.fountainInfo.name = 'Fuente publica';
+            if (!refill.fountainInfo.name) {
+              if (refill.fountainInfo.fountainType) {
+                if (refill.fountainInfo.fountainType === 'PUBLIC') {
+                  refill.fountainInfo.name = 'Fuente publica';
+                } else {
+                  refill.fountainInfo.name = 'Fuente privada';
+                }
               } else {
-                refill.fountainInfo.name = 'Fuente privada';
+                refill.fountainInfo.name = 'Nombre no disponible';
               }
-            } else {
-              refill.fountainInfo.name = 'Nombre no disponible';
             }
-          }
 
-          if (!refill.fountainInfo.address.address) {
-            refill.fountainInfo.address.address = 'Dirección no disponible';
-          }
+            if (!refill.fountainInfo.address.address) {
+              refill.fountainInfo.address.address = 'Dirección no disponible';
+            }
 
-          // TODO: Remove when rating is implemented
-          if (!refill.fountainInfo.rating) {
-            refill.fountainInfo.rating = Math.random() * (5 - 0) + 0;
-          }
+            // TODO: Remove when rating is implemented
+            if (!refill.fountainInfo.rating) {
+              refill.fountainInfo.rating = Math.random() * (5 - 0) + 0;
+            }
 
-        });
+          });
 
-        this.refills = [];
-        this.refills = response;
-      }
-    });
+          this.refills = [];
+          this.refills = response;
+        }
+      });
   }
 
   countRefills() {
@@ -829,7 +828,7 @@ export class SponsoredFountainDetailComponent implements OnInit {
         error => {
           this.toastr.error('Ha ocurrido un problema al actualizar la fuente', 'Error');
         }
-        );
+      );
   }
 
   //

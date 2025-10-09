@@ -1,5 +1,5 @@
-import { BaseModel } from '@tyris/angular-foundation-libs';
-import { Loc, Fountain, Address } from './fountain.model';
+import { BaseModel } from '@tyris/angular-foundation';
+import { Address, Fountain, Loc } from './fountain.model';
 
 export enum ReportType {
     'FOUNTAIN_NOT_EXIST',

@@ -1,24 +1,23 @@
-import { Component, OnInit, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { FountainService } from 'src/app/shared/custom-gnommo-base/services/fountain.service';
-import { CorporateService } from 'src/app/shared/custom-gnommo-base/services/corporate.service';
-import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
-import { AuthService } from '@tyris/angular-foundation-libs';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Fountain } from 'src/app/shared/custom-gnommo-base/models/fountain.model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '@tyris/angular-foundation';
 import { FileUploader } from 'ng2-file-upload';
-import { environment } from 'src/environments/environment';
-import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
-import { BrandService } from 'src/app/shared/custom-gnommo-base/services/brands.service';
-import { Brand } from 'src/app/shared/custom-gnommo-base/models/brand.model';
-import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
+import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { FOUNTAIN_STATUSES } from 'src/app/shared/constants/constants';
 import { debounceTime } from 'rxjs/operators';
+import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
+import { FOUNTAIN_STATUSES } from 'src/app/shared/constants/constants';
+import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
+import { Brand } from 'src/app/shared/custom-gnommo-base/models/brand.model';
 import { Corporate } from 'src/app/shared/custom-gnommo-base/models/corporate.model';
+import { Fountain } from 'src/app/shared/custom-gnommo-base/models/fountain.model';
+import { BrandService } from 'src/app/shared/custom-gnommo-base/services/brands.service';
+import { CorporateService } from 'src/app/shared/custom-gnommo-base/services/corporate.service';
+import { FountainService } from 'src/app/shared/custom-gnommo-base/services/fountain.service';
+import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-sponsored-fountain-create',
@@ -584,10 +583,10 @@ export class SponsoredFountainCreateComponent implements OnInit {
       .concat((filterValues.address !== '' && filterValues.address !== null) ? addressFilter : '')
       .concat((filterValues.fountainType !== '' && filterValues.fountainType !== null
         && filterValues.fountainType.length !== 0) ? fountainTypeFilter : '')
-        // tslint:disable-next-line:max-line-length
-        .concat((filterValues.fountainStatus !== '' && filterValues.fountainStatus !== null && filterValues.fountainStatus.length !== 0) ? fountainStatusFilter : '')
-        // tslint:disable-next-line:max-line-length
-        .concat((filterValues.corporateId !== '' && filterValues.corporateId !== null && filterValues.corporateId.length !== 0) ? corporateIdFilter : '')
+      // tslint:disable-next-line:max-line-length
+      .concat((filterValues.fountainStatus !== '' && filterValues.fountainStatus !== null && filterValues.fountainStatus.length !== 0) ? fountainStatusFilter : '')
+      // tslint:disable-next-line:max-line-length
+      .concat((filterValues.corporateId !== '' && filterValues.corporateId !== null && filterValues.corporateId.length !== 0) ? corporateIdFilter : '')
       .concat(finishFilter);
   }
 }

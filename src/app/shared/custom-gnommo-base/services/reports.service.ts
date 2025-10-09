@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { BaseService } from '@tyris/angular-foundation-libs';
-import { Report } from '../models/report.model';
-import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { BaseService } from '@tyris/angular-foundation';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import { Report } from '../models/report.model';
 
 @Injectable()
 export class ReportService extends BaseService<Report> {

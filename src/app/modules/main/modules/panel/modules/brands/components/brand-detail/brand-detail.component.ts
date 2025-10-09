@@ -1,22 +1,20 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FileUploader } from 'ng2-file-upload';
-import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
-import { BrandService } from 'src/app/shared/custom-gnommo-base/services/brands.service';
-import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
-import { AuthService } from '@tyris/angular-foundation-libs';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '@tyris/angular-foundation';
+import { FileUploader } from 'ng2-file-upload';
+import { ToastrService } from 'ngx-toastr';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
 import { S3_URL } from 'src/app/shared/constants/constants';
+import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
+import { BrandService } from 'src/app/shared/custom-gnommo-base/services/brands.service';
 import { FountainService } from 'src/app/shared/custom-gnommo-base/services/fountain.service';
 import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
-import { Brand } from 'src/app/shared/custom-gnommo-base/models/brand.model';
-import { routerNgProbeToken } from '@angular/router/src/router_module';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-brand-detail',

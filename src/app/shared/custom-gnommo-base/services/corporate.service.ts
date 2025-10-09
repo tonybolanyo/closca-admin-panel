@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { BaseService } from '@tyris/angular-foundation-libs';
-import { Corporate } from '../models/corporate.model';
+import { Injectable } from '@angular/core';
+import { BaseService } from '@tyris/angular-foundation';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import { Corporate } from '../models/corporate.model';
 
 @Injectable()
-export class CorporateService extends BaseService<Corporate>  {
+export class CorporateService extends BaseService<Corporate> {
 
         constructor(http: HttpClient) {
                 super(http,

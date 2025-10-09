@@ -1,4 +1,4 @@
-import { BaseModel } from '@tyris/angular-foundation-libs';
+import { BaseModel } from '@tyris/angular-foundation';
 
 export class Challenge extends BaseModel {
     level?: number;

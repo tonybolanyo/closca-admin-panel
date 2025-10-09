@@ -1,21 +1,21 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { OnboardingService, CorporateService } from 'src/app/shared/custom-gnommo-base/services';
-import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Location } from '@angular/common';
-import { Observable } from 'rxjs';
-import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { FileUploader, FileItem } from 'ng2-file-upload';
-import { environment } from 'src/environments/environment';
-import { AuthService } from '@tyris/angular-foundation-libs';
-import { S3_URL } from 'src/app/shared/constants/constants';
-import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
-import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { AuthService } from '@tyris/angular-foundation';
+import { FileUploader } from 'ng2-file-upload';
+import { ToastrService } from 'ngx-toastr';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { Observable } from 'rxjs';
+import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
+import { S3_URL } from 'src/app/shared/constants/constants';
+import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
+import { CorporateService, OnboardingService } from 'src/app/shared/custom-gnommo-base/services';
+import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
+import { environment } from 'src/environments/environment';
+import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 @Component({
   selector: 'app-wizard-detail',
@@ -228,7 +228,7 @@ export class WizardDetailComponent implements OnInit {
       } else {
         values.corporateId = values.corporateInfo._id
       }
-      
+
 
       if (this.action === 'new') {
         this.createOnboarding(values);

@@ -7,6 +7,15 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.1.
 
+## Install dependencies
+
+Some libraries are hosted in Tyris Verdaccio registry. You need to login **before installing
+dependencies** using this command in your terminal:
+
+```bash
+npm login --registry=https://verdaccio.tyris-software.com --scope=@tyris
+```
+
 ## Testing
 
 This project uses Jest as the primary testing framework, providing fast and reliable unit testing for Angular 6.
@@ -15,14 +24,14 @@ This project uses Jest as the primary testing framework, providing fast and reli
 
 - **65 unit tests** covering critical functionality
 - **100% coverage** on tested components and services:
-  - ✅ DialogConfirmationComponent
-  - ✅ DialogInfoComponent  
-  - ✅ SafePipe
-  - ✅ CanDeactivateDialogService
-  - ✅ MyDateAdapter
-  - ✅ Constants and Router Definitions
-  - ✅ User Model
-  - ✅ CanDeactivateGuard
+  - DialogConfirmationComponent
+  - DialogInfoComponent  
+  - SafePipe
+  - CanDeactivateDialogService
+  - MyDateAdapter
+  - Constants and Router Definitions
+  - User Model
+  - CanDeactivateGuard
 
 ### Running Tests
 

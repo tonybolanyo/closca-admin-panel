@@ -1,4 +1,4 @@
-import { BaseModel } from "@tyris/angular-foundation-libs";
+import { BaseModel } from "@tyris/angular-foundation";
 
 export class Level extends BaseModel {
 
@@ -8,7 +8,7 @@ export class Level extends BaseModel {
     description: string;
     status: string;
     badger: string; // Icono del nivel
-	minRefills: number;
+    minRefills: number;
     maxRefills: number;
     refillReward: number;
     fountainCreationReward: number;
@@ -18,5 +18,5 @@ export class Level extends BaseModel {
         super();
         this._id = _id
         this.code = code;
-     }
+    }
 }

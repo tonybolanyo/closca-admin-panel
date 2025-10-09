@@ -1,26 +1,26 @@
-import { Component, OnInit, ViewChild, ElementRef, NgZone, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { FountainService } from 'src/app/shared/custom-gnommo-base/services/fountain.service';
-import { Fountain, MultiLanguageObject } from 'src/app/shared/custom-gnommo-base/models/fountain.model';
-import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { Observable } from 'rxjs';
+import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
+import { Fountain, MultiLanguageObject } from 'src/app/shared/custom-gnommo-base/models/fountain.model';
+import { FountainService } from 'src/app/shared/custom-gnommo-base/services/fountain.service';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 // tslint:disable-next-line: max-line-length
-import { PUBLIC_OR_PRIVATE_FOUNTAIN_TYPES, FOUNTAIN_STATUSES, FOUNTAIN_REFILL_TYPES, WEEKDAYS, FEATURES, TIMES, S3_URL, STATION_TYPES } from 'src/app/shared/constants/constants';
-import { Address } from 'ngx-google-places-autocomplete/objects/address';
-import { FileUploader } from 'ng2-file-upload';
-import { environment } from 'src/environments/environment';
-import { AuthService } from '@tyris/angular-foundation-libs';
-import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
+import { DatePipe, Location } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
-import { Location, DatePipe } from '@angular/common';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
-import { RefillService, CorporateService } from 'src/app/shared/custom-gnommo-base/services';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { AuthService } from '@tyris/angular-foundation';
 import * as moment from 'moment';
+import { FileUploader } from 'ng2-file-upload';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
+import { FEATURES, FOUNTAIN_REFILL_TYPES, FOUNTAIN_STATUSES, PUBLIC_OR_PRIVATE_FOUNTAIN_TYPES, S3_URL, STATION_TYPES, TIMES, WEEKDAYS } from 'src/app/shared/constants/constants';
+import { CorporateService, RefillService } from 'src/app/shared/custom-gnommo-base/services';
+import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
+import { environment } from 'src/environments/environment';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 declare var google;
@@ -199,7 +199,7 @@ export class PublicOrPrivateFountainDetailComponent implements OnInit {
 
   role;
   corporateId;
-  
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
@@ -740,7 +740,7 @@ export class PublicOrPrivateFountainDetailComponent implements OnInit {
         delete values.refillType;
 
         // values.corporateId = this.corporates.filter(corporate => corporate.code === 'CLOSCA')[0]._id
-        
+
         if (this.role == "MANAGER") {
           values.corporateId = this.corporateId
         } else {

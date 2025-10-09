@@ -8,11 +8,11 @@ This document summarizes the test coverage improvements made to the Closca Admin
 ### Components
 1. **FooterComponent** (`src/app/modules/main/components/footer/footer.component.spec.ts`)
    - 2 tests covering component creation and initialization
-   - Status: ✅ PASSING
+   - Status: PASSING
 
 2. **CookiesComponent** (`src/app/shared/components/cookies/cookies.component.spec.ts`)
    - 3 tests covering creation, initialization, and cookie acceptance
-   - Status: ✅ PASSING
+   - Status: PASSING
 
 3. **CustomTableComponent** (`src/app/shared/components/custom-table/custom-table.component.spec.ts`)
    - 18 comprehensive tests covering:
@@ -24,7 +24,7 @@ This document summarizes the test coverage improvements made to the Closca Admin
      - Pagination
      - Sorting
      - Event emissions (select, toggle, custom view/edit)
-   - Status: ✅ PASSING
+   - Status: PASSING
 
 4. **LandingPageComponent** (`src/app/components/landing-page/landing-page.component.spec.ts`)
    - 7 tests covering:
@@ -32,29 +32,29 @@ This document summarizes the test coverage improvements made to the Closca Admin
      - Logo selection based on company parameter
      - Navigation functionality
      - Router definitions
-   - Status: ✅ PASSING
+   - Status: PASSING
 
 ### Infrastructure
-5. **Mock for @tyris/angular-foundation-libs** (`src/__mocks__/@tyris/angular-foundation-libs.ts`)
+5. **Mock for @tyris/angular-foundation** (`src/__mocks__/@tyris/angular-foundation.ts`)
    - Created mock implementations for:
      - CookieStorage
      - AuthService
      - BaseService
    - Updated jest.config.js with moduleNameMapper
-   - Status: ✅ Configured
+   - Status: Configured
 
 ### Attempted But Pending
 6. **AuthGuard** (`src/app/shared/guards/auth.guard.spec.ts`)
    - Tests created for authorization logic
-   - Status: ⏸️ PENDING (dependency compilation issues)
+   - Status: PENDING (dependency compilation issues)
 
 7. **HeaderComponent** (`src/app/modules/main/components/header/header.component.spec.ts`)
    - Tests created for menu initialization and logout
-   - Status: ⏸️ PENDING (service inheritance issues)
+   - Status: PENDING (service inheritance issues)
 
 8. **PanelComponent** (`src/app/modules/main/modules/panel/containers/panel/panel.component.spec.ts`)
    - Tests created for sidebar menu initialization
-   - Status: ⏸️ PENDING (LoggedUserService dependency issues)
+   - Status: PENDING (LoggedUserService dependency issues)
 
 ## Test Results
 
@@ -74,59 +74,59 @@ This document summarizes the test coverage improvements made to the Closca Admin
 - **Authentication Tests Created**: 40 (pending due to service dependencies)
 
 ### Previously Existing Passing Tests
-- DialogConfirmationComponent: ✅
-- DialogInfoComponent: ✅
-- SafePipe: ✅
-- CanDeactivateDialogService: ✅
-- MyDateAdapter: ✅
-- Patterns Constants: ✅
-- Router Definitions Constants: ✅
-- Date Formats Constants: ✅
+- DialogConfirmationComponent: OK
+- DialogInfoComponent: OK
+- SafePipe: OK
+- CanDeactivateDialogService: OK
+- MyDateAdapter: OK
+- Patterns Constants: OK
+- Router Definitions Constants: OK
+- Date Formats Constants: OK
 
 ## Core Functionality Covered
 
 ### Shared Components
-- ✅ Dialog components (confirmation, info)
-- ✅ Cookie consent component
-- ✅ Custom table component with filtering, sorting, pagination
-- ⏸️ Custom gallery component (has jQuery dependency issues)
+- Dialog components (confirmation, info)
+- Cookie consent component
+- Custom table component with filtering, sorting, pagination
+- Custom gallery component (has jQuery dependency issues)
 
 ### Layout Components
-- ✅ Footer component
-- ⏸️ Header component (needs service mock improvements)
-- ⏸️ Panel/Sidebar component (needs service mock improvements)
+- Footer component
+- Header component (needs service mock improvements)
+- Panel/Sidebar component (needs service mock improvements)
 
 ### Page Components
-- ✅ Landing page component
+- Landing page component
 
 ### Services
-- ✅ DatePicker adapter service
-- ✅ Can Deactivate Dialog service
-- ⏸️ Logged User service (dependency issues)
+- DatePicker adapter service
+- Can Deactivate Dialog service
+- Logged User service (dependency issues)
 
 ### Guards
-- ⏸️ Auth guard (dependency issues)
-- ✅ Can Deactivate guard (existing)
-- ⏸️ Logged User guard (existing with issues)
+- Auth guard (dependency issues)
+- Can Deactivate guard (existing)
+- Logged User guard (existing with issues)
 
 ### Pipes
-- ✅ Safe pipe (sanitization)
+- Safe pipe (sanitization)
 
 ### Constants
-- ✅ Patterns
-- ✅ Router definitions
-- ✅ Date formats
+- Patterns
+- Router definitions
+- Date formats
 
 ## Known Issues
 
 ### Dependency-Related Issues
-1. **@tyris/angular-foundation-libs**
+1. **@tyris/angular-foundation**
    - Missing external dependency
    - Mock created but compilation still attempts to import from actual source files
    - Affects: AuthGuard, HeaderComponent, PanelComponent, LoggedUserService
 
 2. **BaseService Inheritance**
-   - Services extending BaseService from @tyris/angular-foundation-libs have missing method issues
+   - Services extending BaseService from @tyris/angular-foundation have missing method issues
    - Affects: CorporateService, UserService, and other domain services
 
 3. **jQuery Dependencies**
@@ -146,7 +146,7 @@ This document summarizes the test coverage improvements made to the Closca Admin
 4. Document which tests are known to fail due to infrastructure issues
 
 ### Long Term (After Angular Upgrade)
-1. Resolve or replace @tyris/angular-foundation-libs dependency
+1. Resolve or replace @tyris/angular-foundation dependency
 2. Migrate all tests to use consistent mocking strategy
 3. Update Jest to latest version compatible with target Angular version
 4. Consider migration from Karma to Jest completely
@@ -172,7 +172,7 @@ This document summarizes the test coverage improvements made to the Closca Admin
 - `AUTHENTICATION_INTEGRATION_TESTS.md` - New file documenting integration test scenarios
 
 ### Mock Files Added
-- `src/__mocks__/@tyris/angular-foundation-libs.ts`
+- `src/__mocks__/@tyris/angular-foundation.ts`
 
 ## Conclusion
 

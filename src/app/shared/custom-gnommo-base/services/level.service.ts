@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { BaseService } from '@tyris/angular-foundation-libs';
-import { Level } from '../models/level.model';
+import { Injectable } from '@angular/core';
+import { BaseService } from '@tyris/angular-foundation';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import { Level } from '../models/level.model';
 
 @Injectable()
-export class LevelService extends BaseService<Level>  {
+export class LevelService extends BaseService<Level> {
 
         constructor(http: HttpClient) {
                 super(http,

@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { BaseService, AuthService } from '@tyris/angular-foundation-libs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { Injectable } from '@angular/core';
+import { AuthService, BaseService } from '@tyris/angular-foundation';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { Challenge } from '../models';
 
 @Injectable()

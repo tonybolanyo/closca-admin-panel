@@ -1,19 +1,19 @@
-import { Component, OnInit, ViewEncapsulation, ElementRef, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DateAdapter } from '@angular/material/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '@tyris/angular-foundation';
 import { FileUploader } from 'ng2-file-upload';
+import { ToastrService } from 'ngx-toastr';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { Observable } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+import { S3_URL } from 'src/app/shared/constants/constants';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { BottleTypesService } from 'src/app/shared/custom-gnommo-base/services';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { ToastrService } from 'ngx-toastr';
-import { Router, ActivatedRoute } from '@angular/router';
-import { DateAdapter } from '@angular/material/core';
-import { debounceTime } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
-import { Location } from '@angular/common';
 import { environment } from 'src/environments/environment';
-import { AuthService } from '@tyris/angular-foundation-libs';
-import { S3_URL } from 'src/app/shared/constants/constants';
 
 @Component({
   selector: 'app-bottle-type-detail',
@@ -56,7 +56,7 @@ export class BottleTypeDetailComponent implements OnInit {
     private ngxLoader: NgxUiLoaderService,
     private formBuilder: FormBuilder,
     private bottleTypesService: BottleTypesService
-  ) { 
+  ) {
     this.dateAdapter.setLocale('es-es');
     this.action = this.activatedRoute.snapshot.url[0].path;
     this.bottleTypeId = this.activatedRoute.snapshot.params['id'];
@@ -212,23 +212,23 @@ export class BottleTypeDetailComponent implements OnInit {
 
     if (this.imageBottleTypeUploader.queue.length > 0) {
       this.bottleTypesService
-      .create(values, { 'Accept-language': 'es' })
-      .subscribe((response) => {
+        .create(values, { 'Accept-language': 'es' })
+        .subscribe((response) => {
 
-        this.ngxLoader.start();
-        this.bottleTypeId = response._id;
-        this.bottleType = response;
-        this.bottleTypeUploadImage();
+          this.ngxLoader.start();
+          this.bottleTypeId = response._id;
+          this.bottleType = response;
+          this.bottleTypeUploadImage();
 
-      },
-        error => {
+        },
+          error => {
 
-          this.toastr.error('Ha ocurrido un problema al crear el tipo de botella', 'Error');
-        });
+            this.toastr.error('Ha ocurrido un problema al crear el tipo de botella', 'Error');
+          });
     } else {
       this.toastr.error('Debes subir una imagen del tipo de botella', 'Error');
     }
-    
+
   }
 
   updateBottleType(bottleTypeId: string, values) {
@@ -277,5 +277,5 @@ export class BottleTypeDetailComponent implements OnInit {
       };
     });
   }
-  
+
 }
