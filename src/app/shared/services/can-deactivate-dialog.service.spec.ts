@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
-import { of } from 'rxjs';
 import { CanDeactivateDialogService } from './can-deactivate-dialog.service';
+import { of } from 'rxjs';
 
 describe('CanDeactivateDialogService', () => {
   let service: CanDeactivateDialogService;

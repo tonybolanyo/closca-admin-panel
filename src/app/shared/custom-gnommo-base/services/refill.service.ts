@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { BaseService } from '@tyris/angular-foundation-libs';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { BaseService } from '@tyris/angular-foundation';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Refill } from '../models';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 
 @Injectable()
 export class RefillService extends BaseService<Refill> {

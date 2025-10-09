@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component } from '@angular/core';
 import { DialogConfirmationComponent } from './dialog-confirmation.component';
 
 // Create a test component without styleUrls to avoid SCSS loading issues

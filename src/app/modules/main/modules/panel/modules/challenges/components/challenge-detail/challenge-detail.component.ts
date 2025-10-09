@@ -1,40 +1,39 @@
+import { Location } from '@angular/common';
 import {
   Component,
+  ElementRef,
   OnInit,
-  ViewEncapsulation,
   ViewChild,
-  ElementRef
+  ViewEncapsulation
 } from '@angular/core';
-import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
-import { FileUploader } from 'ng2-file-upload';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { AuthService } from '@tyris/angular-foundation';
+import * as moment from 'moment';
+import { FileUploader } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { Observable } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+import { ChallengeCsvResponseDialogComponent } from 'src/app/shared/components/challenge-csv-response-dialog/challenge-csv-response-dialog.component';
+import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
 import {
-  FountainService,
+  PUBLIC_OR_PRIVATE_FOUNTAIN_TYPES,
+  S3_URL
+} from 'src/app/shared/constants/constants';
+import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
+import { Fountain } from 'src/app/shared/custom-gnommo-base/models';
+import {
   ChallengeService,
-  CorporateService,
   ChallengeSubscriptionService,
+  CorporateService,
+  FountainService,
   ProductService
 } from 'src/app/shared/custom-gnommo-base/services';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
-import { AuthService } from '@tyris/angular-foundation-libs';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
-import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
-import {
-  S3_URL,
-  PUBLIC_OR_PRIVATE_FOUNTAIN_TYPES
-} from 'src/app/shared/constants/constants';
 import { environment } from 'src/environments/environment';
-import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { Fountain } from 'src/app/shared/custom-gnommo-base/models';
-import { debounceTime } from 'rxjs/operators';
-import * as moment from 'moment';
-import { Location } from '@angular/common';
-import { ChallengeCsvResponseDialogComponent } from 'src/app/shared/components/challenge-csv-response-dialog/challenge-csv-response-dialog.component';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 @Component({
@@ -438,7 +437,7 @@ export class ChallengeDetailComponent implements OnInit {
         this.staticPrivate = false;
         this.private = 'PUBLIC';
       }
-      
+
       if (this.challenge.status == "ACTIVE") {
         this.challengeForm.get('productRewardInfo').disable();
       }
@@ -541,7 +540,7 @@ export class ChallengeDetailComponent implements OnInit {
       this.challengeForm.get('type').setValue("LIMITED_WINNERS")
       this.type.value = "LIMITED_WINNERS"
       // this.challengeForm.get('type').disable();
-    } 
+    }
     // else {
     //   this.challengeForm.get('type').enable();
     // }

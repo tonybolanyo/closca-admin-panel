@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { User } from '../models';
-import { LoginBaseService, AuthService } from '@tyris/angular-foundation-libs';
+import { Injectable } from '@angular/core';
+import { AuthService, LoginBaseService } from '@tyris/angular-foundation';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import { User } from '../models';
 
 
 @Injectable()

@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { BaseService } from '@tyris/angular-foundation-libs';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { Brand } from '../models/brand.model';
+import { Injectable } from '@angular/core';
+import { BaseService } from '@tyris/angular-foundation';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import { Brand } from '../models/brand.model';
 
 @Injectable()
 export class BrandService extends BaseService<Brand> {

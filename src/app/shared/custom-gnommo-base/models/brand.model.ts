@@ -1,4 +1,4 @@
-import { BaseModel } from "@tyris/angular-foundation-libs";
+import { BaseModel } from "@tyris/angular-foundation";
 
 export enum BrandStatus {
     'ACTIVE',
@@ -17,5 +17,5 @@ export class Brand extends BaseModel {
         super();
         this._id = _id
         this.name = name;
-     }
+    }
 }

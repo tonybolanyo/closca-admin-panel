@@ -86,34 +86,34 @@ This document describes integration tests for the critical authentication flow p
 ### Authentication Components Tested
 
 #### PasswordRecoverComponent
-- ✅ Form building with email validation
-- ✅ Email format validation
-- ✅ Password recovery request handling
-- ✅ Success message and navigation
-- ✅ Error handling (404 - email not found)
-- ✅ Error handling (generic errors)
+- Form building with email validation
+- Email format validation
+- Password recovery request handling
+- Success message and navigation
+- Error handling (404 - email not found)
+- Error handling (generic errors)
 
 #### ResetPasswordComponent  
-- ✅ Form building with password fields
-- ✅ Required field validation
-- ✅ Hash extraction from route params
-- ✅ Password matching validation
-- ✅ Password reset request handling
-- ✅ Success message and navigation
-- ✅ Error message for mismatched passwords
+- Form building with password fields
+- Required field validation
+- Hash extraction from route params
+- Password matching validation
+- Password reset request handling
+- Success message and navigation
+- Error message for mismatched passwords
 
 #### RegisterComponent
-- ✅ Form building with all required fields
-- ✅ Email format validation
-- ✅ Required field validation
-- ✅ Role assignment (USER)
-- ✅ Registration request handling
-- ✅ Success message and navigation
-- ✅ Error handling
+- Form building with all required fields
+- Email format validation
+- Required field validation
+- Role assignment (USER)
+- Registration request handling
+- Success message and navigation
+- Error handling
 
 #### LandingPageComponent (existing)
-- ✅ Company logo selection based on parameter
-- ✅ Navigation to login page
+- Company logo selection based on parameter
+- Navigation to login page
 
 ### Guards Tested
 
@@ -138,7 +138,7 @@ Since some integration tests cannot be automated due to external dependencies an
 
 ## Known Limitations
 
-1. **External Dependencies**: Some components depend on `@tyris/angular-foundation-libs` which is not available in the test environment
+1. **External Dependencies**: Some components depend on `@tyris/angular-foundation` which is not available in the test environment
 2. **API Mocking**: Full integration tests require API mocking or test environment setup
 3. **Email Sending**: Cannot fully test email delivery in unit tests
 4. **Session Management**: Browser session/cookie testing requires E2E framework

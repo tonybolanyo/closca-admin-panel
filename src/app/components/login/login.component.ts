@@ -1,13 +1,13 @@
-import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 // import { LoggedUserService } from '../../shared/services/logged-user.service';
-import { ROUTER_DEFINITIONS } from '../../shared/constants/router-definitions';
-import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
+import { AuthService, CookieStorage } from '@tyris/angular-foundation';
 import { UserService } from 'src/app/shared/custom-gnommo-base/services';
-import { AuthService, CookieStorage } from '@tyris/angular-foundation-libs';
+import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
+import { ROUTER_DEFINITIONS } from '../../shared/constants/router-definitions';
 
 @Component({
     selector: 'app-login',

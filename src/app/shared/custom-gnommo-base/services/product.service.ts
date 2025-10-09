@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { BaseService, AuthService } from '@tyris/angular-foundation-libs';
-import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { AuthService, BaseService } from '@tyris/angular-foundation';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { Product } from '../models';
 
 @Injectable()
@@ -37,7 +37,7 @@ export class ProductService extends BaseService<Product> {
     public deleteProducts(values?: any, headers?: any): Observable<any> {
         const httpOptions = {
             headers: headers,
-            body: { ids: values}
+            body: { ids: values }
         };
 
         return this.http.delete(`${this.url}/${this.endpoint}`, httpOptions)
@@ -88,7 +88,7 @@ export class ProductService extends BaseService<Product> {
     public deleteRewardCodes(values?: any, productId?: string, headers?: any): Observable<any> {
         const httpOptions = {
             headers: headers,
-            body: { rewardCode: values}
+            body: { rewardCode: values }
         };
         return this.http.delete(`${this.url}/${this.endpoint}-reward-codes/${productId}`, httpOptions)
             .pipe(

@@ -1,4 +1,4 @@
-import { BaseModel } from "@tyris/angular-foundation-libs";
+import { BaseModel } from "@tyris/angular-foundation";
 
 export class BottleType extends BaseModel {
 
@@ -11,5 +11,5 @@ export class BottleType extends BaseModel {
         super();
         this._id = _id
         this.name = name;
-     }
+    }
 }

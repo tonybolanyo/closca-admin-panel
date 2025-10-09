@@ -10,7 +10,7 @@ jest.mock('../custom-gnommo-base/services', () => ({
   }
 }));
 
-jest.mock('@tyris/angular-foundation-libs', () => ({
+jest.mock('@tyris/angular-foundation', () => ({
   AuthService: class MockAuthService {
     getToken = jest.fn().mockReturnValue({ id: 'mock-token' });
     removeToken = jest.fn();
@@ -31,7 +31,7 @@ describe('LoggedUserService', () => {
 
   beforeEach(() => {
     // Import mocked classes here after they've been mocked
-    const { AuthService, CookieStorage } = require('@tyris/angular-foundation-libs');
+    const { AuthService, CookieStorage } = require('@tyris/angular-foundation');
     const { UserService } = require('../custom-gnommo-base/services');
 
     mockAuthService = new AuthService();
@@ -71,7 +71,6 @@ describe('LoggedUserService', () => {
   it('should check if user is authenticated', () => {
     mockAuthService.getToken.mockReturnValue({ id: 'valid-token' });
     expect(service.isAuthenticated()).toBe(true);
-    
     mockAuthService.getToken.mockReturnValue({ id: null });
     expect(service.isAuthenticated()).toBe(false);
   });

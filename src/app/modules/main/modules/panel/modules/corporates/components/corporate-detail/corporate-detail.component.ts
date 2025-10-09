@@ -1,26 +1,23 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { FileUploader } from 'ng2-file-upload';
-import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
-import { ToastrService } from 'ngx-toastr';
+import { Location } from '@angular/common';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
-import { NgOption } from '@ng-select/ng-select';
-import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
-import { debounceTime } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '@tyris/angular-foundation';
 import * as moment from 'moment';
-import { CorporateService, FountainService, RefillService, UserService } from 'src/app/shared/custom-gnommo-base/services';
-import { User } from 'src/app/shared/custom-gnommo-base/models';
+import { FileUploader } from 'ng2-file-upload';
+import { ToastrService } from 'ngx-toastr';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Observable } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+import { S3_URL } from 'src/app/shared/constants/constants';
+import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
+import { User } from 'src/app/shared/custom-gnommo-base/models';
+import { CorporateService, FountainService, RefillService, UserService } from 'src/app/shared/custom-gnommo-base/services';
+import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 import { environment } from 'src/environments/environment';
-import { AuthService } from '@tyris/angular-foundation-libs';
-import { S3_URL } from 'src/app/shared/constants/constants';
-import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { Location } from '@angular/common';
-import { templateJitUrl } from '@angular/compiler';
 
 @Component({
   selector: 'app-corporate-detail',
@@ -1006,7 +1003,7 @@ export class CorporateDetailComponent implements OnInit {
           createFountainsFormData.append('fountains', fountainsFile);
 
           console.log("Holita: ", this.corporateId)
-          
+
           this.fountainService.createWithCSV(createFountainsFormData, this.corporateId).subscribe(
             response => {
               this.ngxLoader.stop();

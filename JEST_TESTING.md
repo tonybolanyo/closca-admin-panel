@@ -74,7 +74,7 @@ Jest tests follow the naming convention `*.spec.ts` and are located alongside th
 - `src/app/components/register/register.component.spec.ts`
 
 #### Infrastructure
-- `src/__mocks__/@tyris/angular-foundation-libs.ts` (Mock for missing dependency)
+- `src/__mocks__/@tyris/angular-foundation.ts` (Mock for missing dependency)
 
 ### Testing Approach
 - **Unit Tests**: Focus on individual component/service logic

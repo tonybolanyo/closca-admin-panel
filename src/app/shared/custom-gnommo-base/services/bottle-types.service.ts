@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { BaseService } from '@tyris/angular-foundation-libs';
-import { BottleType } from '../models/bottle-type.model';
+import { Injectable } from '@angular/core';
+import { BaseService } from '@tyris/angular-foundation';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import { BottleType } from '../models/bottle-type.model';
 
 @Injectable()
-export class BottleTypesService extends BaseService<BottleType>  {
+export class BottleTypesService extends BaseService<BottleType> {
 
         constructor(http: HttpClient) {
                 super(http,

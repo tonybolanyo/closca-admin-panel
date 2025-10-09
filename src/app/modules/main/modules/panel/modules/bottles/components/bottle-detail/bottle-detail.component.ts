@@ -1,20 +1,18 @@
-import { Component, OnInit, ViewEncapsulation, ElementRef, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { FileUploader } from 'ng2-file-upload';
-import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
-import { BottleTypesService, BottleService } from 'src/app/shared/custom-gnommo-base/services';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { ToastrService } from 'ngx-toastr';
-import { Router, ActivatedRoute } from '@angular/router';
-import { DateAdapter } from '@angular/material/core';
-import { debounceTime } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 import { Location } from '@angular/common';
-import { environment } from 'src/environments/environment';
-import { AuthService } from '@tyris/angular-foundation-libs';
-import { S3_URL, BOTTLE_SIZES, BOTTLE_MATERIALS } from 'src/app/shared/constants/constants';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DateAdapter } from '@angular/material/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '@tyris/angular-foundation';
+import { ToastrService } from 'ngx-toastr';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { Observable } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+import { BOTTLE_MATERIALS, BOTTLE_SIZES, S3_URL } from 'src/app/shared/constants/constants';
+import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { BottleType } from 'src/app/shared/custom-gnommo-base/models/bottle-type.model';
+import { BottleService, BottleTypesService } from 'src/app/shared/custom-gnommo-base/services';
+import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 
 @Component({
   selector: 'app-bottle-detail',
@@ -60,10 +58,10 @@ export class BottleDetailComponent implements OnInit {
 
     switch (this.action) {
       case 'edit':
-        // this.buildForm(false);
-        // this.getBottleTypes();
-        // this.getBottleById(this.bottleId);
-        // break;
+      // this.buildForm(false);
+      // this.getBottleTypes();
+      // this.getBottleById(this.bottleId);
+      // break;
       case 'view':
         this.buildForm(true);
         this.getBottleTypes();
@@ -111,7 +109,7 @@ export class BottleDetailComponent implements OnInit {
 
   getBottleById(bottleId: string) {
     this.bottleService
-      .getById(bottleId, {"Accept-language": "es"})
+      .getById(bottleId, { "Accept-language": "es" })
       .subscribe(
         (bottle: any) => {
           this.bottle = bottle;
@@ -129,7 +127,7 @@ export class BottleDetailComponent implements OnInit {
 
   getBottleTypes() {
     this.bottleTypesService
-      .getAll({"Accept-language": "es"})
+      .getAll({ "Accept-language": "es" })
       .subscribe((response) => {
         this.ngxLoader.stop();
         this.bottleTypes = [];
@@ -171,7 +169,7 @@ export class BottleDetailComponent implements OnInit {
           return;
         }
       }
-      
+
       switch (this.action) {
         case 'edit':
           this.updateBottle(this.bottleId, values);

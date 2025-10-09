@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, Router, CanActivateChild } from '@angular/router';
-import { LoggedUserService } from '../services/logged-user.service';
+import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot } from '@angular/router';
+import { CookieStorage } from '@tyris/angular-foundation';
 import { ROUTE_ACLS } from '../constants/route-acls';
 import { ROUTER_DEFINITIONS } from '../constants/router-definitions';
-import { CookieStorage } from '@tyris/angular-foundation-libs';
+import { LoggedUserService } from '../services/logged-user.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {

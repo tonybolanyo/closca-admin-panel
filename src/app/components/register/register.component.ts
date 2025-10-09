@@ -1,14 +1,9 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
-import { Router } from '@angular/router';
-import { FileUploader, FileItem } from 'ng2-file-upload';
-import { environment } from 'src/environments/environment';
-import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
-import { AuthService } from '@tyris/angular-foundation-libs';
 import { UserService } from 'src/app/shared/custom-gnommo-base/services';
-import { User } from 'src/app/shared/custom-gnommo-base/models';
 
 
 
@@ -44,7 +39,7 @@ export class RegisterComponent implements OnInit {
                 (createdUser) => {
                     this.toastr.success('Registro realizado correctamente', 'Listo');
                     this.router.navigate([this.routerDefinitions.login]);
-                  },
+                },
                 error => {
                     this.toastr.error('Ha ocurrido un error en el registro, intentelo de nuevo', 'Error');
                 }

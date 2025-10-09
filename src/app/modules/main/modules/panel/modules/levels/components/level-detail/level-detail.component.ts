@@ -1,23 +1,22 @@
-import { Component, OnInit, ViewEncapsulation, ElementRef, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { FileUploader } from 'ng2-file-upload';
-import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
-import { LevelService } from 'src/app/shared/custom-gnommo-base/services';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { ToastrService } from 'ngx-toastr';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
-import { debounceTime } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
-import { Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { environment } from 'src/environments/environment';
-import { AuthService } from '@tyris/angular-foundation-libs';
-import { S3_URL, BOTTLE_SIZES, BOTTLE_MATERIALS } from 'src/app/shared/constants/constants';
+import { AuthService } from '@tyris/angular-foundation';
+import { FileUploader } from 'ng2-file-upload';
+import { ToastrService } from 'ngx-toastr';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { Observable } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
-import { Level } from 'src/app/shared/custom-gnommo-base/models/level.model';
+import { S3_URL } from 'src/app/shared/constants/constants';
+import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
+import { LevelService } from 'src/app/shared/custom-gnommo-base/services';
+import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-level-detail',
@@ -231,7 +230,7 @@ export class LevelDetailComponent implements OnInit {
       .subscribe(
         (response) => {
           this.ngxLoader.start();
-          
+
           this.level = values;
           this.levelUploadImage();
         },
