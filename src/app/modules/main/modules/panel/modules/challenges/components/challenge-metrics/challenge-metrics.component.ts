@@ -62,7 +62,7 @@ export class ChallengeMetricsComponent implements OnInit {
   finishDateTimestamp;
 
   rankingDisplayedColumns: string[] = ['position', 'userName', 'points'];
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
   role;
   corporateId;

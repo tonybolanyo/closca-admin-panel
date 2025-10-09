@@ -4,7 +4,7 @@ import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { FountainService } from 'src/app/shared/custom-gnommo-base/services/fountain.service';
 import { ToastrService } from 'ngx-toastr';
 import { PUBLIC_OR_PRIVATE_FOUNTAIN_TYPES, FOUNTAIN_STATUSES, STATION_TYPES } from 'src/app/shared/constants/constants';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { CorporateService, BrandService } from 'src/app/shared/custom-gnommo-base/services';
 import { Corporate } from 'src/app/shared/custom-gnommo-base/models/corporate.model';

@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { BrandService } from 'src/app/shared/custom-gnommo-base/services/brands.service';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 import { AuthService } from '@tyris/angular-foundation-libs';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
@@ -37,7 +37,7 @@ export class BrandDetailComponent implements OnInit {
   // IMAGE
   brandImageId: string;
   isBrandImageDeleted = false;
-  @ViewChild('brandImageUploaderInput') brandImageUploaderInput: ElementRef;
+  @ViewChild('brandImageUploaderInput', { static: false }) brandImageUploaderInput: ElementRef;
 
   // LOCAL IMAGE
   isBrandLocalImageChanged = false;
@@ -46,7 +46,7 @@ export class BrandDetailComponent implements OnInit {
   // BACKGROUND IMAGE
   brandBackgroundImageId: string;
   isBrandBackgroundImageDeleted = false;
-  @ViewChild('brandBackgroundImageUploaderInput') brandBackgroundImageUploaderInput: ElementRef;
+  @ViewChild('brandBackgroundImageUploaderInput', { static: false }) brandBackgroundImageUploaderInput: ElementRef;
 
   // LOCAL BACKGROUND IMAGE
   isBrandLocalBackgroundImageChanged = false;

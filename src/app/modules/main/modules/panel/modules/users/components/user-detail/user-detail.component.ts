@@ -4,7 +4,8 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { FileUploader } from 'ng2-file-upload';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { ToastrService } from 'ngx-toastr';
-import { MatDialog, DateAdapter } from '@angular/material';
+import { DateAdapter } from '@angular/material/core';
+import { MatDialog } from '@angular/material/dialog';
 import { NgOption } from '@ng-select/ng-select';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
 import { debounceTime } from 'rxjs/operators';
@@ -330,7 +331,7 @@ export class UserDetailComponent implements OnInit {
   isFormSaved = false;
   isFormCanceled = false;
 
-  @ViewChild('imageUserUploaderInput') imageUserUploaderInput: ElementRef;
+  @ViewChild('imageUserUploaderInput', { static: false }) imageUserUploaderInput: ElementRef;
 
   // IMAGE
   avatarId: string;

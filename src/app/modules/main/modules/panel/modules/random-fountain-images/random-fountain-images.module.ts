@@ -4,7 +4,7 @@ import { RandomFountainImagesComponent } from './containers/random-fountain-imag
 import { RandomFountainImagesRoutingModule } from './random-fountain-images-routing.module';
 import { FileUploadModule } from 'ng2-file-upload';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { MatDialogModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   imports: [

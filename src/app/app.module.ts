@@ -26,14 +26,17 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
 // --> Angular modal gallery
 import 'hammerjs';
 import 'mousetrap';
-import { ModalGalleryModule } from '@ks89/angular-modal-gallery';
+import { GalleryModule } from '@ks89/angular-modal-gallery';
 // --> Angular Material
-import {
-  MatButtonModule, MatCardModule,
-  MatFormFieldModule,
-  MatInputModule, MatBottomSheetModule, MatCheckboxModule,
-  MatExpansionModule, MatOptionModule, MatSelectModule
-} from '@angular/material';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatOptionModule } from '@angular/material/core';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 import { FileUploadModule } from 'ng2-file-upload';
 
@@ -56,7 +59,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     BrowserAnimationsModule,
     // AngularFoundationModule.forRoot({}), // Angular 6 compatibility still being worked on
     CustomGnommoBaseModule,
-    NgbModule.forRoot(),
+    NgbModule,
     MatButtonModule,
     MatCardModule,
     MatBottomSheetModule,
@@ -81,7 +84,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
         preventDuplicates: true,
       }
     ),
-    ModalGalleryModule.forRoot(),
+    GalleryModule.forRoot(),
     SharedModule,
     AppRoutingModule,
     AngularEditorModule,

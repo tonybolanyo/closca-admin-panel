@@ -5,19 +5,16 @@ import { ProductsListComponent } from './components/products-list/products-list.
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { ProductsRoutingModule } from './products-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { 
-  MatTableModule,
-  MatPaginatorModule,
-  MatSelectModule,
-  MatOptionModule,
-  MatCheckboxModule,
-  DateAdapter,
-  MAT_DATE_FORMATS,
-  MatIconModule,
-  MatButtonToggleModule,
-  MatFormFieldModule,
-  MatInputModule, 
-  MatButtonModule} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatOptionModule, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { MyDateAdapter } from 'src/app/shared/services/datepicker-angular-material.service';

@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { CanDeactivateDialogService } from './can-deactivate-dialog.service';
 import { of } from 'rxjs';
 

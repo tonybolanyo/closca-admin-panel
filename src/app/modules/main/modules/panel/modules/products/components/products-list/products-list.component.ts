@@ -6,7 +6,7 @@ import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ProductService, CorporateService } from 'src/app/shared/custom-gnommo-base/services';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { ChangeProductStatusComponent } from 'src/app/shared/components/change-product-status/change-product-status.component';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
 import { Corporate } from 'src/app/shared/custom-gnommo-base/models/corporate.model';

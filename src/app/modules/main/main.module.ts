@@ -12,20 +12,16 @@ import { FooterComponent } from './components/footer/footer.component';
 
 // --> External libraries
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {
-    MatTableModule,
-    MatPaginatorModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatButtonToggleModule,
-    MatIconModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatSelectModule,
-    DateAdapter,
-    MAT_DATE_FORMATS,
-    MatCardModule
-} from '@angular/material';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatNativeDateModule, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 import { MyDateAdapter } from '../../shared/services/datepicker-angular-material.service';
 import { AuthGuard } from '../../shared/guards/auth.guard';
 import { APP_DATE_FORMATS } from '../../shared/constants/date-formats';

@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { MultiLanguageObject } from '../../custom-gnommo-base/models';
 import { ToastrService } from 'ngx-toastr';

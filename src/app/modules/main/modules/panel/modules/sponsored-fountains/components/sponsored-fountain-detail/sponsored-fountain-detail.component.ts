@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FountainService } from 'src/app/shared/custom-gnommo-base/services/fountain.service';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 import { AuthService } from '@tyris/angular-foundation-libs';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Observable } from 'rxjs';
@@ -60,8 +60,8 @@ export class SponsoredFountainDetailComponent implements OnInit {
   isFountainImageDeleted = false;
   isFountainLocalImageChanged = false;
 
-  @ViewChild('mapPinImageUploaderInput') mapPinImageUploaderInput: ElementRef;
-  @ViewChild('fountainImageUploaderInput') fountainImageUploaderInput: ElementRef;
+  @ViewChild('mapPinImageUploaderInput', { static: false }) mapPinImageUploaderInput: ElementRef;
+  @ViewChild('fountainImageUploaderInput', { static: false }) fountainImageUploaderInput: ElementRef;
   // END IMAGES
 
   // ROUTER DEFINITION

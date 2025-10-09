@@ -24,7 +24,7 @@ import {
 } from 'src/app/shared/custom-gnommo-base/services';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 import { AuthService } from '@tyris/angular-foundation-libs';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Location } from '@angular/common';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
@@ -86,10 +86,10 @@ export class ProductDetailComponent implements OnInit {
   isProductImageDeleted = false;
   isDescriptionImageDeleted = false;
 
-  @ViewChild('productImageUploaderInput') imageProductUploaderInput: ElementRef;
-  @ViewChild('descriptionImageUploaderInput')
+  @ViewChild('productImageUploaderInput', { static: false }) imageProductUploaderInput: ElementRef;
+  @ViewChild('descriptionImageUploaderInput', { static: false })
   descriptionImageUploaderInput: ElementRef;
-  @ViewChild('codeUploaderInput') codeUploaderInput: ElementRef;
+  @ViewChild('codeUploaderInput', { static: false }) codeUploaderInput: ElementRef;
 
   // LOCAL IMAGES
   isProductLocalImageChanged = false;

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatBottomSheet } from '@angular/material';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { CookiesComponent } from './shared/components/cookies/cookies.component';
 import { LoggedUserService } from './shared/services/logged-user.service';
 

@@ -1,24 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // --> External libs
-import {
-    MatFormFieldModule,
-    MatInputModule,
-    MatTableModule,
-    MatCardModule,
-    MatDatepickerModule,
-    MatIconModule,
-    MatPaginatorModule,
-    MatDialogModule,
-    MatSelectModule,
-    MatButtonToggleModule,
-    MatOptionModule,
-    DateAdapter,
-    MAT_DATE_FORMATS,
-    MatCheckboxModule
-} from '@angular/material';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatOptionModule, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { ModalGalleryModule } from '@ks89/angular-modal-gallery';
+import { GalleryModule } from '@ks89/angular-modal-gallery';
 import { FileUploadModule } from 'ng2-file-upload';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -55,7 +51,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
         MatButtonToggleModule,
         MatOptionModule,
         SharedModule,
-        ModalGalleryModule,
+        GalleryModule,
         FileUploadModule,
         ReactiveFormsModule,
         NgSelectModule,
