@@ -5,6 +5,9 @@ module.exports = {
     '<rootDir>/src/**/__tests__/**/*.{js,ts}',
     '<rootDir>/src/**/?(*.)(spec|test).{js,ts}'
   ],
+  moduleNameMapper: {
+    '@tyris/angular-foundation-libs': '<rootDir>/src/__mocks__/@tyris/angular-foundation-libs.ts'
+  },
   collectCoverageFrom: [
     'src/**/*.{ts,js}',
     '!src/**/*.d.ts',

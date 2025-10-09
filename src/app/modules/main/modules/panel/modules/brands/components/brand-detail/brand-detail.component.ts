@@ -5,7 +5,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@tyris/angular-foundation-libs';
 import { FileUploader } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Observable } from 'rxjs';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
 import { S3_URL } from 'src/app/shared/constants/constants';
