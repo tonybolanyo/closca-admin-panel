@@ -6,7 +6,8 @@ module.exports = {
     '<rootDir>/src/**/?(*.)(spec|test).{js,ts}'
   ],
   moduleNameMapper: {
-    '@tyris/angular-foundation': '<rootDir>/src/__mocks__/@tyris/angular-foundation.ts'
+    '@tyris/angular-foundation': '<rootDir>/src/__mocks__/@tyris/angular-foundation.ts',
+    '\\.(css|less|scss|sass)$': '<rootDir>/src/__mocks__/styleMock.js'
   },
   collectCoverageFrom: [
     'src/**/*.{ts,js}',
@@ -31,7 +32,7 @@ module.exports = {
   globals: {
     'ts-jest': {
       tsConfig: '<rootDir>/src/tsconfig.spec.json',
-      stringifyContentPathRegex: '\\.html$',
+      stringifyContentPathRegex: '\\.(html|svg)$',
       allowJs: true
     }
   }

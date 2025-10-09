@@ -7,6 +7,7 @@ export class CookieStorage {
 export class AuthService {
   getToken = jest.fn().mockReturnValue({ id: 'mock-token' });
   removeToken = jest.fn();
+  expiresTime = jest.fn();
 }
 
 export class BaseService<T> {
@@ -26,6 +27,18 @@ export class BaseService<T> {
   update = jest.fn();
   delete = jest.fn();
   createHttpHeaders = jest.fn();
+}
+
+export class LoginBaseService<T> extends BaseService<T> {
+  constructor(http: any, url: string, endpoint: string) {
+    super(http, url, endpoint);
+  }
+  
+  getCurrentUser = jest.fn();
+  register = jest.fn();
+  passwordRecovery = jest.fn();
+  resetPassword = jest.fn();
+  login = jest.fn();
 }
 
 export class BaseModel {

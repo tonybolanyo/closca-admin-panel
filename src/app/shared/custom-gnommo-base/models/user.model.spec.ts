@@ -9,7 +9,7 @@ describe('User Model', () => {
 
   it('should create an instance', () => {
     expect(user).toBeTruthy();
-    expect(user).toBeInstanceOf(User);
+    expect(user instanceof User).toBe(true);
   });
 
   it('should have optional properties defined', () => {
