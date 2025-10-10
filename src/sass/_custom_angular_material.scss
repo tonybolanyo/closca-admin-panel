@@ -1,11 +1,12 @@
 @use '@angular/material' as mat;
-$custom-typography: mat.define-typography-config(
-    $font-family: 'customFont-regular, customFont-light',
-    $headline: mat.define-typography-level(32px, 48px, 700),
-    $body-1: mat.define-typography-level(16px, 24px, 500)
-  );
-  @include mat.typography-hierarchy($custom-typography);
-  @include mat.all-component-typographies($custom-typography);
+// TODO: Update typography to Angular Material 20 API
+// $custom-typography: mat.define-typography-config(
+//     $font-family: 'customFont-regular, customFont-light',
+//     $headline: mat.define-typography-level(32px, 48px, 700),
+//     $body-1: mat.define-typography-level(16px, 24px, 500)
+//   );
+//   @include mat.typography-hierarchy($custom-typography);
+//   @include mat.all-component-typographies($custom-typography);
   
    .mat-form-field{
     font-family: 'customFont-light' !important;
@@ -43,10 +44,13 @@ $custom-typography: mat.define-typography-config(
   // Start Custom theme angular material
   // https://material.io/design/color
   @include mat.core();
-  $custom-app-primary: mat.define-palette(mat.$indigo-palette, 600);
-  $custom-app-accent:  mat.define-palette(mat.$indigo-palette, 700, 500, A400);
-  $custom-app-warn:    mat.define-palette(mat.$red-palette);
-  $custom-app-theme: mat.define-light-theme($custom-app-primary, $custom-app-accent, $custom-app-warn);
+  $custom-app-theme: mat.define-theme((
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+      tertiary: mat.$violet-palette
+    )
+  ));
   @include mat.all-component-themes($custom-app-theme);
   // End Custom theme angular material
   

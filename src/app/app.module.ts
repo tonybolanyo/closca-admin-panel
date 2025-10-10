@@ -37,6 +37,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { FileUploadModule } from 'ng2-file-upload';
 
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
 
 // ng-gnommo-base - Angular 6 compatibility still being worked on
 import { AngularFoundationModule } from '@tyris/angular-foundation';
@@ -81,7 +82,8 @@ import { CanDeactivateGuard } from './shared/guards/can-deactivate.guard';
     SharedModule,
     AppRoutingModule,
     AngularEditorModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    NgxUiLoaderModule
   ],
   declarations: [
     AppComponent,

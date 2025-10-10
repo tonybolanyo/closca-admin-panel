@@ -20,15 +20,15 @@ $theme-colors: (
   );
   @font-face {
     font-family: 'customFont-regular';
-    src: url('./assets/fonts/MarkPro/MarkPro.otf');
+    src: url('/assets/fonts/MarkPro/MarkPro.otf');
   }
   @font-face {
     font-family: 'customFont-light';
-    src: url('./assets/fonts/MarkPro/MarkPro-ExtraLight.otf');
+    src: url('/assets/fonts/MarkPro/MarkPro-ExtraLight.otf');
   }
   @font-face {
     font-family: 'customFont-bold';
-    src: url('./assets/fonts/MarkPro/MarkPro-Bold.otf');
+    src: url('/assets/fonts/MarkPro/MarkPro-Bold.otf');
   }
 
 $font-family-sans-serif: 'customFont-regular';

@@ -14,6 +14,7 @@ module.exports = {
     '@tyris/angular-foundation': '<rootDir>/src/__mocks__/@tyris/angular-foundation.ts',
     '@ks89/angular-modal-gallery': '<rootDir>/src/__mocks__/angular-modal-gallery.ts',
     'ng-apexcharts': '<rootDir>/src/__mocks__/ng-apexcharts.js',
+    'ngx-ui-loader': '<rootDir>/src/__mocks__/ngx-ui-loader.ts',
     '\\.(css|less|scss|sass)$': '<rootDir>/src/__mocks__/styleMock.js'
   },
   collectCoverageFrom: [
@@ -34,6 +35,6 @@ module.exports = {
   ],
   coverageDirectory: 'coverage',
   transformIgnorePatterns: [
-    'node_modules/(?!(@angular|@ngrx|ngx-bootstrap|ng-dynamic|ngx-toastr|@ng-bootstrap|@ng-select|@kolkov|rxjs|ng2-file-upload)/)'
+    'node_modules/(?!(@angular|@ngrx|ngx-bootstrap|ng-dynamic|ngx-toastr|@ng-bootstrap|@ng-select|@kolkov|rxjs|ng2-file-upload|ngx-ui-loader)/)'
   ]
 };

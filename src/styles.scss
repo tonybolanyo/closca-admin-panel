@@ -6,12 +6,10 @@
     flex-basis: auto;
   }
 }
-@import "~bootstrap/scss/bootstrap";
+@import "bootstrap/scss/bootstrap";
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 
-@import "~ngx-toastr/toastr.css";
-@import "~ngx-toastr/toastr-bs4-alert";
-@import "~@ng-select/ng-select/themes/material.theme.css";
+@import "@ng-select/ng-select/themes/material.theme.css";
 
 .main-container {
   text-align: center;

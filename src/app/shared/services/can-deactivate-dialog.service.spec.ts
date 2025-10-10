@@ -20,7 +20,7 @@ describe('CanDeactivateDialogService', () => {
       ]
     });
 
-    service = TestBed.get(CanDeactivateDialogService);
+    service = TestBed.inject(CanDeactivateDialogService);
   });
 
   it('should be created', () => {
