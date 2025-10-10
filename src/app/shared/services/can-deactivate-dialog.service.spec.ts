@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
 import { CanDeactivateDialogService } from './can-deactivate-dialog.service';
+import { DialogConfirmationComponent } from '../components/dialog-confirmation/dialog-confirmation.component';
 import { of } from 'rxjs';
 
 describe('CanDeactivateDialogService', () => {
@@ -37,7 +38,7 @@ describe('CanDeactivateDialogService', () => {
 
     result$.subscribe(result => {
       expect(mockDialog.open).toHaveBeenCalledWith(
-        expect.any(Function), // DialogConfirmationComponent
+        DialogConfirmationComponent,
         {
           data: {
             message: 'Hay cambios sin guardar, ¿Desea salir sin guardar los cambios de la página?'

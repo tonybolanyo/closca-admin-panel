@@ -94,6 +94,11 @@ describe('HeaderComponent', () => {
       component = new HeaderComponent(mockRenderer2, mockRouter, mockCorporateService, mockLoggedUserService);
       component.isNavbarCollapsed = false;
       
+      // Mock the overlay ViewChild
+      component.overlay = {
+        nativeElement: document.createElement('div')
+      } as any;
+      
       component.menuItemChangeCollapseState('/some-route');
       
       expect(component.isNavbarCollapsed).toBe(true);
@@ -104,6 +109,12 @@ describe('HeaderComponent', () => {
     it('should toggle isNavbarCollapsed state', () => {
       mockLoggedUserService.getRole.mockReturnValue('ADMIN');
       component = new HeaderComponent(mockRenderer2, mockRouter, mockCorporateService, mockLoggedUserService);
+      
+      // Mock the overlay ViewChild
+      component.overlay = {
+        nativeElement: document.createElement('div')
+      } as any;
+      
       const initialState = component.isNavbarCollapsed;
       
       component.changeCollapseState();
@@ -128,11 +139,15 @@ describe('HeaderComponent', () => {
     it('should update innerWidth on window resize', () => {
       mockLoggedUserService.getRole.mockReturnValue('ADMIN');
       component = new HeaderComponent(mockRenderer2, mockRouter, mockCorporateService, mockLoggedUserService);
-      const mockEvent = { target: { innerWidth: 1200 } };
       
-      // Simulate window resize
-      (global as any).window = { innerWidth: 1200 };
-      component.onResize(mockEvent);
+      // Mock window.innerWidth
+      Object.defineProperty(window, 'innerWidth', {
+        writable: true,
+        configurable: true,
+        value: 1200
+      });
+      
+      component.onResize({});
       
       expect(component.innerWidth).toBe(1200);
     });

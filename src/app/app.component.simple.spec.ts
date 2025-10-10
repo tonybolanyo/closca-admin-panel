@@ -1,4 +1,5 @@
 import { AppComponent } from './app.component';
+import { CookiesComponent } from './shared/components/cookies/cookies.component';
 import { of } from 'rxjs';
 
 describe('AppComponent (Unit Tests)', () => {
@@ -36,7 +37,7 @@ describe('AppComponent (Unit Tests)', () => {
     component.checkAllowCookies();
 
     expect(mockBottomSheet.open).toHaveBeenCalledWith(
-      expect.any(Function), // CookiesComponent
+      CookiesComponent,
       { disableClose: true }
     );
   });

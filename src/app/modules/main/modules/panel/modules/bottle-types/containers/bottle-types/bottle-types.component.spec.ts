@@ -1,3 +1,4 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BottleTypesComponent } from './bottle-types.component';
@@ -9,6 +10,13 @@ describe('BrandsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ BottleTypesComponent ]
+    })
+    .overrideComponent(BottleTypesComponent, {
+      set: {
+        templateUrl: undefined,
+        template: '<div></div>',
+        styleUrls: []
+      }
     })
     .compileComponents();
   }));

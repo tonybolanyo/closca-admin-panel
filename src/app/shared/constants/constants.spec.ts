@@ -21,8 +21,8 @@ describe('Constants', () => {
 
   it('should have correct structure for fountain types', () => {
     PUBLIC_OR_PRIVATE_FOUNTAIN_TYPES.forEach(type => {
-      expect(type).toHaveProperty('name');
-      expect(type).toHaveProperty('value');
+      expect(type.name).toBeDefined();
+      expect(type.value).toBeDefined();
       expect(typeof type.name).toBe('string');
       expect(typeof type.value).toBe('string');
     });

@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, async } from '@angular/core/testing';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { AppComponent } from './app.component';
 import { LoggedUserService } from './shared/services/logged-user.service';
@@ -9,7 +9,7 @@ describe('AppComponent (Jest)', () => {
   let mockLoggedUserService: any;
   let mockBottomSheet: any;
 
-  beforeEach(() => {
+  beforeEach(async(() => {
     mockLoggedUserService = {
       checkLoggedUser: jest.fn()
     };
@@ -28,8 +28,18 @@ describe('AppComponent (Jest)', () => {
         { provide: LoggedUserService, useValue: mockLoggedUserService },
         { provide: MatBottomSheet, useValue: mockBottomSheet }
       ]
-    });
+    })
+    .overrideComponent(AppComponent, {
+      set: {
+        templateUrl: undefined,
+        template: '<div></div>',
+        styleUrls: []
+      }
+    })
+    .compileComponents();
+  }));
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
   });

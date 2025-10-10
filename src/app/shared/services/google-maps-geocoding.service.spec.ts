@@ -17,6 +17,6 @@ describe('GoogleMapsGeocodingService', () => {
 
   it('should have empty implementation as service is commented out', () => {
     // Since the service methods are commented out, we just verify the service can be instantiated
-    expect(service).toBeInstanceOf(GoogleMapsGeocodingService);
+    expect(service instanceof GoogleMapsGeocodingService).toBe(true);
   });
 });

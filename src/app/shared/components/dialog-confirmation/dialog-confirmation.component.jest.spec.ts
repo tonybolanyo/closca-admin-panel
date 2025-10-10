@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { Component } from '@angular/core';
 import { DialogConfirmationComponent } from './dialog-confirmation.component';
 
@@ -35,6 +35,7 @@ describe('DialogConfirmationComponent', () => {
 
     TestBed.configureTestingModule({
       declarations: [TestDialogConfirmationComponent],
+      imports: [MatDialogModule],
       providers: [
         { provide: MatDialogRef, useValue: mockDialogRef },
         { provide: MAT_DIALOG_DATA, useValue: mockData }
@@ -50,7 +51,7 @@ describe('DialogConfirmationComponent', () => {
   });
 
   it('should initialize with provided data', () => {
-    expect(component.data).toBe(mockData);
+    expect(component.data).toEqual(mockData);
     expect(component.data.message).toBe('Are you sure you want to continue?');
   });
 

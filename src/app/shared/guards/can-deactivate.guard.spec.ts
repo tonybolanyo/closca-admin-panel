@@ -49,7 +49,7 @@ describe('CanDeactivateGuard', () => {
     
     const result = guard.canDeactivate(component);
     
-    expect(result).toBeInstanceOf(Object); // Observable
+    expect(typeof result).toBe('object'); // Observable
   });
 
   it('should handle Promise return from canDeactivate', () => {
@@ -59,6 +59,6 @@ describe('CanDeactivateGuard', () => {
     
     const result = guard.canDeactivate(component);
     
-    expect(result).toBeInstanceOf(Promise);
+    expect(result instanceof Promise).toBe(true);
   });
 });
