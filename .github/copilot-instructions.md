@@ -25,7 +25,13 @@ This is an Angular 10 admin panel for managing Closca water bottle fountains and
 ## Build and Development Commands
 
 ```bash
-# Install dependencies (requires Verdaccio login first)
+# Install dependencies
+# Note: A packed version of @tyris/angular-foundation is included in libs/tyris-angular-foundation-1.0.0.tgz
+# You can install it directly without Verdaccio registry access:
+npm install ./libs/tyris-angular-foundation-1.0.0.tgz
+npm install
+
+# Alternative: If you have Verdaccio access
 npm login --registry=https://verdaccio.tyris-software.com --scope=@tyris
 npm install
 
@@ -155,9 +161,15 @@ ng generate guard guard-name
 
 The project uses `@tyris/angular-foundation` library which is:
 - Hosted on a private Verdaccio registry
-- Locally referenced via `file:./libs/angular-foundation`
-- Requires login before `npm install`
+- A packed version is included in the repository at `libs/tyris-angular-foundation-1.0.0.tgz`
+- Can be installed directly from the packed file without Verdaccio access: `npm install ./libs/tyris-angular-foundation-1.0.0.tgz`
+- Locally referenced via `file:./libs/angular-foundation` in package.json
 - Has mock implementations in `src/__mocks__/@tyris/angular-foundation.ts` for testing
+
+**Installation Options:**
+1. **Using the packed version (recommended)**: `npm install ./libs/tyris-angular-foundation-1.0.0.tgz && npm install`
+2. **Using Verdaccio registry**: Login first with `npm login --registry=https://verdaccio.tyris-software.com --scope=@tyris`, then run `npm install`
+3. **Using local source**: Clone the library into `libs/angular-foundation/` and reference it as `file:./libs/angular-foundation`
 
 ### Node.js Compatibility
 
