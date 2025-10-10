@@ -6,16 +6,20 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { DialogConfirmationComponent } from '../dialog-confirmation/dialog-confirmation.component';
 import { ProductService } from '../../custom-gnommo-base/services';
 import { ToastrService } from 'ngx-toastr';
+import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dialog-reward-codes',
   templateUrl: './dialog-reward-codes.component.html',
   styleUrls: ['./dialog-reward-codes.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: true,
+  imports: [CommonModule, MatDialogModule, MatButtonModule]
 })
 export class DialogRewardCodesComponent implements OnInit {
 

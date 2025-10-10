@@ -1,11 +1,14 @@
 import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
 import { DialogConfirmationComponent } from '../dialog-confirmation/dialog-confirmation.component';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
     selector: 'app-dialog-info',
     styleUrls: ['./dialog-info.component.scss'],
     encapsulation: ViewEncapsulation.None,
+    standalone: true,
+    imports: [MatDialogModule, MatButtonModule],
     template: `
     <mat-dialog-content>
     <div class="content">

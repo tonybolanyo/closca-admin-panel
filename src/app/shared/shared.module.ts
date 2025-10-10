@@ -17,8 +17,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { DialogInfoComponent } from './components/dialog-info/dialog-info.component';
 import { SafePipe } from './pipes/safe.pipe';
-import { ReactiveFormsModule, FormsModule } from '../../../node_modules/@angular/forms';
-import { CommonModule } from '../../../node_modules/@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { CookiesComponent } from './components/cookies/cookies.component';
 import { CustomGalleryComponent } from './components/custom-gallery/custom-gallery.component';
 import { FileUploadModule } from 'ng2-file-upload';
@@ -57,20 +57,8 @@ import { ChallengeCsvResponseDialogComponent } from './components/challenge-csv-
         FileUploadModule,
         NgbRatingModule,
         FormsModule,
-        ReactiveFormsModule
-    ],
-    exports: [
-        DialogConfirmationComponent,
-        ChallengeCsvResponseDialogComponent,
-        TransformSponsoredFountainToPrivateComponent,
-        ChangeFountainStatusComponent,
-        DialogInfoComponent,
-        DialogRewardCodesComponent,
-        SafePipe,
-        CustomGalleryComponent,
-        CustomTableComponent
-    ],
-    declarations: [
+        ReactiveFormsModule,
+        // Import standalone components
         DialogConfirmationComponent,
         ChallengeCsvResponseDialogComponent,
         DialogInfoComponent,
@@ -82,6 +70,17 @@ import { ChallengeCsvResponseDialogComponent } from './components/challenge-csv-
         ChangeFountainStatusComponent,
         ChangeProductStatusComponent,
         DialogRewardCodesComponent
+    ],
+    exports: [
+        DialogConfirmationComponent,
+        ChallengeCsvResponseDialogComponent,
+        TransformSponsoredFountainToPrivateComponent,
+        ChangeFountainStatusComponent,
+        DialogInfoComponent,
+        DialogRewardCodesComponent,
+        SafePipe,
+        CustomGalleryComponent,
+        CustomTableComponent
     ],
     providers: [
         CanDeactivateDialogService
