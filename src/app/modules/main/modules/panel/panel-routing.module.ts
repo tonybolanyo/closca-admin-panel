@@ -19,87 +19,87 @@ const routes: Routes = [
       },
       {
         path: 'users',
-        loadChildren: './modules/users/users.module#UsersModule',
+        loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule),
         canActivate: [AuthGuard]
       },
       {
         path: 'users-impact',
-        loadChildren: './modules/users-impact/users-impact.module#UsersModule',
+        loadChildren: () => import('./modules/users-impact/users-impact.module').then(m => m.UsersModule),
         canActivate: [AuthGuard]
       },
       {
         path: 'levels',
-        loadChildren: './modules/levels/levels.module#LevelsModule',
+        loadChildren: () => import('./modules/levels/levels.module').then(m => m.LevelsModule),
         canActivate: [AuthGuard]
       },
       {
         path: 'corporates',
-        loadChildren: './modules/corporates/corporates.module#CorporatesModule',
+        loadChildren: () => import('./modules/corporates/corporates.module').then(m => m.CorporatesModule),
         canActivate: [AuthGuard]
       },
       {
         path: 'fountains-impact',
-        loadChildren: './modules/fountains-impact/fountains-impact.module#FountainsImpactModule',
+        loadChildren: () => import('./modules/fountains-impact/fountains-impact.module').then(m => m.FountainsImpactModule),
         canActivate: [AuthGuard]
       },
       {
         path: 'public-or-private-fountains',
-        loadChildren: './modules/public-or-private-fountains/public-or-private-fountains.module#PublicOrPrivateFountainsModule',
+        loadChildren: () => import('./modules/public-or-private-fountains/public-or-private-fountains.module').then(m => m.PublicOrPrivateFountainsModule),
         canActivate: [AuthGuard]
       },
       {
         path: 'sponsored-fountains',
-        loadChildren: './modules/sponsored-fountains/sponsored-fountains.module#SponsoredFountainsModule',
+        loadChildren: () => import('./modules/sponsored-fountains/sponsored-fountains.module').then(m => m.SponsoredFountainsModule),
         canActivate: [AuthGuard]
       },
       {
         path: 'bottles',
-        loadChildren: './modules/bottles/bottles.module#BottlesModule',
+        loadChildren: () => import('./modules/bottles/bottles.module').then(m => m.BottlesModule),
         canActivate: [AuthGuard]
       },
       {
         path: 'bottle-types',
-        loadChildren: './modules/bottle-types/bottle-types.module#BottleTypesModule',
+        loadChildren: () => import('./modules/bottle-types/bottle-types.module').then(m => m.BottleTypesModule),
         canActivate: [AuthGuard]
       },
       {
         path: 'brands',
-        loadChildren: './modules/brands/brands.module#BrandsModule',
+        loadChildren: () => import('./modules/brands/brands.module').then(m => m.BrandsModule),
         canActivate: [AuthGuard]
       },
       {
         path: 'reports',
-        loadChildren: './modules/reports/reports.module#ReportsModule',
+        loadChildren: () => import('./modules/reports/reports.module').then(m => m.ReportsModule),
         canActivate: [AuthGuard]
       },
       {
         path: 'challenges',
-        loadChildren: './modules/challenges/challenges.module#ChallengesModule',
+        loadChildren: () => import('./modules/challenges/challenges.module').then(m => m.ChallengesModule),
         canActivate: [AuthGuard]
       },
       {
         path: 'products',
-        loadChildren: './modules/products/products.module#ProductsModule',
+        loadChildren: () => import('./modules/products/products.module').then(m => m.ProductsModule),
         canActivate: [AuthGuard]
       },
       {
         path: 'product-types',
-        loadChildren: './modules/product-types/product-types.module#ProductTypesModule',
+        loadChildren: () => import('./modules/product-types/product-types.module').then(m => m.ProductTypesModule),
         canActivate: [AuthGuard]
       },
       {
         path: 'wizard',
-        loadChildren: './modules/wizard/wizard.module#WizardModule',
+        loadChildren: () => import('./modules/wizard/wizard.module').then(m => m.WizardModule),
         canActivate: [AuthGuard]
       },
       {
         path: 'user-rate',
-        loadChildren: './modules/user-rate/user-rate.module#UserRateModule',
+        loadChildren: () => import('./modules/user-rate/user-rate.module').then(m => m.UserRateModule),
         canActivate: [AuthGuard]
       },
       {
         path: 'random-fountain-images',
-        loadChildren: './modules/random-fountain-images/random-fountain-images.module#RandomFountainImagesModule',
+        loadChildren: () => import('./modules/random-fountain-images/random-fountain-images.module').then(m => m.RandomFountainImagesModule),
         canActivate: [AuthGuard]
       }
     ]

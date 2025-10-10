@@ -84,10 +84,10 @@ export class ProductDetailComponent implements OnInit {
   isProductImageDeleted = false;
   isDescriptionImageDeleted = false;
 
-  @ViewChild('productImageUploaderInput', { static: false }) imageProductUploaderInput: ElementRef;
-  @ViewChild('descriptionImageUploaderInput', { static: false })
+  @ViewChild('productImageUploaderInput') imageProductUploaderInput: ElementRef;
+  @ViewChild('descriptionImageUploaderInput')
   descriptionImageUploaderInput: ElementRef;
-  @ViewChild('codeUploaderInput', { static: false }) codeUploaderInput: ElementRef;
+  @ViewChild('codeUploaderInput') codeUploaderInput: ElementRef;
 
   // LOCAL IMAGES
   isProductLocalImageChanged = false;

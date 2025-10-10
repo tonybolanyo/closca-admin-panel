@@ -25,7 +25,7 @@ export class RandomFountainImagesComponent implements OnInit {
   // Uploader
   public uploader: FileUploader = new FileUploader({ url: '', allowedMimeType: ['image/png', 'image/jpg', 'image/jpeg'] });
 
-  @ViewChild('uploaderInput', { static: false }) uploaderInput: ElementRef;
+  @ViewChild('uploaderInput') uploaderInput: ElementRef;
 
   imageToShow;
 

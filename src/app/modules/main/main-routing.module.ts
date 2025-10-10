@@ -18,7 +18,7 @@ const routes: Routes = [
         },
         {
         path: 'panel',
-        loadChildren: './modules/panel/panel.module#PanelModule',
+        loadChildren: () => import('./modules/panel/panel.module').then(m => m.PanelModule),
         canActivate: [AuthGuard]
         },
         {
