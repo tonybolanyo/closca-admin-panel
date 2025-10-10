@@ -21,8 +21,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FileUploadModule } from 'ng2-file-upload';
 import { MyDateAdapter } from 'src/app/shared/services/datepicker-angular-material.service';
 import { APP_DATE_FORMATS } from 'src/app/shared/constants/date-formats';
-import { AgmCoreModule } from '@agm/core';
-import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+// import { AgmCoreModule } from '@agm/core';
+// import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 @NgModule({
   imports: [
@@ -42,8 +42,8 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
     ReactiveFormsModule,
     FileUploadModule,
     ReportsRoutingModule,
-    AgmCoreModule,
-    GooglePlaceModule,
+    // AgmCoreModule, // Not compatible with Angular 20
+    // GooglePlaceModule, // Not compatible with Angular 20
     FormsModule
   ],
   declarations: [

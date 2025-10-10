@@ -17,7 +17,7 @@ describe('BrandDetailComponent', () => {
   let component: BrandDetailComponent;
   let fixture: ComponentFixture<BrandDetailComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     const mockBrandService = {
       getById: jest.fn().mockReturnValue(of({ data: {} })),
       create: jest.fn().mockReturnValue(of({ data: {} })),

@@ -34,6 +34,6 @@ module.exports = {
   ],
   coverageDirectory: 'coverage',
   transformIgnorePatterns: [
-    'node_modules/(?!(@angular|@ngrx|ngx-bootstrap|ng-dynamic|ngx-toastr|@ng-bootstrap|@ng-select|@kolkov|rxjs)/)'
+    'node_modules/(?!(@angular|@ngrx|ngx-bootstrap|ng-dynamic|ngx-toastr|@ng-bootstrap|@ng-select|@kolkov|rxjs|ng2-file-upload)/)'
   ]
 };

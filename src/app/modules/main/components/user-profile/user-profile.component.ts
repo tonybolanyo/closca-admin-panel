@@ -14,6 +14,7 @@ import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactiva
 import { Observable } from 'rxjs';
 
 @Component({
+  standalone: false,
   selector: 'app-user-profile',
   templateUrl: 'user-profile.component.html',
   styleUrls: ['./user-profile.component.scss'],

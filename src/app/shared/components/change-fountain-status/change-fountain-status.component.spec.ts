@@ -13,7 +13,7 @@ describe('ChangeFountainStatusComponent', () => {
   let component: ChangeFountainStatusComponent;
   let fixture: ComponentFixture<ChangeFountainStatusComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ChangeFountainStatusComponent ],
       imports: [ 

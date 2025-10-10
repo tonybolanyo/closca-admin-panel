@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-corporates',
   templateUrl: './corporates.component.html',
   styleUrls: ['./corporates.component.scss'],

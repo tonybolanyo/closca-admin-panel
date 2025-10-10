@@ -11,7 +11,7 @@ describe('ExampleCrudListComponent', () => {
   let component: ExampleCrudListComponent;
   let fixture: ComponentFixture<ExampleCrudListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ExampleCrudListComponent ],
       imports: [ ReactiveFormsModule ],

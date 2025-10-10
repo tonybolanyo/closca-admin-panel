@@ -10,6 +10,7 @@ import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
 import { ROUTER_DEFINITIONS } from '../../shared/constants/router-definitions';
 
 @Component({
+  standalone: false,
     selector: 'app-login',
     templateUrl: 'login.component.html',
     styleUrls: ['./login.component.scss'],

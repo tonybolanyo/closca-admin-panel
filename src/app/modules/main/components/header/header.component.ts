@@ -8,6 +8,7 @@ import { CorporateService } from 'src/app/shared/custom-gnommo-base/services';
 import { S3_URL } from 'src/app/shared/constants/constants';
 
 @Component({
+  standalone: false,
     selector: 'app-header',
     templateUrl: 'header.component.html',
     styleUrls: ['./header.component.scss'],

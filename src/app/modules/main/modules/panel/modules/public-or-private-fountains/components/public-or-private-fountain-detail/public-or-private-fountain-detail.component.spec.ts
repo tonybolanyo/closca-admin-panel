@@ -25,7 +25,7 @@ describe('FountainDetailComponent', () => {
   let component: PublicOrPrivateFountainDetailComponent;
   let fixture: ComponentFixture<PublicOrPrivateFountainDetailComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ PublicOrPrivateFountainDetailComponent ],
       imports: [ 

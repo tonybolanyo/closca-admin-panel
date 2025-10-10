@@ -6,6 +6,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { BottleService } from 'src/app/shared/custom-gnommo-base/services';
 
 @Component({
+  standalone: false,
   selector: 'app-bottles-list',
   templateUrl: './bottles-list.component.html',
   styleUrls: ['./bottles-list.component.scss'],

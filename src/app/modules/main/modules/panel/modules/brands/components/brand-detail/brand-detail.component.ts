@@ -17,6 +17,7 @@ import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactiva
 import { environment } from 'src/environments/environment';
 
 @Component({
+  standalone: false,
   selector: 'app-brand-detail',
   templateUrl: './brand-detail.component.html',
   styleUrls: ['./brand-detail.component.scss']

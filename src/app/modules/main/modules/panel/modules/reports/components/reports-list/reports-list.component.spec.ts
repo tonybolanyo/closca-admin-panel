@@ -14,7 +14,7 @@ describe('ReportsListComponent', () => {
   let component: ReportsListComponent;
   let fixture: ComponentFixture<ReportsListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     const mockReportService = {
       getAll: jest.fn().mockReturnValue(of({ data: [] })),
       count: jest.fn().mockReturnValue(of({ count: 0 }))

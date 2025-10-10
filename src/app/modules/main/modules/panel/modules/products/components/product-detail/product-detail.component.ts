@@ -33,6 +33,7 @@ import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactiva
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 @Component({
+  standalone: false,
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss'],

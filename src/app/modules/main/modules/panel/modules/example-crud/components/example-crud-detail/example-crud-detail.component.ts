@@ -14,9 +14,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { NgOption } from '@ng-select/ng-select';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
 import { debounceTime } from 'rxjs/operators';
-import * as moment from 'moment';
+import moment from 'moment';
 
 @Component({
+  standalone: false,
   selector: 'app-example-crud-detail',
   templateUrl: './example-crud-detail.component.html',
   styleUrls: ['./example-crud-detail.component.scss'],

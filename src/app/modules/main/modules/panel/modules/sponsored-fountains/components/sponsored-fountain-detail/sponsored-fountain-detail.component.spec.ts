@@ -25,7 +25,7 @@ describe('SponsoredFountainDetailComponent', () => {
   let component: SponsoredFountainDetailComponent;
   let fixture: ComponentFixture<SponsoredFountainDetailComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ SponsoredFountainDetailComponent ],
       imports: [ 

@@ -16,7 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 // --> External libraries
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+// import { GooglePlaceModule } from 'ngx-google-places-autocomplete'; // Not compatible with Angular 20
 import { ToastrModule } from 'ngx-toastr';
 import { LoggedUserGuard } from './shared/guards/logged-user.guard';
 import { LoggedUserService } from './shared/services/logged-user.service';
@@ -43,7 +43,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { AngularFoundationModule } from '@tyris/angular-foundation';
 import { CustomGnommoBaseModule } from './shared/custom-gnommo-base/custom-gnommo-base.module';
 
-import { AgmCoreModule } from '@agm/core';
+// import { AgmCoreModule } from '@agm/core'; // Not compatible with Angular 20
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { environment } from 'src/environments/environment';
 import { CanDeactivateGuard } from './shared/guards/can-deactivate.guard';
@@ -82,11 +82,11 @@ import { CanDeactivateGuard } from './shared/guards/can-deactivate.guard';
     SharedModule,
     AppRoutingModule,
     AngularEditorModule,
-    GooglePlaceModule,
-    AgmCoreModule.forRoot({
-      apiKey: environment.googleMapsApiKey,
-      libraries: ['places']
-    })
+    // GooglePlaceModule, // Not compatible with Angular 20
+    // AgmCoreModule.forRoot({ // Not compatible with Angular 20
+    //   apiKey: environment.googleMapsApiKey,
+    //   libraries: ['places']
+    // })
   ],
   declarations: [
     AppComponent,

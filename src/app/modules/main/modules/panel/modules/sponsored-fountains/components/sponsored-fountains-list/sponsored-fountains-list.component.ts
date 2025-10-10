@@ -15,6 +15,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 @Component({
+  standalone: false,
   selector: 'app-sponsored-fountains-list',
   templateUrl: './sponsored-fountains-list.component.html',
   styleUrls: ['./sponsored-fountains-list.component.scss'],

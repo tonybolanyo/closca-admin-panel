@@ -19,7 +19,7 @@ describe('LevelDetailComponent', () => {
   let component: LevelDetailComponent;
   let fixture: ComponentFixture<LevelDetailComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     const mockLevelService = {
       getById: jest.fn().mockReturnValue(of({ data: {} })),
       create: jest.fn().mockReturnValue(of({ data: {} })),

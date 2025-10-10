@@ -6,6 +6,7 @@ import { ROUTER_DEFINITIONS } from '../../shared/constants/router-definitions';
 import { UserService } from 'src/app/shared/custom-gnommo-base/services';
 
 @Component({
+  standalone: false,
     selector: 'app-reset-password',
     templateUrl: 'reset-password.component.html',
     encapsulation: ViewEncapsulation.None,

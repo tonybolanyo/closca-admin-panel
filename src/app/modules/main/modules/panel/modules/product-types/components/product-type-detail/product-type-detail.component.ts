@@ -10,6 +10,7 @@ import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
 
 @Component({
+  standalone: false,
   selector: 'app-product-type-detail',
   templateUrl: './product-type-detail.component.html',
   styleUrls: ['./product-type-detail.component.scss'],

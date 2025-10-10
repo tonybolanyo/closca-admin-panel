@@ -16,6 +16,7 @@ import { LoggedUserService } from '../../../../../../../../shared/services/logge
 declare var google;
 
 @Component({
+  standalone: false,
   selector: 'app-report-detail',
   templateUrl: './report-detail.component.html',
   styleUrls: ['./report-detail.component.scss'],

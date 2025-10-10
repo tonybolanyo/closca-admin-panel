@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 
 @Component({
+  standalone: false,
     selector: 'app-landing-page',
     templateUrl: 'landing-page.component.html',
     encapsulation: ViewEncapsulation.None,

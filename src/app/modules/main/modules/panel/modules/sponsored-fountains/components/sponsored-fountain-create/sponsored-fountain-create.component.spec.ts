@@ -19,7 +19,7 @@ describe('SponsoredFountainCreateComponent', () => {
   let component: SponsoredFountainCreateComponent;
   let fixture: ComponentFixture<SponsoredFountainCreateComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ SponsoredFountainCreateComponent ],
       imports: [ ReactiveFormsModule, MatTableModule ],

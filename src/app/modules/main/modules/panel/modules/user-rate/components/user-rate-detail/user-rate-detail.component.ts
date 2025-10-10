@@ -9,6 +9,7 @@ import { UserRatingsService } from 'src/app/shared/custom-gnommo-base/services';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
+  standalone: false,
   selector: 'app-user-rate-detail',
   templateUrl: './user-rate-detail.component.html',
   styleUrls: ['./user-rate-detail.component.scss'],

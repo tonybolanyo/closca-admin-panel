@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-example-crud',
   templateUrl: './example-crud.component.html',
   styleUrls: ['./example-crud.component.scss'],

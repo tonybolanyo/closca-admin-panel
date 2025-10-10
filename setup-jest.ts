@@ -1,4 +1,4 @@
-import 'jest-preset-angular/setup-jest';
+import 'jest-preset-angular/setup-env/zone';
 
 // Mock commonly used browser APIs
 Object.defineProperty(window, 'CSS', {value: null});

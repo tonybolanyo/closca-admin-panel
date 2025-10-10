@@ -5,10 +5,11 @@ import { DialogConfirmationComponent } from '../dialog-confirmation/dialog-confi
 import { ROUTER_DEFINITIONS } from '../../constants/router-definitions';
 import { TableConfig } from '../../interfaces/tableConfig.interface';
 import * as _ from 'lodash';
-import * as moment from 'moment';
+import moment from 'moment';
 import { debounceTime } from 'rxjs/operators';
 import { S3_URL } from '../../constants/constants';
 @Component({
+  standalone: false,
     selector: 'app-custom-table',
     templateUrl: 'custom-table.component.html',
     styleUrls: ['./custom-table.component.scss'],

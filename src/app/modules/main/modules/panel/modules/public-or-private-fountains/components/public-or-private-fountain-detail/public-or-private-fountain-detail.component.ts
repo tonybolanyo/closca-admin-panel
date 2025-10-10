@@ -12,7 +12,7 @@ import { DatePipe, Location } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { AuthService } from '@tyris/angular-foundation';
-import * as moment from 'moment';
+import moment from 'moment';
 import { FileUploader } from 'ng2-file-upload';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -26,6 +26,7 @@ import { LoggedUserService } from '../../../../../../../../shared/services/logge
 declare var google;
 
 @Component({
+  standalone: false,
   selector: 'app-public-or-private-fountain-detail',
   templateUrl: './public-or-private-fountain-detail.component.html',
   styleUrls: ['./public-or-private-fountain-detail.component.scss'],

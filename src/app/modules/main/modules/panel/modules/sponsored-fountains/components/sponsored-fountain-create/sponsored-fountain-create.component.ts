@@ -20,6 +20,7 @@ import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
+  standalone: false,
   selector: 'app-sponsored-fountain-create',
   templateUrl: './sponsored-fountain-create.component.html',
   styleUrls: ['./sponsored-fountain-create.component.scss'],

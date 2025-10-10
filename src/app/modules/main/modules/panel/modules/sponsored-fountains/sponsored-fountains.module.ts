@@ -19,8 +19,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { AgmCoreModule } from '@agm/core';
-import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+// import { AgmCoreModule } from '@agm/core';
+// import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { FileUploadModule } from 'ng2-file-upload';
 import { SponsoredFountainCreateComponent } from './components/sponsored-fountain-create/sponsored-fountain-create.component';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -43,8 +43,8 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
     MatCheckboxModule,
     ReactiveFormsModule,
     MatTableModule,
-    AgmCoreModule,
-    GooglePlaceModule,
+    // AgmCoreModule, // Not compatible with Angular 20
+    // GooglePlaceModule, // Not compatible with Angular 20
     NgxUiLoaderModule,
     MatButtonToggleModule,
     FormsModule,

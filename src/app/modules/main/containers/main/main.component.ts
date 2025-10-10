@@ -7,6 +7,7 @@ import { CorporateService } from 'src/app/shared/custom-gnommo-base/services';
 import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
 
 @Component({
+  standalone: false,
     selector: 'app-main',
     templateUrl: 'main.component.html',
     styleUrls: ['main.component.scss'],

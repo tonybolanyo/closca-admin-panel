@@ -18,7 +18,7 @@ describe('ReportDetailComponent', () => {
   let component: ReportDetailComponent;
   let fixture: ComponentFixture<ReportDetailComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ReportDetailComponent ],
       imports: [ ReactiveFormsModule, MatButtonToggleModule ],

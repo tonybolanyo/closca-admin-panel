@@ -3,11 +3,12 @@ import { ChallengeSubscriptionService } from 'src/app/shared/custom-gnommo-base/
 import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
-import * as moment from 'moment';
+import moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { Challenge, ChallengeSubscription } from 'src/app/shared/custom-gnommo-base/models';
 @Component({
+  standalone: false,
   selector: 'app-challenge-subscriptions-users-list',
   templateUrl: 'challenge-subscriptions-users-list.component.html',
   styleUrls: ['./challenge-subscriptions-users-list.component.scss'],

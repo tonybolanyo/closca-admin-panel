@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
 
 @Component({
+  standalone: false,
     selector: 'app-home',
     templateUrl: 'home.component.html'
 })

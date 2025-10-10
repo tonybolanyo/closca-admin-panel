@@ -17,7 +17,7 @@ describe('BottleTypeDetailComponent', () => {
   let component: BottleTypeDetailComponent;
   let fixture: ComponentFixture<BottleTypeDetailComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ BottleTypeDetailComponent ],
       imports: [ ReactiveFormsModule ],

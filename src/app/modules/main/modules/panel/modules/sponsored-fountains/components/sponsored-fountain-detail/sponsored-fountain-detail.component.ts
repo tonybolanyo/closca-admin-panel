@@ -16,7 +16,7 @@ import { FountainService } from 'src/app/shared/custom-gnommo-base/services/foun
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 import { environment } from 'src/environments/environment';
 // tslint:disable-next-line: max-line-length
-import * as moment from 'moment';
+import moment from 'moment';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { TransformSponsoredFountainToPrivateComponent } from 'src/app/shared/components/transform-sponsored-fountain-to-private/transform-sponsored-fountain-to-private.component';
 import { CorporateService, RefillService } from 'src/app/shared/custom-gnommo-base/services';
@@ -26,6 +26,7 @@ import { LoggedUserService } from '../../../../../../../../shared/services/logge
 declare var google;
 
 @Component({
+  standalone: false,
   selector: 'app-sponsored-fountain-detail',
   templateUrl: './sponsored-fountain-detail.component.html',
   styleUrls: ['./sponsored-fountain-detail.component.scss']

@@ -12,6 +12,7 @@ import { Brand } from 'src/app/shared/custom-gnommo-base/models/brand.model';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 @Component({
+  standalone: false,
   selector: 'app-fountains-impact-list',
   templateUrl: './fountains-impact-list.component.html',
   styleUrls: ['./fountains-impact-list.component.scss'],

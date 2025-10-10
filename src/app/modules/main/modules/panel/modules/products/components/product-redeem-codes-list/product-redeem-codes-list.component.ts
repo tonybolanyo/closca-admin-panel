@@ -3,11 +3,12 @@ import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
+import moment from 'moment';
 import { RewardService } from 'src/app/shared/custom-gnommo-base/services';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
+  standalone: false,
   selector: 'app-product-redeem-codes-list',
   templateUrl: './product-redeem-codes-list.component.html',
   styleUrls: ['./product-redeem-codes-list.component.scss'],
