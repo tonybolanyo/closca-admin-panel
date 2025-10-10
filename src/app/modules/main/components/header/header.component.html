@@ -1,25 +1,25 @@
 <div #overlay (click)="changeCollapseState()" class="overlay"></div>
 <nav class="navbar navbar-expand-md navbar-dark -dark fixed-top">
-  <img *ngIf="role == 'ADMIN'" class="navbar-brand navbar-logo ml-2 pl-4" [src]="'/assets/images/logo.png'"  />
-  <img *ngIf="role == 'MANAGER'" class="navbar-brand navbar-logo ml-2 pl-4"
+  <img *ngIf="role == 'ADMIN'" class="navbar-brand navbar-logo ms-2 ps-4" [src]="'/assets/images/logo.png'"  />
+  <img *ngIf="role == 'MANAGER'" class="navbar-brand navbar-logo ms-2 ps-4"
             [src]="corporate?.logotype? getImage(corporate?.logotypeInfo?.fileRoute) : '/assets/images/logo.png'">
   <button class="navbar-toggler button-menu" type="button" (click)="changeCollapseState()">
     <mat-icon>menu</mat-icon>
   </button>
 
   <!--START WEB MENU -->
-  <div class="collapse navbar-collapse pr-4 navbar-web-version" id="navbarsExampleDefault">
-    <div class="navbar-nav mr-auto navbar-title-container">
+  <div class="collapse navbar-collapse pe-4 navbar-web-version" id="navbarsExampleDefault">
+    <div class="navbar-nav me-auto navbar-title-container">
       <!-- <h5 class="navbar-title">Bienvenido,  John Doe</h5> -->
       <ng-content select=".headerWebVersion"></ng-content>
     </div>
-    <div class="form-inline my-2 my-lg-0">
-      <!-- <a [routerLink]="routerDefinitions.userProfile" [routerLinkActive]="'userProfileActive'" class="account mr-2">
+    <div class="d-flex my-2 my-lg-0">
+      <!-- <a [routerLink]="routerDefinitions.userProfile" [routerLinkActive]="'userProfileActive'" class="account me-2">
         <mat-icon>person
         </mat-icon>
       </a> -->
       <ng-content select=".changeCorporateForm"></ng-content>
-      <a class="mr-1 logout" (click)="onLogout()">
+      <a class="me-1 logout" (click)="onLogout()">
         <img [src]="'/assets/icons/logout.png'" />
       </a>
     </div>
@@ -32,15 +32,15 @@
   <!--START MOBILE DEVICE AND RESPONSIVE MENU -->
   <div [ngbCollapse]="isNavbarCollapsed" class="navbar-menu-collapse">
     <div class="navbar-user-container">
-      <div class="navbar-nav mr-auto navbar-title-container">
+      <div class="navbar-nav me-auto navbar-title-container">
         <ng-content select=".headerResponsiveVersion"></ng-content>
       </div>
-      <div class="form-inline my-2 my-lg-0">
+      <div class="d-flex my-2 my-lg-0">
         <!-- <a [routerLink]="routerDefinitions.userProfile" [routerLinkActive]="'userProfileActive'" class="account">
           <mat-icon>person
           </mat-icon>
         </a> -->
-        <a class="mr-1" (click)="onLogout()">
+        <a class="me-1" (click)="onLogout()">
           <img [src]="'/assets/icons/logout.png'" />
         </a>
       </div>

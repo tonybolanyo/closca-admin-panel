@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-12 pt-1 pb-1">
-    <h3 class="float-left title">
+    <h3 class="float-start title">
       <a [routerLink]="routerDefinitions.reports +'/list'">
-        <mat-icon class="float-left back-icon">keyboard_backspace</mat-icon>
+        <mat-icon class="float-start back-icon">keyboard_backspace</mat-icon>
       </a>
       Ver Reporte
     </h3>
@@ -43,7 +43,7 @@
         </mat-form-field>
       </div>
       <div class="row" *ngIf="report != undefined && !(report.emailSent)">
-        <button class="btn btn-primary ml-2" (click)="sendFeedbackEmail()">Enviar feedback al usuario</button>
+        <button class="btn btn-primary ms-2" (click)="sendFeedbackEmail()">Enviar feedback al usuario</button>
       </div>
       <div class="row">
         <div class="col-12">
@@ -116,7 +116,7 @@
         </div>
         <div class="row"
           *ngIf="report.loc.coordinates[0] != report.fountainInfo.loc.coordinates[0] && report.loc.coordinates[1] != report.fountainInfo.loc.coordinates[1]">
-          <button class="btn btn-primary ml-2" (click)="updateFountainAddress()">Actualizar dirección de la fuente
+          <button class="btn btn-primary ms-2" (click)="updateFountainAddress()">Actualizar dirección de la fuente
             original</button>
         </div>
         <div class="row custom-map">
@@ -143,7 +143,7 @@
           </div>
         </div>
         <div class="row" *ngIf="report.imageId != report.fountainInfo.imageId">
-          <button class="btn btn-primary ml-2" (click)="updateFountainImage()">Actualizar imagen de la fuente
+          <button class="btn btn-primary ms-2" (click)="updateFountainImage()">Actualizar imagen de la fuente
             original</button>
         </div>
         <div class="row">
@@ -155,11 +155,11 @@
       </ng-container>
     </form>
     <div class="row" *ngIf="action !== 'view'">
-      <div class="buttons-container col-12 pt-4 pb-5 pl-3">
+      <div class="buttons-container col-12 pt-4 pb-5 ps-3">
         <ng-content select="button"></ng-content>
-        <button class="btn btn-primary send-sms-button mr-2" (click)="isFormCanceled = true"
+        <button class="btn btn-primary send-sms-button me-2" (click)="isFormCanceled = true"
           [routerLink]="routerDefinitions.reports + '/list'">Cancelar</button>
-        <button class="btn btn-primary ml-2" [disabled]="reportForm.invalid || !reportForm.dirty"
+        <button class="btn btn-primary ms-2" [disabled]="reportForm.invalid || !reportForm.dirty"
           (click)="saveForm(reportForm.value, reportForm.valid)">Guardar</button>
       </div>
     </div>

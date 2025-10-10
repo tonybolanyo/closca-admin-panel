@@ -11,7 +11,7 @@
           <div class="text-center d-inline">
             {{ code }}
           </div>
-          <div class="float-right" *ngIf="!checkCodeIsRedeemed(code) && data.action === 'edit'">
+          <div class="float-end" *ngIf="!checkCodeIsRedeemed(code) && data.action === 'edit'">
             <img (click)="deleteCode(code)" [src]="'../../../../assets/icons/garbage.png'" />
           </div>
       </div>

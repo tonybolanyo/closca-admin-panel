@@ -1,8 +1,8 @@
 <div class="row pb-4">
   <div class="col-12 pt-1 pb-1">
-    <h3 class="float-left title">
+    <h3 class="float-start title">
       <a class="button-back" (click)="navigateBack()">
-        <mat-icon class="float-left back-icon">keyboard_backspace</mat-icon>
+        <mat-icon class="float-start back-icon">keyboard_backspace</mat-icon>
       </a>
       {{action === 'view'? 'Ver' : (action === 'edit' ? 'Editar' : 'Nuevo')}} Reto
     </h3>
@@ -19,7 +19,7 @@
       </div>
       <div class="row">
         <div class="col-10">
-          <div class="status-container col-12 pl-0 pb-3">
+          <div class="status-container col-12 ps-0 pb-3">
             <mat-button-toggle-group #group="matButtonToggleGroup" formControlName="status">
               <mat-button-toggle value="ACTIVE">
                 Activo
@@ -34,7 +34,7 @@
           </div>
         </div>
         <div class="col-2">
-          <div class="language-container col-12 pl-0 pb-3">
+          <div class="language-container col-12 ps-0 pb-3">
             <mat-button-toggle-group #language="matButtonToggleGroup" value="es">
               <mat-button-toggle value="es">
                 <img width="25px" [src]="'../../../../../../../../../assets/images/spain_flag.jpg'" />
@@ -196,7 +196,7 @@
 
         <div class="row">
           <div class="col-12">
-            <div class="status-container col-12 pl-0 pb-3">
+            <div class="status-container col-12 ps-0 pb-3">
               <mat-button-toggle-group #type="matButtonToggleGroup">
                 <mat-button-toggle [checked]="gamificationEnabled"
                   (change)="gamificationEnabled = $event.source.checked; challengeForm.markAsDirty()">
@@ -261,7 +261,7 @@
 
         <div class="row">
           <div class="col-12">
-            <div class="status-container col-12 pl-0 pb-3">
+            <div class="status-container col-12 ps-0 pb-3">
               <mat-button-toggle-group #type="matButtonToggleGroup" formControlName="privateKey">
                 <mat-button-toggle value="PUBLIC" (change)="privateChange($event.value)">
                   Público
@@ -315,7 +315,7 @@
 
             <div class="row">
               <div class="col-12">
-                <div class="status-container col-12 pl-0 pb-3">
+                <div class="status-container col-12 ps-0 pb-3">
                   <mat-button-toggle-group #type="matButtonToggleGroup" value="ADD">
                     <mat-button-toggle value="ADD" (change)="userTargetCSVModeChange($event.value)">
                       Crear
@@ -330,7 +330,7 @@
             </div>
 
             <div class="row col-6">
-              <input #usersTargetCSVUploaderInput class="w-100 mb-3 float-left" type="file" name="usersCSV"
+              <input #usersTargetCSVUploaderInput class="w-100 mb-3 float-start" type="file" name="usersCSV"
                 ng2FileSelect (change)="changeUserTargetCSVListener($event.target.files)"
                 [uploader]="usersTargetCSVUploader">
             </div>
@@ -344,7 +344,7 @@
           <ng-container
             *ngIf="privateTypeSelected === 'USERS' && action !== 'new' && (challenge.privateType !== undefined && challenge.privateType === 'USERS')">
             <div class="row col-6">
-              <button class="btn btn-primary send-sms-button mr-2" (click)="downloadUsersTargetCSV(event)">Descargar
+              <button class="btn btn-primary send-sms-button me-2" (click)="downloadUsersTargetCSV(event)">Descargar
                 listado de
                 usuarios</button>
             </div>
@@ -362,7 +362,7 @@
 
         <div class="row">
           <div class="col-12">
-            <div class="status-container col-12 pl-0 pb-3">
+            <div class="status-container col-12 ps-0 pb-3">
               <mat-button-toggle-group #type="matButtonToggleGroup" formControlName="type">
                 <mat-button-toggle value="HABIT" *ngIf="role != 'MANAGER' && (corporateSelected == undefined || corporateSelected.code == 'CLOSCA')" (change)="typeChange($event.value)">
                   Hábito
@@ -634,7 +634,7 @@
 
         <div class="row">
           <div class="col-12">
-            <div class="status-container col-12 pl-0 pb-3">
+            <div class="status-container col-12 ps-0 pb-3">
               <mat-button-toggle-group #type="matButtonToggleGroup" value="ADD">
                 <mat-button-toggle value="ADD" (change)="subscribeCSVModeChange($event.value)">
                   Crear
@@ -649,7 +649,7 @@
         </div>
 
         <div class="row col-6">
-          <input #subscribeUsersCSVUploaderInput class="w-100 mb-3 float-left" type="file" name="subscribeUsersCSV"
+          <input #subscribeUsersCSVUploaderInput class="w-100 mb-3 float-start" type="file" name="subscribeUsersCSV"
             ng2FileSelect (change)="changeSubscribeCSVListener($event.target.files)"
             [uploader]="subscribeUsersCSVUploader">
         </div>
@@ -662,7 +662,7 @@
         </div>
 
         <div class="row col-6">
-          <button class="btn btn-primary send-sms-button mr-2" (click)="uploadSubscribeCSV(event)">Procesar fichero
+          <button class="btn btn-primary send-sms-button me-2" (click)="uploadSubscribeCSV(event)">Procesar fichero
             CSV</button>
         </div>
 
@@ -678,7 +678,7 @@
           </div>
 
           <div class="col-12 export-data-div">
-            <button class="btn btn-primary send-sms-button mr-2" (click)="downloadUsersSubscribedCSV(event)">Exportar
+            <button class="btn btn-primary send-sms-button me-2" (click)="downloadUsersSubscribedCSV(event)">Exportar
               datos</button>
           </div>
 
@@ -692,11 +692,11 @@
     </div>
 
     <div class="row" *ngIf="action !== 'view'">
-      <div class="buttons-container col-12 pt-4 pb-5 pl-3">
+      <div class="buttons-container col-12 pt-4 pb-5 ps-3">
         <ng-content select="button"></ng-content>
-        <button class="btn btn-primary send-sms-button mr-2" (click)="isFormCanceled = true"
+        <button class="btn btn-primary send-sms-button me-2" (click)="isFormCanceled = true"
           [routerLink]="routerDefinitions.challenges + '/list'">Cancelar</button>
-        <button class="btn btn-primary ml-2" [disabled]="challengeForm.invalid || 
+        <button class="btn btn-primary ms-2" [disabled]="challengeForm.invalid || 
           !challengeForm.dirty || (!challengeImageId  && !challengeLocalImage) || 
           (!challengeBackgroundImageId  && !challengeLocalBackgroundImage)"
           (click)="saveForm(challengeForm.value, challengeForm.valid)">Guardar</button>

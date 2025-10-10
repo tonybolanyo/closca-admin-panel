@@ -1,10 +1,10 @@
 <div class="col-12 pt-3">
   <div class="row">
     <div class="col-12">
-      <h3 class="float-left title" *ngIf="role != 'MANAGER'">
+      <h3 class="float-start title" *ngIf="role != 'MANAGER'">
         Fuentes patrocinadas
       </h3>
-      <h3 class="float-left title" *ngIf="role == 'MANAGER'">
+      <h3 class="float-start title" *ngIf="role == 'MANAGER'">
         Fuentes corporación
       </h3>
       <button *ngIf="role != 'MANAGER'" [routerLink]="tableConfig.buttonsConfig.baseRouterLink + '/new'" class="btn btn-primary add-button">
@@ -15,15 +15,15 @@
   <div class="row">
     <div class="col-12 pt-2 pb-2">
       <ng-container *ngIf="itemsSelected.length > 0">
-        <button class="btn btn-primary list-button unselect-items-button mr-2 float-left"
+        <button class="btn btn-primary list-button unselect-items-button me-2 float-start"
           (click)="clearSelectedFountains()">
           <img src="./../../../../../../../../../assets/icons/close-icon.png" />
         </button>
-        <h5 class="float-left selected-items mr-2">{{itemsSelected.length}} items seleccionados</h5>
-        <button class="btn btn-primary list-button float-left mr-2" (click)="deleteSelectedItems()">
+        <h5 class="float-start selected-items me-2">{{itemsSelected.length}} items seleccionados</h5>
+        <button class="btn btn-primary list-button float-start me-2" (click)="deleteSelectedItems()">
           <img src="./../../../../../../../../../assets/icons/garbage.png" />
         </button>
-        <button class="btn btn-primary list-button float-left mr-2" (click)="showDialogEditStatus()">
+        <button class="btn btn-primary list-button float-start me-2" (click)="showDialogEditStatus()">
           <img src="./../../../../../../../../../assets/icons/edit.png" />
         </button>
 
@@ -31,7 +31,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="pt-3 col-12 pb-4 pr-0 pl-0" *ngIf="corporates != undefined">
+    <div class="pt-3 col-12 pb-4 pe-0 ps-0" *ngIf="corporates != undefined">
       <app-custom-table 
       [dataSource]="items" 
       [paginator]="paginator" 
