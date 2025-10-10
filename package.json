@@ -33,7 +33,7 @@
     "@ks89/angular-modal-gallery": "^9.0.1",
     "@ng-bootstrap/ng-bootstrap": "^7.0.0",
     "@ng-select/ng-select": "^5.0.0",
-    "@tyris/angular-foundation": "file:../../../../../tmp/tyris-angular-foundation",
+    "@tyris/angular-foundation": "file:./libs/angular-foundation",
     "apexcharts": "^3.22.0",
     "bootstrap": "^4.5.3",
     "classlist.js": "^1.1.20150312",

@@ -1,0 +1,3 @@
+[submodule "libs/angular-foundation"]
+	path = libs/angular-foundation
+	url = git@bitbucket.org:damonfer/tyris-angular-foundation.git

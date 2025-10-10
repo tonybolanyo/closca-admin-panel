@@ -1,0 +1,7 @@
+# Ignorar archivos temporales
+*.tmp
+*.log
+
+# Mantener los .tgz empaquetados y el README
+!*.tgz
+!README.md
