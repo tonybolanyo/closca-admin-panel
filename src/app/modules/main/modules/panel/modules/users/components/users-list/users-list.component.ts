@@ -21,7 +21,7 @@ export class UsersListComponent implements OnInit {
   fountainsCreated;
 
   // FILTER
-  filter = {};
+  filter: any = {};
   filterForm;
   filterMode = true;
   // FILTER
@@ -114,8 +114,8 @@ export class UsersListComponent implements OnInit {
   getUsers(isDeletedItem: boolean = false) {
     this.ngxLoader.start();
     const headers = {
-      limit: this.paginator.limit,
-      skip: this.paginator.skip,
+      limit: String(this.paginator.limit),
+      skip: String(this.paginator.skip),
       sort: this.sort,
       filter: this.filter
     };

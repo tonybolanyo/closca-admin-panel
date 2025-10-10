@@ -10,9 +10,8 @@ import { Level } from '../models/level.model';
 export class LevelService extends BaseService<Level> {
 
         constructor(http: HttpClient) {
-                super(http,
-                        environment.apiUrl,
-                        'levels');
+                super(http);
+                this.setApiConfig(environment.apiUrl, 'levels');
         }
 
         public count(headers?: any): Observable<any> {

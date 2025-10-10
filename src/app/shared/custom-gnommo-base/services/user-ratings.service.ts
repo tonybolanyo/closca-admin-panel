@@ -9,9 +9,8 @@ import { environment } from 'src/environments/environment';
 export class UserRatingsService extends BaseService<any> {
 
   constructor(http: HttpClient) {
-    super(http,
-      environment.apiUrl,
-      'user-ratings');
+    super(http);
+    this.setApiConfig(environment.apiUrl, 'user-ratings');
   }
 
   public count(headers?: any): Observable<any> {

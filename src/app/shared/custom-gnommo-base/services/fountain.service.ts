@@ -11,9 +11,8 @@ import { Fountain } from '../models/fountain.model';
 export class FountainService extends BaseService<Fountain> {
         constructor(http: HttpClient,
                 private authService: AuthService) {
-                super(http,
-                        environment.apiUrl,
-                        'fountains');
+                super(http);
+                this.setApiConfig(environment.apiUrl, 'fountains');
         }
 
 

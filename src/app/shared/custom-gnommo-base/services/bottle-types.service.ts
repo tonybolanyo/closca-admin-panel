@@ -10,9 +10,8 @@ import { BottleType } from '../models/bottle-type.model';
 export class BottleTypesService extends BaseService<BottleType> {
 
         constructor(http: HttpClient) {
-                super(http,
-                        environment.apiUrl,
-                        'bottle-types');
+                super(http);
+                this.setApiConfig(environment.apiUrl, 'bottle-types');
         }
 
         public updateBottleType(bottleTypeId?: string, values?: any, headers?: any): Observable<any> {

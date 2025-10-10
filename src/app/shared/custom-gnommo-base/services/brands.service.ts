@@ -9,9 +9,8 @@ import { Brand } from '../models/brand.model';
 @Injectable()
 export class BrandService extends BaseService<Brand> {
     constructor(http: HttpClient) {
-        super(http,
-            environment.apiUrl,
-            'brands');
+        super(http);
+        this.setApiConfig(environment.apiUrl, 'brands');
     }
 
     public count(headers?: any): Observable<any> {

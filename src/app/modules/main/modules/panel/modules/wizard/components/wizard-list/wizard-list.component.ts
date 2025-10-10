@@ -71,8 +71,8 @@ export class WizardListComponent implements OnInit {
     this.ngxLoader.start();
 
     const headers = {
-      limit: this.paginator.limit,
-      skip: this.paginator.skip,
+      limit: String(this.paginator.limit),
+      skip: String(this.paginator.skip),
       sort: this.sort,
       filter: this.filter
     };

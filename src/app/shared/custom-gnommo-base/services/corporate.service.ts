@@ -10,9 +10,8 @@ import { Corporate } from '../models/corporate.model';
 export class CorporateService extends BaseService<Corporate> {
 
         constructor(http: HttpClient) {
-                super(http,
-                        environment.apiUrl,
-                        'corporate');
+                super(http);
+                this.setApiConfig(environment.apiUrl, 'corporate');
         }
 
         public updateCorporate(corporateId?: string, values?: any, headers?: any): Observable<any> {

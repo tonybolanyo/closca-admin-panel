@@ -8,9 +8,8 @@ import { environment } from 'src/environments/environment';
 @Injectable()
 export class RewardService extends BaseService<any> {
     constructor(http: HttpClient) {
-        super(http,
-            environment.apiUrl,
-            'rewards');
+        super(http);
+        this.setApiConfig(environment.apiUrl, 'rewards');
     }
 
     public getRewardByProduct(productId: string, headers?: any): Observable<any> {

@@ -9,9 +9,8 @@ import { ProductType } from '../models';
 @Injectable()
 export class ProductTypesService extends BaseService<ProductType> {
     constructor(http: HttpClient) {
-        super(http,
-            environment.apiUrl,
-            'product-types');
+        super(http);
+        this.setApiConfig(environment.apiUrl, 'product-types');
     }
 
     public count(headers?: any): Observable<any> {

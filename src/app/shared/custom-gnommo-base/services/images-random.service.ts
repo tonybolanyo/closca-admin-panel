@@ -11,9 +11,8 @@ export class ImagesRandomService extends BaseService<any> {
         http: HttpClient,
         private authService: AuthService
     ) {
-        super(http,
-            environment.apiUrl,
-            'images-random');
+        super(http);
+        this.setApiConfig(environment.apiUrl, 'images-random');
     }
     public uploadImages(formData, headers?: any): Observable<any> {
         /* Custom httpOptions used to upload  with multipart/form-data header */

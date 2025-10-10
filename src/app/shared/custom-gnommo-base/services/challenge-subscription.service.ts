@@ -14,9 +14,8 @@ import { ChallengeSubscription } from '../models';
 export class ChallengeSubscriptionService extends BaseService<ChallengeSubscription> {
     constructor(http: HttpClient,
         private authService: AuthService) {
-        super(http,
-            environment.apiUrl,
-            'challenge-subscriptions');
+        super(http);
+        this.setApiConfig(environment.apiUrl, 'challenge-subscriptions');
     }
 
     public count(headers?: any): Observable<any> {

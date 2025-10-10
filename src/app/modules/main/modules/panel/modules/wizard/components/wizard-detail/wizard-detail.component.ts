@@ -31,13 +31,7 @@ export class WizardDetailComponent implements OnInit {
 
   corporates;
 
-  editorConfig: AngularEditorConfig = {
-    editable: this.action !== 'view',
-    spellcheck: true,
-    height: '15rem',
-    minHeight: '15rem',
-    placeholder: 'Descripción'
-  };
+  editorConfig: AngularEditorConfig;
 
   routerDefinitions = ROUTER_DEFINITIONS;
 
