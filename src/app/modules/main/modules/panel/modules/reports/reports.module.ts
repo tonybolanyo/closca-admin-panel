@@ -18,11 +18,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { GoogleMapsModule } from '@angular/google-maps';
 import { FileUploadModule } from 'ng2-file-upload';
 import { MyDateAdapter } from 'src/app/shared/services/datepicker-angular-material.service';
 import { APP_DATE_FORMATS } from 'src/app/shared/constants/date-formats';
-// import { AgmCoreModule } from '@agm/core';
-// import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 @NgModule({
   imports: [
@@ -42,8 +41,7 @@ import { APP_DATE_FORMATS } from 'src/app/shared/constants/date-formats';
     ReactiveFormsModule,
     FileUploadModule,
     ReportsRoutingModule,
-    // AgmCoreModule, // Not compatible with Angular 20
-    // GooglePlaceModule, // Not compatible with Angular 20
+    GoogleMapsModule,
     FormsModule
   ],
   declarations: [
