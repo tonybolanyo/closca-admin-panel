@@ -1,17 +1,23 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { of } from 'rxjs';
 
 import { BottlesListComponent } from './bottles-list.component';
+import { BottleService } from 'src/app/shared/custom-gnommo-base/services/bottle.service';
 
 describe('BottlesListComponent', () => {
   let component: BottlesListComponent;
   let fixture: ComponentFixture<BottlesListComponent>;
 
   beforeEach(async(() => {
+    const mockBottleService = {
+      getAll: jest.fn().mockReturnValue(of({ data: [] })),
+      count: jest.fn().mockReturnValue(of({ count: 0 }))
+    };
+
     TestBed.configureTestingModule({
       declarations: [ BottlesListComponent ],
       imports: [ ReactiveFormsModule ],
@@ -19,21 +25,8 @@ describe('BottlesListComponent', () => {
       providers: [
         { provide: ToastrService, useValue: { success: jest.fn(), error: jest.fn(), info: jest.fn(), warning: jest.fn() } },
         { provide: NgxUiLoaderService, useValue: { start: jest.fn(), stop: jest.fn() } },
-        { 
-          provide: ActivatedRoute, 
-          useValue: { 
-            snapshot: { params: {} },
-            params: { subscribe: jest.fn() }
-          } 
-        }
+        { provide: BottleService, useValue: mockBottleService }
       ]
-    })
-    .overrideComponent(BottlesListComponent, {
-      set: {
-        templateUrl: undefined,
-        template: '<div></div>',
-        styleUrls: []
-      }
     })
     .compileComponents();
   }));

@@ -1,17 +1,23 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { of } from 'rxjs';
 
 import { LevelsListComponent } from './levels-list.component';
+import { LevelService } from 'src/app/shared/custom-gnommo-base/services/level.service';
 
 describe('LevelsListComponent', () => {
   let component: LevelsListComponent;
   let fixture: ComponentFixture<LevelsListComponent>;
 
   beforeEach(async(() => {
+    const mockLevelService = {
+      getAll: jest.fn().mockReturnValue(of({ data: [] })),
+      count: jest.fn().mockReturnValue(of({ count: 0 }))
+    };
+
     TestBed.configureTestingModule({
       declarations: [ LevelsListComponent ],
       imports: [ ReactiveFormsModule ],
@@ -19,21 +25,8 @@ describe('LevelsListComponent', () => {
       providers: [
         { provide: ToastrService, useValue: { success: jest.fn(), error: jest.fn(), info: jest.fn(), warning: jest.fn() } },
         { provide: NgxUiLoaderService, useValue: { start: jest.fn(), stop: jest.fn() } },
-        { 
-          provide: ActivatedRoute, 
-          useValue: { 
-            snapshot: { params: {} },
-            params: { subscribe: jest.fn() }
-          } 
-        }
+        { provide: LevelService, useValue: mockLevelService }
       ]
-    })
-    .overrideComponent(LevelsListComponent, {
-      set: {
-        templateUrl: undefined,
-        template: '<div></div>',
-        styleUrls: []
-      }
     })
     .compileComponents();
   }));

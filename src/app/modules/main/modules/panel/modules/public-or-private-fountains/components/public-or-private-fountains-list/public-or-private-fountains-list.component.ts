@@ -1024,8 +1024,8 @@ export class PublicOrPrivateFountainsListComponent implements OnInit {
     var exportedFilenmae = fileTitle + '.csv' || 'export.csv';
 
     var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    if (navigator.msSaveBlob) { // IE 10+
-      navigator.msSaveBlob(blob, exportedFilenmae);
+    if ((navigator as any).msSaveBlob) { // IE 10+
+      (navigator as any).msSaveBlob(blob, exportedFilenmae);
     } else {
       var link = document.createElement("a");
       if (link.download !== undefined) { // feature detection

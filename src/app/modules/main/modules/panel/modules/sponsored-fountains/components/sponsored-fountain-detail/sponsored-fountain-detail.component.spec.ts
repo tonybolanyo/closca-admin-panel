@@ -1,11 +1,25 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { Location } from '@angular/common';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { of } from 'rxjs';
 
 import { SponsoredFountainDetailComponent } from './sponsored-fountain-detail.component';
+import { FountainService } from 'src/app/shared/custom-gnommo-base/services/fountain.service';
+import { RefillService } from 'src/app/shared/custom-gnommo-base/services/refill.service';
+import { CorporateService } from 'src/app/shared/custom-gnommo-base/services/corporate.service';
+import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
+import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
+import { AuthService } from '@tyris/angular-foundation';
 
 describe('SponsoredFountainDetailComponent', () => {
   let component: SponsoredFountainDetailComponent;
@@ -14,26 +28,36 @@ describe('SponsoredFountainDetailComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SponsoredFountainDetailComponent ],
-      imports: [ ReactiveFormsModule ],
+      imports: [ 
+        ReactiveFormsModule,
+        FormsModule,
+        MatButtonToggleModule,
+        MatFormFieldModule,
+        MatInputModule,
+        BrowserAnimationsModule,
+        GooglePlaceModule
+      ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
+        FormBuilder,
         { provide: ToastrService, useValue: { success: jest.fn(), error: jest.fn(), info: jest.fn(), warning: jest.fn() } },
         { provide: NgxUiLoaderService, useValue: { start: jest.fn(), stop: jest.fn() } },
         { 
           provide: ActivatedRoute, 
           useValue: { 
-            snapshot: { params: {} },
-            params: { subscribe: jest.fn() }
+            snapshot: { params: {}, url: [{ path: 'create' }] }
           } 
-        }
+        },
+        { provide: Router, useValue: { navigate: jest.fn() } },
+        { provide: FountainService, useValue: { getById: jest.fn().mockReturnValue(of({})), create: jest.fn(), update: jest.fn(), count: jest.fn().mockReturnValue(of({ totalFountains: 0 })) } },
+        { provide: RefillService, useValue: { getAll: jest.fn().mockReturnValue(of({})) } },
+        { provide: CorporateService, useValue: { getAll: jest.fn().mockReturnValue(of({})) } },
+        { provide: CanDeactivateDialogService, useValue: { canDeactivate: jest.fn() } },
+        { provide: LoggedUserService, useValue: { getRole: jest.fn().mockReturnValue('ADMIN'), getCorporateId: jest.fn(), getLoggedUser: jest.fn().mockReturnValue(of({})) } },
+        { provide: AuthService, useValue: { getToken: jest.fn() } },
+        { provide: MatDialog, useValue: { open: jest.fn() } },
+        { provide: Location, useValue: { back: jest.fn() } }
       ]
-    })
-    .overrideComponent(SponsoredFountainDetailComponent, {
-      set: {
-        templateUrl: undefined,
-        template: '<div></div>',
-        styleUrls: []
-      }
     })
     .compileComponents();
   }));

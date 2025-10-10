@@ -1,39 +1,54 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { of } from 'rxjs';
 
 import { BrandDetailComponent } from './brand-detail.component';
+import { BrandService } from 'src/app/shared/custom-gnommo-base/services/brands.service';
+import { FountainService } from 'src/app/shared/custom-gnommo-base/services/fountain.service';
+import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
+import { AuthService } from '@tyris/angular-foundation';
 
 describe('BrandDetailComponent', () => {
   let component: BrandDetailComponent;
   let fixture: ComponentFixture<BrandDetailComponent>;
 
   beforeEach(async(() => {
+    const mockBrandService = {
+      getById: jest.fn().mockReturnValue(of({ data: {} })),
+      create: jest.fn().mockReturnValue(of({ data: {} })),
+      update: jest.fn().mockReturnValue(of({ data: {} }))
+    };
+    
+    const mockFountainService = {
+      getAll: jest.fn().mockReturnValue(of({ data: [] }))
+    };
+
     TestBed.configureTestingModule({
       declarations: [ BrandDetailComponent ],
       imports: [ ReactiveFormsModule ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
+        FormBuilder,
         { provide: ToastrService, useValue: { success: jest.fn(), error: jest.fn(), info: jest.fn(), warning: jest.fn() } },
         { provide: NgxUiLoaderService, useValue: { start: jest.fn(), stop: jest.fn() } },
         { 
           provide: ActivatedRoute, 
           useValue: { 
-            snapshot: { params: {} },
-            params: { subscribe: jest.fn() }
+            snapshot: { params: {}, url: [{ path: 'create' }] }
           } 
-        }
+        },
+        { provide: Router, useValue: { navigate: jest.fn() } },
+        { provide: BrandService, useValue: mockBrandService },
+        { provide: FountainService, useValue: mockFountainService },
+        { provide: CanDeactivateDialogService, useValue: { canDeactivate: jest.fn() } },
+        { provide: AuthService, useValue: { getToken: jest.fn() } },
+        { provide: MatDialog, useValue: { open: jest.fn() } }
       ]
-    })
-    .overrideComponent(BrandDetailComponent, {
-      set: {
-        templateUrl: undefined,
-        template: '<div></div>',
-        styleUrls: []
-      }
     })
     .compileComponents();
   }));

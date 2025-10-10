@@ -4,7 +4,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { FountainService } from '../../../../../../shared/custom-gnommo-base/services/fountain.service';
+import { MatTableModule } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { of } from 'rxjs';
+
+import { FountainService } from 'src/app/shared/custom-gnommo-base/services/fountain.service';
+import { CorporateService } from 'src/app/shared/custom-gnommo-base/services/corporate.service';
+import { BrandService } from 'src/app/shared/custom-gnommo-base/services/brands.service';
+import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
+import { AuthService } from '@tyris/angular-foundation';
 import { SponsoredFountainCreateComponent } from './sponsored-fountain-create.component';
 
 describe('SponsoredFountainCreateComponent', () => {
@@ -14,7 +22,7 @@ describe('SponsoredFountainCreateComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SponsoredFountainCreateComponent ],
-      imports: [ ReactiveFormsModule ],
+      imports: [ ReactiveFormsModule, MatTableModule ],
       schemas: [ NO_ERRORS_SCHEMA ],
       providers: [
         FormBuilder,
@@ -31,27 +39,28 @@ describe('SponsoredFountainCreateComponent', () => {
         },
         {
           provide: ToastrService,
-        { provide: NgxUiLoaderService, useValue: { start: jest.fn(), stop: jest.fn() } },
           useValue: { success: jest.fn(), error: jest.fn(), info: jest.fn(), warning: jest.fn() }
+        },
+        { 
+          provide: NgxUiLoaderService, 
+          useValue: { start: jest.fn(), stop: jest.fn() } 
         },
         {
           provide: FountainService,
           useValue: { 
-            create: jest.fn().mockReturnValue({ subscribe: jest.fn() }),
-            update: jest.fn().mockReturnValue({ subscribe: jest.fn() }),
-            getById: jest.fn().mockReturnValue({ subscribe: jest.fn() }),
-            getAll: jest.fn().mockReturnValue({ subscribe: jest.fn() })
+            create: jest.fn().mockReturnValue(of({})),
+            update: jest.fn().mockReturnValue(of({})),
+            getById: jest.fn().mockReturnValue(of({})),
+            getAll: jest.fn().mockReturnValue(of({ data: [] })),
+            count: jest.fn().mockReturnValue(of({ totalFountains: 0 }))
           }
-        }
+        },
+        { provide: CorporateService, useValue: { getAll: jest.fn().mockReturnValue(of({ data: [] })) } },
+        { provide: BrandService, useValue: { getAll: jest.fn().mockReturnValue(of({ data: [] })) } },
+        { provide: LoggedUserService, useValue: { getRole: jest.fn().mockReturnValue('ADMIN'), getCorporateId: jest.fn(), getLoggedUser: jest.fn().mockReturnValue(of({})) } },
+        { provide: AuthService, useValue: { getToken: jest.fn() } },
+        { provide: MatDialog, useValue: { open: jest.fn() } }
       ]
-    })
-    .overrideComponent(SponsoredFountainCreateComponent, {
-      set: {
-        templateUrl: undefined,
-        template: '<div></div>',
-        styleUrls: [],
-        providers: []
-      }
     })
     .compileComponents();
   }));

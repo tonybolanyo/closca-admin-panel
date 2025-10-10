@@ -12,7 +12,7 @@ module.exports = {
   moduleNameMapper: {
     '^src/(.*)$': '<rootDir>/src/$1',
     '@tyris/angular-foundation': '<rootDir>/src/__mocks__/@tyris/angular-foundation.ts',
-    '@ks89/angular-modal-gallery': '<rootDir>/src/__mocks__/angular-modal-gallery.js',
+    '@ks89/angular-modal-gallery': '<rootDir>/src/__mocks__/angular-modal-gallery.ts',
     'ng-apexcharts': '<rootDir>/src/__mocks__/ng-apexcharts.js',
     '\\.(css|less|scss|sass)$': '<rootDir>/src/__mocks__/styleMock.js'
   },
