@@ -2,8 +2,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { FormBuilder,
-        { provide: ToastrService, useValue: { success: jest.fn(), error: jest.fn(), info: jest.fn(), warning: jest.fn() } }, ReactiveFormsModule } from '@angular/forms';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 import { ExampleCrudListComponent } from './example-crud-list.component';
 
@@ -16,6 +16,8 @@ describe('ExampleCrudListComponent', () => {
       declarations: [ ExampleCrudListComponent ],
       imports: [ ReactiveFormsModule ],
       providers: [
+        { provide: ToastrService, useValue: { success: jest.fn(), error: jest.fn(), info: jest.fn(), warning: jest.fn() } },
+        { provide: NgxUiLoaderService, useValue: { start: jest.fn(), stop: jest.fn() } },
         { 
           provide: ActivatedRoute, 
           useValue: { 
