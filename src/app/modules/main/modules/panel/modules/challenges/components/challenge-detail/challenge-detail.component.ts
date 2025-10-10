@@ -106,13 +106,13 @@ export class ChallengeDetailComponent implements OnInit {
     queueLimit: 1
   });
 
-  @ViewChild('usersTargetCSVUploaderInput', { static: false }) usersTargetCSVUploaderInput: ElementRef;
-  @ViewChild('subscribeUsersCSVUploaderInput', { static: false }) subscribeUsersCSVUploaderInput: ElementRef;
+  @ViewChild('usersTargetCSVUploaderInput') usersTargetCSVUploaderInput: ElementRef;
+  @ViewChild('subscribeUsersCSVUploaderInput') subscribeUsersCSVUploaderInput: ElementRef;
 
   // IMAGE
   challengeImageId: string;
   isChallengeImageDeleted = false;
-  @ViewChild('challengeImageUploaderInput', { static: false })
+  @ViewChild('challengeImageUploaderInput')
   challengeImageUploaderInput: ElementRef;
 
   // LOCAL IMAGE
@@ -122,7 +122,7 @@ export class ChallengeDetailComponent implements OnInit {
   // BACKGROUND IMAGE
   challengeBackgroundImageId: string;
   isChallengeBackgroundImageDeleted = false;
-  @ViewChild('challengeBackgroundImageUploaderInput', { static: false })
+  @ViewChild('challengeBackgroundImageUploaderInput')
   challengeBackgroundImageUploaderInput: ElementRef;
 
   // LOCAL BACKGROUND IMAGE

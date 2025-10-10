@@ -227,16 +227,16 @@ export class CorporateDetailComponent implements OnInit {
     url: '',
     queueLimit: 1
   });
-  @ViewChild('invitationCSVUploaderInput', { static: false }) invitationCSVUploaderInput: ElementRef;
+  @ViewChild('invitationCSVUploaderInput') invitationCSVUploaderInput: ElementRef;
 
   public createFountainsCSVUploader: FileUploader = new FileUploader({
     url: '',
     queueLimit: 1
   });
-  @ViewChild('createFountainsCSVUploaderInput', { static: false }) createFountainsCSVUploaderInput: ElementRef;
+  @ViewChild('createFountainsCSVUploaderInput') createFountainsCSVUploaderInput: ElementRef;
 
 
-  @ViewChild('logoUploaderInput', { static: false }) logoUploaderInput: ElementRef;
+  @ViewChild('logoUploaderInput') logoUploaderInput: ElementRef;
   // @ViewChild('imageUploaderInput', { static: false }) imageUploaderInput: ElementRef;
   // @ViewChild('impactUploaderInput', { static: false }) impactUploaderInput: ElementRef;
 

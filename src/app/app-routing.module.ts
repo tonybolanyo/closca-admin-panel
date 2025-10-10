@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    loadChildren: './modules/main/main.module#MainModule',
+    loadChildren: () => import('./modules/main/main.module').then(m => m.MainModule),
   },
   {
     path: 'login',

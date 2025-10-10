@@ -85,7 +85,7 @@ export class PublicOrPrivateFountainDetailComponent implements OnInit {
   imageHeight: number;
   fountainImageId: string;
   isFountainImageDeleted = false;
-  @ViewChild('imageFountainUploaderInput', { static: false }) imageFountainUploaderInput: ElementRef;
+  @ViewChild('imageFountainUploaderInput') imageFountainUploaderInput: ElementRef;
 
   // Local image
   isFountainLocalImageChanged = false;

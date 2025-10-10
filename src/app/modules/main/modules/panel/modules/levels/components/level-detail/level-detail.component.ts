@@ -47,7 +47,7 @@ export class LevelDetailComponent implements OnInit {
   // IMAGE
   levelImageId: string;
   isLevelImageDeleted = false;
-  @ViewChild('levelImageUploaderInput', { static: false }) imageLevelUploaderInput: ElementRef;
+  @ViewChild('levelImageUploaderInput') imageLevelUploaderInput: ElementRef;
 
   // Local image
   isLevelLocalImageChanged = false;

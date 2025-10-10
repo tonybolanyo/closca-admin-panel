@@ -25,7 +25,6 @@ import { SharedModule } from './shared/shared.module';
 
 // --> Angular modal gallery
 import { GalleryModule } from '@ks89/angular-modal-gallery';
-import 'hammerjs';
 import 'mousetrap';
 // --> Angular Material
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
@@ -83,7 +82,7 @@ import { CanDeactivateGuard } from './shared/guards/can-deactivate.guard';
         preventDuplicates: true,
       }
     ),
-    GalleryModule.forRoot(),
+    GalleryModule,
     SharedModule,
     AppRoutingModule,
     AngularEditorModule,
