@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { FountainService } from '../../../../../../shared/custom-gnommo-base/services/fountain.service';
+import { FountainService } from 'src/app/shared/custom-gnommo-base/services/fountain.service';
 import { SponsoredFountainCreateComponent } from './sponsored-fountain-create.component';
 
 describe('SponsoredFountainCreateComponent', () => {
@@ -31,8 +31,11 @@ describe('SponsoredFountainCreateComponent', () => {
         },
         {
           provide: ToastrService,
-        { provide: NgxUiLoaderService, useValue: { start: jest.fn(), stop: jest.fn() } },
           useValue: { success: jest.fn(), error: jest.fn(), info: jest.fn(), warning: jest.fn() }
+        },
+        { 
+          provide: NgxUiLoaderService, 
+          useValue: { start: jest.fn(), stop: jest.fn() } 
         },
         {
           provide: FountainService,
@@ -44,14 +47,6 @@ describe('SponsoredFountainCreateComponent', () => {
           }
         }
       ]
-    })
-    .overrideComponent(SponsoredFountainCreateComponent, {
-      set: {
-        templateUrl: undefined,
-        template: '<div></div>',
-        styleUrls: [],
-        providers: []
-      }
     })
     .compileComponents();
   }));
