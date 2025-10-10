@@ -36,7 +36,7 @@ export class ChallengesListComponent implements OnInit {
   challengeTypes = [...[{ name: 'Todos', value: '' }], ...CHALLENGE_TYPES];
 
   // FILTER
-  filter = {};
+  filter: any = {};
   filterForm;
   filterMode = true;
   // END FILTER
@@ -187,9 +187,9 @@ export class ChallengesListComponent implements OnInit {
   getChallenges(isDeletedItem: boolean = false) {
     this.ngxLoader.start();
     const headers = {
-      limit: this.paginator.limit,
+      limit: String(this.paginator.limit),
       sort: this.sort,
-      skip: this.paginator.skip,
+      skip: String(this.paginator.skip),
       filter: this.filter
     };
     this.challengeService.getAll(headers).subscribe(

@@ -179,13 +179,7 @@ export class PublicOrPrivateFountainDetailComponent implements OnInit {
     ]
   };
 
-  editorConfig: AngularEditorConfig = {
-    editable: this.action !== 'view',
-    spellcheck: true,
-    height: '15rem',
-    minHeight: '15rem',
-    placeholder: 'Comentarios'
-  };
+  editorConfig: AngularEditorConfig;
 
   // START REFILL PAGINATOR
   refillPaginator = {

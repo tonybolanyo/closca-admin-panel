@@ -33,7 +33,7 @@ export class SponsoredFountainsListComponent implements OnInit {
   featuresList;
 
   // FILTER
-  filter = {};
+  filter: any = {};
   filterForm;
   filterMode = true;
 
@@ -162,8 +162,8 @@ export class SponsoredFountainsListComponent implements OnInit {
   getFountains(isDeletedItem: boolean = false) {
     this.ngxLoader.start();
     const headers = {
-      limit: this.paginator.limit,
-      skip: this.paginator.skip,
+      limit: String(this.paginator.limit),
+      skip: String(this.paginator.skip),
       sort: this.sort,
       filter: this.filter
     };

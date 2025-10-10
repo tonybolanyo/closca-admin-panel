@@ -31,7 +31,7 @@ export class ProductsListComponent implements OnInit {
   productStatus = [...[{ name: 'Todos', value: '' }], ...PRODUCT_STATUSES];
 
   // FILTER
-  filter = {};
+  filter: any = {};
   filterForm;
   filterMode = true;
   // END FILTER
@@ -153,8 +153,8 @@ export class ProductsListComponent implements OnInit {
     this.ngxLoader.start();
 
     const headers = {
-      limit: this.paginator.limit,
-      skip: this.paginator.skip,
+      limit: String(this.paginator.limit),
+      skip: String(this.paginator.skip),
       sort: this.sort,
       filter: this.filter,
       includes: 'imageId,descriptionImageId,typeId'

@@ -56,13 +56,7 @@ export class ProductDetailComponent implements OnInit {
 
   routerDefinitions = ROUTER_DEFINITIONS;
 
-  editorConfig: AngularEditorConfig = {
-    editable: this.action !== 'view',
-    spellcheck: true,
-    height: '15rem',
-    minHeight: '15rem',
-    placeholder: 'Descripción'
-  };
+  editorConfig: AngularEditorConfig;
 
   // Uploader
   public imageProductUploader: FileUploader = new FileUploader({ url: '' });

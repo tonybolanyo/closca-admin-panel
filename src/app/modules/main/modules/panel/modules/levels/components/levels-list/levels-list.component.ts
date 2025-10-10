@@ -16,7 +16,7 @@ export class LevelsListComponent implements OnInit {
   items;
 
   // FILTER
-  filter = {};
+  filter: any = {};
   filterForm;
   filterMode = true;
   // END FILTER
@@ -209,9 +209,9 @@ export class LevelsListComponent implements OnInit {
   getLevels() {
     this.ngxLoader.start();
     const headers = {
-      limit: this.paginator.limit,
+      limit: String(this.paginator.limit),
       sort: this.sort,
-      skip: this.paginator.skip,
+      skip: String(this.paginator.skip),
       filter: this.filter
     };
     this.levelService

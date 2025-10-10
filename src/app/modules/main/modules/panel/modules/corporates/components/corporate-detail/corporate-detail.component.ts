@@ -360,7 +360,7 @@ export class CorporateDetailComponent implements OnInit {
   getManager(corporateId) {
     const headers = {
       sort: 'instance.createdAt',
-      limit: 1,
+      limit: '1',
       filter: `{"corporateId": "${corporateId}", "instance.status": {$ne: "DELETED"}, "role": "MANAGER"}`
     };
 
@@ -389,8 +389,8 @@ export class CorporateDetailComponent implements OnInit {
     const headers = {
       includes: 'fountainId',
       sort: 'instance.createdAt',
-      limit: this.fountainsPaginator.limit,
-      skip: this.fountainsPaginator.skip,
+      limit: String(this.fountainsPaginator.limit),
+      skip: String(this.fountainsPaginator.skip),
       filter: `{"corporateId": "${corporateId}", "fountainStatus": {$ne: "DELETED"}}`
     };
 
