@@ -108,28 +108,28 @@
       <div class="row">
         <mat-form-field class="col-12">
           <input matInput placeholder="Direccion *" [ngModelOptions]="{standalone: true}" [(ngModel)]="address"
-            ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" />
+            #addressInput />
         </mat-form-field>
       </div>
       <div class="row">
         <div class="col-12">
-          <agm-map [latitude]="lat" [longitude]="lng" [zoom]="18">
-            <agm-marker [latitude]="lat" [longitude]="lng"
-              [iconUrl]="'../../../../../../../../../assets/icons/ico_map_fountain@2x.png'"
-              [markerDraggable]="action !== 'view' ? true : false" (dragEnd)="markerDragEnd($event)"></agm-marker>
+          <google-map [center]="{lat: lat, lng: lng}" [zoom]="18" width="100%" height="400px">
+            <map-marker [position]="{lat: lat, lng: lng}"
+              [options]="{icon: '../../../../../../../../../assets/icons/ico_map_fountain@2x.png', draggable: action !== 'view'}"
+              (mapDragend)="markerDragEnd($event)"></map-marker>
 
-            <agm-marker *ngFor="let fountainAround of fountainsAround" [latitude]="fountainAround.loc.coordinates[1]"
-              [longitude]="fountainAround.loc.coordinates[0]"
-              [iconUrl]="'../../../../../../../../../assets/icons/ico_map_fountain.png'" [markerDraggable]="false"
-              [markerClickable]="true" [openInfoWindow]="true">
-              <agm-info-window>
+            <map-marker *ngFor="let fountainAround of fountainsAround" 
+              [position]="{lat: fountainAround.loc.coordinates[1], lng: fountainAround.loc.coordinates[0]}"
+              [options]="{icon: '../../../../../../../../../assets/icons/ico_map_fountain.png'}"
+              #markerElem="mapMarker">
+              <map-info-window>
                 <h6 class="marker-title">{{ fountainAround.name }}</h6>
                 <strong>{{ fountainAround.fountainType == "PUBLIC" ? "Fuente Pública" : "Fuente Privada"}}</strong><br />
                 {{ fountainAround.address.address }}
-              </agm-info-window>
-            </agm-marker>
+              </map-info-window>
+            </map-marker>
 
-          </agm-map>
+          </google-map>
         </div>
       </div>
       <div class="row">

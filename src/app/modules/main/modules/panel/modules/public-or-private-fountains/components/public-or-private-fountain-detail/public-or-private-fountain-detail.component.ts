@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -14,7 +14,6 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { AuthService } from '@tyris/angular-foundation';
 import moment from 'moment';
 import { FileUploader } from 'ng2-file-upload';
-import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
 import { FEATURES, FOUNTAIN_REFILL_TYPES, FOUNTAIN_STATUSES, PUBLIC_OR_PRIVATE_FOUNTAIN_TYPES, S3_URL, STATION_TYPES, TIMES, WEEKDAYS } from 'src/app/shared/constants/constants';
@@ -32,7 +31,7 @@ declare var google;
   styleUrls: ['./public-or-private-fountain-detail.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PublicOrPrivateFountainDetailComponent implements OnInit {
+export class PublicOrPrivateFountainDetailComponent implements OnInit, AfterViewInit {
 
   corporates;
   corporateSelected;
@@ -87,6 +86,7 @@ export class PublicOrPrivateFountainDetailComponent implements OnInit {
   fountainImageId: string;
   isFountainImageDeleted = false;
   @ViewChild('imageFountainUploaderInput') imageFountainUploaderInput: ElementRef;
+  @ViewChild('addressInput') addressInput: ElementRef;
 
   // Local image
   isFountainLocalImageChanged = false;
@@ -256,6 +256,22 @@ export class PublicOrPrivateFountainDetailComponent implements OnInit {
     this.onChanges();
     this.handlerUploaders();
 
+  }
+
+  ngAfterViewInit() {
+    if (this.addressInput && this.addressInput.nativeElement) {
+      const autocomplete = new google.maps.places.Autocomplete(
+        this.addressInput.nativeElement,
+        { types: ['address'] }
+      );
+      
+      autocomplete.addListener('place_changed', () => {
+        const place = autocomplete.getPlace();
+        if (place.geometry) {
+          this.handleAddressChange(place);
+        }
+      });
+    }
   }
 
   navigateBack() {
@@ -919,11 +935,11 @@ export class PublicOrPrivateFountainDetailComponent implements OnInit {
   //
   // Method used to search with geoCode and change values of geoInfo/address/lat&lng
   //
-  markerDragEnd(event: any) {
+  markerDragEnd(event: google.maps.MapMouseEvent) {
 
     const self: PublicOrPrivateFountainDetailComponent = this;
-    this.lat = event.coords.lat;
-    this.lng = event.coords.lng;
+    this.lat = event.latLng.lat();
+    this.lng = event.latLng.lng();
     const latlng = { lat: this.lat, lng: this.lng };
     const geocoder = new google.maps.Geocoder();
 
@@ -938,12 +954,12 @@ export class PublicOrPrivateFountainDetailComponent implements OnInit {
   //
   // Method used to search and change address/geoInfo/lat&lng by google-autocomplete
   //
-  handleAddressChange(address: Address) {
+  handleAddressChange(place: any) {
 
-    this.handlerGeoInfoData(address);
-    this.address = address.formatted_address;
-    this.lng = address.geometry.location.lng();
-    this.lat = address.geometry.location.lat();
+    this.handlerGeoInfoData(place);
+    this.address = place.formatted_address;
+    this.lng = place.geometry.location.lng();
+    this.lat = place.geometry.location.lat();
 
   }
 

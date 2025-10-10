@@ -1,11 +1,10 @@
 import { Location } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@tyris/angular-foundation';
 import { FileUploader } from 'ng2-file-upload';
-import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
@@ -31,7 +30,7 @@ declare var google;
   templateUrl: './sponsored-fountain-detail.component.html',
   styleUrls: ['./sponsored-fountain-detail.component.scss']
 })
-export class SponsoredFountainDetailComponent implements OnInit {
+export class SponsoredFountainDetailComponent implements OnInit, AfterViewInit {
 
   action: string;
   fountainId: string;
@@ -62,6 +61,7 @@ export class SponsoredFountainDetailComponent implements OnInit {
 
   @ViewChild('mapPinImageUploaderInput') mapPinImageUploaderInput: ElementRef;
   @ViewChild('fountainImageUploaderInput') fountainImageUploaderInput: ElementRef;
+  @ViewChild('addressInput') addressInput: ElementRef;
   // END IMAGES
 
   // ROUTER DEFINITION
@@ -227,6 +227,22 @@ export class SponsoredFountainDetailComponent implements OnInit {
 
     this.handlerUploaders();
 
+  }
+
+  ngAfterViewInit() {
+    if (this.addressInput && this.addressInput.nativeElement) {
+      const autocomplete = new google.maps.places.Autocomplete(
+        this.addressInput.nativeElement,
+        { types: ['address'] }
+      );
+      
+      autocomplete.addListener('place_changed', () => {
+        const place = autocomplete.getPlace();
+        if (place.geometry) {
+          this.handleAddressChange(place);
+        }
+      });
+    }
   }
 
   navigateBack() {
@@ -835,11 +851,11 @@ export class SponsoredFountainDetailComponent implements OnInit {
   //
   // Method used to search with geoCode and change values of geoInfo/address/lat&lng
   //
-  markerDragEnd(event: any) {
+  markerDragEnd(event: google.maps.MapMouseEvent) {
 
     const self: SponsoredFountainDetailComponent = this;
-    this.lat = event.coords.lat;
-    this.lng = event.coords.lng;
+    this.lat = event.latLng.lat();
+    this.lng = event.latLng.lng();
     const latlng = { lat: this.lat, lng: this.lng };
     const geocoder = new google.maps.Geocoder();
 
@@ -854,12 +870,12 @@ export class SponsoredFountainDetailComponent implements OnInit {
   //
   // Method used to search and change address/geoInfo/lat&lng by google-autocomplete
   //
-  handleAddressChange(address: Address) {
+  handleAddressChange(place: any) {
 
-    this.handlerGeoInfoData(address);
-    this.address = address.formatted_address;
-    this.lng = address.geometry.location.lng();
-    this.lat = address.geometry.location.lat();
+    this.handlerGeoInfoData(place);
+    this.address = place.formatted_address;
+    this.lng = place.geometry.location.lng();
+    this.lat = place.geometry.location.lat();
   }
 
 

@@ -121,18 +121,17 @@
         </div>
         <div class="row custom-map">
           <div class="col-12 mb-5">
-            <agm-map [latitude]="report.fountainInfo.loc.coordinates[1]"
-              [longitude]="report.fountainInfo.loc.coordinates[0]" [zoom]="18">
-              <agm-marker [latitude]="report.loc.coordinates[1]" [longitude]="report.loc.coordinates[0]"
-                [iconUrl]="'../../../../../../../../../assets/icons/ico_map_fountain.png'" [markerDraggable]="false">
-              </agm-marker>
+            <google-map [center]="{lat: report.fountainInfo.loc.coordinates[1], lng: report.fountainInfo.loc.coordinates[0]}" 
+              [zoom]="18" width="100%" height="400px">
+              <map-marker [position]="{lat: report.loc.coordinates[1], lng: report.loc.coordinates[0]}"
+                [options]="{icon: '../../../../../../../../../assets/icons/ico_map_fountain.png'}">
+              </map-marker>
 
-              <agm-marker [latitude]="report.fountainInfo.loc.coordinates[1]"
-                [longitude]="report.fountainInfo.loc.coordinates[0]"
-                [iconUrl]="'../../../../../../../../../assets/icons/ico_map_fountain@2x.png'" [markerDraggable]="false">
-              </agm-marker>
+              <map-marker [position]="{lat: report.fountainInfo.loc.coordinates[1], lng: report.fountainInfo.loc.coordinates[0]}"
+                [options]="{icon: '../../../../../../../../../assets/icons/ico_map_fountain@2x.png'}">
+              </map-marker>
 
-            </agm-map>
+            </google-map>
           </div>
         </div>
       </ng-container>
