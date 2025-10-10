@@ -31,13 +31,12 @@ module.exports = {
   ],
   coverageDirectory: 'coverage',
   transformIgnorePatterns: [
-    'node_modules/(?!@angular|@ngrx|ngx-bootstrap|ng-dynamic)'
+    'node_modules/(?!(@angular|@ngrx|ngx-bootstrap|ng-dynamic|ngx-toastr|@ng-bootstrap|@ng-select|@kolkov|@ks89)/)'
   ],
   globals: {
     'ts-jest': {
-      tsConfig: '<rootDir>/src/tsconfig.spec.json',
+      tsconfig: '<rootDir>/src/tsconfig.spec.json',
       stringifyContentPathRegex: '\\.(html|svg)$',
-      allowJs: true
     }
   }
 };
