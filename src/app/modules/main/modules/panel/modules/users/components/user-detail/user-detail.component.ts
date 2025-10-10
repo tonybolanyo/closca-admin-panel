@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -33,7 +33,7 @@ import { LoggedUserService } from '../../../../../../../../shared/services/logge
 export class UserDetailComponent implements OnInit {
   action: string;
   userId: string;
-  userForm: FormGroup;
+  userForm: UntypedFormGroup;
   user;
   corporates;
   bottles;
@@ -343,7 +343,7 @@ export class UserDetailComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private router: Router,
     private toastr: ToastrService,
     private dialog: MatDialog,
@@ -394,7 +394,7 @@ export class UserDetailComponent implements OnInit {
         break;
       case 'new':
         this.buildForm(false);
-        this.userForm.addControl('password', new FormControl(
+        this.userForm.addControl('password', new UntypedFormControl(
           { value: null, disabled: false })
         );
         break;

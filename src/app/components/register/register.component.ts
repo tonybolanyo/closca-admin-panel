@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
@@ -16,11 +16,11 @@ import { UserService } from 'src/app/shared/custom-gnommo-base/services';
 
 export class RegisterComponent implements OnInit {
     routerDefinitions = ROUTER_DEFINITIONS;
-    userDataForm: FormGroup;
+    userDataForm: UntypedFormGroup;
 
 
     constructor(private router: Router,
-        private formBuilder: FormBuilder,
+        private formBuilder: UntypedFormBuilder,
         private userService: UserService,
         private toastr: ToastrService) {
         this.buildForm();

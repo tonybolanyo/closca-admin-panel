@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { ChallengeSubscriptionService } from 'src/app/shared/custom-gnommo-base/services';
 import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -35,7 +35,7 @@ export class ChallengeSubscriptionsUsersListComponent implements OnInit {
     { name: 'Completado', value: 'DONE' },
     { name: 'Fallido', value: 'FAILED' }
   ];
-  filterForm: FormGroup;
+  filterForm: UntypedFormGroup;
 
   // START PAGINATOR
   paginator = {
@@ -57,7 +57,7 @@ export class ChallengeSubscriptionsUsersListComponent implements OnInit {
 
   constructor(
     private challengeSubscriptionService: ChallengeSubscriptionService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private router: Router,
     private toastr: ToastrService,
   ) {

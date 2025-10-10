@@ -4,7 +4,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { UntypedFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 import { ChangeFountainStatusComponent } from './change-fountain-status.component';
@@ -25,7 +25,7 @@ describe('ChangeFountainStatusComponent', () => {
         NoopAnimationsModule
       ],
       providers: [
-        FormBuilder,
+        UntypedFormBuilder,
         DatePipe,
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: MatDialogRef, useValue: {} },

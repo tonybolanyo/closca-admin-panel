@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -18,7 +18,7 @@ import { Observable } from 'rxjs';
 export class ProductTypeDetailComponent implements OnInit {
   action: string;
   productTypeId: string;
-  productTypeForm: FormGroup;
+  productTypeForm: UntypedFormGroup;
   productType;
 
   routerDefinitions = ROUTER_DEFINITIONS;
@@ -28,7 +28,7 @@ export class ProductTypeDetailComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private router: Router,
     private toastr: ToastrService,
     private productTypeService: ProductTypesService,

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { Router } from '@angular/router';
@@ -22,7 +22,7 @@ export class ProductRedeemCodesListComponent implements OnInit {
   codesRedeemed = [];
   // END USERS
 
-  filterForm: FormGroup;
+  filterForm: UntypedFormGroup;
 
   // START PAGINATOR
   paginator = {
@@ -129,7 +129,7 @@ export class ProductRedeemCodesListComponent implements OnInit {
   };
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private rewardService: RewardService,
     private loader: NgxUiLoaderService,
     private router: Router,

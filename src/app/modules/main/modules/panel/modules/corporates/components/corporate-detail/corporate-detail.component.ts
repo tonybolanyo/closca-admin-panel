@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -28,8 +28,8 @@ import { environment } from 'src/environments/environment';
 export class CorporateDetailComponent implements OnInit {
   action: string;
   corporateId: string;
-  corporateForm: FormGroup;
-  managerForm: FormGroup;
+  corporateForm: UntypedFormGroup;
+  managerForm: UntypedFormGroup;
   corporate;
   manager;
   fountains;
@@ -257,7 +257,7 @@ export class CorporateDetailComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private router: Router,
     private toastr: ToastrService,
     private dialog: MatDialog,

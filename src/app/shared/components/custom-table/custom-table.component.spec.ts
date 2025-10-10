@@ -1,11 +1,11 @@
 import { CustomTableComponent } from './custom-table.component';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { of } from 'rxjs';
 
 describe('CustomTableComponent', () => {
   let component: CustomTableComponent;
-  let mockFormBuilder: FormBuilder;
+  let mockFormBuilder: UntypedFormBuilder;
   let mockDialog: any;
 
   const createColumn = (columnDef: string, filterType: string, formControlName: string) => ({
@@ -22,7 +22,7 @@ describe('CustomTableComponent', () => {
   });
 
   beforeEach(() => {
-    mockFormBuilder = new FormBuilder();
+    mockFormBuilder = new UntypedFormBuilder();
     mockDialog = {
       open: jest.fn().mockReturnValue({
         afterClosed: () => of(true)

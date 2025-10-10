@@ -34,12 +34,6 @@ module.exports = {
   ],
   coverageDirectory: 'coverage',
   transformIgnorePatterns: [
-    'node_modules/(?!(@angular|@ngrx|ngx-bootstrap|ng-dynamic|ngx-toastr|@ng-bootstrap|@ng-select|@kolkov|@ks89)/)'
-  ],
-  globals: {
-    'ts-jest': {
-      tsconfig: '<rootDir>/src/tsconfig.spec.json',
-      stringifyContentPathRegex: '\\.(html|svg)$',
-    }
-  }
+    'node_modules/(?!(@angular|@ngrx|ngx-bootstrap|ng-dynamic|ngx-toastr|@ng-bootstrap|@ng-select|@kolkov|rxjs)/)'
+  ]
 };

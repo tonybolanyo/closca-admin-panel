@@ -1,4 +1,4 @@
-@use '~@angular/material' as mat;
+@use '@angular/material' as mat;
 $custom-typography: mat.define-typography-config(
     $font-family: 'customFont-regular, customFont-light',
     $headline: mat.define-typography-level(32px, 48px, 700),

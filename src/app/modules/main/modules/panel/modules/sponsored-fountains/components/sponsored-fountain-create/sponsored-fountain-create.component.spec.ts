@@ -1,7 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { UntypedFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { MatTableModule } from '@angular/material/table';
@@ -25,7 +25,7 @@ describe('SponsoredFountainCreateComponent', () => {
       imports: [ ReactiveFormsModule, MatTableModule ],
       schemas: [ NO_ERRORS_SCHEMA ],
       providers: [
-        FormBuilder,
+        UntypedFormBuilder,
         { 
           provide: ActivatedRoute, 
           useValue: { 

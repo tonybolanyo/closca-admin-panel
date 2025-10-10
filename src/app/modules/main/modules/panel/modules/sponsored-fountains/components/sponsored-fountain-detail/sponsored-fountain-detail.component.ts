@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@tyris/angular-foundation';
@@ -34,7 +34,7 @@ export class SponsoredFountainDetailComponent implements OnInit {
 
   action: string;
   fountainId: string;
-  fountainForm: FormGroup;
+  fountainForm: UntypedFormGroup;
   fountain;
   backToBrand;
   refills;
@@ -183,7 +183,7 @@ export class SponsoredFountainDetailComponent implements OnInit {
   role;
   constructor(
     private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private router: Router,
     private toastr: ToastrService,
     private fountainService: FountainService,

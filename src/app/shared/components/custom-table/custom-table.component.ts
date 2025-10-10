@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogConfirmationComponent } from '../dialog-confirmation/dialog-confirmation.component';
 import { ROUTER_DEFINITIONS } from '../../constants/router-definitions';
@@ -36,7 +36,7 @@ export class CustomTableComponent implements OnInit {
     @Input('isSelectAllItems') isSelectAllItems = false;
 
     // FILTER
-    filterForm: FormGroup;
+    filterForm: UntypedFormGroup;
     filterMode = true;
 
     sortValues = null;
@@ -60,7 +60,7 @@ export class CustomTableComponent implements OnInit {
     @Output('sendCustomViewButton') sendCustomViewButton: EventEmitter<any> = new EventEmitter<any>();
     @Output('sendCustomEditButton') sendCustomEditButton: EventEmitter<any> = new EventEmitter<any>();
 
-    constructor(private formBuilder: FormBuilder,
+    constructor(private formBuilder: UntypedFormBuilder,
         private dialog: MatDialog) {
     }
 
@@ -92,17 +92,17 @@ export class CustomTableComponent implements OnInit {
         this.tableConfig.columns.forEach((column) => {
             switch (column.filter.type) {
                 case 'DATE':
-                    this.filterForm.addControl(column.filter.formControl.name, new FormControl(
+                    this.filterForm.addControl(column.filter.formControl.name, new UntypedFormControl(
                         { value: null, disabled: true }));
                     break;
                 case 'DROPDOWN':
-                    this.filterForm.addControl(column.filter.formControl.name, new FormControl([]));
+                    this.filterForm.addControl(column.filter.formControl.name, new UntypedFormControl([]));
                     break;
                 case 'INPUT':
-                    this.filterForm.addControl(column.filter.formControl.name, new FormControl(''));
+                    this.filterForm.addControl(column.filter.formControl.name, new UntypedFormControl(''));
                     break;
                 default:
-                    this.filterForm.addControl(column.filter.formControl.name, new FormControl(''));
+                    this.filterForm.addControl(column.filter.formControl.name, new UntypedFormControl(''));
                     break;
             }
         });

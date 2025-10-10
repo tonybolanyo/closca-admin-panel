@@ -6,7 +6,7 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
@@ -46,10 +46,10 @@ export class ChallengeDetailComponent implements OnInit {
   action: string;
   changeDate: boolean;
   challengeId;
-  challengeForm: FormGroup;
-  imagesForm: FormGroup;
-  filterForm: FormGroup;
-  challengeCSVForm: FormGroup;
+  challengeForm: UntypedFormGroup;
+  imagesForm: UntypedFormGroup;
+  filterForm: UntypedFormGroup;
+  challengeCSVForm: UntypedFormGroup;
   challenge;
   fountains;
   corporates;
@@ -161,7 +161,7 @@ export class ChallengeDetailComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private router: Router,
     private toastr: ToastrService,
     private challengeService: ChallengeService,

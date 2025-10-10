@@ -28,7 +28,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { CanDeactivateDialogService } from './services/can-deactivate-dialog.service';
 // tslint:disable-next-line: max-line-length
 import { TransformSponsoredFountainToPrivateComponent } from './components/transform-sponsored-fountain-to-private/transform-sponsored-fountain-to-private.component';
-import { NgxMultiLineEllipsisModule } from 'ngx-multi-line-ellipsis';
 import { ChangeFountainStatusComponent } from './components/change-fountain-status/change-fountain-status.component';
 import { ChangeProductStatusComponent } from './components/change-product-status/change-product-status.component';
 import { DialogRewardCodesComponent } from './components/dialog-reward-codes/dialog-reward-codes.component';
@@ -58,8 +57,7 @@ import { ChallengeCsvResponseDialogComponent } from './components/challenge-csv-
         FileUploadModule,
         NgbRatingModule,
         FormsModule,
-        ReactiveFormsModule,
-        NgxMultiLineEllipsisModule
+        ReactiveFormsModule
     ],
     exports: [
         DialogConfirmationComponent,
@@ -87,16 +85,6 @@ import { ChallengeCsvResponseDialogComponent } from './components/challenge-csv-
     ],
     providers: [
         CanDeactivateDialogService
-    ],
-    entryComponents: [
-        DialogConfirmationComponent,
-        ChallengeCsvResponseDialogComponent,
-        TransformSponsoredFountainToPrivateComponent,
-        ChangeFountainStatusComponent,
-        ChangeProductStatusComponent,
-        DialogInfoComponent,
-        DialogRewardCodesComponent,
-        CookiesComponent
     ]
 })
 export class SharedModule {

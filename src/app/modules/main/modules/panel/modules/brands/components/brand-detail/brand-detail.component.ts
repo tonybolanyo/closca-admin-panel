@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@tyris/angular-foundation';
@@ -24,7 +24,7 @@ import { environment } from 'src/environments/environment';
 export class BrandDetailComponent implements OnInit {
   action: string;
   brandId;
-  brandForm: FormGroup;
+  brandForm: UntypedFormGroup;
   brand;
   fountains;
 
@@ -139,7 +139,7 @@ export class BrandDetailComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private router: Router,
     private toastr: ToastrService,
     private brandService: BrandService,

@@ -4,7 +4,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import {
@@ -56,7 +56,7 @@ export class ChallengeMetricsComponent implements OnInit {
   ranking;
   metrics;
 
-  filterForm: FormGroup;
+  filterForm: UntypedFormGroup;
 
   startDateTimestamp;
   finishDateTimestamp;
@@ -77,7 +77,7 @@ export class ChallengeMetricsComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private ngxLoader: NgxUiLoaderService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private toastr: ToastrService,
     private challengeService: ChallengeService,
     private corporateService: CorporateService,

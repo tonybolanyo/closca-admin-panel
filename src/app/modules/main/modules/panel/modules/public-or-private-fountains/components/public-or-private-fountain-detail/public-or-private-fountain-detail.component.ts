@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
@@ -38,7 +38,7 @@ export class PublicOrPrivateFountainDetailComponent implements OnInit {
 
   action: string;
   fountainId: string;
-  fountainForm: FormGroup;
+  fountainForm: UntypedFormGroup;
   fountainType;
   fountain;
   refills;
@@ -196,7 +196,7 @@ export class PublicOrPrivateFountainDetailComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private router: Router,
     private toastr: ToastrService,
     private fountainService: FountainService,

@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@tyris/angular-foundation';
@@ -23,7 +23,7 @@ import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactiva
 export class BottleDetailComponent implements OnInit {
   action: string;
   bottleId: string;
-  bottleForm: FormGroup;
+  bottleForm: UntypedFormGroup;
   bottle;
   bottleTypes;
   bottleTypeSelected = new BottleType("", "Sin tipo");
@@ -48,7 +48,7 @@ export class BottleDetailComponent implements OnInit {
     private toastr: ToastrService,
     private authService: AuthService,
     private ngxLoader: NgxUiLoaderService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private bottleService: BottleService,
     private bottleTypesService: BottleTypesService
   ) {

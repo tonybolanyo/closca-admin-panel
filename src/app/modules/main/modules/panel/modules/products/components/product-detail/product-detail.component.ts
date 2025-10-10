@@ -7,9 +7,9 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import {
-  FormArray,
-  FormBuilder,
-  FormGroup,
+  UntypedFormArray,
+  UntypedFormBuilder,
+  UntypedFormGroup,
   Validators
 } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -41,13 +41,13 @@ import { LoggedUserService } from '../../../../../../../../shared/services/logge
 export class ProductDetailComponent implements OnInit {
   action: string;
   productId: string;
-  productForm: FormGroup;
-  productESForm: FormGroup;
-  productENForm: FormGroup;
-  sizeES: FormArray;
-  sizeEN: FormArray;
-  rewardStepperES: FormArray;
-  rewardStepperEN: FormArray;
+  productForm: UntypedFormGroup;
+  productESForm: UntypedFormGroup;
+  productENForm: UntypedFormGroup;
+  sizeES: UntypedFormArray;
+  sizeEN: UntypedFormArray;
+  rewardStepperES: UntypedFormArray;
+  rewardStepperEN: UntypedFormArray;
   productStatus;
   product;
   totalPrice;
@@ -97,7 +97,7 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private router: Router,
     private toastr: ToastrService,
     private productService: ProductService,
@@ -255,16 +255,16 @@ export class ProductDetailComponent implements OnInit {
     return true;
   }
 
-  createSize(disabled?): FormGroup {
+  createSize(disabled?): UntypedFormGroup {
     return this.formBuilder.group({
       name: [{ value: null, disabled: disabled }]
     });
   }
 
   addSize(disabled?) {
-    this.sizeES = this.productESForm.get('size') as FormArray;
+    this.sizeES = this.productESForm.get('size') as UntypedFormArray;
     this.sizeES.push(this.createSize(disabled));
-    this.sizeEN = this.productENForm.get('size') as FormArray;
+    this.sizeEN = this.productENForm.get('size') as UntypedFormArray;
     this.sizeEN.push(this.createSize(disabled));
   }
 
@@ -273,7 +273,7 @@ export class ProductDetailComponent implements OnInit {
     this.sizeEN.removeAt(index);
   }
 
-  createCode(disabled?): FormGroup {
+  createCode(disabled?): UntypedFormGroup {
     return this.formBuilder.group({
       text: [{ value: null, disabled: disabled }, Validators.required],
       link: [{ value: null, disabled: disabled }]
@@ -281,9 +281,9 @@ export class ProductDetailComponent implements OnInit {
   }
 
   addCode(disabled?) {
-    this.rewardStepperES = this.productESForm.get('rewardStepper') as FormArray;
+    this.rewardStepperES = this.productESForm.get('rewardStepper') as UntypedFormArray;
     this.rewardStepperES.push(this.createCode(disabled));
-    this.rewardStepperEN = this.productENForm.get('rewardStepper') as FormArray;
+    this.rewardStepperEN = this.productENForm.get('rewardStepper') as UntypedFormArray;
     this.rewardStepperEN.push(this.createCode(disabled));
   }
 
@@ -978,35 +978,35 @@ export class ProductDetailComponent implements OnInit {
   }
 
   getSizeESControls() {
-    return (this.productESForm.get('size') as FormArray).controls;
+    return (this.productESForm.get('size') as UntypedFormArray).controls;
   }
 
   getSizeESControlsLength() {
-    return (this.productESForm.get('size') as FormArray).length;
+    return (this.productESForm.get('size') as UntypedFormArray).length;
   }
 
   getRewardESControls() {
-    return (this.productESForm.get('rewardStepper') as FormArray).controls;
+    return (this.productESForm.get('rewardStepper') as UntypedFormArray).controls;
   }
 
   getRewardESControlsLength() {
-    return (this.productESForm.get('rewardStepper') as FormArray).length;
+    return (this.productESForm.get('rewardStepper') as UntypedFormArray).length;
   }
 
   getSizeENControls() {
-    return (this.productENForm.get('size') as FormArray).controls;
+    return (this.productENForm.get('size') as UntypedFormArray).controls;
   }
 
   getSizeENControlsLength() {
-    return (this.productENForm.get('size') as FormArray).length;
+    return (this.productENForm.get('size') as UntypedFormArray).length;
   }
 
   getRewardENControls() {
-    return (this.productENForm.get('rewardStepper') as FormArray).controls;
+    return (this.productENForm.get('rewardStepper') as UntypedFormArray).controls;
   }
 
   getRewardENControlsLength() {
-    return (this.productENForm.get('rewardStepper') as FormArray).length;
+    return (this.productENForm.get('rewardStepper') as UntypedFormArray).length;
   }
 
   goToLink(url) {

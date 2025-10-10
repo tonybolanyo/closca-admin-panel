@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ROUTER_DEFINITIONS } from '../../shared/constants/router-definitions';
@@ -13,11 +13,11 @@ import { UserService } from 'src/app/shared/custom-gnommo-base/services';
 })
 
 export class PasswordRecoverComponent implements OnInit {
-    passwordRecoverForm: FormGroup;
+    passwordRecoverForm: UntypedFormGroup;
     passwordRecoverType: string;
     routerDefinitions = ROUTER_DEFINITIONS;
     constructor(
-        private formBuilder: FormBuilder,
+        private formBuilder: UntypedFormBuilder,
         private router: Router,
         private toastr: ToastrService,
         private activateRoute: ActivatedRoute,

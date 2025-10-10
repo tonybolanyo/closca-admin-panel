@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { PUBLIC_OR_PRIVATE_FOUNTAIN_TYPES } from 'src/app/shared/constants/constants';
 import { Location } from '@angular/common';
@@ -17,7 +17,7 @@ import { ActivatedRoute } from '@angular/router';
 export class UserRateDetailComponent implements OnInit {
   userRate;
   userRateId;
-  userRateForm: FormGroup;
+  userRateForm: UntypedFormGroup;
 
   userId;
   fountainId;
@@ -31,7 +31,7 @@ export class UserRateDetailComponent implements OnInit {
     private ngxLoader: NgxUiLoaderService,
     private toastr: ToastrService,
     private userRatingService: UserRatingsService,
-    private formBuilder: FormBuilder
+    private formBuilder: UntypedFormBuilder
   ) {
     this.userRateId = this.activatedRoute.snapshot.params['id'];
     this.buildForm();

@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@tyris/angular-foundation';
@@ -24,7 +24,7 @@ import { environment } from 'src/environments/environment';
 export class BottleTypeDetailComponent implements OnInit {
   action: string;
   bottleTypeId: string;
-  bottleTypeForm: FormGroup;
+  bottleTypeForm: UntypedFormGroup;
   bottleType;
 
   // Uploader
@@ -54,7 +54,7 @@ export class BottleTypeDetailComponent implements OnInit {
     private toastr: ToastrService,
     private authService: AuthService,
     private ngxLoader: NgxUiLoaderService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private bottleTypesService: BottleTypesService
   ) {
     this.dateAdapter.setLocale('es-es');

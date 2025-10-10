@@ -18,7 +18,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { ToastrModule } from 'ngx-toastr';
-import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { LoggedUserGuard } from './shared/guards/logged-user.guard';
 import { LoggedUserService } from './shared/services/logged-user.service';
 import { SharedModule } from './shared/shared.module';
@@ -46,7 +45,6 @@ import { CustomGnommoBaseModule } from './shared/custom-gnommo-base/custom-gnomm
 
 import { AgmCoreModule } from '@agm/core';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { NgxMultiLineEllipsisModule } from 'ngx-multi-line-ellipsis';
 import { environment } from 'src/environments/environment';
 import { CanDeactivateGuard } from './shared/guards/can-deactivate.guard';
 
@@ -68,9 +66,7 @@ import { CanDeactivateGuard } from './shared/guards/can-deactivate.guard';
     ReactiveFormsModule,
     MatExpansionModule,
     FormsModule,
-    NgxUiLoaderModule,
     FileUploadModule,
-    NgxMultiLineEllipsisModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(
       {
