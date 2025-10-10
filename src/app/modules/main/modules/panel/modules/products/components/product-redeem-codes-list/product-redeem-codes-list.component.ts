@@ -17,7 +17,7 @@ export class ProductRedeemCodesListComponent implements OnInit {
   @Input('productId') productId: string;
 
   // START USERS
-  filter = {};
+  filter: any = {};
 
   codesRedeemed = [];
   // END USERS
@@ -170,8 +170,8 @@ export class ProductRedeemCodesListComponent implements OnInit {
     this.loader.start();
 
     const headers = {
-      limit: this.paginator.limit,
-      skip: this.paginator.skip,
+      limit: String(this.paginator.limit),
+      skip: String(this.paginator.skip),
       filter: this.filter
     };
 

@@ -14,7 +14,7 @@ export class ExampleCrudListComponent implements OnInit {
   items;
 
   // FILTER
-  filter = {};
+  filter: any = {};
   filterForm;
   filterMode = false;
   // FILTER

@@ -78,7 +78,7 @@ describe('PasswordRecoverComponent', () => {
 
       component.sendPasswordRecover(values);
 
-      expect(mockUserService.passwordRecovery).toHaveBeenCalledWith({ email: 'test@example.com' });
+      expect(mockUserService.passwordRecovery).toHaveBeenCalledWith('test@example.com');
     });
 
     it('should show success message and navigate to login on successful recovery', () => {

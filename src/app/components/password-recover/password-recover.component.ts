@@ -35,7 +35,7 @@ export class PasswordRecoverComponent implements OnInit {
 
     sendPasswordRecover(values)  {
         this.userService
-        .passwordRecovery({ email: values.email }).subscribe(
+        .passwordRecovery(values.email).subscribe(
                 (response) => {
                     this.toastr.success('Se ha enviado un mensaje a su correo electrónico', 'Listo');
                     this.navigateToLogin();

@@ -9,9 +9,8 @@ import { Refill } from '../models';
 @Injectable()
 export class RefillService extends BaseService<Refill> {
     constructor(http: HttpClient) {
-        super(http,
-            environment.apiUrl,
-            'refills');
+        super(http);
+        this.setApiConfig(environment.apiUrl, 'refills');
     }
 
     public userRefills(userId: string, headers?: any): Observable<any> {

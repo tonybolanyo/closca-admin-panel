@@ -11,9 +11,8 @@ import { Challenge } from '../models';
 export class ChallengeService extends BaseService<Challenge> {
     constructor(http: HttpClient,
         private authService: AuthService) {
-        super(http,
-            environment.apiUrl,
-            'challenge');
+        super(http);
+        this.setApiConfig(environment.apiUrl, 'challenge');
     }
 
     public updateOrder(values: any, headers?: any): Observable<any> {

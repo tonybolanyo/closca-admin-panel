@@ -1,8 +1,9 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { FountainService } from '../../../../../../shared/custom-gnommo-base/services/fountain.service';
 import { SponsoredFountainCreateComponent } from './sponsored-fountain-create.component';
 
@@ -14,7 +15,7 @@ describe('SponsoredFountainCreateComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ SponsoredFountainCreateComponent ],
       imports: [ ReactiveFormsModule ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+      schemas: [ NO_ERRORS_SCHEMA ],
       providers: [
         FormBuilder,
         { 
@@ -30,6 +31,7 @@ describe('SponsoredFountainCreateComponent', () => {
         },
         {
           provide: ToastrService,
+        { provide: NgxUiLoaderService, useValue: { start: jest.fn(), stop: jest.fn() } },
           useValue: { success: jest.fn(), error: jest.fn(), info: jest.fn(), warning: jest.fn() }
         },
         {

@@ -1,4 +1,4 @@
-import 'jest-preset-angular';
+import 'jest-preset-angular/setup-jest';
 
 // Mock commonly used browser APIs
 Object.defineProperty(window, 'CSS', {value: null});

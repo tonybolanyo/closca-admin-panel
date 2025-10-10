@@ -89,12 +89,12 @@ export class LoggedUserService {
             this.userService
                 .getCurrentUser(this.authService.getToken().id)
                 .subscribe(response => {
-                    const userCookie = this.cookieStorage.get('user');
+                    const userCookie = this.cookieStorage.get('user') as any;
                     let userResponse = response
 
-                    if (userCookie.role === "ADMIN") {
+                    if (userCookie?.role === "ADMIN") {
                         userResponse.isAdmin = true
-                    } else if (userCookie.role === "MANAGER" && userCookie.isAdmin) {
+                    } else if (userCookie?.role === "MANAGER" && userCookie?.isAdmin) {
                         userResponse = userCookie
                     } else {
                         userResponse.isAdmin = false

@@ -10,9 +10,8 @@ import { Product } from '../models';
 export class ProductService extends BaseService<Product> {
     constructor(http: HttpClient,
         private authService: AuthService) {
-        super(http,
-            environment.apiUrl,
-            'products');
+        super(http);
+        this.setApiConfig(environment.apiUrl, 'products');
     }
 
     public count(headers?: any): Observable<any> {

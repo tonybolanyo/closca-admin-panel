@@ -11,9 +11,8 @@ import { User } from '../models';
 export class UserService extends LoginBaseService<User> {
         constructor(http: HttpClient,
                 private authService: AuthService) {
-                super(http,
-                        environment.apiUrl,
-                        'users');
+                super(http);
+                this.initializeConfig(environment.apiUrl, 'users');
         }
 
         public deleteAvatarImage(userId: string, headers?: any): Observable<any> {

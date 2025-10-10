@@ -9,9 +9,8 @@ import { Report } from '../models/report.model';
 @Injectable()
 export class ReportService extends BaseService<Report> {
     constructor(http: HttpClient) {
-        super(http,
-            environment.apiUrl,
-            'reports');
+        super(http);
+        this.setApiConfig(environment.apiUrl, 'reports');
     }
 
     public sendFeedbackEmail(reportId: string, bodyRequest: any, headers?: any): Observable<any> {

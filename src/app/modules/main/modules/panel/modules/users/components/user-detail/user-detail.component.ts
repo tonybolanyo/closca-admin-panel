@@ -471,8 +471,8 @@ export class UserDetailComponent implements OnInit {
   getBottlesByUser(userId) {
     const headers = {
       sort: 'instance.createdAt',
-      limit: this.bottlesPaginator.limit,
-      skip: this.bottlesPaginator.skip,
+      limit: String(this.bottlesPaginator.limit),
+      skip: String(this.bottlesPaginator.skip),
       filter: `{"userId": "${userId}"}`
     };
 
@@ -491,8 +491,8 @@ export class UserDetailComponent implements OnInit {
     const headers = {
       includes: 'fountainId',
       sort: 'instance.createdAt',
-      limit: this.fountainsPaginator.limit,
-      skip: this.fountainsPaginator.skip,
+      limit: String(this.fountainsPaginator.limit),
+      skip: String(this.fountainsPaginator.skip),
       filter: `{"userId": "${userId}", "fountainStatus": {$ne: "DELETED"}}`
     };
 

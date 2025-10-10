@@ -16,7 +16,7 @@ export class CorporatesListComponent implements OnInit {
   items;
 
   // FILTER
-  filter = {};
+  filter: any = {};
   filterForm;
   filterMode = true;
   // FILTER
@@ -176,8 +176,8 @@ export class CorporatesListComponent implements OnInit {
   getCorporates(isDeletedItem: boolean = false) {
     this.ngxLoader.start();
     const headers = {
-      limit: this.paginator.limit,
-      skip: this.paginator.skip,
+      limit: String(this.paginator.limit),
+      skip: String(this.paginator.skip),
       sort: this.sort,
       filter: this.filter
     };
