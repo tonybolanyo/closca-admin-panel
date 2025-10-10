@@ -5,9 +5,14 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { MatTableModule } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
 import { of } from 'rxjs';
 
 import { FountainService } from 'src/app/shared/custom-gnommo-base/services/fountain.service';
+import { CorporateService } from 'src/app/shared/custom-gnommo-base/services/corporate.service';
+import { BrandService } from 'src/app/shared/custom-gnommo-base/services/brands.service';
+import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
+import { AuthService } from '@tyris/angular-foundation';
 import { SponsoredFountainCreateComponent } from './sponsored-fountain-create.component';
 
 describe('SponsoredFountainCreateComponent', () => {
@@ -48,7 +53,12 @@ describe('SponsoredFountainCreateComponent', () => {
             getById: jest.fn().mockReturnValue(of({})),
             getAll: jest.fn().mockReturnValue(of({ data: [] }))
           }
-        }
+        },
+        { provide: CorporateService, useValue: { getAll: jest.fn().mockReturnValue(of({ data: [] })) } },
+        { provide: BrandService, useValue: { getAll: jest.fn().mockReturnValue(of({ data: [] })) } },
+        { provide: LoggedUserService, useValue: { getRole: jest.fn().mockReturnValue('ADMIN'), getCorporateId: jest.fn() } },
+        { provide: AuthService, useValue: { getToken: jest.fn() } },
+        { provide: MatDialog, useValue: { open: jest.fn() } }
       ]
     })
     .compileComponents();
