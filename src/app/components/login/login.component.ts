@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
@@ -10,6 +10,7 @@ import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
 import { ROUTER_DEFINITIONS } from '../../shared/constants/router-definitions';
 
 @Component({
+  standalone: false,
     selector: 'app-login',
     templateUrl: 'login.component.html',
     styleUrls: ['./login.component.scss'],
@@ -17,13 +18,13 @@ import { ROUTER_DEFINITIONS } from '../../shared/constants/router-definitions';
 })
 
 export class LoginComponent implements OnInit {
-    loginForm: FormGroup;
+    loginForm: UntypedFormGroup;
     loginType;
     loginSubscription: Subscription;
     hasLoginType: boolean;
     routerDefinitions = ROUTER_DEFINITIONS;
     constructor(
-        private formBuilder: FormBuilder,
+        private formBuilder: UntypedFormBuilder,
         private activatedRoute: ActivatedRoute,
         private router: Router,
         private toastr: ToastrService,

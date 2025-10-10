@@ -4,7 +4,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import {
@@ -15,7 +15,7 @@ import {
   S3_URL
 } from 'src/app/shared/constants/constants';
 import { Location } from '@angular/common';
-import * as moment from 'moment';
+import moment from 'moment';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -45,6 +45,7 @@ export type ChartOptions = {
 };
 
 @Component({
+  standalone: false,
   selector: 'app-challenge-metrics',
   styleUrls: ['./challenge-metrics.component.scss'],
   templateUrl: 'challenge-metrics.component.html',
@@ -56,7 +57,7 @@ export class ChallengeMetricsComponent implements OnInit {
   ranking;
   metrics;
 
-  filterForm: FormGroup;
+  filterForm: UntypedFormGroup;
 
   startDateTimestamp;
   finishDateTimestamp;
@@ -77,7 +78,7 @@ export class ChallengeMetricsComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private ngxLoader: NgxUiLoaderService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private toastr: ToastrService,
     private challengeService: ChallengeService,
     private corporateService: CorporateService,
@@ -448,8 +449,8 @@ export class ChallengeMetricsComponent implements OnInit {
     var exportedFilenmae = fileTitle + '.csv' || 'export.csv';
 
     var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    if (navigator.msSaveBlob) { // IE 10+
-      navigator.msSaveBlob(blob, exportedFilenmae);
+    if ((navigator as any).msSaveBlob) { // IE 10+
+      (navigator as any).msSaveBlob(blob, exportedFilenmae);
     } else {
       var link = document.createElement("a");
       if (link.download !== undefined) { // feature detection

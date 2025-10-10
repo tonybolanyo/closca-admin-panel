@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 
 @Component({
+  standalone: false,
   selector: 'app-challenges-order',
   templateUrl: './challenges-order.component.html',
   styleUrls: ['./challenges-order.component.scss'],

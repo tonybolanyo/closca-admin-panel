@@ -4,6 +4,7 @@ import * as $ from 'jquery';
 import * as jQuery from 'jquery';
 
 @Component({
+  standalone: false,
     selector: 'app-custom-gallery',
     templateUrl: 'custom-gallery.component.html',
     encapsulation: ViewEncapsulation.None,

@@ -12,7 +12,7 @@ describe('LevelsListComponent', () => {
   let component: LevelsListComponent;
   let fixture: ComponentFixture<LevelsListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     const mockLevelService = {
       getAll: jest.fn().mockReturnValue(of({ data: [] })),
       count: jest.fn().mockReturnValue(of({ count: 0 }))

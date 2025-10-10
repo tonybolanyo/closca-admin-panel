@@ -15,6 +15,7 @@ import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-co
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
+  standalone: false,
   selector: 'app-random-fountain-images',
   templateUrl: './random-fountain-images.component.html',
   styleUrls: ['./random-fountain-images.component.scss'],

@@ -13,6 +13,7 @@ import { Corporate } from 'src/app/shared/custom-gnommo-base/models/corporate.mo
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 @Component({
+  standalone: false,
   selector: 'app-public-or-private-fountains-list',
   templateUrl: './public-or-private-fountains-list.component.html',
   styleUrls: ['./public-or-private-fountains-list.component.scss'],

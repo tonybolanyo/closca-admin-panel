@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,6 +19,7 @@ import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactiva
 import { environment } from 'src/environments/environment';
 
 @Component({
+  standalone: false,
   selector: 'app-level-detail',
   templateUrl: './level-detail.component.html',
   styleUrls: ['./level-detail.component.scss'],
@@ -27,7 +28,7 @@ import { environment } from 'src/environments/environment';
 export class LevelDetailComponent implements OnInit {
   action: string;
   levelId: string;
-  levelForm: FormGroup;
+  levelForm: UntypedFormGroup;
   level;
 
   // --> ROUTER DEFINITION
@@ -59,7 +60,7 @@ export class LevelDetailComponent implements OnInit {
     private toastr: ToastrService,
     private authService: AuthService,
     private ngxLoader: NgxUiLoaderService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private levelService: LevelService,
     private dialog: MatDialog,
   ) {

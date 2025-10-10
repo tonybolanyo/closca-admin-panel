@@ -7,7 +7,7 @@ describe('ExampleCrudComponent', () => {
   let component: ExampleCrudComponent;
   let fixture: ComponentFixture<ExampleCrudComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ExampleCrudComponent ]
     })

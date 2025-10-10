@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { FormBuilder, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { UntypedFormBuilder, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Location, DatePipe } from '@angular/common';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -25,7 +25,7 @@ describe('FountainDetailComponent', () => {
   let component: PublicOrPrivateFountainDetailComponent;
   let fixture: ComponentFixture<PublicOrPrivateFountainDetailComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ PublicOrPrivateFountainDetailComponent ],
       imports: [ 
@@ -39,7 +39,7 @@ describe('FountainDetailComponent', () => {
       ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
-        FormBuilder,
+        UntypedFormBuilder,
         { provide: ToastrService, useValue: { success: jest.fn(), error: jest.fn(), info: jest.fn(), warning: jest.fn() } },
         { provide: NgxUiLoaderService, useValue: { start: jest.fn(), stop: jest.fn() } },
         { 

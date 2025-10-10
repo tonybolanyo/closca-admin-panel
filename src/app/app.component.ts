@@ -4,6 +4,7 @@ import { CookiesComponent } from './shared/components/cookies/cookies.component'
 import { LoggedUserService } from './shared/services/logged-user.service';
 
 @Component({
+  standalone: false,
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']

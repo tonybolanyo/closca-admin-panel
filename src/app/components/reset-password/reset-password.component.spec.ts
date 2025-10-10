@@ -1,5 +1,5 @@
 import { ResetPasswordComponent } from './reset-password.component';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { of } from 'rxjs';
@@ -7,14 +7,14 @@ import { ROUTER_DEFINITIONS } from '../../shared/constants/router-definitions';
 
 describe('ResetPasswordComponent', () => {
   let component: ResetPasswordComponent;
-  let mockFormBuilder: FormBuilder;
+  let mockFormBuilder: UntypedFormBuilder;
   let mockRouter: any;
   let mockToastr: any;
   let mockActivatedRoute: any;
   let mockUserService: any;
 
   beforeEach(() => {
-    mockFormBuilder = new FormBuilder();
+    mockFormBuilder = new UntypedFormBuilder();
     mockRouter = {
       navigate: jest.fn()
     };

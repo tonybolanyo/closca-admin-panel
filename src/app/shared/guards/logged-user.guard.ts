@@ -1,10 +1,8 @@
-import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '../../../../node_modules/@angular/router';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { LoggedUserService } from '../services/logged-user.service';
-import { Injectable } from '../../../../node_modules/@angular/core';
+import { Injectable } from '@angular/core';
 import { ROUTER_DEFINITIONS } from '../constants/router-definitions';
-import { Injectable as Injectable_1 } from "@angular/core";
 
-@Injectable_1()
 @Injectable()
 export class LoggedUserGuard implements CanActivate {
     constructor(

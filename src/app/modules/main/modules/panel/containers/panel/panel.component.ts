@@ -4,6 +4,7 @@ import { MenuItem } from '../../../../../../shared/interfaces/menu-item.interfac
 import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
 
 @Component({
+  standalone: false,
     selector: 'app-panel',
     templateUrl: 'panel.component.html',
     encapsulation: ViewEncapsulation.None,

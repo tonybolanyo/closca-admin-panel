@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 // import { LoggedUserService } from '../../../../../../shared/services/logged-user.service';
 
 @Component({
+  standalone: false,
     selector: 'app-sidebar',
     templateUrl: 'sidebar.component.html',
     styleUrls: ['./sidebar.component.scss'],

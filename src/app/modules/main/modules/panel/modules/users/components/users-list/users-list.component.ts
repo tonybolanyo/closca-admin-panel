@@ -9,6 +9,7 @@ import { Level } from 'src/app/shared/custom-gnommo-base/models/level.model';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 @Component({
+  standalone: false,
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.scss'],

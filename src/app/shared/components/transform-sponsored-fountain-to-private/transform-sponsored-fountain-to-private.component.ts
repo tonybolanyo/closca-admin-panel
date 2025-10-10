@@ -1,8 +1,9 @@
 import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 
 @Component({
+  standalone: false,
   selector: 'app-transform-sponsored-fountain-to-private',
   template: `
   <mat-dialog-content>
@@ -25,7 +26,7 @@ import { FormControl, Validators } from '@angular/forms';
   encapsulation: ViewEncapsulation.None
 })
 export class TransformSponsoredFountainToPrivateComponent implements OnInit {
-  newFountainType = new FormControl('', [Validators.required]);
+  newFountainType = new UntypedFormControl('', [Validators.required]);
   options = [
     { name: 'Restaurante', value: 'RESTAURANT' },
     { name: 'Cafe bar', value: 'CAFE_BAR' },

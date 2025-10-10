@@ -1,8 +1,9 @@
 import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 
 @Component({
+  standalone: false,
   selector: 'app-change-product-status',
   template: `
   <mat-dialog-content>
@@ -24,7 +25,7 @@ import { FormControl, Validators } from '@angular/forms';
   encapsulation: ViewEncapsulation.None
 })
 export class ChangeProductStatusComponent implements OnInit {
-  newProductStatus = new FormControl('', [Validators.required]);
+  newProductStatus = new UntypedFormControl('', [Validators.required]);
   options = [
     { name: 'Visible', value: 'VISIBLE' },
     { name: 'Invisible', value: 'INVISIBLE' },

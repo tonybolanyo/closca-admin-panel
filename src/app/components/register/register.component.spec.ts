@@ -1,5 +1,5 @@
 import { RegisterComponent } from './register.component';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { of, throwError } from 'rxjs';
@@ -8,7 +8,7 @@ import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions'
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let mockRouter: any;
-  let mockFormBuilder: FormBuilder;
+  let mockFormBuilder: UntypedFormBuilder;
   let mockUserService: any;
   let mockToastr: any;
 
@@ -16,7 +16,7 @@ describe('RegisterComponent', () => {
     mockRouter = {
       navigate: jest.fn()
     };
-    mockFormBuilder = new FormBuilder();
+    mockFormBuilder = new UntypedFormBuilder();
     mockUserService = {
       register: jest.fn()
     };

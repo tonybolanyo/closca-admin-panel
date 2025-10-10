@@ -6,7 +6,7 @@ describe('ChallengeCsvResponseDialog', () => {
   let component: ChallengeCsvResponseDialogComponent;
   let fixture: ComponentFixture<ChallengeCsvResponseDialogComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ChallengeCsvResponseDialogComponent ],
       imports: [ MatDialogModule ],

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'app-levels',
   templateUrl: './levels.component.html',
   styleUrls: ['./levels.component.scss']

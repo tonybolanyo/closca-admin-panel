@@ -1,11 +1,12 @@
 import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { FormControl, Validators, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MultiLanguageObject } from '../../custom-gnommo-base/models';
 import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 
 @Component({
+  standalone: false,
   selector: 'app-change-fountain-status',
   template: `
   <mat-dialog-content>
@@ -39,7 +40,7 @@ import { DatePipe } from '@angular/common';
   encapsulation: ViewEncapsulation.None
 })
 export class ChangeFountainStatusComponent implements OnInit {
-  fountainForm: FormGroup;
+  fountainForm: UntypedFormGroup;
   options = [
     { name: 'Activa', value: 'ACTIVE' },
     { name: 'Inactiva', value: 'INACTIVE' },
@@ -63,7 +64,7 @@ export class ChangeFountainStatusComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<ChangeFountainStatusComponent>,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private toastr: ToastrService,
     private datePipe: DatePipe,
     @Inject(MAT_DIALOG_DATA) public data: any) { }

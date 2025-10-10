@@ -6,12 +6,12 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { AuthService } from '@tyris/angular-foundation';
-import * as moment from 'moment';
+import moment from 'moment';
 import { FileUploader } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -37,6 +37,7 @@ import { environment } from 'src/environments/environment';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 @Component({
+  standalone: false,
   selector: 'app-challenge-detail',
   styleUrls: ['./challenge-detail.component.scss'],
   templateUrl: 'challenge-detail.component.html',
@@ -46,10 +47,10 @@ export class ChallengeDetailComponent implements OnInit {
   action: string;
   changeDate: boolean;
   challengeId;
-  challengeForm: FormGroup;
-  imagesForm: FormGroup;
-  filterForm: FormGroup;
-  challengeCSVForm: FormGroup;
+  challengeForm: UntypedFormGroup;
+  imagesForm: UntypedFormGroup;
+  filterForm: UntypedFormGroup;
+  challengeCSVForm: UntypedFormGroup;
   challenge;
   fountains;
   corporates;
@@ -161,7 +162,7 @@ export class ChallengeDetailComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private router: Router,
     private toastr: ToastrService,
     private challengeService: ChallengeService,
@@ -1319,8 +1320,8 @@ export class ChallengeDetailComponent implements OnInit {
     var exportedFilenmae = fileTitle + '.csv' || 'export.csv';
 
     var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    if (navigator.msSaveBlob) { // IE 10+
-      navigator.msSaveBlob(blob, exportedFilenmae);
+    if ((navigator as any).msSaveBlob) { // IE 10+
+      (navigator as any).msSaveBlob(blob, exportedFilenmae);
     } else {
       var link = document.createElement("a");
       if (link.download !== undefined) { // feature detection

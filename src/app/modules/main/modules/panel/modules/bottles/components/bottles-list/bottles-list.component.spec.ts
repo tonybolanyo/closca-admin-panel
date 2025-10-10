@@ -12,7 +12,7 @@ describe('BottlesListComponent', () => {
   let component: BottlesListComponent;
   let fixture: ComponentFixture<BottlesListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     const mockBottleService = {
       getAll: jest.fn().mockReturnValue(of({ data: [] })),
       count: jest.fn().mockReturnValue(of({ count: 0 }))

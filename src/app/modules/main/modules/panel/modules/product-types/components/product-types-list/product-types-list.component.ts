@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
+  standalone: false,
   selector: 'app-product-types-list',
   templateUrl: './product-types-list.component.html',
   styleUrls: ['./product-types-list.component.scss'],

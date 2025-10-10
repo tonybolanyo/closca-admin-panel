@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
@@ -12,7 +12,7 @@ import { DatePipe, Location } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { AuthService } from '@tyris/angular-foundation';
-import * as moment from 'moment';
+import moment from 'moment';
 import { FileUploader } from 'ng2-file-upload';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -26,6 +26,7 @@ import { LoggedUserService } from '../../../../../../../../shared/services/logge
 declare var google;
 
 @Component({
+  standalone: false,
   selector: 'app-public-or-private-fountain-detail',
   templateUrl: './public-or-private-fountain-detail.component.html',
   styleUrls: ['./public-or-private-fountain-detail.component.scss'],
@@ -38,7 +39,7 @@ export class PublicOrPrivateFountainDetailComponent implements OnInit {
 
   action: string;
   fountainId: string;
-  fountainForm: FormGroup;
+  fountainForm: UntypedFormGroup;
   fountainType;
   fountain;
   refills;
@@ -196,7 +197,7 @@ export class PublicOrPrivateFountainDetailComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private router: Router,
     private toastr: ToastrService,
     private fountainService: FountainService,

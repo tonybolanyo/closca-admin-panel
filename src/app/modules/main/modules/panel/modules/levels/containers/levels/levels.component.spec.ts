@@ -7,7 +7,7 @@ describe('BrandsComponent', () => {
   let component: LevelsComponent;
   let fixture: ComponentFixture<LevelsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ LevelsComponent ]
     })

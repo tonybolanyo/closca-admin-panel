@@ -15,7 +15,7 @@ describe('SponsoredFountainsListComponent', () => {
   let component: SponsoredFountainsListComponent;
   let fixture: ComponentFixture<SponsoredFountainsListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ SponsoredFountainsListComponent ],
       imports: [ ReactiveFormsModule ],

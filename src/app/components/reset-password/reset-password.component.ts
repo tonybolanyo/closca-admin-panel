@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ROUTER_DEFINITIONS } from '../../shared/constants/router-definitions';
 import { UserService } from 'src/app/shared/custom-gnommo-base/services';
 
 @Component({
+  standalone: false,
     selector: 'app-reset-password',
     templateUrl: 'reset-password.component.html',
     encapsulation: ViewEncapsulation.None,
@@ -14,11 +15,11 @@ import { UserService } from 'src/app/shared/custom-gnommo-base/services';
 
 export class ResetPasswordComponent implements OnInit {
     emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
-    resetPasswordForm: FormGroup;
+    resetPasswordForm: UntypedFormGroup;
     routerDefinitions = ROUTER_DEFINITIONS;
     hash;
 
-    constructor(private formBuilder: FormBuilder,
+    constructor(private formBuilder: UntypedFormBuilder,
         private router: Router,
         private toastr: ToastrService,
         private activatedRoute: ActivatedRoute,

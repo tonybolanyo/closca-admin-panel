@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
@@ -7,6 +7,7 @@ import { CorporateService } from 'src/app/shared/custom-gnommo-base/services';
 import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
 
 @Component({
+  standalone: false,
     selector: 'app-main',
     templateUrl: 'main.component.html',
     styleUrls: ['main.component.scss'],
@@ -15,7 +16,7 @@ import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
 
 export class MainComponent implements OnInit, OnDestroy {
     user;
-    corporateSelectForm: FormGroup;
+    corporateSelectForm: UntypedFormGroup;
     corporates;
     routerDefinitions = ROUTER_DEFINITIONS;
 
@@ -24,7 +25,7 @@ export class MainComponent implements OnInit, OnDestroy {
         private loggedUserService: LoggedUserService,
         private router: Router,
         private ngxLoader: NgxUiLoaderService,
-        private formBuilder: FormBuilder
+        private formBuilder: UntypedFormBuilder
     ) {
         this.getCorporates();
         this.buildForm();

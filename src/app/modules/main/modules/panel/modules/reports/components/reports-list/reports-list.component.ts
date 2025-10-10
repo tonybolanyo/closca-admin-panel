@@ -5,11 +5,12 @@ import { REPORT_TYPES } from 'src/app/shared/constants/constants';
 import { ReportService, CorporateService } from 'src/app/shared/custom-gnommo-base/services';
 import { Corporate } from 'src/app/shared/custom-gnommo-base/models/corporate.model';
 import { ToastrService } from 'ngx-toastr';
-import * as moment from 'moment';
+import moment from 'moment';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 @Component({
+  standalone: false,
   selector: 'app-reports-list',
   templateUrl: './reports-list.component.html',
   styleUrls: ['./reports-list.component.scss']

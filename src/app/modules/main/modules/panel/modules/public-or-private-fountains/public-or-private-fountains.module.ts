@@ -20,8 +20,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { AgmCoreModule } from '@agm/core';
-import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+// import { AgmCoreModule } from '@agm/core';
+// import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { FileUploadModule } from 'ng2-file-upload';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { AngularEditorModule } from '@kolkov/angular-editor';
@@ -45,8 +45,8 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     ReactiveFormsModule,
     FormsModule,
     NgxUiLoaderModule,
-    AgmCoreModule,
-    GooglePlaceModule,
+    // AgmCoreModule, // Not compatible with Angular 20
+    // GooglePlaceModule, // Not compatible with Angular 20
     FileUploadModule,
     AngularEditorModule,
     MatDatepickerModule

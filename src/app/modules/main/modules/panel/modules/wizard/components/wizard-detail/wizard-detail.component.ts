@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
@@ -18,6 +18,7 @@ import { environment } from 'src/environments/environment';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 @Component({
+  standalone: false,
   selector: 'app-wizard-detail',
   templateUrl: './wizard-detail.component.html',
   styleUrls: ['./wizard-detail.component.scss'],
@@ -26,7 +27,7 @@ import { LoggedUserService } from '../../../../../../../../shared/services/logge
 export class WizardDetailComponent implements OnInit {
   action: string;
   onboardingId: string;
-  wizardForm: FormGroup;
+  wizardForm: UntypedFormGroup;
   onboarding;
 
   corporates;
@@ -63,7 +64,7 @@ export class WizardDetailComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private router: Router,
     private toastr: ToastrService,
     private onboardingService: OnboardingService,

@@ -3,6 +3,7 @@ import { DialogConfirmationComponent } from '../dialog-confirmation/dialog-confi
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
+    standalone: false,
     selector: 'app-dialog-info',
     styleUrls: ['./dialog-info.component.scss'],
     encapsulation: ViewEncapsulation.None,

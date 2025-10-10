@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import { ReportService } from 'src/app/shared/custom-gnommo-base/services/reports.service';
 import { FountainService } from 'src/app/shared/custom-gnommo-base/services/fountain.service';
 import { CorporateService } from 'src/app/shared/custom-gnommo-base/services/corporate.service';
@@ -16,13 +16,14 @@ import { LoggedUserService } from '../../../../../../../../shared/services/logge
 declare var google;
 
 @Component({
+  standalone: false,
   selector: 'app-report-detail',
   templateUrl: './report-detail.component.html',
   styleUrls: ['./report-detail.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class ReportDetailComponent implements OnInit {
-  reportForm: FormGroup;
+  reportForm: UntypedFormGroup;
   reportId;
   report;
   corporates;
@@ -48,7 +49,7 @@ export class ReportDetailComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private reportService: ReportService,
     private fountainService: FountainService,
     private corporateService: CorporateService,

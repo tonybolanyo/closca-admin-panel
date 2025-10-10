@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '../../../../../../node_modules/@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ROUTER_DEFINITIONS } from '../../../../shared/constants/router-definitions';
 // import { LoggedUserService } from '../../../../shared/services/logged-user.service';
 import { Router } from '@angular/router';
@@ -14,6 +14,7 @@ import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactiva
 import { Observable } from 'rxjs';
 
 @Component({
+  standalone: false,
   selector: 'app-user-profile',
   templateUrl: 'user-profile.component.html',
   styleUrls: ['./user-profile.component.scss'],

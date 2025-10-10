@@ -1,11 +1,11 @@
 import { Location } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@tyris/angular-foundation';
-import * as moment from 'moment';
+import moment from 'moment';
 import { FileUploader } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -20,6 +20,7 @@ import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactiva
 import { environment } from 'src/environments/environment';
 
 @Component({
+  standalone: false,
   selector: 'app-corporate-detail',
   templateUrl: './corporate-detail.component.html',
   styleUrls: ['./corporate-detail.component.scss'],
@@ -28,8 +29,8 @@ import { environment } from 'src/environments/environment';
 export class CorporateDetailComponent implements OnInit {
   action: string;
   corporateId: string;
-  corporateForm: FormGroup;
-  managerForm: FormGroup;
+  corporateForm: UntypedFormGroup;
+  managerForm: UntypedFormGroup;
   corporate;
   manager;
   fountains;
@@ -257,7 +258,7 @@ export class CorporateDetailComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private router: Router,
     private toastr: ToastrService,
     private dialog: MatDialog,

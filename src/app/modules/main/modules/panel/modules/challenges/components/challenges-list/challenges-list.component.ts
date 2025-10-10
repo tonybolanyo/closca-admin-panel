@@ -10,7 +10,7 @@ import {
   CHALLENGE_TYPES,
   S3_URL
 } from 'src/app/shared/constants/constants';
-import * as moment from 'moment';
+import moment from 'moment';
 import clonedeep from 'lodash.clonedeep';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
@@ -23,6 +23,7 @@ import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-co
 import { Corporate } from 'src/app/shared/custom-gnommo-base/models/corporate.model';
 
 @Component({
+  standalone: false,
   selector: 'app-challenges-list',
   templateUrl: './challenges-list.component.html',
   styleUrls: ['./challenges-list.component.scss'],

@@ -7,6 +7,7 @@ import { LevelService } from 'src/app/shared/custom-gnommo-base/services';
 import { LEVEL_STATUSES } from 'src/app/shared/constants/constants';
 
 @Component({
+  standalone: false,
   selector: 'app-levels-list',
   templateUrl: './levels-list.component.html',
   styleUrls: ['./levels-list.component.scss'],

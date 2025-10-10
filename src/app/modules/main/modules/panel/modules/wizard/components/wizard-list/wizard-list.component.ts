@@ -8,6 +8,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 @Component({
+  standalone: false,
   selector: 'app-wizard-list',
   templateUrl: './wizard-list.component.html',
   styleUrls: ['./wizard-list.component.scss'],

@@ -15,7 +15,7 @@ describe('FountainsListComponent', () => {
   let component: PublicOrPrivateFountainsListComponent;
   let fixture: ComponentFixture<PublicOrPrivateFountainsListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ PublicOrPrivateFountainsListComponent ],
       imports: [ ReactiveFormsModule ],

@@ -7,6 +7,7 @@ import { CorporateService } from 'src/app/shared/custom-gnommo-base/services';
 import { Router } from '@angular/router';
 
 @Component({
+  standalone: false,
   selector: 'app-corporates-list',
   templateUrl: './corporates-list.component.html',
   styleUrls: ['./corporates-list.component.scss'],
