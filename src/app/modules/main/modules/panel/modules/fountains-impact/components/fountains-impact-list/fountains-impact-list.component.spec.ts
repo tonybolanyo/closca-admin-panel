@@ -24,7 +24,7 @@ describe('FountainsImpactListComponent', () => {
       providers: [
         { provide: ToastrService, useValue: { success: jest.fn(), error: jest.fn(), info: jest.fn(), warning: jest.fn() } },
         { provide: NgxUiLoaderService, useValue: { start: jest.fn(), stop: jest.fn() } },
-        { provide: FountainService, useValue: { getAll: jest.fn().mockReturnValue(of({ data: [] })), count: jest.fn().mockReturnValue(of({ count: 0 })) } },
+        { provide: FountainService, useValue: { getAll: jest.fn().mockReturnValue(of({ data: [] })), count: jest.fn().mockReturnValue(of({ totalFountains: 0 })), getMetrics: jest.fn().mockReturnValue(of({})) } },
         { provide: CorporateService, useValue: { getAll: jest.fn().mockReturnValue(of({ data: [] })) } },
         { provide: BrandService, useValue: { getAll: jest.fn().mockReturnValue(of({ data: [] })) } },
         { provide: LoggedUserService, useValue: { getRole: jest.fn().mockReturnValue('ADMIN'), getCorporateId: jest.fn() } },

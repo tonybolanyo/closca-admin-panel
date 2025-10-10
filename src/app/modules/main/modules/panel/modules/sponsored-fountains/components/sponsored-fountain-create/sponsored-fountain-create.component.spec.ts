@@ -51,12 +51,13 @@ describe('SponsoredFountainCreateComponent', () => {
             create: jest.fn().mockReturnValue(of({})),
             update: jest.fn().mockReturnValue(of({})),
             getById: jest.fn().mockReturnValue(of({})),
-            getAll: jest.fn().mockReturnValue(of({ data: [] }))
+            getAll: jest.fn().mockReturnValue(of({ data: [] })),
+            count: jest.fn().mockReturnValue(of({ totalFountains: 0 }))
           }
         },
         { provide: CorporateService, useValue: { getAll: jest.fn().mockReturnValue(of({ data: [] })) } },
         { provide: BrandService, useValue: { getAll: jest.fn().mockReturnValue(of({ data: [] })) } },
-        { provide: LoggedUserService, useValue: { getRole: jest.fn().mockReturnValue('ADMIN'), getCorporateId: jest.fn() } },
+        { provide: LoggedUserService, useValue: { getRole: jest.fn().mockReturnValue('ADMIN'), getCorporateId: jest.fn(), getLoggedUser: jest.fn().mockReturnValue(of({})) } },
         { provide: AuthService, useValue: { getToken: jest.fn() } },
         { provide: MatDialog, useValue: { open: jest.fn() } }
       ]

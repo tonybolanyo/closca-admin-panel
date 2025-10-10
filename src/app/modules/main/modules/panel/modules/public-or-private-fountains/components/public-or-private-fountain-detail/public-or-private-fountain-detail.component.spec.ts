@@ -3,9 +3,14 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Location } from '@angular/common';
+import { Location, DatePipe } from '@angular/common';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { of } from 'rxjs';
 
 import { PublicOrPrivateFountainDetailComponent } from './public-or-private-fountain-detail.component';
@@ -13,6 +18,7 @@ import { FountainService } from 'src/app/shared/custom-gnommo-base/services/foun
 import { RefillService } from 'src/app/shared/custom-gnommo-base/services/refill.service';
 import { CorporateService } from 'src/app/shared/custom-gnommo-base/services/corporate.service';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
+import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
 import { AuthService } from '@tyris/angular-foundation';
 
 describe('FountainDetailComponent', () => {
@@ -22,7 +28,15 @@ describe('FountainDetailComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ PublicOrPrivateFountainDetailComponent ],
-      imports: [ ReactiveFormsModule ],
+      imports: [ 
+        ReactiveFormsModule, 
+        FormsModule,
+        MatButtonToggleModule,
+        MatFormFieldModule,
+        MatInputModule,
+        BrowserAnimationsModule,
+        GooglePlaceModule
+      ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         FormBuilder,
@@ -35,13 +49,15 @@ describe('FountainDetailComponent', () => {
           } 
         },
         { provide: Router, useValue: { navigate: jest.fn() } },
-        { provide: FountainService, useValue: { getById: jest.fn().mockReturnValue(of({})), create: jest.fn(), update: jest.fn() } },
+        { provide: FountainService, useValue: { getById: jest.fn().mockReturnValue(of({})), create: jest.fn(), update: jest.fn(), count: jest.fn().mockReturnValue(of({ totalFountains: 0 })) } },
         { provide: RefillService, useValue: { getAll: jest.fn().mockReturnValue(of({})) } },
         { provide: CorporateService, useValue: { getAll: jest.fn().mockReturnValue(of({})) } },
         { provide: CanDeactivateDialogService, useValue: { canDeactivate: jest.fn() } },
+        { provide: LoggedUserService, useValue: { getRole: jest.fn().mockReturnValue('ADMIN'), getCorporateId: jest.fn(), getLoggedUser: jest.fn().mockReturnValue(of({})) } },
         { provide: AuthService, useValue: { getToken: jest.fn() } },
         { provide: MatDialog, useValue: { open: jest.fn() } },
-        { provide: Location, useValue: { back: jest.fn() } }
+        { provide: Location, useValue: { back: jest.fn() } },
+        DatePipe
       ]
     })
     .compileComponents();

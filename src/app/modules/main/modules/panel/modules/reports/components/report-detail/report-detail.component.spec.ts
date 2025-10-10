@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Location } from '@angular/common';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { of } from 'rxjs';
 
 import { ReportDetailComponent } from './report-detail.component';
@@ -20,7 +21,7 @@ describe('ReportDetailComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ReportDetailComponent ],
-      imports: [ ReactiveFormsModule ],
+      imports: [ ReactiveFormsModule, MatButtonToggleModule ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         FormBuilder,

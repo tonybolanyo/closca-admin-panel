@@ -7,6 +7,7 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DateAdapter } from '@angular/material/core';
 import { Location } from '@angular/common';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { of } from 'rxjs';
 
 import { LevelDetailComponent } from './level-detail.component';
@@ -27,7 +28,7 @@ describe('LevelDetailComponent', () => {
 
     TestBed.configureTestingModule({
       declarations: [ LevelDetailComponent ],
-      imports: [ ReactiveFormsModule ],
+      imports: [ ReactiveFormsModule, MatButtonToggleModule ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         FormBuilder,
