@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { MatTableModule } from '@angular/material/table';
+import { of } from 'rxjs';
+
 import { FountainService } from 'src/app/shared/custom-gnommo-base/services/fountain.service';
 import { SponsoredFountainCreateComponent } from './sponsored-fountain-create.component';
 
@@ -14,7 +17,7 @@ describe('SponsoredFountainCreateComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SponsoredFountainCreateComponent ],
-      imports: [ ReactiveFormsModule ],
+      imports: [ ReactiveFormsModule, MatTableModule ],
       schemas: [ NO_ERRORS_SCHEMA ],
       providers: [
         FormBuilder,
@@ -40,10 +43,10 @@ describe('SponsoredFountainCreateComponent', () => {
         {
           provide: FountainService,
           useValue: { 
-            create: jest.fn().mockReturnValue({ subscribe: jest.fn() }),
-            update: jest.fn().mockReturnValue({ subscribe: jest.fn() }),
-            getById: jest.fn().mockReturnValue({ subscribe: jest.fn() }),
-            getAll: jest.fn().mockReturnValue({ subscribe: jest.fn() })
+            create: jest.fn().mockReturnValue(of({})),
+            update: jest.fn().mockReturnValue(of({})),
+            getById: jest.fn().mockReturnValue(of({})),
+            getAll: jest.fn().mockReturnValue(of({ data: [] }))
           }
         }
       ]

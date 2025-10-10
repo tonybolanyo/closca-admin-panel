@@ -1,34 +1,34 @@
 // Mock for @ks89/angular-modal-gallery
-class Image {
+export class Image {
+  constructor(public id: number = 0, public modal: any = {}, public plain: any = {}) {}
+}
+
+export class PlainGalleryConfig {
   constructor() {}
 }
 
-class PlainGalleryConfig {
-  constructor() {}
-}
-
-class PlainGalleryStrategy {
+export class PlainGalleryStrategy {
   static ROW = 1;
   static COLUMN = 2;
   static GRID = 3;
   static CUSTOM = 4;
 }
 
-class LineLayout {
+export class LineLayout {
   constructor() {}
 }
 
-class Description {
+export class Description {
   constructor() {}
 }
 
-class DescriptionStrategy {
+export class DescriptionStrategy {
   static ALWAYS_HIDDEN = 1;
   static ALWAYS_VISIBLE = 2;
   static HIDE_IF_EMPTY = 3;
 }
 
-class GalleryService {
+export class GalleryService {
   constructor() {}
   openGallery() {}
   closeGallery() {}
@@ -36,11 +36,11 @@ class GalleryService {
   addImage() {}
 }
 
-class ModalGalleryService {
+export class ModalGalleryService {
   constructor() {}
 }
 
-class GalleryModule {
+export class GalleryModule {
   static forRoot() {
     return {
       ngModule: GalleryModule,
@@ -48,15 +48,3 @@ class GalleryModule {
     };
   }
 }
-
-module.exports = {
-  GalleryModule,
-  ModalGalleryService,
-  GalleryService,
-  Image,
-  PlainGalleryConfig,
-  PlainGalleryStrategy,
-  LineLayout,
-  Description,
-  DescriptionStrategy
-};

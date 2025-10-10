@@ -6,7 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 
 import { ReportsListComponent } from './reports-list.component';
-import { ReportService } from 'src/app/shared/custom-gnommo-base/services/report.service';
+import { ReportService } from 'src/app/shared/custom-gnommo-base/services/reports.service';
 import { CorporateService } from 'src/app/shared/custom-gnommo-base/services/corporate.service';
 import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
 

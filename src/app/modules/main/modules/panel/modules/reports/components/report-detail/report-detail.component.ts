@@ -131,7 +131,7 @@ export class ReportDetailComponent implements OnInit {
 
           this.fountainId = report.fountainId;
           let date = report.instance.createdAt;
-          this.reportDate = new Date(date);
+          this.reportDate = new Date(date as any);
           this.reportForm.patchValue(report);
 
           this.reportForm.get('newAddress').setValue(report.address.address + ", " + report.address.postalCode + " " + report.address.town + ", " + report.address.province + ", " + report.address.country);

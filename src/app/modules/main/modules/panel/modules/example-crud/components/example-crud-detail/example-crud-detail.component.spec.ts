@@ -1,9 +1,12 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { DateAdapter } from '@angular/material/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { GalleryService } from '@ks89/angular-modal-gallery';
 
 import { ExampleCrudDetailComponent } from './example-crud-detail.component';
 
@@ -17,23 +20,20 @@ describe('ExampleCrudDetailComponent', () => {
       imports: [ ReactiveFormsModule ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
+        FormBuilder,
         { provide: ToastrService, useValue: { success: jest.fn(), error: jest.fn(), info: jest.fn(), warning: jest.fn() } },
-        { provide: NgxUiLoaderService, useValue: { start: jest.fn(), stop: jest.fn() } },
         { 
           provide: ActivatedRoute, 
           useValue: { 
-            snapshot: { params: {} },
-            params: { subscribe: jest.fn() }
+            snapshot: { params: {}, url: [{ path: 'create' }] }
           } 
-        }
+        },
+        { provide: Router, useValue: { navigate: jest.fn() } },
+        { provide: NgbModal, useValue: { open: jest.fn() } },
+        { provide: GalleryService, useValue: { openGallery: jest.fn(), closeGallery: jest.fn() } },
+        { provide: MatDialog, useValue: { open: jest.fn() } },
+        { provide: DateAdapter, useValue: { setLocale: jest.fn() } }
       ]
-    })
-    .overrideComponent(ExampleCrudDetailComponent, {
-      set: {
-        templateUrl: undefined,
-        template: '<div></div>',
-        styleUrls: []
-      }
     })
     .compileComponents();
   }));
