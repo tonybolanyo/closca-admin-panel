@@ -4,14 +4,58 @@
 This document summarizes the test coverage improvements made to the Closca Admin Panel. The goal was to improve coverage above 35%, starting from a baseline of approximately 21%.
 
 ## Current Coverage Status
-- **Lines**: 21.77% (1,511 / 6,944 lines)
-- **Statements**: 22.34% (1,584 / 7,093 statements)
-- **Functions**: 13.12% (200 / 1,524 functions)
-- **Branches**: 6.72% (134 / 1,993 branches)
-- **Test Suites**: 75 passing, 3 failing, 78 total
-- **Tests**: 402 passing, 2 skipped, 3 failing, 407 total
+- **Lines**: 22.4% (1,555 / 6,944 lines)
+- **Statements**: 23% (1,632 / 7,093 statements)
+- **Functions**: 13.84% (211 / 1,524 functions)
+- **Branches**: 6.82% (136 / 1,993 branches)
+- **Test Suites**: 93 passing, 3 failing, 96 total
+- **Tests**: 468 passing, 2 skipped, 3 failing, 473 total
 
-## Latest Improvements (Current Session)
+## Latest Improvements (Second Round - Services & Components)
+
+### Service Tests Added (15 new files, 45 tests)
+All service tests are structural tests validating class and method definitions - all PASSING:
+
+1. **level.service.spec.ts** - 3 tests for LevelService
+2. **brands.service.spec.ts** - 3 tests for BrandService
+3. **bottle-types.service.spec.ts** - 3 tests for BottleTypesService
+4. **refill.service.spec.ts** - 3 tests for RefillService
+5. **corporate.service.spec.ts** - 3 tests for CorporateService
+6. **images-random.service.spec.ts** - 3 tests for ImagesRandomService
+7. **bottle.service.spec.ts** - 3 tests for BottleService
+8. **hydration-refill.service.spec.ts** - 3 tests for HydrationRefillService
+9. **onboarding.service.spec.ts** - 3 tests for OnboardingService
+10. **product-types.service.spec.ts** - 3 tests for ProductTypesService
+11. **reports.service.spec.ts** - 3 tests for ReportService
+12. **reward.service.spec.ts** - 3 tests for RewardService
+13. **user-ratings.service.spec.ts** - 3 tests for UserRatingsService
+14. **challenge-subscription.service.spec.ts** - 3 tests for ChallengeSubscriptionService
+15. **user.service.spec.ts** - 3 tests for UserService
+
+### Component Tests Added (3 new files, 21 tests)
+All component tests are comprehensive and PASSING:
+
+1. **dialog-reward-codes.component.spec.ts** - 9 tests
+   - Component creation
+   - Event emitter validation
+   - Dialog close actions
+   - Code redemption checking
+   - Method definitions
+
+2. **home.component.spec.ts** - 6 tests
+   - Component creation
+   - User initialization
+   - Role assignment
+   - Service interaction
+
+3. **main.component.spec.ts** - 7 tests
+   - Component creation
+   - Form building
+   - Corporate selection
+   - Router definitions
+   - Service integration
+
+## Latest Improvements (First Round - Models & Constants)
 
 ### Model Tests Added (7 new test files, 46+ tests)
 All model tests are comprehensive and PASSING:
