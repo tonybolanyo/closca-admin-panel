@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ProductTypesService } from 'src/app/shared/custom-gnommo-base/services';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Observable } from 'rxjs';
 
 @Component({

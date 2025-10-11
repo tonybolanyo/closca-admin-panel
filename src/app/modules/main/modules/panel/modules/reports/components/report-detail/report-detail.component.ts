@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
-import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ReportService } from 'src/app/shared/custom-gnommo-base/services/reports.service';
 import { FountainService } from 'src/app/shared/custom-gnommo-base/services/fountain.service';
 import { CorporateService } from 'src/app/shared/custom-gnommo-base/services/corporate.service';
 import { ToastrService } from 'ngx-toastr';
 import { Report } from 'src/app/shared/custom-gnommo-base/models/report.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { REPORT_TYPES, PUBLIC_OR_PRIVATE_FOUNTAIN_TYPES, S3_URL } from 'src/app/shared/constants/constants';
 import { Fountain } from 'src/app/shared/custom-gnommo-base/models';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';

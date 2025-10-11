@@ -1,3 +1,4 @@
+import { CustomTableComponent } from 'src/app/shared/components/custom-table/custom-table.component';
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { ChallengeSubscriptionService } from 'src/app/shared/custom-gnommo-base/services';
 import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 import { Challenge, ChallengeSubscription } from 'src/app/shared/custom-gnommo-base/models';
 @Component({
   standalone: true,
-    imports: [],
+    imports: [, CustomTableComponent],
   selector: 'app-challenge-subscriptions-users-list',
   templateUrl: 'challenge-subscriptions-users-list.component.html',
   styleUrls: ['./challenge-subscriptions-users-list.component.scss'],

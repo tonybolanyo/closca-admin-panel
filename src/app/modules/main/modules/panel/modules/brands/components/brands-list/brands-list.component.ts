@@ -5,10 +5,11 @@ import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { BrandService } from 'src/app/shared/custom-gnommo-base/services/brands.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { CustomTableComponent } from 'src/app/shared/components/custom-table/custom-table.component';
 
 @Component({
   standalone: true,
-    imports: [RouterModule],
+    imports: [RouterModule, CustomTableComponent],
   selector: 'app-brands-list',
   templateUrl: './brands-list.component.html',
   styleUrls: ['./brands-list.component.scss'],

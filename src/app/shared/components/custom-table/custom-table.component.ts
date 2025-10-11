@@ -1,8 +1,18 @@
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { UntypedFormBuilder, UntypedFormGroup, UntypedFormControl, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { DialogConfirmationComponent } from '../dialog-confirmation/dialog-confirmation.component';
 import { ROUTER_DEFINITIONS } from '../../constants/router-definitions';
 import { TableConfig } from '../../interfaces/tableConfig.interface';
@@ -12,7 +22,23 @@ import { debounceTime } from 'rxjs/operators';
 import { S3_URL } from '../../constants/constants';
 @Component({
   standalone: true,
-    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
+    imports: [
+      CommonModule, 
+      RouterModule, 
+      ReactiveFormsModule, 
+      FormsModule,
+      MatTableModule,
+      MatSortModule,
+      MatCheckboxModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatDatepickerModule,
+      MatNativeDateModule,
+      MatIconModule,
+      MatSelectModule,
+      MatPaginatorModule,
+      MatDialogModule
+    ],
     selector: 'app-custom-table',
     templateUrl: 'custom-table.component.html',
     styleUrls: ['./custom-table.component.scss'],

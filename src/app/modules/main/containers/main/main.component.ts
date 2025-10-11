@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { UntypedFormGroup, UntypedFormBuilder, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { CorporateService } from 'src/app/shared/custom-gnommo-base/services';

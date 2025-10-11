@@ -1,3 +1,4 @@
+import { CustomTableComponent } from 'src/app/shared/components/custom-table/custom-table.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
@@ -11,7 +12,7 @@ import { LoggedUserService } from '../../../../../../../../shared/services/logge
 
 @Component({
   standalone: true,
-    imports: [CommonModule, RouterModule],
+    imports: [CommonModule, RouterModule, CustomTableComponent],
   selector: 'app-wizard-list',
   templateUrl: './wizard-list.component.html',
   styleUrls: ['./wizard-list.component.scss'],

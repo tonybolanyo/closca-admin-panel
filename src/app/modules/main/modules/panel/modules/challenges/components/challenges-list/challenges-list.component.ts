@@ -1,3 +1,4 @@
+import { CustomTableComponent } from 'src/app/shared/components/custom-table/custom-table.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
@@ -26,7 +27,7 @@ import { Corporate } from 'src/app/shared/custom-gnommo-base/models/corporate.mo
 
 @Component({
   standalone: true,
-    imports: [CommonModule, RouterModule],
+    imports: [CommonModule, RouterModule, CustomTableComponent],
   selector: 'app-challenges-list',
   templateUrl: './challenges-list.component.html',
   styleUrls: ['./challenges-list.component.scss'],

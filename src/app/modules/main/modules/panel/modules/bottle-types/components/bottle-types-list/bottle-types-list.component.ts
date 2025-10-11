@@ -1,3 +1,4 @@
+import { CustomTableComponent } from 'src/app/shared/components/custom-table/custom-table.component';
 import { RouterModule } from '@angular/router';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
@@ -8,7 +9,7 @@ import { BottleTypesService } from 'src/app/shared/custom-gnommo-base/services/b
 
 @Component({
   standalone: true,
-    imports: [RouterModule],
+    imports: [RouterModule, CustomTableComponent],
   selector: 'app-bottle-types-list',
   templateUrl: './bottle-types-list.component.html',
   styleUrls: ['./bottle-types-list.component.scss'],

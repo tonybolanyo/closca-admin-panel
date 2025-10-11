@@ -1,3 +1,4 @@
+import { CustomTableComponent } from 'src/app/shared/components/custom-table/custom-table.component';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
@@ -7,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 
 @Component({
   standalone: true,
-    imports: [],
+    imports: [, CustomTableComponent],
   selector: 'app-user-rate-list',
   templateUrl: './user-rate-list.component.html',
   styleUrls: ['./user-rate-list.component.scss'],
