@@ -1,4 +1,3 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { BrandsComponent } from './brands.component';
@@ -9,14 +8,7 @@ describe('BrandsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ BrandsComponent ]
-    })
-    .overrideComponent(BrandsComponent, {
-      set: {
-        templateUrl: undefined,
-        template: '<div></div>',
-        styleUrls: []
-      }
+      imports: [ BrandsComponent ]
     })
     .compileComponents();
   }));
