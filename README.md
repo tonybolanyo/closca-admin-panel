@@ -12,6 +12,7 @@ This project was originally generated with [Angular CLI](https://github.com/angu
 
 - ✅ **Angular 20 Upgrade Complete** - See [ANGULAR_20_UPGRADE.md](ANGULAR_20_UPGRADE.md)
 - ✅ **Bootstrap 5 Migration Complete** - See [BOOTSTRAP_5_MIGRATION.md](BOOTSTRAP_5_MIGRATION.md)
+- ✅ **E2E Testing with Playwright** - See [E2E_TESTING.md](E2E_TESTING.md)
 - ✅ **186 Tests Passing** (90% pass rate)
 - ✅ **Build Succeeds** without errors
 
@@ -92,7 +93,37 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 ## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Playwright (Recommended)
+
+Run modern E2E tests using Playwright:
+
+```bash
+# Run all E2E tests
+npm run e2e:playwright
+
+# Run tests in UI mode (interactive)
+npm run e2e:playwright:ui
+
+# Run tests with visible browser
+npm run e2e:playwright:headed
+
+# Debug tests
+npm run e2e:playwright:debug
+
+# View test report
+npm run e2e:playwright:report
+```
+
+**Setup**: Before running E2E tests for the first time:
+```bash
+npx playwright install chromium
+```
+
+For detailed information about E2E testing, see [E2E_TESTING.md](E2E_TESTING.md).
+
+### Protractor (Legacy)
+
+Run `ng e2e` to execute the legacy end-to-end tests via [Protractor](http://www.protractortest.org/).
 
 ## Further help
 
