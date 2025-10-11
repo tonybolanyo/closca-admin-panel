@@ -3,6 +3,11 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@an
 import { UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { AuthService } from '@tyris/angular-foundation';
@@ -20,7 +25,17 @@ import { environment } from 'src/environments/environment';
 
 @Component({
   standalone: true,
-    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
+    imports: [
+      CommonModule, 
+      RouterModule, 
+      ReactiveFormsModule, 
+      FormsModule,
+      MatIconModule,
+      MatButtonToggleModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatSelectModule
+    ],
   selector: 'app-level-detail',
   templateUrl: './level-detail.component.html',
   styleUrls: ['./level-detail.component.scss'],
