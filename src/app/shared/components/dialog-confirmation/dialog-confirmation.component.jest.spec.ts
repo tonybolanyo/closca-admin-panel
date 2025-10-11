@@ -5,6 +5,7 @@ import { DialogConfirmationComponent } from './dialog-confirmation.component';
 
 // Create a test component without styleUrls to avoid SCSS loading issues
 @Component({
+  standalone: false,
   selector: 'app-dialog-confirmation',
   template: `
     <mat-dialog-content>
