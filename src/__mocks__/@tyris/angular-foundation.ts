@@ -15,8 +15,13 @@ export class BaseService<T> {
   url: string;
   endpoint: string;
   
-  constructor(http: any, url: string, endpoint: string) {
+  constructor(http: any, url?: string, endpoint?: string) {
     this.http = http;
+    this.url = url || '';
+    this.endpoint = endpoint || '';
+  }
+  
+  setApiConfig(url: string, endpoint: string) {
     this.url = url;
     this.endpoint = endpoint;
   }
@@ -26,12 +31,17 @@ export class BaseService<T> {
   create = jest.fn();
   update = jest.fn();
   delete = jest.fn();
-  createHttpHeaders = jest.fn();
+  createHttpHeaders = jest.fn().mockReturnValue({});
 }
 
 export class LoginBaseService<T> extends BaseService<T> {
-  constructor(http: any, url: string, endpoint: string) {
+  constructor(http: any, url?: string, endpoint?: string) {
     super(http, url, endpoint);
+  }
+  
+  initializeConfig(url: string, endpoint: string) {
+    this.url = url;
+    this.endpoint = endpoint;
   }
   
   getCurrentUser = jest.fn();
