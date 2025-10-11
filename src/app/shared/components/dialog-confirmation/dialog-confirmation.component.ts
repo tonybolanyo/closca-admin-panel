@@ -1,8 +1,9 @@
 import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  standalone: false,
+  standalone: true,
     selector: 'app-dialog-confirmation',
     template: `
     <mat-dialog-content>
@@ -14,7 +15,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     </mat-dialog-actions>
     `,
     styleUrls: ['./dialog-confirmation.component.scss'],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    imports: [MatDialogModule, MatButtonModule]
 })
 
 export class DialogConfirmationComponent implements OnInit {

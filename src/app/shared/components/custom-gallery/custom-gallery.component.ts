@@ -1,14 +1,16 @@
 import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { environment } from '../../../../environments/environment';
 import * as $ from 'jquery';
 import * as jQuery from 'jquery';
 
 @Component({
-  standalone: false,
+  standalone: true,
     selector: 'app-custom-gallery',
     templateUrl: 'custom-gallery.component.html',
     encapsulation: ViewEncapsulation.None,
-    styleUrls: ['./custom-gallery.component.scss']
+    styleUrls: ['./custom-gallery.component.scss'],
+    imports: [CommonModule]
 })
 
 export class CustomGalleryComponent implements OnInit {
@@ -33,28 +35,8 @@ export class CustomGalleryComponent implements OnInit {
         $('#gallery').animate({ scrollLeft: '-=100' }, 300, 'swing');
     }
 
-
-    // type of image!
-    // getImage(fileKey) {
-    //     const encodeFileKey = encodeURIComponent(fileKey);
-    //     // let endpointRequest;
-    //     // switch (this.imageModel) {
-    //     //     case 'REQUEST':
-    //     //         // tslint:disable-next-line:max-line-length
-    //     //         endpointRequest = `${environment.apiUrl}/api/requests/get-file-images?fileKey=${encodeFileKey}&access_token=${this.loopBackAuth.getAccessTokenId()}`;
-    //     //         break;
-    //     //     case 'PERITATION':
-    //     //         // tslint:disable-next-line:max-line-length
-    //     //         endpointRequest = `${environment.apiUrl}/api/peritations/get-file-images?fileKey=${encodeFileKey}&access_token=${this.loopBackAuth.getAccessTokenId()}`;
-    //     //         break;
-    //     //     default:
-    //     //         // tslint:disable-next-line:max-line-length
-    //     //         endpointRequest = `${environment.apiUrl}/api/peritations/get-file-images?fileKey=${encodeFileKey}&access_token=${this.loopBackAuth.getAccessTokenId()}`;
-    //     //         break;
-    //     }
-    //     // return endpointRequest;
-
-
-
-    // }
+    getImage(key: string) {
+        // Placeholder - implement based on imageModel
+        return `${environment.apiUrl}/images/${key}`;
+    }
 }
