@@ -53,6 +53,24 @@ Jest tests follow the naming convention `*.spec.ts` and are located alongside th
 - `src/app/shared/components/dialog-info/dialog-info.component.simple.spec.ts`
 - `src/app/shared/components/cookies/cookies.component.spec.ts`
 - `src/app/shared/components/custom-table/custom-table.component.spec.ts`
+- `src/app/shared/components/change-product-status/change-product-status.component.spec.ts`
+- `src/app/shared/components/transform-sponsored-fountain-to-private/transform-sponsored-fountain-to-private.component.spec.ts`
+- `src/app/shared/components/dialog-reward-codes/dialog-reward-codes.component.spec.ts`
+
+#### List Components (NEW)
+- `src/app/modules/main/modules/panel/modules/users/components/users-list/users-list.component.spec.ts`
+- `src/app/modules/main/modules/panel/modules/corporates/components/corporates-list/corporates-list.component.spec.ts`
+- `src/app/modules/main/modules/panel/modules/products/components/products-list/products-list.component.spec.ts`
+- `src/app/modules/main/modules/panel/modules/wizard/components/wizard-list/wizard-list.component.spec.ts`
+- `src/app/modules/main/modules/panel/modules/challenges/components/challenge-subscriptions-users-list/challenge-subscriptions-users-list.component.spec.ts`
+- `src/app/modules/main/modules/panel/modules/challenges/components/challenges-list/challenges-list.component.spec.ts`
+- `src/app/modules/main/modules/panel/modules/product-types/components/product-types-list/product-types-list.component.spec.ts`
+- `src/app/modules/main/modules/panel/modules/products/components/product-redeem-codes-list/product-redeem-codes-list.component.spec.ts`
+- `src/app/modules/main/modules/panel/modules/user-rate/components/user-rate-list/user-rate-list.component.spec.ts`
+
+#### Detail Components (NEW)
+- `src/app/modules/main/components/user-profile/user-profile.component.spec.ts`
+- `src/app/modules/main/modules/panel/modules/user-rate/components/user-rate-detail/user-rate-detail.component.spec.ts`
 
 #### Services and Utilities
 - `src/app/shared/services/can-deactivate-dialog.service.spec.ts`
