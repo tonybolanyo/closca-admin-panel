@@ -12,6 +12,7 @@ This project was originally generated with [Angular CLI](https://github.com/angu
 
 - ✅ **Angular 20 Upgrade Complete** - See [ANGULAR_20_UPGRADE.md](ANGULAR_20_UPGRADE.md)
 - ✅ **Bootstrap 5 Migration Complete** - See [BOOTSTRAP_5_MIGRATION.md](BOOTSTRAP_5_MIGRATION.md)
+- ✅ **E2E Testing with Playwright** - See [E2E_TESTING.md](E2E_TESTING.md)
 - ✅ **186 Tests Passing** (90% pass rate)
 - ✅ **Build Succeeds** without errors
 
