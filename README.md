@@ -1,7 +1,7 @@
 # Closca admin panel
 
 ![Tests](https://img.shields.io/badge/tests-229%20passing-brightgreen)
-![Coverage](https://img.shields.io/badge/coverage-20%25-orange)
+![Coverage](https://img.shields.io/badge/coverage-21%25-orange)
 ![Jest](https://img.shields.io/badge/tested%20with-jest-orange)
 ![Angular](https://img.shields.io/badge/angular-20.3.4-red)
 ![Bootstrap](https://img.shields.io/badge/bootstrap-5.3.3-purple)
