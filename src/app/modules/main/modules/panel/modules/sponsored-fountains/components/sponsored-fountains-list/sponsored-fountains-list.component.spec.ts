@@ -17,8 +17,7 @@ describe('SponsoredFountainsListComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SponsoredFountainsListComponent ],
-      imports: [ ReactiveFormsModule ],
+      imports: [ SponsoredFountainsListComponent ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: ToastrService, useValue: { success: jest.fn(), error: jest.fn(), info: jest.fn(), warning: jest.fn() } },

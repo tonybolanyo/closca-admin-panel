@@ -1,8 +1,8 @@
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { AuthService } from '@tyris/angular-foundation';
 import { FileUploader } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
@@ -16,7 +16,8 @@ import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactiva
 import { environment } from 'src/environments/environment';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
   selector: 'app-bottle-type-detail',
   templateUrl: './bottle-type-detail.component.html',
   styleUrls: ['./bottle-type-detail.component.scss'],

@@ -44,12 +44,6 @@ import { ProductRedeemCodesListComponent } from './components/product-redeem-cod
     FileUploadModule,
     ProductsRoutingModule
   ],
-  declarations: [
-    ProductsComponent,
-    ProductsListComponent,
-    ProductDetailComponent,
-    ProductRedeemCodesListComponent
-  ],
   providers: [
     { provide: DateAdapter, useClass: MyDateAdapter },
     {

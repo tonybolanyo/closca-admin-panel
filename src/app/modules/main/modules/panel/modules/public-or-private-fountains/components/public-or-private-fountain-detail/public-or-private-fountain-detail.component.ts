@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, AfterViewInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
@@ -8,7 +8,7 @@ import { Fountain, MultiLanguageObject } from 'src/app/shared/custom-gnommo-base
 import { FountainService } from 'src/app/shared/custom-gnommo-base/services/fountain.service';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 // tslint:disable-next-line: max-line-length
-import { DatePipe, Location } from '@angular/common';
+import { CommonModule, DatePipe, Location } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { AuthService } from '@tyris/angular-foundation';
@@ -25,7 +25,8 @@ import { LoggedUserService } from '../../../../../../../../shared/services/logge
 declare var google;
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
   selector: 'app-public-or-private-fountain-detail',
   templateUrl: './public-or-private-fountain-detail.component.html',
   styleUrls: ['./public-or-private-fountain-detail.component.scss'],

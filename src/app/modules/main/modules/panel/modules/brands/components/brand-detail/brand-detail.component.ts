@@ -1,7 +1,14 @@
+import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { AuthService } from '@tyris/angular-foundation';
 import { FileUploader } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
@@ -15,9 +22,23 @@ import { FountainService } from 'src/app/shared/custom-gnommo-base/services/foun
 import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 import { environment } from 'src/environments/environment';
+import { CustomTableComponent } from 'src/app/shared/components/custom-table/custom-table.component';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [
+      CommonModule, 
+      RouterModule, 
+      ReactiveFormsModule, 
+      FormsModule,
+      MatIconModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatSelectModule,
+      MatButtonModule,
+      MatTableModule,
+      CustomTableComponent
+    ],
   selector: 'app-brand-detail',
   templateUrl: './brand-detail.component.html',
   styleUrls: ['./brand-detail.component.scss']

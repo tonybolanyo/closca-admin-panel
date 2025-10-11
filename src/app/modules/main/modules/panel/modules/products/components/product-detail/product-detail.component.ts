@@ -1,4 +1,5 @@
-import { Location } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CommonModule, Location } from '@angular/common';
 import {
   Component,
   ElementRef,
@@ -13,7 +14,7 @@ import {
   Validators
 } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { AuthService } from '@tyris/angular-foundation';
 import { FileItem, FileUploader } from 'ng2-file-upload';
@@ -33,7 +34,8 @@ import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactiva
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss'],

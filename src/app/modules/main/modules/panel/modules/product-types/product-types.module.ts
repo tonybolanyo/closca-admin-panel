@@ -22,11 +22,6 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonToggleModule,
     MatInputModule,
     ProductTypesRoutingModule
-  ],
-  declarations: [
-    ProductTypesListComponent,
-    ProductTypeDetailComponent,
-    ProductTypesComponent
   ]
 })
 export class ProductTypesModule { }

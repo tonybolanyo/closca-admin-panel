@@ -44,11 +44,6 @@ import { APP_DATE_FORMATS } from 'src/app/shared/constants/date-formats';
     GoogleMapsModule,
     FormsModule
   ],
-  declarations: [
-    ReportsComponent,
-    ReportsListComponent,
-    ReportDetailComponent
-  ],
   providers: [
     { provide: DateAdapter, useClass: MyDateAdapter },
     {

@@ -1,11 +1,21 @@
+import { TestBed } from '@angular/core/testing';
+import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
+import { Platform } from '@angular/cdk/platform';
 import { MyDateAdapter } from './datepicker-angular-material.service';
 
 describe('MyDateAdapter', () => {
   let adapter: MyDateAdapter;
 
   beforeEach(() => {
-    // MyDateAdapter extends NativeDateAdapter which requires matDateLocale and platform
-    adapter = new MyDateAdapter(undefined, {} as any);
+    TestBed.configureTestingModule({
+      providers: [
+        { provide: DateAdapter, useClass: MyDateAdapter },
+        { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
+        Platform
+      ]
+    });
+    
+    adapter = TestBed.inject(DateAdapter) as MyDateAdapter;
   });
 
   it('should create', () => {

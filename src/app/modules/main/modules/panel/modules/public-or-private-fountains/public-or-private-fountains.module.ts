@@ -48,11 +48,6 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     FileUploadModule,
     AngularEditorModule,
     MatDatepickerModule
-  ],
-  declarations: [
-    PublicOrPrivateFountainsListComponent,
-    PublicOrPrivateFountainDetailComponent,
-    PublicOrPrivateFountainsComponent
   ]
 })
 export class PublicOrPrivateFountainsModule { }

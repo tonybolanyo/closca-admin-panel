@@ -61,10 +61,6 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
       CorporatesRoutingModule
 
   ],
-  declarations: [
-    CorporatesComponent,
-    CorporatesListComponent,
-    CorporateDetailComponent],
 
   providers: [
       { provide: DateAdapter, useClass: MyDateAdapter },

@@ -39,11 +39,7 @@ import { BottlesRoutingModule } from './bottles-routing.module';
     NgxUiLoaderModule,
     FileUploadModule,
     BottlesRoutingModule
-  ],
-  declarations: [
-    BottlesListComponent, 
-    BottleDetailComponent, 
-    BottlesComponent]
+  ]
 })
 
 export class BottlesModule { }

@@ -1,5 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -17,10 +18,10 @@ describe('FountainsListComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PublicOrPrivateFountainsListComponent ],
-      imports: [ ReactiveFormsModule ],
+      imports: [ PublicOrPrivateFountainsListComponent ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
+        provideRouter([]),
         { provide: ToastrService, useValue: { success: jest.fn(), error: jest.fn(), info: jest.fn(), warning: jest.fn() } },
         { provide: NgxUiLoaderService, useValue: { start: jest.fn(), stop: jest.fn() } },
         { provide: FountainService, useValue: { getAll: jest.fn().mockReturnValue(of({})), count: jest.fn().mockReturnValue(of({})) } },

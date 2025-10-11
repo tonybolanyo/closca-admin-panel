@@ -14,7 +14,7 @@ describe('AppComponent', () => {
     };
     
     TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         AppComponent
       ],
       providers: [

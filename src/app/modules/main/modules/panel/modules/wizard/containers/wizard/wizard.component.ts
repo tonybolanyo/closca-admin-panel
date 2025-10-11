@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
-  standalone: false,
+  standalone: true,
   selector: 'app-wizard',
   templateUrl: './wizard.component.html',
-  styleUrls: ['./wizard.component.scss']
+  styleUrls: ['./wizard.component.scss'],
+  imports: [RouterOutlet]
 })
 export class WizardComponent implements OnInit {
 

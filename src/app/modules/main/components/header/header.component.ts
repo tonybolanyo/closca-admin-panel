@@ -1,14 +1,16 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, Renderer2, ViewChild, ElementRef, OnDestroy, HostListener } from '@angular/core';
 import { MenuItem } from '../../../../shared/interfaces/menu-item.interface';
 import { MENU_ITEMS, ADMIN_MENU_ITEMS, PROVIDER_MENU_ITEMS, USER_MENU_ITEMS, MANAGER_MENU_ITEMS } from '../../../../shared/constants/menu-items';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { LoggedUserService } from '../../../../shared/services/logged-user.service';
 import { ROUTER_DEFINITIONS } from '../../../../shared/constants/router-definitions';
 import { CorporateService } from 'src/app/shared/custom-gnommo-base/services';
 import { S3_URL } from 'src/app/shared/constants/constants';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [CommonModule, RouterModule],
     selector: 'app-header',
     templateUrl: 'header.component.html',
     styleUrls: ['./header.component.scss'],

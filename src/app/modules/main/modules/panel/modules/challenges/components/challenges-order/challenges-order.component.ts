@@ -1,3 +1,5 @@
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { CdkDropList, CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -11,7 +13,8 @@ import { Observable } from 'rxjs';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [CommonModule, RouterModule],
   selector: 'app-challenges-order',
   templateUrl: './challenges-order.component.html',
   styleUrls: ['./challenges-order.component.scss'],

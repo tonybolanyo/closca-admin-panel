@@ -1,8 +1,8 @@
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { AuthService } from '@tyris/angular-foundation';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -15,7 +15,8 @@ import { BottleService, BottleTypesService } from 'src/app/shared/custom-gnommo-
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
   selector: 'app-bottle-detail',
   templateUrl: './bottle-detail.component.html',
   styleUrls: ['./bottle-detail.component.scss'],

@@ -1,10 +1,13 @@
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { Component, OnInit, ViewEncapsulation, Input, OnDestroy } from '@angular/core';
 import { MenuItem } from '../../../../../../shared/interfaces/menu-item.interface';
 import { Subscription } from 'rxjs';
 // import { LoggedUserService } from '../../../../../../shared/services/logged-user.service';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [CommonModule, RouterModule],
     selector: 'app-sidebar',
     templateUrl: 'sidebar.component.html',
     styleUrls: ['./sidebar.component.scss'],

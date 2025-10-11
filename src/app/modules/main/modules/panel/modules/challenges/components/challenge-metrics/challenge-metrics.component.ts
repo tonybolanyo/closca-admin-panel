@@ -4,7 +4,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import {
@@ -14,7 +14,7 @@ import {
 import {
   S3_URL
 } from 'src/app/shared/constants/constants';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import moment from 'moment';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 import { MatTableDataSource } from '@angular/material/table';
@@ -45,7 +45,8 @@ export type ChartOptions = {
 };
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [CommonModule, ReactiveFormsModule, FormsModule],
   selector: 'app-challenge-metrics',
   styleUrls: ['./challenge-metrics.component.scss'],
   templateUrl: 'challenge-metrics.component.html',

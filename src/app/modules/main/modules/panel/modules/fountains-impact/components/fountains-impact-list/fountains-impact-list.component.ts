@@ -1,3 +1,5 @@
+import { CustomTableComponent } from 'src/app/shared/components/custom-table/custom-table.component';
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
@@ -12,7 +14,8 @@ import { Brand } from 'src/app/shared/custom-gnommo-base/models/brand.model';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [CommonModule, CustomTableComponent],
   selector: 'app-fountains-impact-list',
   templateUrl: './fountains-impact-list.component.html',
   styleUrls: ['./fountains-impact-list.component.scss'],

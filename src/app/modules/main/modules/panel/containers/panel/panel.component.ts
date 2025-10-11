@@ -1,14 +1,17 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { MENU_ITEMS, ADMIN_MENU_ITEMS, PROVIDER_MENU_ITEMS, USER_MENU_ITEMS, MANAGER_MENU_ITEMS } from '../../../../../../shared/constants/menu-items';
 import { MenuItem } from '../../../../../../shared/interfaces/menu-item.interface';
 import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
+import { SidebarComponent } from '../../components/sidebar/sidebar.component';
 
 @Component({
-  standalone: false,
+  standalone: true,
     selector: 'app-panel',
     templateUrl: 'panel.component.html',
     encapsulation: ViewEncapsulation.None,
-    styleUrls: ['./panel.component.scss']
+    styleUrls: ['./panel.component.scss'],
+    imports: [RouterOutlet, SidebarComponent]
 })
 
 export class PanelComponent implements OnInit {

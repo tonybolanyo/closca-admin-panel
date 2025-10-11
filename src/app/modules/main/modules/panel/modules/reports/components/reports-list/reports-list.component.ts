@@ -1,3 +1,5 @@
+import { CustomTableComponent } from 'src/app/shared/components/custom-table/custom-table.component';
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
@@ -10,7 +12,8 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [CommonModule, CustomTableComponent],
   selector: 'app-reports-list',
   templateUrl: './reports-list.component.html',
   styleUrls: ['./reports-list.component.scss']

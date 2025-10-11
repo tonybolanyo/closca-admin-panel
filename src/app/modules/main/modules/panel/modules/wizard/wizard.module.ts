@@ -28,11 +28,6 @@ import { MatSelectModule } from '@angular/material/select';
     MatSelectModule,
     FileUploadModule,
     WizardRoutingModule
-  ],
-  declarations: [
-    WizardListComponent,
-    WizardDetailComponent,
-    WizardComponent
   ]
 })
 export class WizardModule { }

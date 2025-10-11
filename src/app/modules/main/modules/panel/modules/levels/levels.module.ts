@@ -41,11 +41,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     FileUploadModule,
     LevelsRoutingModule,
     AngularEditorModule
-  ],
-  declarations: [
-    LevelsListComponent, 
-    LevelDetailComponent, 
-    LevelsComponent]
+  ]
 })
 
 export class LevelsModule { }

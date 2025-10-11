@@ -1,3 +1,4 @@
+import { CustomTableComponent } from 'src/app/shared/components/custom-table/custom-table.component';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { FileUploader } from 'ng2-file-upload';
@@ -5,7 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [, CustomTableComponent],
   selector: 'app-example-crud-list',
   templateUrl: './example-crud-list.component.html',
   styleUrls: ['./example-crud-list.component.scss'],

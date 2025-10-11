@@ -62,13 +62,6 @@ import { NgApexchartsModule } from 'ng-apexcharts';
         MatCheckboxModule,
         NgApexchartsModule
     ],
-    declarations: [
-        ChallengesComponent,
-        ChallengesListComponent,
-        ChallengeSubscriptionsUsersListComponent,
-        ChallengeMetricsComponent,
-        ChallengeDetailComponent,
-        ChallengesOrderComponent],
 
     providers: [
         { provide: DateAdapter, useClass: MyDateAdapter },

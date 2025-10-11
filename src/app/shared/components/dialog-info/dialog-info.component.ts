@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
 import { DialogConfirmationComponent } from '../dialog-confirmation/dialog-confirmation.component';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-    standalone: false,
+    standalone: true,
     selector: 'app-dialog-info',
     styleUrls: ['./dialog-info.component.scss'],
     encapsulation: ViewEncapsulation.None,
@@ -20,8 +21,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     <mat-dialog-actions class="mat-dialog-info-actions">
         <button class="btn cancel-btn" mat-button mat-dialog-close>Cerrar</button>
     </mat-dialog-actions>
-    `
-
+    `,
+    imports: [MatDialogModule, MatButtonModule]
 })
 
 export class DialogInfoComponent implements OnInit {

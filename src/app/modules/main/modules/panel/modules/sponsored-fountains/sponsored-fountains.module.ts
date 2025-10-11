@@ -49,12 +49,6 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
     FileUploadModule,
     NgSelectModule,
     SponsoredFountainsRoutingModule
-  ],
-  declarations: [
-    SponsoredFountainsListComponent,
-    SponsoredFountainDetailComponent,
-    SponsoredFountainsComponent,
-    SponsoredFountainCreateComponent
   ]
 })
 export class SponsoredFountainsModule { }

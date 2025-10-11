@@ -13,7 +13,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDialogModule,
     SharedModule,
     RandomFountainImagesRoutingModule
-  ],
-  declarations: [RandomFountainImagesComponent]
+  ]
 })
 export class RandomFountainImagesModule { }

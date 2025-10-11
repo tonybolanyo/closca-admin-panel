@@ -1,15 +1,16 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { PUBLIC_OR_PRIVATE_FOUNTAIN_TYPES } from 'src/app/shared/constants/constants';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ToastrService } from 'ngx-toastr';
 import { UserRatingsService } from 'src/app/shared/custom-gnommo-base/services';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
   selector: 'app-user-rate-detail',
   templateUrl: './user-rate-detail.component.html',
   styleUrls: ['./user-rate-detail.component.scss'],

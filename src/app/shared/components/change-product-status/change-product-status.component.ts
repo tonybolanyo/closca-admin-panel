@@ -3,7 +3,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UntypedFormControl, Validators } from '@angular/forms';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [],
   selector: 'app-change-product-status',
   template: `
   <mat-dialog-content>

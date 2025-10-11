@@ -8,8 +8,7 @@ describe('ChallengeCsvResponseDialog', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChallengeCsvResponseDialogComponent ],
-      imports: [ MatDialogModule ],
+      imports: [ ChallengeCsvResponseDialogComponent ],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: MatDialogRef, useValue: {} }

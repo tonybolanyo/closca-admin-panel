@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   OnInit,
@@ -12,7 +13,8 @@ import { ProductService } from '../../custom-gnommo-base/services';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [CommonModule],
   selector: 'app-dialog-reward-codes',
   templateUrl: './dialog-reward-codes.component.html',
   styleUrls: ['./dialog-reward-codes.component.scss'],

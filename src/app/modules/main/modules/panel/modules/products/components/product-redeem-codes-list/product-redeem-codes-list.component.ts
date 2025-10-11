@@ -1,3 +1,4 @@
+import { CustomTableComponent } from 'src/app/shared/components/custom-table/custom-table.component';
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
@@ -8,7 +9,8 @@ import { RewardService } from 'src/app/shared/custom-gnommo-base/services';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [, CustomTableComponent],
   selector: 'app-product-redeem-codes-list',
   templateUrl: './product-redeem-codes-list.component.html',
   styleUrls: ['./product-redeem-codes-list.component.scss'],

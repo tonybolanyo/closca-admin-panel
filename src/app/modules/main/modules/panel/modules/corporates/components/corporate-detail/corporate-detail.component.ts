@@ -1,9 +1,9 @@
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { AuthService } from '@tyris/angular-foundation';
 import moment from 'moment';
 import { FileUploader } from 'ng2-file-upload';
@@ -20,7 +20,8 @@ import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactiva
 import { environment } from 'src/environments/environment';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
   selector: 'app-corporate-detail',
   templateUrl: './corporate-detail.component.html',
   styleUrls: ['./corporate-detail.component.scss'],

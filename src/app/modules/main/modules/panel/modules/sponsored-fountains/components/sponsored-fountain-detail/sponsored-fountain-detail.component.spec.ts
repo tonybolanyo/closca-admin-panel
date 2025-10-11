@@ -1,6 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, provideRouter } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { UntypedFormBuilder, ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -27,8 +27,8 @@ describe('SponsoredFountainDetailComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SponsoredFountainDetailComponent ],
       imports: [ 
+        SponsoredFountainDetailComponent,
         ReactiveFormsModule,
         FormsModule,
         MatButtonToggleModule,
@@ -39,6 +39,7 @@ describe('SponsoredFountainDetailComponent', () => {
       ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
+        provideRouter([]),
         UntypedFormBuilder,
         { provide: ToastrService, useValue: { success: jest.fn(), error: jest.fn(), info: jest.fn(), warning: jest.fn() } },
         { provide: NgxUiLoaderService, useValue: { start: jest.fn(), stop: jest.fn() } },

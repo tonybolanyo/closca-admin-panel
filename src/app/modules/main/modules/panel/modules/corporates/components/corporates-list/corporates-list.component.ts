@@ -1,13 +1,15 @@
+import { CustomTableComponent } from 'src/app/shared/components/custom-table/custom-table.component';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { ToastrService } from 'ngx-toastr';
 import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { CorporateService } from 'src/app/shared/custom-gnommo-base/services';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [RouterModule, CustomTableComponent],
   selector: 'app-corporates-list',
   templateUrl: './corporates-list.component.html',
   styleUrls: ['./corporates-list.component.scss'],

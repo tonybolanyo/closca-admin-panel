@@ -1,9 +1,14 @@
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { AuthService } from '@tyris/angular-foundation';
 import { FileUploader } from 'ng2-file-upload';
@@ -19,7 +24,18 @@ import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactiva
 import { environment } from 'src/environments/environment';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [
+      CommonModule, 
+      RouterModule, 
+      ReactiveFormsModule, 
+      FormsModule,
+      MatIconModule,
+      MatButtonToggleModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatSelectModule
+    ],
   selector: 'app-level-detail',
   templateUrl: './level-detail.component.html',
   styleUrls: ['./level-detail.component.scss'],

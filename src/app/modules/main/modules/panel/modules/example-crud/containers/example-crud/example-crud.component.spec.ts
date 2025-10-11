@@ -1,4 +1,3 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ExampleCrudComponent } from './example-crud.component';
@@ -9,14 +8,7 @@ describe('ExampleCrudComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ExampleCrudComponent ]
-    })
-    .overrideComponent(ExampleCrudComponent, {
-      set: {
-        templateUrl: undefined,
-        template: '<div></div>',
-        styleUrls: []
-      }
+      imports: [ ExampleCrudComponent ]
     })
     .compileComponents();
   }));

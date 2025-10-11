@@ -29,8 +29,7 @@ describe('BrandDetailComponent', () => {
     };
 
     TestBed.configureTestingModule({
-      declarations: [ BrandDetailComponent ],
-      imports: [ ReactiveFormsModule ],
+      imports: [ BrandDetailComponent ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         UntypedFormBuilder,
