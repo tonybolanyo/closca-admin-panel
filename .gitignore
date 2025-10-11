@@ -12,6 +12,13 @@
 # test coverage
 /coverage
 
+# Playwright
+/playwright-report
+/playwright/.cache
+/e2e-playwright/.auth
+/test-results
+
+
 # Loopback SDK
 /src/app/shared/sdk
 
@@ -41,6 +48,9 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+.env
+.env.local
+.env.*.local
 
 # System Files
 .DS_Store
