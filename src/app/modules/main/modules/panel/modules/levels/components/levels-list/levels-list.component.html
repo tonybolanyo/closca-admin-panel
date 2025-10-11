@@ -1,7 +1,7 @@
 <div class="col-12 pt-3">
   <div class="row">
     <div class="col-12">
-      <h3 class="float-left title">
+      <h3 class="float-start title">
         Niveles
       </h3>
       <button [routerLink]="tableConfig.buttonsConfig.baseRouterLink + '/new'" class="btn btn-primary add-button">
@@ -10,7 +10,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="pt-3 col-12 pb-4 pr-0 pl-0">
+    <div class="pt-3 col-12 pb-4 pe-0 ps-0">
       <app-custom-table [dataSource]="items" [paginator]="paginator" [tableConfig]="tableConfig"
         (formChanges)="filterFormChanges($event)" (sendPaginate)="paginate($event)" (deleteItem)="deleteItem($event)">
       </app-custom-table>

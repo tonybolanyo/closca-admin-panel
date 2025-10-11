@@ -1,7 +1,7 @@
 <div class="col-12 pt-3">
   <div class="row">
     <div class="col-9">
-      <h3 class="float-left title">
+      <h3 class="float-start title">
         Retos
       </h3>
       <button
@@ -24,7 +24,7 @@
       </div>
     </div>
   </div>
-    <div class="pt-3 col-12 pb-4 pr-0 pl-0">
+    <div class="pt-3 col-12 pb-4 pe-0 ps-0">
       <mat-table
         [dataSource]="dataSource"
         class="mat-elevation-z8"
@@ -89,7 +89,7 @@
         ></mat-row>
       </mat-table>
       <div class="save-button col-12">
-          <button [disabled]="!orderChanges" class="btn btn-primary ml-2" (click)="updateOrder()">Guardar orden</button>
+          <button [disabled]="!orderChanges" class="btn btn-primary ms-2" (click)="updateOrder()">Guardar orden</button>
         </div>
     </div>
 </div>

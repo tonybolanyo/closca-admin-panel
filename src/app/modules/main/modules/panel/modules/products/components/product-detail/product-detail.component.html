@@ -1,8 +1,8 @@
 <div class="row">
     <div class="col-12 pt-1 pb-1">
-    <h3 class="float-left title">
+    <h3 class="float-start title">
       <a class="button-back" (click)="navigateBack()">
-        <mat-icon class="float-left back-icon">keyboard_backspace</mat-icon>
+        <mat-icon class="float-start back-icon">keyboard_backspace</mat-icon>
       </a>
       {{ action === "view" ? "Ver" : action === "edit" ? "Editar" : "Nuevo" }}
       Producto
@@ -307,7 +307,7 @@
     <form [formGroup]="productESForm">
       <div class="row">
         <div class="col-12 col-lg-6" *ngIf="role != 'MANAGER'">
-          <h5 class="w-100 text-left section-title">
+          <h5 class="w-100 text-start section-title">
             Tallas del producto
             <button
               *ngIf="action !== 'view'"
@@ -321,7 +321,7 @@
             </button>
           </h5>
           <div
-            class="p-0 w-100 text-left"
+            class="p-0 w-100 text-start"
             formArrayName="size"
             *ngFor="let item of getSizeESControls(); let i = index"
           >
@@ -345,7 +345,7 @@
         </div>
 
         <div class="col-12 col-lg-6">
-          <h5 class="w-100 text-left section-title">
+          <h5 class="w-100 text-start section-title">
             Pasos para obtener recompensa (Multi-idioma) *
             <button
               *ngIf="action !== 'view'"
@@ -359,7 +359,7 @@
             </button>
           </h5>
           <div
-            class="p-0 w-100 text-left"
+            class="p-0 w-100 text-start"
             formArrayName="rewardStepper"
             *ngFor="let item of getRewardESControls(); let i = index"
           >
@@ -402,7 +402,7 @@
     <form [formGroup]="productENForm">
       <div class="row">
         <div class="col-12 col-lg-6" *ngIf="role != 'MANAGER'">
-          <h5 class="w-100 text-left section-title">
+          <h5 class="w-100 text-start section-title">
             Tallas del producto
             <button
               *ngIf="action !== 'view'"
@@ -416,7 +416,7 @@
             </button>
           </h5>
           <div
-            class="p-0 w-100 text-left"
+            class="p-0 w-100 text-start"
             formArrayName="size"
             *ngFor="let item of getSizeESControls(); let i = index"
           >
@@ -440,7 +440,7 @@
         </div>
 
         <div class="col-12 col-lg-6">
-          <h5 class="w-100 text-left section-title">
+          <h5 class="w-100 text-start section-title">
             Pasos para obtener recompensa (Multi-idioma) *
             <button
               *ngIf="action !== 'view'"
@@ -454,7 +454,7 @@
             </button>
           </h5>
           <div
-            class="p-0 w-100 text-left"
+            class="p-0 w-100 text-start"
             formArrayName="rewardStepper"
             *ngFor="let item of getRewardESControls(); let i = index"
           >
@@ -495,14 +495,14 @@
 
   <div class="row">
     <div class="col-12 col-lg-6">
-      <h5 class="w-100 m-0 text-left section-title">
+      <h5 class="w-100 m-0 text-start section-title">
         Códigos
       </h5>
-      <div class="w-100 text-left">
+      <div class="w-100 text-start">
         {{ product?.rewardCodes?.length ? product?.rewardCodes?.length : 0 }}
         códigos totales
       </div>
-      <div class="w-100 text-left">
+      <div class="w-100 text-start">
         {{ product?.rewards?.length ? product?.rewards?.length : 0 }}
         códigos canjeados
       </div>
@@ -511,7 +511,7 @@
         <input
           #codeUploaderInput
           id="code-file-input"
-          class="w-100 mb-3 float-left"
+          class="w-100 mb-3 float-start"
           type="file"
           name="code"
           ng2FileSelect
@@ -522,7 +522,7 @@
       <button
         *ngIf="action !== 'new'"
         mat-raised-button
-        class="float-left"
+        class="float-start"
         (click)="showCodes()"
       >
         Ver códigos
@@ -542,17 +542,17 @@
   </div>
 
   <div class="row" *ngIf="action !== 'view'">
-    <div class="buttons-container col-12 pt-4 pb-5 pl-3">
+    <div class="buttons-container col-12 pt-4 pb-5 ps-3">
       <ng-content select="button"></ng-content>
       <button
-        class="btn btn-primary send-sms-button mr-2"
+        class="btn btn-primary send-sms-button me-2"
         (click)="isFormCanceled = true"
         [routerLink]="routerDefinitions.products + '/list'"
       >
         Cancelar
       </button>
       <button
-        class="btn btn-primary ml-2"
+        class="btn btn-primary ms-2"
         [disabled]="
           ((productForm.invalid || !productForm.dirty) &&
             (productESForm.invalid || !productESForm.dirty) &&

@@ -1,8 +1,8 @@
 <div class="row pb-4">
   <div class="col-12 pt-1 pb-1">
-    <h3 class="float-left title">
+    <h3 class="float-start title">
       <a [routerLink]="routerDefinitions.brands +'/list'">
-        <mat-icon class="float-left back-icon">keyboard_backspace</mat-icon>
+        <mat-icon class="float-start back-icon">keyboard_backspace</mat-icon>
       </a>
       {{action === 'view'? 'Ver' : (action === 'edit' ? 'Editar' : 'Nueva')}} Marca
     </h3>
@@ -107,11 +107,11 @@
       </ng-container>
     </form>
     <div class="row" *ngIf="action !== 'view'">
-      <div class="buttons-container col-12 pt-4 pb-5 pl-3">
+      <div class="buttons-container col-12 pt-4 pb-5 ps-3">
         <ng-content select="button"></ng-content>
-        <button class="btn btn-primary send-sms-button mr-2" (click)="isFormCanceled = true"
+        <button class="btn btn-primary send-sms-button me-2" (click)="isFormCanceled = true"
           [routerLink]="routerDefinitions.brands + '/list'">Cancelar</button>
-        <button class="btn btn-primary ml-2"
+        <button class="btn btn-primary ms-2"
           [disabled]="brandForm.invalid || !brandForm.dirty || (!brandImageId  && !brandLocalImage) || (!brandBackgroundImageId  && !brandLocalBackgroundImage)"
           (click)="saveForm(brandForm.value, brandForm.valid)">Guardar</button>
       </div>

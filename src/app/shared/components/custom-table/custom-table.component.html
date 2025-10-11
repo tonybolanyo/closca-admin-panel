@@ -204,7 +204,7 @@
                 '/view/' +
                 element._id
               "
-              class="btn btn-primary list-view-button mr-2"
+              class="btn btn-primary list-view-button me-2"
             >
               <img src="./../../../../../../../../../assets/icons/eye.png" />
             </button>
@@ -218,7 +218,7 @@
                 '/edit/' +
                 element._id
               "
-              class="btn btn-primary list-button mr-2"
+              class="btn btn-primary list-button me-2"
             >
               <img src="./../../../../../../../../../assets/icons/edit.png" />
             </button>
@@ -229,14 +229,14 @@
                 '/metrics/' +
                 element._id
               "
-              class="btn btn-primary list-button mr-2"
+              class="btn btn-primary list-button me-2"
             >
               <img style="opacity: 0.7;" src="./../../../../../../../../../assets/icons/metrics.png" />
             </button>
             <button
               *ngIf="tableConfig.buttonsConfig.deleteUserButton"
               (click)="openDeleteUserDialog(element)"
-              class="btn btn-primary list-button mr-3"
+              class="btn btn-primary list-button me-3"
             >
               <img
                 src="./../../../../../../../../../assets/icons/garbage.png"
@@ -248,7 +248,7 @@
               element.code !== 'CLOSCA'
               "
               (click)="openDeleteDialog(element)"
-              class="btn btn-primary list-button mr-3"
+              class="btn btn-primary list-button me-3"
             >
               <img
                 src="./../../../../../../../../../assets/icons/garbage.png"
@@ -257,14 +257,14 @@
             <button
               *ngIf="customEditButton"
               (click)="onCustomEdit(element)"
-              class="btn btn-primary list-button mr-2"
+              class="btn btn-primary list-button me-2"
             >
               <img src="./../../../../../../../../../assets/icons/edit.png" />
             </button>
             <button
               *ngIf="customViewButton"
               (click)="onCustomView(element)"
-              class="btn btn-primary list-view-button mr-2"
+              class="btn btn-primary list-view-button me-2"
             >
               <img src="./../../../../../../../../../assets/icons/eye.png" />
             </button>
@@ -283,7 +283,7 @@
             <button
               *ngIf="tableConfig.buttonsConfig.deleteChallengeSuscriptionButton"
               (click)="openDeleteChallengeSuscriptionDialog(element)"
-              class="btn btn-primary list-button mr-3"
+              class="btn btn-primary list-button me-3"
             >
               <img
                 src="./../../../../../../../../../assets/icons/garbage.png"

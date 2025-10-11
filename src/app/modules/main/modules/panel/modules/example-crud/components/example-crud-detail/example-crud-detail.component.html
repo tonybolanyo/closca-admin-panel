@@ -6,9 +6,9 @@
 
 <div class="row">
   <div class="col-12 pt-1 pb-1">
-    <h3 class="float-left title">
+    <h3 class="float-start title">
       <a [routerLink]="routerDefinitions.crud +'/list'">
-        <mat-icon class="float-left back-icon">keyboard_backspace</mat-icon>
+        <mat-icon class="float-start back-icon">keyboard_backspace</mat-icon>
       </a>
       {{action === 'view'? 'Ver' : (action === 'edit' ? 'Editar' : 'Nueva')}} Solicitud
     </h3>
@@ -98,7 +98,7 @@
 
         </div>
         <ng-container *ngIf="galleryImg.length > 0">
-          <div class="col-10 pr-0 modal-gallery-container">
+          <div class="col-10 pe-0 modal-gallery-container">
             <div class="delete-image" *ngIf="openImageModalWindow && action !== 'view'">
               <a (click)="showDialogDeleteImage()">
                 <img src="./../../../../../../../assets/icons/garbage.png" />
@@ -109,7 +109,7 @@
               [dotsConfig]="{visible: false}" [previewConfig]="{visible: false}" (show)="onGetCurrentImageIndex($event)"
               (close)="onCloseImageModal($event)"></ks-modal-gallery>
           </div>
-          <div class="col-2 pl-0" *ngIf="galleryImg.length > 3">
+          <div class="col-2 ps-0" *ngIf="galleryImg.length > 3">
             <a (click)="openGallery()">
               <div class="show-more-img-button-container">
                 <span>+{{galleryImg.length - 3}}</span>
@@ -119,7 +119,7 @@
         </ng-container>
         <ng-container *ngIf="galleryImg.length === 0 && action !== 'new'">
           <div class="col-12">
-            <p class="float-left">No hay imagenes disponibles para esta solicitud</p>
+            <p class="float-start">No hay imagenes disponibles para esta solicitud</p>
           </div>
         </ng-container>
       </div>
@@ -140,10 +140,10 @@
       </div>
     </form>
     <div class="row" *ngIf="action !== 'view'">
-      <div class="buttons-container col-12 pt-4 pb-5 pl-3">
+      <div class="buttons-container col-12 pt-4 pb-5 ps-3">
         <ng-content select="button"></ng-content>
-        <button class="btn btn-primary send-sms-button mr-3" [routerLink]="routerDefinitions.crud + '/list'">Cancelar</button>
-        <button class="btn btn-primary ml-3" [disabled]="crudForm.invalid || !crudForm.dirty" (click)="saveForm(crudForm.value, crudForm.valid)">Guardar</button>
+        <button class="btn btn-primary send-sms-button me-3" [routerLink]="routerDefinitions.crud + '/list'">Cancelar</button>
+        <button class="btn btn-primary ms-3" [disabled]="crudForm.invalid || !crudForm.dirty" (click)="saveForm(crudForm.value, crudForm.valid)">Guardar</button>
       </div>
     </div>
   </div>
