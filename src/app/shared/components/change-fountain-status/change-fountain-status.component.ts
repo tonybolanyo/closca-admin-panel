@@ -1,13 +1,29 @@
 import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormControl, Validators, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { CommonModule, DatePipe } from '@angular/common';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { FormControl, Validators, UntypedFormBuilder, UntypedFormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MultiLanguageObject } from '../../custom-gnommo-base/models';
 import { ToastrService } from 'ngx-toastr';
-import { DatePipe } from '@angular/common';
 
 @Component({
   standalone: true,
-    imports: [],
+    imports: [
+      CommonModule,
+      ReactiveFormsModule,
+      MatDialogModule,
+      MatFormFieldModule,
+      MatSelectModule,
+      MatInputModule,
+      MatButtonModule,
+      MatDatepickerModule,
+      MatNativeDateModule
+    ],
   selector: 'app-change-fountain-status',
   template: `
   <mat-dialog-content>

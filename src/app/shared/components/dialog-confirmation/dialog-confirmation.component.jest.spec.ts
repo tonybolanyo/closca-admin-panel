@@ -5,7 +5,7 @@ import { DialogConfirmationComponent } from './dialog-confirmation.component';
 
 // Create a test component without styleUrls to avoid SCSS loading issues
 @Component({
-  standalone: false,
+  standalone: true,
   selector: 'app-dialog-confirmation',
   template: `
     <mat-dialog-content>
@@ -15,7 +15,8 @@ import { DialogConfirmationComponent } from './dialog-confirmation.component';
       <button class="btn cancel-btn" mat-button mat-dialog-close (click)="onCloseReject()">No</button>
       <button class="btn confirm-btn" mat-button (click)="onCloseAccept()">Si</button>
     </mat-dialog-actions>
-  `
+  `,
+  imports: [MatDialogModule]
 })
 class TestDialogConfirmationComponent extends DialogConfirmationComponent { }
 

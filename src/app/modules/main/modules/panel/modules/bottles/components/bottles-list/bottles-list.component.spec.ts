@@ -1,5 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -22,6 +23,7 @@ describe('BottlesListComponent', () => {
       imports: [ BottlesListComponent ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
+        provideRouter([]),
         { provide: ToastrService, useValue: { success: jest.fn(), error: jest.fn(), info: jest.fn(), warning: jest.fn() } },
         { provide: NgxUiLoaderService, useValue: { start: jest.fn(), stop: jest.fn() } },
         { provide: BottleService, useValue: mockBottleService }
