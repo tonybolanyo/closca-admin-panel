@@ -65,14 +65,14 @@ try {
   } else {
     // Fallback: use coverage data to estimate
     // These values should be updated after running tests
-    testsPassing = 402; // Updated based on latest test run
-    testsTotal = 407; // Updated based on latest test run
+    testsPassing = 456; // Updated based on latest test run
+    testsTotal = 461; // Updated based on latest test run
   }
   passRate = testsTotal > 0 ? Math.round((testsPassing / testsTotal) * 100) : 0;
 } catch (err) {
   console.warn('Warning: Could not determine test counts. Using defaults.');
-  testsPassing = 402;
-  testsTotal = 407;
+  testsPassing = 456;
+  testsTotal = 461;
   passRate = 99;
 }
 
