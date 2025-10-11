@@ -83,9 +83,7 @@ import { CanDeactivateGuard } from './shared/guards/can-deactivate.guard';
     AppRoutingModule,
     AngularEditorModule,
     GoogleMapsModule,
-    NgxUiLoaderModule
-  ],
-  declarations: [
+    NgxUiLoaderModule,
     AppComponent,
     LoginComponent,
     PasswordRecoverComponent,

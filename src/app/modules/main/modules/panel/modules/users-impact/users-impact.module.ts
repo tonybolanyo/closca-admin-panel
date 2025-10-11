@@ -61,9 +61,6 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
         UsersImpactRoutingModule
 
     ],
-    declarations: [
-        UsersComponent,
-        UsersImpactComponent],
 
     providers: [
         { provide: DateAdapter, useClass: MyDateAdapter },

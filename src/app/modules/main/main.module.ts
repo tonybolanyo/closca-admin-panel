@@ -47,15 +47,13 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
         MatSelectModule,
         MatIconModule,
         ReactiveFormsModule,
-        MainRoutingModule
-    ],
-    exports: [],
-    declarations: [
+        MainRoutingModule,
         MainComponent,
         HeaderComponent,
         FooterComponent,
         UserProfileComponent
     ],
+    exports: [],
     providers: [
         { provide: DateAdapter, useClass: MyDateAdapter },
         {

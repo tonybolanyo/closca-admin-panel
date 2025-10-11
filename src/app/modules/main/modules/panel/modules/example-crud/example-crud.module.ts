@@ -58,10 +58,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         ExampleCrudRoutingModule
 
     ],
-    declarations: [
-        ExampleCrudComponent,
-        ExampleCrudListComponent,
-        ExampleCrudDetailComponent],
 
     providers: [
         { provide: DateAdapter, useClass: MyDateAdapter },

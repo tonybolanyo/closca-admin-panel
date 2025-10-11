@@ -29,11 +29,6 @@ import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
     NgbRatingModule,
     SharedModule,
     UserRateRoutingModule
-  ],
-  declarations: [
-    UserRateComponent,
-    UserRateListComponent,
-    UserRateDetailComponent
   ]
 })
 export class UserRateModule { }

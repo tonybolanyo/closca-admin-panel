@@ -40,11 +40,6 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
     NgxUiLoaderModule,
     FileUploadModule,
     BrandsRoutingModule
-  ],
-  declarations: [
-    BrandsListComponent,
-    BrandDetailComponent,
-    BrandsComponent
   ]
 })
 export class BrandsModule { }

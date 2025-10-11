@@ -58,13 +58,11 @@ import { FileUploadModule } from 'ng2-file-upload';
         ReactiveFormsModule,
         GalleryModule,
         PanelRoutingModule,
-    ],
-    exports: [],
-    declarations: [
         PanelComponent,
         HomeComponent,
         SidebarComponent,
     ],
+    exports: [],
     providers: [
         {provide: DateAdapter, useClass: MyDateAdapter},
         {
