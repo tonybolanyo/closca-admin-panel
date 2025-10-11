@@ -37,7 +37,8 @@ import { environment } from 'src/environments/environment';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
   selector: 'app-challenge-detail',
   styleUrls: ['./challenge-detail.component.scss'],
   templateUrl: 'challenge-detail.component.html',

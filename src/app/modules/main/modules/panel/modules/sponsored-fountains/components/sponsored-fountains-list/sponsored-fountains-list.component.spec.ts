@@ -17,7 +17,7 @@ describe('SponsoredFountainsListComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SponsoredFountainsListComponent ],
+      imports: [ SponsoredFountainsListComponent ],
       imports: [ ReactiveFormsModule ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [

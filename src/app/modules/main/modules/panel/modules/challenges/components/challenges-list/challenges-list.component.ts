@@ -1,3 +1,5 @@
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
@@ -23,7 +25,8 @@ import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-co
 import { Corporate } from 'src/app/shared/custom-gnommo-base/models/corporate.model';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [CommonModule, RouterModule],
   selector: 'app-challenges-list',
   templateUrl: './challenges-list.component.html',
   styleUrls: ['./challenges-list.component.scss'],

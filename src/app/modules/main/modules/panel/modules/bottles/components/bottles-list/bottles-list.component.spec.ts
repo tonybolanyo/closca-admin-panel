@@ -19,7 +19,7 @@ describe('BottlesListComponent', () => {
     };
 
     TestBed.configureTestingModule({
-      declarations: [ BottlesListComponent ],
+      imports: [ BottlesListComponent ],
       imports: [ ReactiveFormsModule ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [

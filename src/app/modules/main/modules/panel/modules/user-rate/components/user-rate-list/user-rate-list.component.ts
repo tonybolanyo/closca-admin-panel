@@ -6,7 +6,8 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [],
   selector: 'app-user-rate-list',
   templateUrl: './user-rate-list.component.html',
   styleUrls: ['./user-rate-list.component.scss'],

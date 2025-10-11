@@ -5,7 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [],
   selector: 'app-example-crud-list',
   templateUrl: './example-crud-list.component.html',
   styleUrls: ['./example-crud-list.component.scss'],

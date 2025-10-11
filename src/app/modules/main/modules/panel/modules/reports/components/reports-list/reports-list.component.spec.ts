@@ -30,7 +30,7 @@ describe('ReportsListComponent', () => {
     };
 
     TestBed.configureTestingModule({
-      declarations: [ ReportsListComponent ],
+      imports: [ ReportsListComponent ],
       imports: [ ReactiveFormsModule ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [

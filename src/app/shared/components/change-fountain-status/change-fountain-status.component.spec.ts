@@ -15,7 +15,7 @@ describe('ChangeFountainStatusComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChangeFountainStatusComponent ],
+      imports: [ ChangeFountainStatusComponent ],
       imports: [ 
         ReactiveFormsModule, 
         MatDialogModule,

@@ -15,7 +15,8 @@ import { BottleService, BottleTypesService } from 'src/app/shared/custom-gnommo-
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
   selector: 'app-bottle-detail',
   templateUrl: './bottle-detail.component.html',
   styleUrls: ['./bottle-detail.component.scss'],

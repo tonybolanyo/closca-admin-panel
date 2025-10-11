@@ -1,3 +1,5 @@
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { PRODUCT_STATUSES } from 'src/app/shared/constants/constants';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
@@ -13,7 +15,8 @@ import { Corporate } from 'src/app/shared/custom-gnommo-base/models/corporate.mo
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [CommonModule, RouterModule],
   selector: 'app-products-list',
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.scss'],

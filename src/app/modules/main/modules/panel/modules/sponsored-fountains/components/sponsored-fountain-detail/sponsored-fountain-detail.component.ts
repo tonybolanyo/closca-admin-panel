@@ -25,7 +25,8 @@ import { LoggedUserService } from '../../../../../../../../shared/services/logge
 declare var google;
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
   selector: 'app-sponsored-fountain-detail',
   templateUrl: './sponsored-fountain-detail.component.html',
   styleUrls: ['./sponsored-fountain-detail.component.scss']

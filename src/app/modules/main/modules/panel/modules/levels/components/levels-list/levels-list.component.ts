@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
@@ -7,7 +8,8 @@ import { LevelService } from 'src/app/shared/custom-gnommo-base/services';
 import { LEVEL_STATUSES } from 'src/app/shared/constants/constants';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [RouterModule],
   selector: 'app-levels-list',
   templateUrl: './levels-list.component.html',
   styleUrls: ['./levels-list.component.scss'],

@@ -45,7 +45,8 @@ export type ChartOptions = {
 };
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [CommonModule, ReactiveFormsModule, FormsModule],
   selector: 'app-challenge-metrics',
   styleUrls: ['./challenge-metrics.component.scss'],
   templateUrl: 'challenge-metrics.component.html',

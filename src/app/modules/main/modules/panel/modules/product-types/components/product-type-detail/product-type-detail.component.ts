@@ -10,7 +10,8 @@ import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
   selector: 'app-product-type-detail',
   templateUrl: './product-type-detail.component.html',
   styleUrls: ['./product-type-detail.component.scss'],

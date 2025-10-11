@@ -23,7 +23,7 @@ describe('AppComponent (Jest)', () => {
     };
 
     TestBed.configureTestingModule({
-      declarations: [AppComponent],
+      imports: [AppComponent],
       providers: [
         { provide: LoggedUserService, useValue: mockLoggedUserService },
         { provide: MatBottomSheet, useValue: mockBottomSheet }

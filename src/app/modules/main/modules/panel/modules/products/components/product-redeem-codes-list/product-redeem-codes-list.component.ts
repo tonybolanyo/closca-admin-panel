@@ -8,7 +8,8 @@ import { RewardService } from 'src/app/shared/custom-gnommo-base/services';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [],
   selector: 'app-product-redeem-codes-list',
   templateUrl: './product-redeem-codes-list.component.html',
   styleUrls: ['./product-redeem-codes-list.component.scss'],

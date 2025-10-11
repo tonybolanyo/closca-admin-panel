@@ -18,7 +18,8 @@ import { environment } from 'src/environments/environment';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
   selector: 'app-wizard-detail',
   templateUrl: './wizard-detail.component.html',
   styleUrls: ['./wizard-detail.component.scss'],

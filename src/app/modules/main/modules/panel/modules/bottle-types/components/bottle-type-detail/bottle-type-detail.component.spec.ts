@@ -19,7 +19,7 @@ describe('BottleTypeDetailComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ BottleTypeDetailComponent ],
+      imports: [ BottleTypeDetailComponent ],
       imports: [ ReactiveFormsModule ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [

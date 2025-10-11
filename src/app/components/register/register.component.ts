@@ -8,7 +8,8 @@ import { UserService } from 'src/app/shared/custom-gnommo-base/services';
 
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [RouterModule, ReactiveFormsModule, FormsModule],
     selector: 'app-register',
     templateUrl: 'register.component.html',
     styleUrls: ['./register.component.scss'],

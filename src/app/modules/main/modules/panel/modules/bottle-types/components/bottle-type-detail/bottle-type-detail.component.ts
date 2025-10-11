@@ -16,7 +16,8 @@ import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactiva
 import { environment } from 'src/environments/environment';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
   selector: 'app-bottle-type-detail',
   templateUrl: './bottle-type-detail.component.html',
   styleUrls: ['./bottle-type-detail.component.scss'],

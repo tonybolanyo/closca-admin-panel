@@ -20,7 +20,7 @@ describe('ReportDetailComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReportDetailComponent ],
+      imports: [ ReportDetailComponent ],
       imports: [ ReactiveFormsModule, MatButtonToggleModule ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [

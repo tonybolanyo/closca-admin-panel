@@ -13,7 +13,7 @@ describe('ExampleCrudListComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ExampleCrudListComponent ],
+      imports: [ ExampleCrudListComponent ],
       imports: [ ReactiveFormsModule ],
       providers: [
         { provide: ToastrService, useValue: { success: jest.fn(), error: jest.fn(), info: jest.fn(), warning: jest.fn() } },

@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
@@ -6,7 +7,8 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [RouterModule],
   selector: 'app-brands-list',
   templateUrl: './brands-list.component.html',
   styleUrls: ['./brands-list.component.scss'],

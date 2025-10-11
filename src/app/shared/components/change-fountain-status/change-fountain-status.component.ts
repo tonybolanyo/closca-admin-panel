@@ -6,7 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [],
   selector: 'app-change-fountain-status',
   template: `
   <mat-dialog-content>

@@ -19,7 +19,7 @@ describe('LevelsListComponent', () => {
     };
 
     TestBed.configureTestingModule({
-      declarations: [ LevelsListComponent ],
+      imports: [ LevelsListComponent ],
       imports: [ ReactiveFormsModule ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [

@@ -18,7 +18,7 @@ describe('FountainsImpactListComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ FountainsImpactListComponent ],
+      imports: [ FountainsImpactListComponent ],
       imports: [ ReactiveFormsModule ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [

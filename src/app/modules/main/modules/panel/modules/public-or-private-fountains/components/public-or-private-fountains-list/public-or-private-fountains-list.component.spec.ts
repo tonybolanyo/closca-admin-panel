@@ -17,7 +17,7 @@ describe('FountainsListComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PublicOrPrivateFountainsListComponent ],
+      imports: [ PublicOrPrivateFountainsListComponent ],
       imports: [ ReactiveFormsModule ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [

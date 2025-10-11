@@ -1,3 +1,5 @@
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
@@ -13,7 +15,8 @@ import { Corporate } from 'src/app/shared/custom-gnommo-base/models/corporate.mo
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [CommonModule, RouterModule],
   selector: 'app-public-or-private-fountains-list',
   templateUrl: './public-or-private-fountains-list.component.html',
   styleUrls: ['./public-or-private-fountains-list.component.scss'],

@@ -1,3 +1,5 @@
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -9,7 +11,8 @@ import moment from 'moment';
 import { debounceTime } from 'rxjs/operators';
 import { S3_URL } from '../../constants/constants';
 @Component({
-  standalone: false,
+  standalone: true,
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
     selector: 'app-custom-table',
     templateUrl: 'custom-table.component.html',
     styleUrls: ['./custom-table.component.scss'],

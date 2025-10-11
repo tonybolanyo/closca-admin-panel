@@ -27,7 +27,7 @@ describe('LevelDetailComponent', () => {
     };
 
     TestBed.configureTestingModule({
-      declarations: [ LevelDetailComponent ],
+      imports: [ LevelDetailComponent ],
       imports: [ ReactiveFormsModule, MatButtonToggleModule ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [

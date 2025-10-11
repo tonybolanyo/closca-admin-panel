@@ -27,7 +27,7 @@ describe('FountainDetailComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PublicOrPrivateFountainDetailComponent ],
+      imports: [ PublicOrPrivateFountainDetailComponent ],
       imports: [ 
         ReactiveFormsModule, 
         FormsModule,
