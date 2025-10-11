@@ -20,7 +20,6 @@ describe('BrandsListComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [ BrandsListComponent ],
-      imports: [ ReactiveFormsModule ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: ToastrService, useValue: { success: jest.fn(), error: jest.fn(), info: jest.fn(), warning: jest.fn() } },

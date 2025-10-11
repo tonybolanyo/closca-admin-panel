@@ -19,7 +19,6 @@ describe('FountainsImpactListComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [ FountainsImpactListComponent ],
-      imports: [ ReactiveFormsModule ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: ToastrService, useValue: { success: jest.fn(), error: jest.fn(), info: jest.fn(), warning: jest.fn() } },

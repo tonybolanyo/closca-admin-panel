@@ -36,7 +36,6 @@ describe('DialogConfirmationComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [TestDialogConfirmationComponent],
-      imports: [MatDialogModule],
       providers: [
         { provide: MatDialogRef, useValue: mockDialogRef },
         { provide: MAT_DIALOG_DATA, useValue: mockData }

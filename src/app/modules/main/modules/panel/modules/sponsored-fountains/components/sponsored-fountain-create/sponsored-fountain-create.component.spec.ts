@@ -22,7 +22,6 @@ describe('SponsoredFountainCreateComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [ SponsoredFountainCreateComponent ],
-      imports: [ ReactiveFormsModule, MatTableModule ],
       schemas: [ NO_ERRORS_SCHEMA ],
       providers: [
         UntypedFormBuilder,

@@ -21,7 +21,6 @@ describe('BottleDetailComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [ BottleDetailComponent ],
-      imports: [ ReactiveFormsModule ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         UntypedFormBuilder,
