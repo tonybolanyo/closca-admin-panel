@@ -1,17 +1,17 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { PRODUCT_STATUSES } from 'src/app/shared/constants/constants';
-import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
-import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
+import { MatDialog } from '@angular/material/dialog';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { ProductService, CorporateService } from 'src/app/shared/custom-gnommo-base/services';
-import { MatDialog } from '@angular/material/dialog';
 import { ChangeProductStatusComponent } from 'src/app/shared/components/change-product-status/change-product-status.component';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
+import { PRODUCT_STATUSES } from 'src/app/shared/constants/constants';
+import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { Corporate } from 'src/app/shared/custom-gnommo-base/models/corporate.model';
-import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
+import { CorporateService, ProductService } from 'src/app/shared/custom-gnommo-base/services';
+import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
+import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 @Component({
   selector: 'app-products-list',
@@ -32,7 +32,7 @@ export class ProductsListComponent implements OnInit {
   productStatus = [...[{ name: 'Todos', value: '' }], ...PRODUCT_STATUSES];
 
   // FILTER
-  filter = {};
+  filter: any = {};
   filterForm;
   filterMode = true;
   // END FILTER
@@ -74,14 +74,14 @@ export class ProductsListComponent implements OnInit {
     } else {
       this.filter = '{"instance.status":"ACTIVE"}';
     }
-    
+
     this.sort = 'instance.createdAt';
     this.getProducts();
     this.getCorporates();
     this.countProducts();
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   filterFormChanges(values) {
     this.createFilter(values);
@@ -208,13 +208,13 @@ export class ProductsListComponent implements OnInit {
         }
       }
     },
-    error => {
-      this.ngxLoader.stop();
-      this.toastrService.error(
-        'Ha ocurrido un error al intentar obtener la lista de productos',
-        'Error'
-      );
-    });
+      error => {
+        this.ngxLoader.stop();
+        this.toastrService.error(
+          'Ha ocurrido un error al intentar obtener la lista de productos',
+          'Error'
+        );
+      });
   }
 
   getCorporates() {
@@ -532,26 +532,26 @@ export class ProductsListComponent implements OnInit {
         };
 
         this.productService
-        .editProductsStatus(productsEdited, { 'Accept-language': 'es' })
-        .subscribe(
-          response => {
-            this.toastrService.success(
-              'Los productos han sido actualizados correctamente',
-              'Listo'
-            );
-            this.countProducts();
-            this.getProducts();
-            this.resetPaginate();
-            this.clearSelectedProducts();
+          .editProductsStatus(productsEdited, { 'Accept-language': 'es' })
+          .subscribe(
+            response => {
+              this.toastrService.success(
+                'Los productos han sido actualizados correctamente',
+                'Listo'
+              );
+              this.countProducts();
+              this.getProducts();
+              this.resetPaginate();
+              this.clearSelectedProducts();
 
-          },
-          error => {
-            this.toastrService.error(
-              'Ha ocurrido un error al intentar editar los productos',
-              'Error'
-            );
-          }
-        );
+            },
+            error => {
+              this.toastrService.error(
+                'Ha ocurrido un error al intentar editar los productos',
+                'Error'
+              );
+            }
+          );
 
 
       }

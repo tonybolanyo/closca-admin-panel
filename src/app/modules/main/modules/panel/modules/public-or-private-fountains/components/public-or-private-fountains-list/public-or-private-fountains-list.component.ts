@@ -1,17 +1,17 @@
-import { Component, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
-import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
-import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
-import { FountainService } from 'src/app/shared/custom-gnommo-base/services/fountain.service';
-import { ToastrService } from 'ngx-toastr';
-import { PUBLIC_OR_PRIVATE_FOUNTAIN_TYPES, FOUNTAIN_STATUSES, STATION_TYPES } from 'src/app/shared/constants/constants';
+import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ChangeFountainStatusComponent } from 'src/app/shared/components/change-fountain-status/change-fountain-status.component';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { CorporateService } from 'src/app/shared/custom-gnommo-base/services';
+import { FOUNTAIN_STATUSES, PUBLIC_OR_PRIVATE_FOUNTAIN_TYPES, STATION_TYPES } from 'src/app/shared/constants/constants';
+import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { Corporate } from 'src/app/shared/custom-gnommo-base/models/corporate.model';
-import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
+import { CorporateService } from 'src/app/shared/custom-gnommo-base/services';
+import { FountainService } from 'src/app/shared/custom-gnommo-base/services/fountain.service';
+import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
+import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 @Component({
   selector: 'app-public-or-private-fountains-list',
@@ -31,7 +31,7 @@ export class PublicOrPrivateFountainsListComponent implements OnInit {
   exportButtonDisabled = true
 
   // FILTER
-  filter = {};
+  filter: any = {};
   filterExport = {};
   filterForm;
   filterMode = true;
@@ -153,11 +153,11 @@ export class PublicOrPrivateFountainsListComponent implements OnInit {
       .concat((filterValues.status !== '' && filterValues.status !== null && filterValues.status.length !== 0) ? fountainStatusFilter : '')
       .concat(finishFilter);
 
-      if (this.filterExport == startFilterExport.concat(finishFilter)) {
-        this.exportButtonDisabled = true
-      } else {
-        this.exportButtonDisabled = false
-      }
+    if (this.filterExport == startFilterExport.concat(finishFilter)) {
+      this.exportButtonDisabled = true
+    } else {
+      this.exportButtonDisabled = false
+    }
   }
 
   createSort(sortValues) {
@@ -955,7 +955,7 @@ export class PublicOrPrivateFountainsListComponent implements OnInit {
         fountain.name = fountain.name || ""
         fountain.fountainType = fountain.fountainType || ""
         fountain.fountainStatus = fountain.fountainStatus || ""
-        
+
         fountain.createdAt = fountain.instance.createdAt || ""
 
         fountain.addressDirection = fountain.address.address || ""

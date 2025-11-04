@@ -1,19 +1,17 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
-import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
-import { FOUNTAIN_STATUSES } from 'src/app/shared/constants/constants';
-import { FountainService } from 'src/app/shared/custom-gnommo-base/services/fountain.service';
-import { CorporateService } from 'src/app/shared/custom-gnommo-base/services';
-import { Corporate } from 'src/app/shared/custom-gnommo-base/models/corporate.model';
-import { ToastrService } from 'ngx-toastr';
-import { filter } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ChangeFountainStatusComponent } from 'src/app/shared/components/change-fountain-status/change-fountain-status.component';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
-import * as _ from 'lodash';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
+import { FOUNTAIN_STATUSES } from 'src/app/shared/constants/constants';
+import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
+import { Corporate } from 'src/app/shared/custom-gnommo-base/models/corporate.model';
+import { CorporateService } from 'src/app/shared/custom-gnommo-base/services';
+import { FountainService } from 'src/app/shared/custom-gnommo-base/services/fountain.service';
+import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
+import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 @Component({
   selector: 'app-sponsored-fountains-list',
@@ -34,7 +32,7 @@ export class SponsoredFountainsListComponent implements OnInit {
   featuresList;
 
   // FILTER
-  filter = {};
+  filter: any = {};
   filterForm;
   filterMode = true;
 
@@ -224,10 +222,10 @@ export class SponsoredFountainsListComponent implements OnInit {
         }
 
       },
-      error => {
-        this.toastr.error('Ha ocurrido un error al cargar las fuentes, vuelve a intentarlo', 'Error');
-        this.ngxLoader.stop();
-      });
+        error => {
+          this.toastr.error('Ha ocurrido un error al cargar las fuentes, vuelve a intentarlo', 'Error');
+          this.ngxLoader.stop();
+        });
   }
 
   getSelectedFountains() {
@@ -613,7 +611,7 @@ export class SponsoredFountainsListComponent implements OnInit {
             sortFilterExists: false
           }
         },
-  
+
         {
           columnDef: 'fountainAddress',
           columnValue: 'address.address',
@@ -794,7 +792,7 @@ export class SponsoredFountainsListComponent implements OnInit {
             sortFilterExists: false
           }
         },
-  
+
         {
           columnDef: 'fountainAddress',
           columnValue: 'address.address',

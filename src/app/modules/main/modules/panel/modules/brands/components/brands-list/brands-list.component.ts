@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
-import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
-import { BrandService } from 'src/app/shared/custom-gnommo-base/services/brands.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
+import { BrandService } from 'src/app/shared/custom-gnommo-base/services/brands.service';
+import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
 
 @Component({
@@ -16,7 +16,7 @@ export class BrandsListComponent implements OnInit {
   items;
 
   // FILTER
-  filter = {};
+  filter: any = {};
   filterForm;
   filterMode = true;
   // END FILTER
@@ -156,7 +156,7 @@ export class BrandsListComponent implements OnInit {
     const headers = convertToHttpHeaderMap({
       limit: this.paginator.limit,
       sort: this.sort,
-      skip: this.paginator.skip,
+      skip: String(this.paginator.skip),
       filter: this.filter
     });
     this.brandService
@@ -199,10 +199,10 @@ export class BrandsListComponent implements OnInit {
           }
         }
       },
-      (error) => {
-        this.toastr.error('Ha ocurrido un error al cargar las marcas, vuelve a intentarlo', 'Error');
-        this.ngxLoader.stop();
-      });
+        (error) => {
+          this.toastr.error('Ha ocurrido un error al cargar las marcas, vuelve a intentarlo', 'Error');
+          this.ngxLoader.stop();
+        });
   }
 
   countBrands() {

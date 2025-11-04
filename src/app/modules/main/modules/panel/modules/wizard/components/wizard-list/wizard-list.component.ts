@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
-import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
-import { OnboardingService, CorporateService } from 'src/app/shared/custom-gnommo-base/services';
-import { Corporate } from 'src/app/shared/custom-gnommo-base/models/corporate.model';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
+import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
+import { Corporate } from 'src/app/shared/custom-gnommo-base/models/corporate.model';
+import { CorporateService, OnboardingService } from 'src/app/shared/custom-gnommo-base/services';
+import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
+import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 @Component({
   selector: 'app-wizard-list',
@@ -57,7 +57,7 @@ export class WizardListComponent implements OnInit {
     } else {
       this.filter = `{"instance.status": "ACTIVE"}`;
     }
-    
+
     this.sort = "instance.createAt"
 
     this.countOnboardings();

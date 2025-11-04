@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
-import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { LevelService } from 'src/app/shared/custom-gnommo-base/services';
 import { LEVEL_STATUSES } from 'src/app/shared/constants/constants';
+import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
+import { LevelService } from 'src/app/shared/custom-gnommo-base/services';
+import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
 
 @Component({
@@ -17,7 +17,7 @@ export class LevelsListComponent implements OnInit {
   items;
 
   // FILTER
-  filter = {};
+  filter: any = {};
   filterForm;
   filterMode = true;
   // END FILTER
@@ -212,7 +212,7 @@ export class LevelsListComponent implements OnInit {
     const headers = convertToHttpHeaderMap({
       limit: this.paginator.limit,
       sort: this.sort,
-      skip: this.paginator.skip,
+      skip: String(this.paginator.skip),
       filter: this.filter
     });
     this.levelService
@@ -230,7 +230,7 @@ export class LevelsListComponent implements OnInit {
             level.status = this.changeLevelStatusName(level.status);
           });
         }
-        
+
         this.items = levels;
       },
         (error) => {

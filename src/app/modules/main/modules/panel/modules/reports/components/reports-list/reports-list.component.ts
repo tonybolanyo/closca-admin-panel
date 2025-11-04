@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
-import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
-import { REPORT_TYPES } from 'src/app/shared/constants/constants';
-import { ReportService, CorporateService } from 'src/app/shared/custom-gnommo-base/services';
-import { Corporate } from 'src/app/shared/custom-gnommo-base/models/corporate.model';
-import { ToastrService } from 'ngx-toastr';
 import * as moment from 'moment';
+import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
+import { REPORT_TYPES } from 'src/app/shared/constants/constants';
+import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
+import { Corporate } from 'src/app/shared/custom-gnommo-base/models/corporate.model';
+import { CorporateService, ReportService } from 'src/app/shared/custom-gnommo-base/services';
+import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
+import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 @Component({
   selector: 'app-reports-list',
@@ -26,7 +26,7 @@ export class ReportsListComponent implements OnInit {
   corporates;
 
   // FILTER
-  filter = {};
+  filter: any = {};
   filterForm;
   filterMode = true;
   // END FILTER

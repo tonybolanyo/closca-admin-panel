@@ -34,7 +34,7 @@ export class SponsoredFountainCreateComponent implements OnInit {
   privateFountains;
   brandsList;
 
-  filter = {};
+  filter: any = {};
 
   // UPLOADERS
   public mapPinImageUploader: FileUploader = new FileUploader({ url: '' });
@@ -449,7 +449,7 @@ export class SponsoredFountainCreateComponent implements OnInit {
       skip: this.paginator.skip,
       sort: 'instance.createdAt',
       filter: this.filter
-    }));
+    });
     this.fountainService
       .getAll(headers)
       .subscribe(

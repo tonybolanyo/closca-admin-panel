@@ -17,8 +17,8 @@ import { User } from 'src/app/shared/custom-gnommo-base/models';
 import { CorporateService, FountainService, RefillService, UserService } from 'src/app/shared/custom-gnommo-base/services';
 import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
-import { environment } from 'src/environments/environment';
 import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-corporate-detail',
@@ -416,7 +416,7 @@ export class CorporateDetailComponent implements OnInit {
       sort: '-instance.createdAt',
       limit: this.refillPaginator.limit,
       skip: this.refillPaginator.skip,
-    }));
+    });
 
 
     this.refillService

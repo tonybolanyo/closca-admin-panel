@@ -84,13 +84,7 @@ export class ChallengeDetailComponent implements OnInit {
     { key: "USERS", value: "Target Usuarios" }
   ];
 
-  editorConfig: AngularEditorConfig = {
-    editable: this.action !== 'view',
-    spellcheck: true,
-    height: '15rem',
-    minHeight: '15rem',
-    placeholder: 'Descripción'
-  };
+  editorConfig: AngularEditorConfig;
 
   // UPLOADERS
   public challengeImageUploader: FileUploader = new FileUploader({ url: '' });
@@ -149,7 +143,7 @@ export class ChallengeDetailComponent implements OnInit {
     pageSizeOptions: [2, 5, 10, 25, 100]
   };
 
-  filter = {};
+  filter: any = {};
 
   // tslint:disable-next-line:max-line-length
   fountainTypes = [

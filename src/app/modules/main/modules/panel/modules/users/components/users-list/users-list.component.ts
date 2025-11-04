@@ -22,7 +22,7 @@ export class UsersListComponent implements OnInit {
   fountainsCreated;
 
   // FILTER
-  filter = {};
+  filter: any = {};
   filterForm;
   filterMode = true;
   // FILTER

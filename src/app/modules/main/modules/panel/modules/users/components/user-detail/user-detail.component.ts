@@ -20,9 +20,9 @@ import { HydrationRefillService } from 'src/app/shared/custom-gnommo-base/servic
 import { RefillService } from 'src/app/shared/custom-gnommo-base/services/refill.service';
 import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
+import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
 import { environment } from 'src/environments/environment';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
-import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
 
 @Component({
   selector: 'app-user-detail',
@@ -518,7 +518,7 @@ export class UserDetailComponent implements OnInit {
       sort: '-instance.createdAt',
       limit: this.refillPaginator.limit,
       skip: this.refillPaginator.skip,
-    }));
+    });
 
 
     this.refillService

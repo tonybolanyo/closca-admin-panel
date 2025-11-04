@@ -1,27 +1,18 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
-import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
-import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { ChallengeService, CorporateService } from 'src/app/shared/custom-gnommo-base/services';
-import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 import {
   CHALLENGE_STATUSES,
-  CHALLENGE_TYPES,
-  S3_URL
+  CHALLENGE_TYPES
 } from 'src/app/shared/constants/constants';
-import * as moment from 'moment';
-import clonedeep from 'lodash.clonedeep';
-import { MatDialog } from '@angular/material/dialog';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
-import {
-  CdkDragDrop,
-  moveItemInArray,
-  CdkDropList
-} from '@angular/cdk/drag-drop';
-import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
+import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { Corporate } from 'src/app/shared/custom-gnommo-base/models/corporate.model';
+import { ChallengeService, CorporateService } from 'src/app/shared/custom-gnommo-base/services';
+import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
+import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 @Component({
   selector: 'app-challenges-list',
@@ -37,7 +28,7 @@ export class ChallengesListComponent implements OnInit {
   challengeTypes = [...[{ name: 'Todos', value: '' }], ...CHALLENGE_TYPES];
 
   // FILTER
-  filter = {};
+  filter: any = {};
   filterForm;
   filterMode = true;
   // END FILTER
@@ -190,7 +181,7 @@ export class ChallengesListComponent implements OnInit {
     const headers = convertToHttpHeaderMap({
       limit: this.paginator.limit,
       sort: this.sort,
-      skip: this.paginator.skip,
+      skip: String(this.paginator.skip),
       filter: this.filter
     });
     this.challengeService.getAll(headers).subscribe(

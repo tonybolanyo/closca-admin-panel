@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
-import { ToastrService } from 'ngx-toastr';
-import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { CorporateService } from 'src/app/shared/custom-gnommo-base/services';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
+import { CorporateService } from 'src/app/shared/custom-gnommo-base/services';
+import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
 
 @Component({
@@ -17,7 +17,7 @@ export class CorporatesListComponent implements OnInit {
   items;
 
   // FILTER
-  filter = {};
+  filter: any = {};
   filterForm;
   filterMode = true;
   // FILTER
@@ -240,7 +240,7 @@ export class CorporatesListComponent implements OnInit {
     } else {
       this.router.navigate([this.routerDefinitions.corporates, 'edit', element._id]);
     }
-    
+
   }
 
 }

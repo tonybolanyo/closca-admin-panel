@@ -10,7 +10,10 @@ module.exports = {
     '<rootDir>/src/test.ts'
   ],
   moduleNameMapper: {
+    '^src/(.*)$': '<rootDir>/src/$1',
     '@tyris/angular-foundation': '<rootDir>/src/__mocks__/@tyris/angular-foundation.ts',
+    '@ks89/angular-modal-gallery': '<rootDir>/src/__mocks__/angular-modal-gallery.js',
+    'ng-apexcharts': '<rootDir>/src/__mocks__/ng-apexcharts.js',
     '\\.(css|less|scss|sass)$': '<rootDir>/src/__mocks__/styleMock.js'
   },
   collectCoverageFrom: [

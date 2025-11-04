@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
-import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { BottleTypesService } from 'src/app/shared/custom-gnommo-base/services/bottle-types.service';
+import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
 
 @Component({
@@ -16,7 +16,7 @@ export class BottleTypesListComponent implements OnInit {
   items;
 
   // FILTER
-  filter = {};
+  filter: any = {};
   filterForm;
   filterMode = true;
   // END FILTER
@@ -142,7 +142,7 @@ export class BottleTypesListComponent implements OnInit {
     const headers = convertToHttpHeaderMap({
       limit: this.paginator.limit,
       sort: this.sort,
-      skip: this.paginator.skip,
+      skip: String(this.paginator.skip),
       filter: this.filter,
       "Accept-language": "es"
     });

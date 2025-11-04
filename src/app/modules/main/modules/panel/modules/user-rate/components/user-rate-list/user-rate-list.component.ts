@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
-import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
-import { UserRatingsService } from 'src/app/shared/custom-gnommo-base/services';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ToastrService } from 'ngx-toastr';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
+import { UserRatingsService } from 'src/app/shared/custom-gnommo-base/services';
+import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
 
 @Component({
@@ -16,7 +16,7 @@ export class UserRateListComponent implements OnInit {
   items;
 
   // FILTER
-  filter = {};
+  filter: any = {};
   filterForm;
   filterMode = true;
   // END FILTER
@@ -136,7 +136,7 @@ export class UserRateListComponent implements OnInit {
     this.sort = '-instance.createdAt';
     this.getUserRatings();
     this.countUserRatings();
-   }
+  }
 
   ngOnInit() {
   }
@@ -180,15 +180,15 @@ export class UserRateListComponent implements OnInit {
     });
 
     this.userRatingService
-    .getAll(headers)
-    .subscribe((response) => {
-      this.ngxLoader.stop();
-      this.items = response;
-    },
-    error => {
-        this.toastr.error('Ha ocurrido un error al cargar las valoraciones, vuelve a intentarlo', 'Error');
+      .getAll(headers)
+      .subscribe((response) => {
         this.ngxLoader.stop();
-    });
+        this.items = response;
+      },
+        error => {
+          this.toastr.error('Ha ocurrido un error al cargar las valoraciones, vuelve a intentarlo', 'Error');
+          this.ngxLoader.stop();
+        });
   }
 
   countUserRatings() {

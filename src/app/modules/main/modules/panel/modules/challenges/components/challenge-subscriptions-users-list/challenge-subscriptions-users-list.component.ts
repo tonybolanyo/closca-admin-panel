@@ -23,7 +23,7 @@ export class ChallengeSubscriptionsUsersListComponent implements OnInit {
   @Input('role') role: string;
 
   // START USERS
-  filter = {};
+  filter: any = {};
 
   usersSubscribed = [];
   // END USERS
