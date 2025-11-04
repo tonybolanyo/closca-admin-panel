@@ -13,6 +13,7 @@ import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-co
 import * as _ from 'lodash';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
+import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
 
 @Component({
   selector: 'app-sponsored-fountains-list',
@@ -144,9 +145,9 @@ export class SponsoredFountainsListComponent implements OnInit {
   }
 
   countFountains() {
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       filter: this.filter
-    };
+    });
     this.fountainService
       .count(headers)
       .subscribe((response) => {
@@ -161,12 +162,12 @@ export class SponsoredFountainsListComponent implements OnInit {
 
   getFountains(isDeletedItem: boolean = false) {
     this.ngxLoader.start();
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       limit: this.paginator.limit,
       skip: this.paginator.skip,
       sort: this.sort,
       filter: this.filter
-    };
+    });
 
     this.fountainService
       .getAll(headers)

@@ -10,9 +10,8 @@ import { Onboarding } from '../models/onboarding.model';
 export class OnboardingService extends BaseService<Onboarding> {
 
         constructor(http: HttpClient) {
-                super(http,
-                        environment.apiUrl,
-                        'onboardings');
+                super(http);
+                this.setApiConfig(environment.apiUrl, 'onboardings');
         }
 
         public updateOnboarding(onboardingId?: string, values?: any, headers?: any): Observable<any> {

@@ -5,6 +5,7 @@ import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { CorporateService } from 'src/app/shared/custom-gnommo-base/services';
 import { Router } from '@angular/router';
+import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
 
 @Component({
   selector: 'app-corporates-list',
@@ -162,9 +163,9 @@ export class CorporatesListComponent implements OnInit {
   }
 
   countCorporates() {
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       filter: this.filter
-    };
+    });
     this.corporateService
       .count(headers)
       .subscribe((response) => {
@@ -175,12 +176,12 @@ export class CorporatesListComponent implements OnInit {
 
   getCorporates(isDeletedItem: boolean = false) {
     this.ngxLoader.start();
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       limit: this.paginator.limit,
       skip: this.paginator.skip,
       sort: this.sort,
       filter: this.filter
-    };
+    });
     this.corporateService
       .getAll(headers)
       .subscribe((response) => {

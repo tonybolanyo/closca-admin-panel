@@ -89,15 +89,28 @@ export class LoggedUserService {
             this.userService
                 .getCurrentUser(this.authService.getToken().id)
                 .subscribe(response => {
-                    const userCookie = this.cookieStorage.get('user');
-                    let userResponse = response
+                    const userCookieRaw = this.cookieStorage.get('user');
+                    let userCookie: any;
 
-                    if (userCookie.role === "ADMIN") {
-                        userResponse.isAdmin = true
-                    } else if (userCookie.role === "MANAGER" && userCookie.isAdmin) {
-                        userResponse = userCookie
+                    // Parse cookie value if it's a string
+                    if (typeof userCookieRaw === 'string') {
+                        try {
+                            userCookie = JSON.parse(userCookieRaw);
+                        } catch (e) {
+                            userCookie = null;
+                        }
                     } else {
-                        userResponse.isAdmin = false
+                        userCookie = userCookieRaw;
+                    }
+
+                    let userResponse = response;
+
+                    if (userCookie && userCookie.role === "ADMIN") {
+                        userResponse.isAdmin = true;
+                    } else if (userCookie && userCookie.role === "MANAGER" && userCookie.isAdmin) {
+                        userResponse = userCookie;
+                    } else {
+                        userResponse.isAdmin = false;
                     }
 
                     this.setLoggedUser(userResponse);

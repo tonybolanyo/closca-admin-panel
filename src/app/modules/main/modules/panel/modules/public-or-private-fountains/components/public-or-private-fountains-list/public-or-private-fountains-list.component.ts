@@ -11,6 +11,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { CorporateService } from 'src/app/shared/custom-gnommo-base/services';
 import { Corporate } from 'src/app/shared/custom-gnommo-base/models/corporate.model';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
+import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
 
 @Component({
   selector: 'app-public-or-private-fountains-list',
@@ -166,9 +167,9 @@ export class PublicOrPrivateFountainsListComponent implements OnInit {
   }
 
   countFountains() {
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       filter: this.filter
-    };
+    });
     this.fountainService
       .count(headers)
       .subscribe((response) => {
@@ -194,12 +195,12 @@ export class PublicOrPrivateFountainsListComponent implements OnInit {
     this.ngxLoader.start();
     this.blockKeyboard = true;
 
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       limit: this.paginator.limit,
       skip: this.paginator.skip,
       sort: this.sort,
       filter: this.filter
-    };
+    });
 
     this.fountainService
       .getAll(headers)
@@ -942,10 +943,10 @@ export class PublicOrPrivateFountainsListComponent implements OnInit {
   }
 
   downloadCSV() {
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       // sort: this.sort,
       filter: this.filterExport
-    };
+    });
 
     this.ngxLoader.start();
 

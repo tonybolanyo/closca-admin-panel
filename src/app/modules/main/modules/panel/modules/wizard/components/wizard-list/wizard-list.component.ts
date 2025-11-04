@@ -6,6 +6,7 @@ import { Corporate } from 'src/app/shared/custom-gnommo-base/models/corporate.mo
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
+import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
 
 @Component({
   selector: 'app-wizard-list',
@@ -70,12 +71,12 @@ export class WizardListComponent implements OnInit {
   getOnboardings() {
     this.ngxLoader.start();
 
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       limit: this.paginator.limit,
       skip: this.paginator.skip,
       sort: this.sort,
       filter: this.filter
-    };
+    });
 
     this.onboardingService
       .getAll(headers)
@@ -86,9 +87,9 @@ export class WizardListComponent implements OnInit {
   }
 
   countOnboardings() {
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       filter: this.filter
-    };
+    });
 
     this.onboardingService
       .count(headers)

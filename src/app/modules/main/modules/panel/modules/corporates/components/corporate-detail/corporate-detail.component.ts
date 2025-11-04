@@ -18,6 +18,7 @@ import { CorporateService, FountainService, RefillService, UserService } from 's
 import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 import { environment } from 'src/environments/environment';
+import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
 
 @Component({
   selector: 'app-corporate-detail',
@@ -358,11 +359,11 @@ export class CorporateDetailComponent implements OnInit {
   }
 
   getManager(corporateId) {
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       sort: 'instance.createdAt',
       limit: 1,
-      filter: `{"corporateId": "${corporateId}", "instance.status": {$ne: "DELETED"}, "role": "MANAGER"}`
-    };
+      filter: `{"corporateId": "${corporateId}))", "instance.status": {$ne: "DELETED"}, "role": "MANAGER"}`
+    });
 
     this.userService
       .getAll(headers)
@@ -386,13 +387,13 @@ export class CorporateDetailComponent implements OnInit {
   }
 
   getFountainsByCorporate(corporateId) {
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       includes: 'fountainId',
       sort: 'instance.createdAt',
       limit: this.fountainsPaginator.limit,
       skip: this.fountainsPaginator.skip,
-      filter: `{"corporateId": "${corporateId}", "fountainStatus": {$ne: "DELETED"}}`
-    };
+      filter: `{"corporateId": "${corporateId}))", "fountainStatus": {$ne: "DELETED"}}`
+    });
 
     this.fountainService
       .getAll(headers)
@@ -410,12 +411,12 @@ export class CorporateDetailComponent implements OnInit {
   }
 
   getRefillsByCorporate(corporateId) {
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       includes: 'fountainId',
       sort: '-instance.createdAt',
       limit: this.refillPaginator.limit,
       skip: this.refillPaginator.skip,
-    };
+    }));
 
 
     this.refillService
@@ -537,9 +538,9 @@ export class CorporateDetailComponent implements OnInit {
   }
 
   countFountains(corporateId) {
-    const headers = {
-      filter: `{"corporateId": "${corporateId}", "fountainStatus": {$ne: "DELETED"}}`
-    };
+    const headers = convertToHttpHeaderMap({
+      filter: `{"corporateId": "${corporateId}))", "fountainStatus": {$ne: "DELETED"}}`
+    });
     this.fountainService
       .count(headers)
       .subscribe((count) => {

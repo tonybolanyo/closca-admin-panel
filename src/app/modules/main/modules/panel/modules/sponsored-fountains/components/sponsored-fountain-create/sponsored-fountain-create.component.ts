@@ -18,6 +18,7 @@ import { CorporateService } from 'src/app/shared/custom-gnommo-base/services/cor
 import { FountainService } from 'src/app/shared/custom-gnommo-base/services/fountain.service';
 import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
 import { environment } from 'src/environments/environment';
+import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
 
 @Component({
   selector: 'app-sponsored-fountain-create',
@@ -443,12 +444,12 @@ export class SponsoredFountainCreateComponent implements OnInit {
   }
 
   getFountains() {
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       limit: this.paginator.limit,
       skip: this.paginator.skip,
       sort: 'instance.createdAt',
       filter: this.filter
-    };
+    }));
     this.fountainService
       .getAll(headers)
       .subscribe(
@@ -468,9 +469,9 @@ export class SponsoredFountainCreateComponent implements OnInit {
   }
 
   countFountains() {
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       filter: this.filter
-    };
+    }));
     this.fountainService
       .count(headers)
       .subscribe((response) => {
@@ -485,9 +486,9 @@ export class SponsoredFountainCreateComponent implements OnInit {
 
 
   getBrands() {
-    const headers = {
-      filter: `{ "brandStatus": { $ne: "DELETED" } }`
-    };
+    const headers = convertToHttpHeaderMap({
+      filter: `{ "brandStatus": { $ne: "DELETED" })) }`
+    });
     this.brandService
       .getAll(headers)
       .subscribe(

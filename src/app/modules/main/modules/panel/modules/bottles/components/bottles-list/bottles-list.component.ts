@@ -4,6 +4,7 @@ import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { BottleService } from 'src/app/shared/custom-gnommo-base/services';
+import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
 
 @Component({
   selector: 'app-bottles-list',
@@ -138,12 +139,12 @@ export class BottlesListComponent implements OnInit {
 
   getBottles() {
     this.ngxLoader.start();
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       limit: this.paginator.limit,
       sort: this.sort,
       skip: this.paginator.skip,
       filter: this.filter
-    };
+    });
     this.bottleService
       .getAll(headers)
       .subscribe((bottles) => {
@@ -158,9 +159,9 @@ export class BottlesListComponent implements OnInit {
   }
 
   countBottles() {
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       filter: this.filter
-    };
+    });
     this.bottleService
       .count(headers)
       .subscribe((response) => {

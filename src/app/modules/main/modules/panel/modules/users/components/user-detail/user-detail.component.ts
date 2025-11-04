@@ -22,6 +22,7 @@ import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 import { environment } from 'src/environments/environment';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
+import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
 
 @Component({
   selector: 'app-user-detail',
@@ -469,12 +470,12 @@ export class UserDetailComponent implements OnInit {
   }
 
   getBottlesByUser(userId) {
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       sort: 'instance.createdAt',
       limit: this.bottlesPaginator.limit,
       skip: this.bottlesPaginator.skip,
-      filter: `{"userId": "${userId}"}`
-    };
+      filter: `{"userId": "${userId}))"}`
+    });
 
     this.bottleService
       .getAll(headers)
@@ -488,13 +489,13 @@ export class UserDetailComponent implements OnInit {
   }
 
   getFountainsByUser(userId) {
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       includes: 'fountainId',
       sort: 'instance.createdAt',
       limit: this.fountainsPaginator.limit,
       skip: this.fountainsPaginator.skip,
-      filter: `{"userId": "${userId}", "fountainStatus": {$ne: "DELETED"}}`
-    };
+      filter: `{"userId": "${userId}))", "fountainStatus": {$ne: "DELETED"}}`
+    });
 
     this.fountainService
       .getAll(headers)
@@ -512,12 +513,12 @@ export class UserDetailComponent implements OnInit {
   }
 
   getRefillsByUser(userId) {
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       includes: 'fountainId',
       sort: '-instance.createdAt',
       limit: this.refillPaginator.limit,
       skip: this.refillPaginator.skip,
-    };
+    }));
 
 
     this.refillService
@@ -559,12 +560,12 @@ export class UserDetailComponent implements OnInit {
   }
 
   getHydrationRefillsByUser(userId) {
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       sort: '-instance.createdAt',
       limit: this.hydrationRefillPaginator.limit,
       skip: this.hydrationRefillPaginator.skip,
-      filter: `{"userId": "${userId}"}`
-    };
+      filter: `{"userId": "${userId}))"}`
+    });
 
     this.hydrationRefillService
       .userRefills(headers)
@@ -583,9 +584,9 @@ export class UserDetailComponent implements OnInit {
   }
 
   countBottles(userId) {
-    const headers = {
-      filter: `{"userId": "${userId}"}`
-    };
+    const headers = convertToHttpHeaderMap({
+      filter: `{"userId": "${userId}))"}`
+    });
     this.bottleService
       .count(headers)
       .subscribe((count) => {
@@ -598,9 +599,9 @@ export class UserDetailComponent implements OnInit {
   }
 
   countFountains(userId) {
-    const headers = {
-      filter: `{"userId": "${userId}", "fountainStatus": {$ne: "DELETED"}}`
-    };
+    const headers = convertToHttpHeaderMap({
+      filter: `{"userId": "${userId}))", "fountainStatus": {$ne: "DELETED"}}`
+    });
     this.fountainService
       .count(headers)
       .subscribe((count) => {
@@ -613,9 +614,9 @@ export class UserDetailComponent implements OnInit {
   }
 
   countRefills(userId) {
-    const headers = {
-      filter: `{"userId": "${userId}"}`
-    };
+    const headers = convertToHttpHeaderMap({
+      filter: `{"userId": "${userId}))"}`
+    });
     this.refillService
       .count(headers)
       .subscribe((count) => {
@@ -627,9 +628,9 @@ export class UserDetailComponent implements OnInit {
   }
 
   countHydrationRefills(userId) {
-    const headers = {
-      filter: `{"userId": "${userId}"}`
-    };
+    const headers = convertToHttpHeaderMap({
+      filter: `{"userId": "${userId}))"}`
+    });
     this.hydrationRefillService
       .count(headers)
       .subscribe((count) => {

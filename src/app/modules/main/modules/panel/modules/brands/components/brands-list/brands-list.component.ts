@@ -4,6 +4,7 @@ import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { BrandService } from 'src/app/shared/custom-gnommo-base/services/brands.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
 
 @Component({
   selector: 'app-brands-list',
@@ -152,12 +153,12 @@ export class BrandsListComponent implements OnInit {
 
   getBrands(isDeletedItem: boolean = false) {
     this.ngxLoader.start();
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       limit: this.paginator.limit,
       sort: this.sort,
       skip: this.paginator.skip,
       filter: this.filter
-    };
+    });
     this.brandService
       .getAll(headers)
       .subscribe((brands) => {
@@ -205,9 +206,9 @@ export class BrandsListComponent implements OnInit {
   }
 
   countBrands() {
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       filter: this.filter
-    };
+    });
     this.brandService
       .count(headers)
       .subscribe((response) => {

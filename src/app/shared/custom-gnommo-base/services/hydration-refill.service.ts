@@ -8,9 +8,8 @@ import { environment } from 'src/environments/environment';
 @Injectable()
 export class HydrationRefillService extends BaseService<any> {
     constructor(http: HttpClient) {
-        super(http,
-            environment.apiUrl,
-            'hydration-refills');
+        super(http);
+        this.setApiConfig(environment.apiUrl, 'hydration-refills');
     }
 
     public userRefills(headers?: any): Observable<any> {

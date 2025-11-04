@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { LevelService } from 'src/app/shared/custom-gnommo-base/services';
 import { LEVEL_STATUSES } from 'src/app/shared/constants/constants';
+import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
 
 @Component({
   selector: 'app-levels-list',
@@ -208,12 +209,12 @@ export class LevelsListComponent implements OnInit {
 
   getLevels() {
     this.ngxLoader.start();
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       limit: this.paginator.limit,
       sort: this.sort,
       skip: this.paginator.skip,
       filter: this.filter
-    };
+    });
     this.levelService
       .getAll(headers)
       .subscribe((levels) => {
@@ -239,9 +240,9 @@ export class LevelsListComponent implements OnInit {
   }
 
   countLevels() {
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       filter: this.filter
-    };
+    });
     this.levelService
       .count(headers)
       .subscribe((response) => {

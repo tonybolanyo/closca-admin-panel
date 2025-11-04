@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import * as moment from 'moment';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
+import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
 
 @Component({
   selector: 'app-reports-list',
@@ -134,12 +135,12 @@ export class ReportsListComponent implements OnInit {
 
   getReports(isDeletedItem: boolean = false) {
     this.ngxLoader.start();
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       limit: this.paginator.limit,
       skip: this.paginator.skip,
       sort: '-instance.createdAt',
       filter: this.filter
-    };
+    });
 
     this.reportService
       .getAll(headers)
@@ -184,9 +185,9 @@ export class ReportsListComponent implements OnInit {
   }
 
   countReports() {
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       filter: this.filter
-    };
+    });
     this.reportService
       .count(headers)
       .subscribe((response) => {

@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { Challenge, ChallengeSubscription } from 'src/app/shared/custom-gnommo-base/models';
+import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
 @Component({
   selector: 'app-challenge-subscriptions-users-list',
   templateUrl: 'challenge-subscriptions-users-list.component.html',
@@ -265,11 +266,11 @@ export class ChallengeSubscriptionsUsersListComponent implements OnInit {
 
   getUsersSubscribedByChallengeId() {
 
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       filter: this.filter,
       includes: 'user',
       sort: this.sort
-    };
+    });
 
     this.challengeSubscriptionService
       .getAll(headers)
@@ -289,10 +290,10 @@ export class ChallengeSubscriptionsUsersListComponent implements OnInit {
 
 
   countUsersSubscribedByChallengeId() {
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       filter: this.filter,
       includes: 'user'
-    };
+    });
 
     this.challengeSubscriptionService
       .count(headers)

@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Router, ActivatedRoute } from '@angular/router';
-import { ROUTER_DEFINITIONS } from '../../shared/constants/router-definitions';
 import { UserService } from 'src/app/shared/custom-gnommo-base/services';
+import { ROUTER_DEFINITIONS } from '../../shared/constants/router-definitions';
 
 @Component({
     selector: 'app-password-recover',
@@ -33,15 +33,15 @@ export class PasswordRecoverComponent implements OnInit {
         });
     }
 
-    sendPasswordRecover(values)  {
+    sendPasswordRecover(values) {
         this.userService
-        .passwordRecovery({ email: values.email }).subscribe(
+            .passwordRecovery(values.email).subscribe(
                 (response) => {
                     this.toastr.success('Se ha enviado un mensaje a su correo electrónico', 'Listo');
                     this.navigateToLogin();
                 },
                 (error) => {
-                    if (error.statusCode === 404)  {
+                    if (error.statusCode === 404) {
                         this.toastr.error('Este correo no se ha encontrado', 'Error');
                     } else {
                         this.toastr.error('Se ha producido un error al enviar el mensaje a su correo', 'Error');

@@ -10,9 +10,8 @@ import { Bottle } from '../models/bottle.model';
 export class BottleService extends BaseService<Bottle> {
 
         constructor(http: HttpClient) {
-                super(http,
-                        environment.apiUrl,
-                        'bottles');
+                super(http);
+                this.setApiConfig(environment.apiUrl, 'bottles');
         }
 
         public count(headers?: any): Observable<any> {

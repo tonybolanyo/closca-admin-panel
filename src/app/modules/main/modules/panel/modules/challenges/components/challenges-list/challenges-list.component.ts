@@ -21,6 +21,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
 import { Corporate } from 'src/app/shared/custom-gnommo-base/models/corporate.model';
+import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
 
 @Component({
   selector: 'app-challenges-list',
@@ -186,12 +187,12 @@ export class ChallengesListComponent implements OnInit {
 
   getChallenges(isDeletedItem: boolean = false) {
     this.ngxLoader.start();
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       limit: this.paginator.limit,
       sort: this.sort,
       skip: this.paginator.skip,
       filter: this.filter
-    };
+    });
     this.challengeService.getAll(headers).subscribe(
       challenges => {
         this.ngxLoader.stop();
@@ -679,9 +680,9 @@ export class ChallengesListComponent implements OnInit {
   }
 
   countChallenges() {
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       filter: this.filter
-    };
+    });
     this.challengeService.count(headers).subscribe(response => {
       if (response !== null) {
         this.paginator.length = response;

@@ -33,6 +33,7 @@ import {
   ProductService
 } from 'src/app/shared/custom-gnommo-base/services';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
+import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
 import { environment } from 'src/environments/environment';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
@@ -472,9 +473,9 @@ export class ChallengeDetailComponent implements OnInit {
   getProductsByCorporate(corporateId) {
     this.ngxLoader.start();
 
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       filter: '{"corporateId": ObjectId("' + corporateId + '")}'
-    };
+    });
 
     this.productService.getAll(headers).subscribe(response => {
       this.ngxLoader.stop();
@@ -512,9 +513,9 @@ export class ChallengeDetailComponent implements OnInit {
   }
 
   getChallenges() {
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       filter: this.filter
-    }
+    })
 
     this.challengeService
       .getAll(headers)
@@ -1470,12 +1471,12 @@ export class ChallengeDetailComponent implements OnInit {
   }
 
   getFountains() {
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       limit: this.paginator.limit,
       skip: this.paginator.skip,
       sort: 'instance.createdAt',
       filter: this.filter
-    };
+    });
     this.fountainService.getAll(headers).subscribe((fountains: Fountain[]) => {
       this.fountains = [];
 
@@ -1486,9 +1487,9 @@ export class ChallengeDetailComponent implements OnInit {
   }
 
   countFountains() {
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       filter: this.filter
-    };
+    });
     this.fountainService.count(headers).subscribe(response => {
       if (response !== null) {
         this.paginator.length = 0;

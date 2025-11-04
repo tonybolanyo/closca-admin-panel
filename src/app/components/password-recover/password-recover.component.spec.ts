@@ -1,9 +1,7 @@
-import { PasswordRecoverComponent } from './password-recover.component';
 import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { of, throwError } from 'rxjs';
 import { ROUTER_DEFINITIONS } from '../../shared/constants/router-definitions';
+import { PasswordRecoverComponent } from './password-recover.component';
 
 describe('PasswordRecoverComponent', () => {
   let component: PasswordRecoverComponent;
@@ -78,7 +76,7 @@ describe('PasswordRecoverComponent', () => {
 
       component.sendPasswordRecover(values);
 
-      expect(mockUserService.passwordRecovery).toHaveBeenCalledWith({ email: 'test@example.com' });
+      expect(mockUserService.passwordRecovery).toHaveBeenCalledWith('test@example.com');
     });
 
     it('should show success message and navigate to login on successful recovery', () => {

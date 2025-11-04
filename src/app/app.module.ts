@@ -55,7 +55,7 @@ import { CanDeactivateGuard } from './shared/guards/can-deactivate.guard';
     NgApexchartsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    AngularFoundationModule.forRoot({}), // Angular 6 compatibility still being worked on
+    AngularFoundationModule.forRoot(),
     CustomGnommoBaseModule,
     NgbModule,
     MatButtonModule,

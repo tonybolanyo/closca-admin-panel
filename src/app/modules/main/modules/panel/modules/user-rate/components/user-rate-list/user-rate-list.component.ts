@@ -4,6 +4,7 @@ import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { UserRatingsService } from 'src/app/shared/custom-gnommo-base/services';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ToastrService } from 'ngx-toastr';
+import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
 
 @Component({
   selector: 'app-user-rate-list',
@@ -171,12 +172,12 @@ export class UserRateListComponent implements OnInit {
   getUserRatings() {
     this.ngxLoader.start();
 
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       limit: this.paginator.limit,
       skip: this.paginator.skip,
       sort: this.sort,
       filter: this.filter
-    };
+    });
 
     this.userRatingService
     .getAll(headers)
@@ -191,9 +192,9 @@ export class UserRateListComponent implements OnInit {
   }
 
   countUserRatings() {
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       filter: this.filter
-    };
+    });
     this.userRatingService
       .count(headers)
       .subscribe((response) => {

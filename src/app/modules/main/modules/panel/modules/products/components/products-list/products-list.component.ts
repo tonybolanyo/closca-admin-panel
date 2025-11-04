@@ -11,6 +11,7 @@ import { ChangeProductStatusComponent } from 'src/app/shared/components/change-p
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
 import { Corporate } from 'src/app/shared/custom-gnommo-base/models/corporate.model';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
+import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
 
 @Component({
   selector: 'app-products-list',
@@ -152,13 +153,13 @@ export class ProductsListComponent implements OnInit {
   getProducts(isDeletedItem: boolean = false) {
     this.ngxLoader.start();
 
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       limit: this.paginator.limit,
       skip: this.paginator.skip,
       sort: this.sort,
       filter: this.filter,
       includes: 'imageId,descriptionImageId,typeId'
-    };
+    });
 
     this.productService.getAll(headers).subscribe(response => {
       this.ngxLoader.stop();
@@ -689,9 +690,9 @@ export class ProductsListComponent implements OnInit {
   }
 
   countProducts() {
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       filter: this.filter
-    };
+    });
     this.productService.count(headers).subscribe(response => {
       if (response !== null) {
         this.paginator.length = 0;

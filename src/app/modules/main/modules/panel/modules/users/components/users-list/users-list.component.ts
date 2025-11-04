@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { ToastrService } from 'ngx-toastr';
-import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
-import { UserService, CorporateService, LevelService } from 'src/app/shared/custom-gnommo-base/services';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { Corporate } from 'src/app/shared/custom-gnommo-base/models/corporate.model';
 import { Level } from 'src/app/shared/custom-gnommo-base/models/level.model';
+import { CorporateService, LevelService, UserService } from 'src/app/shared/custom-gnommo-base/services';
+import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
+import { convertToHttpHeaderMap } from 'src/app/shared/utils/http-header-utils';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
 
 @Component({
@@ -113,12 +114,12 @@ export class UsersListComponent implements OnInit {
 
   getUsers(isDeletedItem: boolean = false) {
     this.ngxLoader.start();
-    const headers = {
+    const headers = convertToHttpHeaderMap({
       limit: this.paginator.limit,
       skip: this.paginator.skip,
       sort: this.sort,
       filter: this.filter
-    };
+    });
     this.userService
       .getAll(headers)
       .subscribe((response) => {
