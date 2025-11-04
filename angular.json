@@ -110,18 +110,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "closca-admin-panel:build"
+            "buildTarget": "closca-admin-panel:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "closca-admin-panel:build:production"
+              "buildTarget": "closca-admin-panel:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "closca-admin-panel:build"
+            "buildTarget": "closca-admin-panel:build"
           }
         },
         "test": {
