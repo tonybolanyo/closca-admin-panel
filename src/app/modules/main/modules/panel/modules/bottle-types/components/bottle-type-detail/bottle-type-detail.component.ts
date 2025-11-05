@@ -14,10 +14,11 @@ import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions'
 import { BottleTypesService } from 'src/app/shared/custom-gnommo-base/services';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 import { environment } from 'src/environments/environment';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   standalone: true,
-    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule, MatIconModule],
   selector: 'app-bottle-type-detail',
   templateUrl: './bottle-type-detail.component.html',
   styleUrls: ['./bottle-type-detail.component.scss'],

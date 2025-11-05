@@ -18,10 +18,13 @@ import { CorporateService, FountainService, RefillService, UserService } from 's
 import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 import { environment } from 'src/environments/environment';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   standalone: true,
-    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule, MatIconModule, MatFormFieldModule, MatInputModule],
   selector: 'app-corporate-detail',
   templateUrl: './corporate-detail.component.html',
   styleUrls: ['./corporate-detail.component.scss'],

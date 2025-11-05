@@ -13,10 +13,13 @@ import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions'
 import { BottleType } from 'src/app/shared/custom-gnommo-base/models/bottle-type.model';
 import { BottleService, BottleTypesService } from 'src/app/shared/custom-gnommo-base/services';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   standalone: true,
-    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule, MatIconModule, MatFormFieldModule, MatInputModule],
   selector: 'app-bottle-detail',
   templateUrl: './bottle-detail.component.html',
   styleUrls: ['./bottle-detail.component.scss'],

@@ -6,7 +6,7 @@ import {
   ViewChild,
   ElementRef
 } from '@angular/core';
-import { FileUploader } from 'ng2-file-upload';
+import { FileUploader, FileUploadModule } from 'ng2-file-upload';
 import { ImagesRandomService } from 'src/app/shared/custom-gnommo-base/services';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { S3_URL } from 'src/app/shared/constants/constants';
@@ -17,7 +17,7 @@ import { ToastrService } from 'ngx-toastr';
 
 @Component({
   standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, FileUploadModule],
   selector: 'app-random-fountain-images',
   templateUrl: './random-fountain-images.component.html',
   styleUrls: ['./random-fountain-images.component.scss'],

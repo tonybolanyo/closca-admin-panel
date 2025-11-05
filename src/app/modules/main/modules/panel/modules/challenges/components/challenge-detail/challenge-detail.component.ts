@@ -35,10 +35,14 @@ import {
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 import { environment } from 'src/environments/environment';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   standalone: true,
-    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule, MatIconModule, MatButtonToggleModule, MatFormFieldModule, MatInputModule],
   selector: 'app-challenge-detail',
   styleUrls: ['./challenge-detail.component.scss'],
   templateUrl: 'challenge-detail.component.html',

@@ -2,7 +2,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { CdkDropList, CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDropList, CdkDragDrop, moveItemInArray, DragDropModule } from '@angular/cdk/drag-drop';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { ChallengeService } from 'src/app/shared/custom-gnommo-base/services';
 import { ToastrService } from 'ngx-toastr';
@@ -11,10 +11,12 @@ import clonedeep from 'lodash.clonedeep';
 import { S3_URL, CHALLENGE_STATUSES, CHALLENGE_TYPES } from 'src/app/shared/constants/constants';
 import { Observable } from 'rxjs';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatTableModule } from '@angular/material/table';
 
 @Component({
   standalone: true,
-    imports: [CommonModule, RouterModule],
+    imports: [CommonModule, RouterModule, MatButtonToggleModule, MatTableModule, DragDropModule],
   selector: 'app-challenges-order',
   templateUrl: './challenges-order.component.html',
   styleUrls: ['./challenges-order.component.scss'],

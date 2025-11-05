@@ -4,7 +4,7 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule, 
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { AuthService } from '@tyris/angular-foundation';
-import { FileUploader } from 'ng2-file-upload';
+import { FileUploader, FileUploadModule } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { debounceTime } from 'rxjs/operators';
@@ -26,6 +26,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @Component({
   standalone: true,
@@ -40,7 +41,9 @@ import { GoogleMapsModule } from '@angular/google-maps';
       MatSelectModule,
       MatPaginatorModule,
       MatTableModule,
-      GoogleMapsModule
+      GoogleMapsModule,
+      FileUploadModule,
+      NgSelectModule
     ],
   selector: 'app-sponsored-fountain-create',
   templateUrl: './sponsored-fountain-create.component.html',
