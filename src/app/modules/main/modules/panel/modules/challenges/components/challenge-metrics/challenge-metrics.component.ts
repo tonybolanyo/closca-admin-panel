@@ -33,6 +33,7 @@ import {
 } from "ng-apexcharts";
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -48,7 +49,7 @@ export type ChartOptions = {
 
 @Component({
   standalone: true,
-    imports: [CommonModule, ReactiveFormsModule, FormsModule, MatIconModule, MatPaginatorModule],
+    imports: [CommonModule, ReactiveFormsModule, FormsModule, MatIconModule, MatPaginatorModule, MatTableModule],
   selector: 'app-challenge-metrics',
   styleUrls: ['./challenge-metrics.component.scss'],
   templateUrl: 'challenge-metrics.component.html',
