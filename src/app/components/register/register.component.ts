@@ -1,17 +1,16 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { Router, RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { UserService } from 'src/app/shared/custom-gnommo-base/services';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatCardModule } from '@angular/material/card';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 
 @Component({
-  standalone: true,
+    standalone: true,
     imports: [RouterModule, ReactiveFormsModule, FormsModule, MatFormFieldModule, MatCardModule],
     selector: 'app-register',
     templateUrl: 'register.component.html',

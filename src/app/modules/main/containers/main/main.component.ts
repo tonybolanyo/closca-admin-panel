@@ -1,18 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { MatOptionModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 import { Router, RouterModule } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { CorporateService } from 'src/app/shared/custom-gnommo-base/services';
 import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
-import { MatOptionModule } from '@angular/material/core';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @Component({
-  standalone: true,
+    standalone: true,
     imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule, MatFormFieldModule, MatSelectModule, MatOptionModule],
     selector: 'app-main',
     templateUrl: 'main.component.html',

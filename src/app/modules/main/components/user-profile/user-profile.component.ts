@@ -1,25 +1,22 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ROUTER_DEFINITIONS } from '../../../../shared/constants/router-definitions';
 // import { LoggedUserService } from '../../../../shared/services/logged-user.service';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { environment } from '../../../../../environments/environment';
 import { FileUploader } from 'ng2-file-upload';
-import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
-import { S3_URL } from 'src/app/shared/constants/constants';
+import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 import { User } from 'src/app/shared/custom-gnommo-base/models';
 import { UserService } from 'src/app/shared/custom-gnommo-base/services';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
-import { Observable } from 'rxjs';
-import { MatIconModule } from '@angular/material/icon';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatCardModule } from '@angular/material/card';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
 
 @Component({
   standalone: true,
-    imports: [RouterModule, ReactiveFormsModule, FormsModule, MatIconModule, MatFormFieldModule, MatCardModule],
+  imports: [RouterModule, ReactiveFormsModule, FormsModule, MatIconModule, MatFormFieldModule, MatCardModule],
   selector: 'app-user-profile',
   templateUrl: 'user-profile.component.html',
   styleUrls: ['./user-profile.component.scss'],
@@ -64,10 +61,10 @@ export class UserProfileComponent implements OnInit {
 
   canDeactivate(): Observable<boolean> | boolean {
     if (!this.isFormCanceled && !this.isFormSaved && this.userForm.dirty) {
-        return this.canDeactivateDialogService.openDialog();
+      return this.canDeactivateDialogService.openDialog();
     }
     return true;
-}
+  }
 
   buildUserForm(disabled: boolean) {
     this.userForm = this.formBuilder.group({
