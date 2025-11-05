@@ -9,11 +9,12 @@ import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HeaderComponent } from '../../components/header/header.component';
+import { FooterComponent } from '../../components/footer/footer.component';
 
 @Component({
   standalone: true,
-    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule, MatFormFieldModule, MatSelectModule, MatOptionModule],
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule, MatFormFieldModule, MatSelectModule, MatOptionModule, HeaderComponent, FooterComponent],
     selector: 'app-main',
     templateUrl: 'main.component.html',
     styleUrls: ['main.component.scss'],
