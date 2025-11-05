@@ -14,7 +14,8 @@ const routes: Routes = [
       children: [
         {
           path: '',
-          redirectTo: 'panel'
+          redirectTo: 'panel',
+          pathMatch: 'full'
         },
         {
         path: 'panel',
