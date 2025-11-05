@@ -11,8 +11,9 @@ const routes: Routes = [
     component: PanelComponent,
     children: [
       {
-        path: '', redirectTo: 'home',
-        canActivate: [AuthGuard]
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
       },
       {
         path: 'home', component: HomeComponent
