@@ -9,10 +9,12 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { CorporateService } from 'src/app/shared/custom-gnommo-base/services';
 import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
+import { FooterComponent } from '../../components/footer/footer.component';
+import { HeaderComponent } from '../../components/header/header.component';
 
 @Component({
     standalone: true,
-    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule, MatFormFieldModule, MatSelectModule, MatOptionModule],
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule, MatFormFieldModule, MatSelectModule, MatOptionModule, HeaderComponent, FooterComponent],
     selector: 'app-main',
     templateUrl: 'main.component.html',
     styleUrls: ['main.component.scss'],
