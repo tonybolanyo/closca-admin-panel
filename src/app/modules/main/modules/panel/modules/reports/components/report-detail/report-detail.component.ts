@@ -12,12 +12,29 @@ import { CommonModule, Location } from '@angular/common';
 import { REPORT_TYPES, PUBLIC_OR_PRIVATE_FOUNTAIN_TYPES, S3_URL } from 'src/app/shared/constants/constants';
 import { Fountain } from 'src/app/shared/custom-gnommo-base/models';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 declare var google;
 
 @Component({
   standalone: true,
-    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
+    imports: [
+      CommonModule, 
+      RouterModule, 
+      ReactiveFormsModule, 
+      FormsModule,
+      MatButtonToggleModule,
+      MatIconModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatSelectModule,
+      GoogleMapsModule
+    ],
   selector: 'app-report-detail',
   templateUrl: './report-detail.component.html',
   styleUrls: ['./report-detail.component.scss'],

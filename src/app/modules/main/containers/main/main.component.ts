@@ -6,10 +6,14 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { CorporateService } from 'src/app/shared/custom-gnommo-base/services';
 import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
-    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule, MatFormFieldModule, MatSelectModule, MatOptionModule],
     selector: 'app-main',
     templateUrl: 'main.component.html',
     styleUrls: ['main.component.scss'],

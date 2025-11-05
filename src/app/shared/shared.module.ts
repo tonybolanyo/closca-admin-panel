@@ -57,7 +57,18 @@ import { ChallengeCsvResponseDialogComponent } from './components/challenge-csv-
         FileUploadModule,
         NgbRatingModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        // Import standalone components
+        DialogConfirmationComponent,
+        ChallengeCsvResponseDialogComponent,
+        TransformSponsoredFountainToPrivateComponent,
+        ChangeFountainStatusComponent,
+        DialogInfoComponent,
+        DialogRewardCodesComponent,
+        CookiesComponent,
+        CustomGalleryComponent,
+        CustomTableComponent,
+        ChangeProductStatusComponent
     ],
     exports: [
         DialogConfirmationComponent,
@@ -71,17 +82,7 @@ import { ChallengeCsvResponseDialogComponent } from './components/challenge-csv-
         CustomTableComponent
     ],
     declarations: [
-        DialogConfirmationComponent,
-        ChallengeCsvResponseDialogComponent,
-        DialogInfoComponent,
-        SafePipe,
-        CookiesComponent,
-        CustomGalleryComponent,
-        CustomTableComponent,
-        TransformSponsoredFountainToPrivateComponent,
-        ChangeFountainStatusComponent,
-        ChangeProductStatusComponent,
-        DialogRewardCodesComponent
+        SafePipe
     ],
     providers: [
         CanDeactivateDialogService

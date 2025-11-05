@@ -12,10 +12,14 @@ import { User } from 'src/app/shared/custom-gnommo-base/models';
 import { UserService } from 'src/app/shared/custom-gnommo-base/services';
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 import { Observable } from 'rxjs';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
-    imports: [RouterModule, ReactiveFormsModule, FormsModule],
+    imports: [RouterModule, ReactiveFormsModule, FormsModule, MatIconModule, MatFormFieldModule, MatCardModule],
   selector: 'app-user-profile',
   templateUrl: 'user-profile.component.html',
   styleUrls: ['./user-profile.component.scss'],

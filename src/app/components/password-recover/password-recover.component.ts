@@ -4,10 +4,13 @@ import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ROUTER_DEFINITIONS } from '../../shared/constants/router-definitions';
 import { UserService } from 'src/app/shared/custom-gnommo-base/services';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
-    imports: [],
+    imports: [MatFormFieldModule, MatCardModule, ReactiveFormsModule],
     selector: 'app-password-recover',
     templateUrl: 'password-recover.component.html',
     encapsulation: ViewEncapsulation.None,
