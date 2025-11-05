@@ -21,12 +21,27 @@ import { CorporateService, RefillService } from 'src/app/shared/custom-gnommo-ba
 import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { environment } from 'src/environments/environment';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatIconModule } from '@angular/material/icon';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 declare var google;
 
 @Component({
   standalone: true,
-    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
+    imports: [
+      CommonModule, 
+      RouterModule, 
+      ReactiveFormsModule, 
+      FormsModule, 
+      MatButtonToggleModule, 
+      MatIconModule, 
+      GoogleMapsModule,
+      MatFormFieldModule,
+      MatInputModule
+    ],
   selector: 'app-public-or-private-fountain-detail',
   templateUrl: './public-or-private-fountain-detail.component.html',
   styleUrls: ['./public-or-private-fountain-detail.component.scss'],

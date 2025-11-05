@@ -4,12 +4,15 @@ import { Router, RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ROUTER_DEFINITIONS } from 'src/app/shared/constants/router-definitions';
 import { UserService } from 'src/app/shared/custom-gnommo-base/services';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 
 @Component({
   standalone: true,
-    imports: [RouterModule, ReactiveFormsModule, FormsModule],
+    imports: [RouterModule, ReactiveFormsModule, FormsModule, MatFormFieldModule, MatCardModule],
     selector: 'app-register',
     templateUrl: 'register.component.html',
     styleUrls: ['./register.component.scss'],

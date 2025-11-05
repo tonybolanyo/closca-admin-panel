@@ -7,10 +7,12 @@ import { LoggedUserService } from '../../../../shared/services/logged-user.servi
 import { ROUTER_DEFINITIONS } from '../../../../shared/constants/router-definitions';
 import { CorporateService } from 'src/app/shared/custom-gnommo-base/services';
 import { S3_URL } from 'src/app/shared/constants/constants';
+import { MatIconModule } from '@angular/material/icon';
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   standalone: true,
-    imports: [CommonModule, RouterModule],
+    imports: [CommonModule, RouterModule, MatIconModule, NgbCollapseModule],
     selector: 'app-header',
     templateUrl: 'header.component.html',
     styleUrls: ['./header.component.scss'],

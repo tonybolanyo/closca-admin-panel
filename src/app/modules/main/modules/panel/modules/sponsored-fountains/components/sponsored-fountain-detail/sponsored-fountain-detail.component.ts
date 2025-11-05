@@ -21,12 +21,27 @@ import { TransformSponsoredFountainToPrivateComponent } from 'src/app/shared/com
 import { CorporateService, RefillService } from 'src/app/shared/custom-gnommo-base/services';
 import { TableConfig } from 'src/app/shared/interfaces/tableConfig.interface';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatIconModule } from '@angular/material/icon';
 
 declare var google;
 
 @Component({
   standalone: true,
-    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
+    imports: [
+      CommonModule, 
+      RouterModule, 
+      ReactiveFormsModule, 
+      FormsModule, 
+      GoogleMapsModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatButtonToggleModule,
+      MatIconModule
+    ],
   selector: 'app-sponsored-fountain-detail',
   templateUrl: './sponsored-fountain-detail.component.html',
   styleUrls: ['./sponsored-fountain-detail.component.scss']

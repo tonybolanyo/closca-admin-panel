@@ -4,7 +4,7 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule, 
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { AuthService } from '@tyris/angular-foundation';
-import { FileUploader } from 'ng2-file-upload';
+import { FileUploader, FileUploadModule } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { debounceTime } from 'rxjs/operators';
@@ -19,10 +19,32 @@ import { CorporateService } from 'src/app/shared/custom-gnommo-base/services/cor
 import { FountainService } from 'src/app/shared/custom-gnommo-base/services/fountain.service';
 import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
 import { environment } from 'src/environments/environment';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @Component({
   standalone: true,
-    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
+    imports: [
+      CommonModule, 
+      RouterModule, 
+      ReactiveFormsModule, 
+      FormsModule,
+      MatIconModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatSelectModule,
+      MatPaginatorModule,
+      MatTableModule,
+      GoogleMapsModule,
+      FileUploadModule,
+      NgSelectModule
+    ],
   selector: 'app-sponsored-fountain-create',
   templateUrl: './sponsored-fountain-create.component.html',
   styleUrls: ['./sponsored-fountain-create.component.scss'],

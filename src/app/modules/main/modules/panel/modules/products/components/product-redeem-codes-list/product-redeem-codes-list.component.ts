@@ -10,7 +10,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   standalone: true,
-    imports: [, CustomTableComponent],
+    imports: [CustomTableComponent],
   selector: 'app-product-redeem-codes-list',
   templateUrl: './product-redeem-codes-list.component.html',
   styleUrls: ['./product-redeem-codes-list.component.scss'],

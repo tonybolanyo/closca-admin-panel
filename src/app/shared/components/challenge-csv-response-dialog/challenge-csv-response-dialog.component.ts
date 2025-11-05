@@ -1,9 +1,10 @@
 import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
-    imports: [],
+    imports: [CommonModule, MatDialogModule],
   selector: 'app-challenge-csv-response-dialog',
   template: `
   <h2 mat-dialog-title>

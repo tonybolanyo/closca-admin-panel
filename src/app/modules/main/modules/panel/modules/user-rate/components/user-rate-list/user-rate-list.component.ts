@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 
 @Component({
   standalone: true,
-    imports: [, CustomTableComponent],
+    imports: [CustomTableComponent],
   selector: 'app-user-rate-list',
   templateUrl: './user-rate-list.component.html',
   styleUrls: ['./user-rate-list.component.scss'],

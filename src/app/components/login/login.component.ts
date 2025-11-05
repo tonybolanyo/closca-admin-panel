@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
@@ -8,10 +8,20 @@ import { AuthService, CookieStorage } from '@tyris/angular-foundation';
 import { UserService } from 'src/app/shared/custom-gnommo-base/services';
 import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
 import { ROUTER_DEFINITIONS } from '../../shared/constants/router-definitions';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
-    imports: [],
+    imports: [
+      CommonModule,
+      ReactiveFormsModule,
+      MatCardModule,
+      MatFormFieldModule,
+      MatInputModule
+    ],
     selector: 'app-login',
     templateUrl: 'login.component.html',
     styleUrls: ['./login.component.scss'],

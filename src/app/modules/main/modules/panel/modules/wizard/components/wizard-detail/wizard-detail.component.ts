@@ -16,10 +16,19 @@ import { CorporateService, OnboardingService } from 'src/app/shared/custom-gnomm
 import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactivate-dialog.service';
 import { environment } from 'src/environments/environment';
 import { LoggedUserService } from '../../../../../../../../shared/services/logged-user.service';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @Component({
   standalone: true,
-    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
+    imports: [
+      CommonModule, 
+      RouterModule, 
+      ReactiveFormsModule, 
+      FormsModule,
+      MatIconModule,
+      MatButtonToggleModule
+    ],
   selector: 'app-wizard-detail',
   templateUrl: './wizard-detail.component.html',
   styleUrls: ['./wizard-detail.component.scss'],

@@ -8,10 +8,12 @@ import { CanDeactivateDialogService } from 'src/app/shared/services/can-deactiva
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { CommonModule, Location } from '@angular/common';
 import { Observable } from 'rxjs';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @Component({
   standalone: true,
-    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule, MatIconModule, MatButtonToggleModule],
   selector: 'app-product-type-detail',
   templateUrl: './product-type-detail.component.html',
   styleUrls: ['./product-type-detail.component.scss'],
